@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Designer & Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fdf6ec;
+    --warm-white: #fffaf4;
+    --blush: #f5dfd0;
+    --peach: #e8b89a;
+    --terracotta: #c97b5a;
+    --brown: #7a4f35;
+    --deep: #3d2314;
+    --sage: #8fad8c;
+    --sage-light: #c8ddc6;
+    --sky: #b8d4e8;
+    --sky-light: #ddeef7;
+    --purple-soft: #c5b8d4;
+    --text: #3d2314;
+    --text-soft: #7a6055;
+    --shadow: rgba(122, 79, 53, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(253, 246, 236, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200, 150, 120, 0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Lora', serif;
+    font-size: 1.2rem;
+    color: var(--brown);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-soft);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--terracotta); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(184, 212, 232, 0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 20% 70%, rgba(245, 223, 208, 0.5) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(197, 184, 212, 0.2) 0%, transparent 50%),
+      var(--warm-white);
+  }
+
+  /* Decorative floating shapes */
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(143, 173, 140, 0.15), transparent 70%);
+    top: -100px; right: 10%;
+    animation: drift 8s ease-in-out infinite;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232, 184, 154, 0.2), transparent 70%);
+    bottom: 5%; left: 15%;
+    animation: drift 10s ease-in-out infinite reverse;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.15;
+    color: var(--deep);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    line-height: 1.75;
+    color: var(--text-soft);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    transition: all 0.25s ease;
+  }
+
+  .btn-primary {
+    background: var(--terracotta);
+    color: white;
+    box-shadow: 0 4px 20px rgba(201, 123, 90, 0.35);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(201, 123, 90, 0.45);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--brown);
+    border: 2px solid var(--peach);
+  }
+
+  .btn-ghost:hover {
+    background: var(--blush);
+    transform: translateY(-2px);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION COMMONS ── */
+  section {
+    padding: 6rem 3rem;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--deep);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--warm-white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200, 221, 198, 0.25), transparent 65%);
+    top: -150px; right: -100px;
+    pointer-events: none;
+  }
+
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--text-soft);
+    margin-bottom: 1.25rem;
+  }
+
+  .about-text p strong {
+    color: var(--brown);
+    font-weight: 700;
+  }
+
+  .about-text p:first-of-type {
+    font-size: 1.2rem;
+    color: var(--text);
+    font-family: 'Lora', serif;
+    font-style: italic;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .skill-chip {
+    background: var(--blush);
+    border: 1px solid rgba(200, 150, 120, 0.2);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .skill-chip:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--shadow);
+  }
+
+  .skill-chip h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 0.3rem;
+  }
+
+  .skill-chip p {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    line-height: 1.4;
+  }
+
+  /* ── PROJECTS ── */
+  .projects {
+    background: var(--cream);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+  }
+
+  .projects-header {
+    max-width: 600px;
+    margin-bottom: 3.5rem;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .project-card {
+    background: var(--warm-white);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(200, 150, 120, 0.15);
+    box-shadow: 0 4px 24px var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(122, 79, 53, 0.18);
+  }
+
+  .project-card.featured {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+  }
+
+  .project-thumb {
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .project-card.featured .project-thumb {
+    height: 100%;
+    min-height: 280px;
+  }
+
+  .project-thumb-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .project-card:hover .project-thumb-bg {
+    transform: scale(1.04);
+  }
+
+  /* Color placeholder backgrounds for when no image */
+  .thumb-kokoron { background: linear-gradient(135deg, #b8d4e8 0%, #c5b8d4 50%, #f5dfd0 100%); }
+  .thumb-vr { background: linear-gradient(135deg, #c8ddc6 0%, #8fad8c 40%, #3d5c3a 100%); }
+  .thumb-weiss { background: linear-gradient(135deg, #2a1a0e 0%, #7a4f35 40%, #c97b5a 100%); }
+  .thumb-nfc { background: linear-gradient(135deg, #e8e0d4 0%, #c5b8d4 60%, #8fad8c 100%); }
+
+  .thumb-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: white;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+    letter-spacing: 0.05em;
+  }
+
+  .project-info {
+    padding: 1.75rem;
+  }
+
+  .project-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.85rem;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    background: var(--blush);
+    color: var(--terracotta);
+    border: 1px solid rgba(201, 123, 90, 0.2);
+  }
+
+  .tag.green { background: var(--sage-light); color: #4a7a47; border-color: rgba(74, 122, 71, 0.2); }
+  .tag.purple { background: #e8e2f0; color: #6b5c8a; border-color: rgba(107, 92, 138, 0.2); }
+  .tag.sky { background: var(--sky-light); color: #3a6a8a; border-color: rgba(58, 106, 138, 0.2); }
+
+  .project-info h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    color: var(--deep);
+    margin-bottom: 0.6rem;
+  }
+
+  .project-info p {
+    font-size: 0.95rem;
+    color: var(--text-soft);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-link {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--terracotta);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+
+  .project-link:hover { gap: 0.75rem; }
+
+  /* ── CASE STUDY SECTION ── */
+  .case-study {
+    background: var(--warm-white);
+    padding: 6rem 3rem;
+  }
+
+  .case-study-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .case-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(200, 150, 120, 0.2);
+  }
+
+  .case-body {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .case-block h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+    color: var(--brown);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .case-block h3::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    flex-shrink: 0;
+  }
+
+  .case-block p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--text-soft);
+  }
+
+  .case-block p + p { margin-top: 1rem; }
+
+  .insight-box {
+    background: linear-gradient(135deg, var(--blush), var(--sky-light));
+    border-left: 4px solid var(--terracotta);
+    border-radius: 0 16px 16px 0;
+    padding: 1.5rem 1.75rem;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--brown);
+    line-height: 1.6;
+  }
+
+  /* ── PHILOSOPHY ── */
+  .philosophy {
+    background: var(--deep);
+    color: white;
+    padding: 6rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .philosophy::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201, 123, 90, 0.15), transparent 65%);
+    top: -200px; right: -150px;
+  }
+
+  .philosophy-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .philosophy .section-label { color: var(--peach); }
+  .philosophy .section-title { color: white; }
+
+  .philosophy-quote {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    line-height: 1.5;
+    font-style: italic;
+    color: rgba(255,255,255,0.9);
+    margin: 2.5rem 0;
+    padding-left: 2rem;
+    border-left: 3px solid var(--terracotta);
+  }
+
+  .philosophy p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.65);
+    max-width: 680px;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--cream);
+    padding: 6rem 3rem;
+    text-align: center;
+  }
+
+  .contact-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact p {
+    font-size: 1.1rem;
+    color: var(--text-soft);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    section, .projects { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    .project-card.featured .project-thumb { min-height: 220px; }
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">心 &nbsp;Your Name</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#case-study">Case Study</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">UX Designer · Unity Developer · Human-Centered Builder</p>
+    <h1>I design experiences that take people's <em>inner lives</em> seriously.</h1>
+    <p class="hero-sub">Writing teacher turned self-taught developer. 18 years building in Korea. Now crafting apps, VR experiences, and games that sit at the intersection of technology and the human heart.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">See My Work</a>
+      <a href="#about" class="btn btn-ghost">My Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-text reveal">
+      <p class="section-label">About</p>
+      <h2 class="section-title">From the writing classroom to the virtual world.</h2>
+      <p>"My only computer course in college was shipbuilding engineering. Everything else, I taught myself."</p>
+      <p>I spent <strong>18 years in Korea</strong> as a writing teacher, consultant, and academic. During that time I quietly taught myself Unity, C#, app architecture, UX design, and systems thinking — not from courses, but from curiosity and stubbornness.</p>
+      <p>That background shapes everything I make. I think in <strong>narrative, empathy, and consequence</strong> first — and build the technology to serve those things. The result is work that tends to feel different from what comes out of a traditional CS pipeline.</p>
+      <p>I'm currently completing an MBS in UX Design at Rutgers while developing a portfolio of projects that span mobile wellness apps, immersive VR therapy tools, and an indie game with several years of depth behind it.</p>
+    </div>
+    <div class="skills-grid reveal reveal-delay-2">
+      <div class="skill-chip">
+        <h4>Unity & C#</h4>
+        <p>3D/2D games, VR experiences, mobile apps — all self-taught from the ground up.</p>
+      </div>
+      <div class="skill-chip">
+        <h4>UX Design</h4>
+        <p>Full design thinking, systems design, UX writing, and interaction design.</p>
+      </div>
+      <div class="skill-chip">
+        <h4>Game Design</h4>
+        <p>Economy systems, deck-building, ATB combat, housing and relationship systems.</p>
+      </div>
+      <div class="skill-chip">
+        <h4>VR / XR</h4>
+        <p>Spatial UI, embodied interaction design, gesture-based therapeutic experiences.</p>
+      </div>
+      <div class="skill-chip">
+        <h4>Writing & Voice</h4>
+        <p>UX copy, academic writing, curriculum design — language as a design material.</p>
+      </div>
+      <div class="skill-chip">
+        <h4>LLM Integration</h4>
+        <p>Local model integration for privacy-preserving AI features in apps and experiences.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<div id="projects">
+<div class="projects">
+  <div class="projects-header reveal">
+    <p class="section-label">Selected Work</p>
+    <h2 class="section-title">Projects built with intention.</h2>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- KOKORON — FEATURED -->
+    <a href="#case-study" class="project-card featured reveal">
+      <div class="project-thumb thumb-kokoron">
+        <div class="thumb-label">Kokoron</div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag">Unity</span>
+          <span class="tag sky">Mobile</span>
+          <span class="tag purple">Wellness</span>
+          <span class="tag">UXD</span>
+        </div>
+        <h3>Kokoron — Wellness Tamagotchi</h3>
+        <p>A mobile companion app where your emotional experiences — the dark ones and the bright ones — become food and water for a creature that grows alongside you. Built solo for a team of four in a mobile app development course.</p>
+        <p>Reframes negative experience as nourishment rather than failure. Features a trauma-informed reflection log, streak-based engagement, social features, and cosmetic monetization — all designed to avoid punishing emotional states.</p>
+        <span class="project-link">Read Case Study →</span>
+      </div>
+    </a>
+
+    <!-- VR WELLNESS -->
+    <a href="#" class="project-card reveal reveal-delay-1">
+      <div class="project-thumb thumb-vr">
+        <div class="thumb-label">The Ritual</div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag green">VR / XR</span>
+          <span class="tag purple">Wellness</span>
+          <span class="tag">Unity</span>
+        </div>
+        <h3>VR Wellness Experience</h3>
+        <p>An immersive daily ritual where users physically pull value cards to their hearts, speak aloud what weighs on them, and then — literally — grab their darkness and throw it away. A dying world slowly comes back to life.</p>
+        <span class="project-link">View Project →</span>
+      </div>
+    </a>
+
+    <!-- WEISS -->
+    <a href="#" class="project-card reveal reveal-delay-2">
+      <div class="project-thumb thumb-weiss">
+        <div class="thumb-label">WEISS</div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag">Unity</span>
+          <span class="tag">Game Design</span>
+          <span class="tag sky">RPG</span>
+        </div>
+        <h3>WEISS — World's End Item Shop</h3>
+        <p>An item shop simulator set in an RPG that stopped mid-story. The hero never came. Now you work both sides — monsters and humans — to restore an economy, rebuild a town, and cash in on a world that forgot to end.</p>
+        <span class="project-link">View Project →</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+</div>
+
+<!-- CASE STUDY: KOKORON -->
+<section class="case-study" id="case-study">
+  <div class="case-study-inner">
+    <div class="case-header reveal">
+      <p class="section-label">Case Study</p>
+      <h2 class="section-title">Kokoron — Designing for Emotional Safety</h2>
+    </div>
+
+    <div class="case-body">
+      <div class="case-block reveal">
+        <h3>The Concept</h3>
+        <p>Most wellness apps treat negative emotion as a problem to be eliminated. Kokoron asks a different question: what if your struggles could nourish something? The core mechanic reframes negative experience as food for a creature companion, and positive reflection as water. The pet survives, grows, and develops — because you did the work of showing up.</p>
+      </div>
+
+      <div class="insight-box reveal reveal-delay-1">
+        "The decision to never let the Kokoron die wasn't accidental. Wellness tools that punish absence create anxiety. We removed that failure state entirely while preserving meaningful engagement."
+      </div>
+
+      <div class="case-block reveal">
+        <h3>Key Design Decisions</h3>
+        <p><strong>Trauma-informed log design.</strong> Negative entries in the reflection log are hidden by default, accessible only when the user actively chooses to unlock them — with a label that explicitly says it's not recommended. This single interaction acknowledges that revisiting dark moments should be a conscious, deliberate choice, not a default scroll. It also positions the app as a complement to professional support rather than a replacement.</p>
+        <p><strong>Aspirational stat naming.</strong> The Kokoron develops stats like Resilience, Hope, and Inner Strength. These aren't arbitrary RPG numbers — they mirror the qualities users might want to cultivate in themselves. As the pet grows, it quietly models a kind of self the user might aspire toward.</p>
+        <p><strong>Ethical monetization.</strong> All monetization is cosmetic (skins) or compassionate (Graces for missed streaks). No mechanics that penalize emotional states or gate core functionality behind payment. This was a deliberate stance, not an oversight.</p>
+      </div>
+
+      <div class="case-block reveal">
+        <h3>What I Built</h3>
+        <p>The entire product — name, concept, architecture, UI design, codebase, monetization strategy, and UX writing — was designed and built by me in Unity for a mobile app development course. The team of four was, in practice, a team of one.</p>
+        <p>The app was ported to HTML5 for web demonstration. Data persistence uses JSON-based local storage. The 3D Kokoron creature was licensed through the Unity Asset Store; all other design work is original.</p>
+      </div>
+
+      <div class="case-block reveal">
+        <h3>What I'd Do Next</h3>
+        <p>Migrate to a proper backend (Supabase or Firebase) to enable genuine social features — shared gardens, friend Kokorons, community streaks. The social layer is designed but not yet wired to persistent cloud data. The competitive minigame system, where Kokoron stats earned through emotional work translate into friendly competition, is the long-term vision I'd develop next.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="philosophy-inner">
+    <p class="section-label">Design Philosophy</p>
+    <h2 class="section-title">Why I build what I build.</h2>
+    <blockquote class="philosophy-quote">
+      "Every project I've made asks the same question: what does it feel like to be inside this experience — not just to use it, but to live with it?"
+    </blockquote>
+    <p>I came to design through language. As a writing teacher, I understood before I had the vocabulary for it that the gap between what something says and what it makes someone feel is where all the important work happens.</p>
+    <p>That instinct runs through everything I build — the way Kokoron never lets your creature die, the way the VR experience asks you to physically throw your darkness away, the way WEISS puts you in a morally ambiguous economy and asks what you're willing to do to keep the world running.</p>
+    <p>Good design doesn't solve problems. It creates spaces where people can be more fully themselves.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner reveal">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Let's work together.</h2>
+    <p>I'm currently open to UXD roles, game design positions, wellness tech opportunities, and interesting contract work — especially anything that sits at the intersection of technology and human experience.</p>
+    <div class="contact-links">
+      <a href="mailto:your@email.com" class="btn btn-primary">Send an Email</a>
+      <a href="https://linkedin.com/in/yourprofile" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://github.com/yourusername" class="btn btn-ghost">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & built by [Your Name] &nbsp;·&nbsp; 心 &nbsp;·&nbsp; 2026</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
