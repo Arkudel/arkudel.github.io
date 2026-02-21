@@ -700,7 +700,10 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Work</a></li>
-    <li><a href="#case-study">Case Study</a></li>
+    <li><a href="#case-study">Kokoron</a></li>
+    <li><a href="#case-study-luminare">Luminare</a></li>
+    <li><a href="#case-study-weiss">WEISS</a></li>
+    <li><a href="#case-study-primus">Primus</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -790,7 +793,7 @@
     </a>
 
     <!-- VR WELLNESS -->
-    <a href="#" class="project-card reveal reveal-delay-1">
+    <a href="#case-study-luminare" class="project-card reveal reveal-delay-1">
       <div class="project-thumb thumb-vr">
         <!-- 💡 REPLACE: a striking screenshot of the world transformation or the shadow wolf
              <img src="images/vr-world.png" alt="VR wellness experience" class="project-thumb-bg">
@@ -810,7 +813,7 @@
     </a>
 
     <!-- WEISS -->
-    <a href="#" class="project-card reveal reveal-delay-2">
+    <a href="#case-study-weiss" class="project-card reveal reveal-delay-2">
       <div class="project-thumb thumb-weiss">
        
              <img src="images/weiss-battle.png" alt="WEISS item shop game battle" class="project-thumb-bg">
@@ -906,6 +909,150 @@
         <h3>What I'd Do Next</h3>
         <p>Migrate to a proper backend (Supabase or Firebase) to enable genuine social features — shared gardens, friend Kokorons, community streaks. The social layer is designed but not yet wired to persistent cloud data. The competitive minigame system, where Kokoron stats earned through emotional work translate into friendly competition, is the long-term vision I'd develop next.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY: PROJECT LUMINARE -->
+<section class="case-study" id="case-study-luminare">
+  <div class="case-study-inner">
+    <div class="case-header reveal">
+      <p class="section-label">Case Study</p>
+      <h2 class="section-title">Project Luminare — Therapy You Can Touch</h2>
+    </div>
+
+    <div class="case-body">
+
+      <div class="case-block reveal">
+        <h3>The Concept</h3>
+        <p>Most wellness apps ask you to think about your feelings. Luminare asks you to do something about them — physically, in space, with your hands. It's a daily VR ritual built around embodied action: pulling values close, speaking burdens aloud, grabbing darkness and throwing it away. The world you inhabit starts dead and broken. Over ten days of returning, it comes back to life.</p>
+        <p>The core insight behind the design is that VR's unique power isn't visual immersion — it's physical presence. The body remembers what it does in ways the mind alone doesn't. Luminare is built entirely around that idea.</p>
+
+        <!-- 💡 FULL WIDTH: Your best "world transformation" screenshot — the before/after dissolve moment
+             is the single most visually striking thing in the project. The dead grey world becoming
+             green and alive is your hero image for this case study.
+        <img src="images/luminare-transform.png" alt="World transformation from grey to green" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
+        -->
+      </div>
+
+      <div class="insight-box reveal reveal-delay-1">
+        "VR's real power isn't what you see. It's what your body believes it's doing. Every interaction in Luminare was designed to be felt, not just observed."
+      </div>
+
+      <div class="case-block reveal">
+        <h3>The Ritual — Step by Step</h3>
+        <p>The experience follows a deliberate sequence, each step building on the last. The user opens a book their character holds and summons a halo of value cards — Creativity, Family, Justice, Friendship, and others. They physically reach out, pull four cards to their chest, and release them. A collider registers the gesture; the values are logged.</p>
+        <p>Those four values are then woven into a personal mantra: <em>"My creativity gives me the strength to face every day. I do this for my family and for my sense of justice. It is my friendships that remind me who I am."</em> The user then speaks what's weighing on them to a virtual avatar — which nods and responds while audio input is active — processed locally by an LLM that generates a brief summary. Nothing is recorded or transmitted.</p>
+        <p>Then the central gesture: the user looks at their own heart, sees dark particles swirling there, reaches in, grabs them, and throws them to the ground. Where the darkness lands, a shadow creature appears — labeled with what the user just named. They recite their mantra three times. Each recitation damages the creature. On the third, it dissolves.</p>
+        <p>The dissolve shader expands outward from that point: grey grass becomes green, dead trees flower, animals appear, the sky lightens. Each day of returning extends the restoration further. After roughly ten sessions, the world is fully alive.</p>
+
+        <!-- 💡 TWO-UP: The value card selection moment + the shadow creature appearing
+             These two screens show the bookend of the core ritual loop most clearly.
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
+          <img src="images/luminare-cards.png" alt="Value card selection" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/luminare-creature.png" alt="Shadow creature encounter" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+        </div>
+        -->
+      </div>
+
+      <div class="case-block reveal">
+        <h3>Key Design Decisions</h3>
+        <p><strong>Physical gesture as commitment.</strong> Pulling a card to your heart isn't a UI metaphor — it's a somatic act. The body registers it differently than clicking a button. This was intentional: values chosen through physical action feel more claimed than values selected from a list. The gesture creates a moment of genuine choice.</p>
+        <p><strong>Privacy-first voice processing.</strong> The avatar listens and responds while you speak, but nothing is stored or sent to a server. A local LLM generates a brief summary purely for reflection — never for data collection. This was a core design constraint from the start, not an afterthought. Users needed to be able to speak freely.</p>
+        <p><strong>Externalization of the internal.</strong> The dark particles at the heart, the shadow creature carrying your named burden, the act of physically throwing darkness away — these are all externalizations of internal psychological processes. The design borrows from narrative exposure therapy and somatic approaches without being clinically prescriptive. It creates a safe theatrical frame for engaging with difficult feelings.</p>
+        <p><strong>World state as progress.</strong> Most habit apps show you a streak number. Luminare shows you a world healing. The emotional register of that feedback is completely different — it ties your daily practice to something larger than a metric, and makes absence feel like something worth returning from rather than a failure state.</p>
+        <p><strong>One session per day, hard limit.</strong> The ritual cannot be repeated more than once daily, and progress is saved between sessions. This was a deliberate pacing decision: the experience is meant to be a morning or evening ritual, not a binge. The limitation also makes each session feel meaningful — you can't grind your way to a healed world.</p>
+
+        <!-- 💡 FULL WIDTH: The healed/restored world state — ideally with flowers, animals, bright sky.
+             This is your "after" image and it's emotionally powerful. Put it right after the design decisions
+             section so the reader feels the payoff of everything you just explained.
+        <img src="images/luminare-healed.png" alt="Fully restored world state" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
+        -->
+      </div>
+
+      <div class="case-block reveal">
+        <h3>What I Built</h3>
+        <p>The entire experience was designed and built in Unity with VR support. Systems include: gesture-based card interaction with physics colliders, an avatar with reactive animation tied to microphone input, local LLM integration for voice summarization, a dissolve shader system that progressively transforms the environment, a day-tracking save system, and the full world environment including the dead state and all restoration stages.</p>
+        <p>The project is nearly complete — the main level pack is fully functional through all ten days of restoration. Remaining work is polish, onboarding/tutorial design, and additional level packs (planned themes: abandoned city, woodland shrine, coastal ruins).</p>
+      </div>
+
+      <div class="case-block reveal">
+        <h3>What I'd Do Next</h3>
+        <p>The avatar currently uses a simple animation system to respond to voice input. The most impactful upgrade would be replacing it with a more expressive model — ideally one that reflects emotional tone from the LLM summary back to the user through facial expression and posture. The session could then feel genuinely responsive rather than just attentive. Beyond that, the additional level packs are the natural commercial expansion, each offering a new visual world and a slightly different ritual context.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY: WEISS -->
+<section class="case-study" id="case-study-weiss" style="background: var(--warm-white);">
+  <div class="case-study-inner">
+    <div class="case-header reveal">
+      <p class="section-label">Case Study</p>
+      <h2 class="section-title">WEISS — Designing a World That Stopped</h2>
+    </div>
+
+    <div class="case-body">
+
+      <div class="case-block reveal">
+        <h3>The Concept</h3>
+        <p>WEISS begins with a premise that's both comedic and melancholy: you set up your item shop in front of the final dungeon, expecting to profit from the hero's legendary run. The hero never came. The demon lord waited. The world's economy, built around the eternal conflict between light and dark, simply... stalled.</p>
+        <p>Now you're the one who has to fix it — not by being a hero, but by being a merchant. You work both sides. You sell potions to adventurers and reagents to monsters. You broker a fragile peace through commerce. You rebuild a town that had given up on itself. The game is named WEISS — which sounds like Vice — because doing good in a broken world sometimes requires playing all the angles.</p>
+
+        <!-- 💡 FULL WIDTH: The overworld/town exterior shot with the waterfall — this is your establishing shot.
+             It immediately communicates the game's visual tone and scope.
+        <img src="images/weiss-overworld.png" alt="WEISS overworld" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
+        -->
+      </div>
+
+      <div class="insight-box reveal reveal-delay-1">
+        "Most RPGs ask you to save the world through strength. WEISS asks you to save it through trade — and leaves open the question of whether that's heroic or just pragmatic."
+      </div>
+
+      <div class="case-block reveal">
+        <h3>Core Systems</h3>
+        <p><strong>The shop and economy.</strong> Like its spiritual predecessor Recettear, WEISS centers on running an item shop — buying low, selling high, managing demand and supply. But the economy is dynamic: market demand shifts based on in-game events (a monster surge drives up potion sales; a peaceful week tanks weapon prices). Players can specialize in different crafting disciplines to control their own supply chains.</p>
+        <p><strong>Town rebuilding.</strong> The surrounding town is derelict when you arrive. As you generate income, you can invest in rebuilding structures — each one unlocking new characters, new inventory, or new systems. Crucially, you can invite both adventurers and monsters to take up permanent residence, housing them in buildings you restore.</p>
+        <p><strong>The relationship system.</strong> Residents develop relationships with each other dynamically over time. Adventurers and monsters placed in the same housing will interact, build trust or friction, and eventually form adventuring parties — with stats and abilities shaped by those relationships. Every playthrough generates different configurations, making the social simulation meaningfully replayable.</p>
+        <p><strong>Deck-building ATB combat.</strong> When your player character ventures out, combat uses a hybrid system: you build a deck before battle, but cards are played in real-time ATB style — enemies attack continuously while you manage a regenerating resource pool to play cards. This creates genuine tension that pure turn-based deck-builders don't have.</p>
+        <p><strong>Gathering and crafting.</strong> A deeper resource loop than most shop simulators: you explore the world to gather materials, which feed into crafting recipes, which produce items to sell or use. Specializing in alchemy, smithing, or cooking creates distinct playstyles and economic advantages.</p>
+        <p><strong>The Ancient Cave system.</strong> A procedurally generated dungeon with its own loot table and exploration logic — a direct nod to Lufia II's legendary Ancient Cave — provides an infinitely replayable late-game loop for players who want pure dungeon-crawling.</p>
+
+        <!-- 💡 FOUR-UP GRID: Shop interior (warm daytime) + Night dungeon (neon purple) + Battle screen (cards) + Card research screen
+             These four screens together show the full tonal and mechanical range of the game.
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
+          <img src="images/weiss-shop.png" alt="WEISS shop interior" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/weiss-dungeon.png" alt="WEISS night dungeon" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/weiss-battle.png" alt="WEISS card battle" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/weiss-research.png" alt="WEISS card research" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+        </div>
+        -->
+      </div>
+
+      <div class="case-block reveal">
+        <h3>Key Design Decisions</h3>
+        <p><strong>Moral ambiguity as the central mechanic.</strong> The player isn't the hero — they're the merchant who profits from the conflict between heroes and villains. This reframes the entire JRPG genre: instead of asking "who wins?", WEISS asks "who benefits?" That question turns out to be rich enough to drive a whole game.</p>
+        <p><strong>The dynamic relationship system.</strong> Organizing cohabitation between monsters and humans and watching emergent relationships develop was the most ambitious design decision in WEISS. It required building a reputation and relationship tracking system, behavioral rules for NPC interactions, and a party formation logic that reflects those relationships in combat stats. The payoff is a game that feels different every run because the social fabric of your town is never the same twice.</p>
+        <p><strong>Hybrid ATB deck combat.</strong> Pure deck-builders (Slay the Spire et al.) are satisfying but slow. Pure ATB games are fast but shallow. The combination — build a deck, play it in real time under pressure — was harder to tune than either system alone, but creates a combat experience that rewards both preparation and instinct.</p>
+        <p><strong>Visual tone mixing.</strong> WEISS deliberately mixes warm, cozy interior aesthetics (the shop at dawn, the crafting shed in afternoon light) with stark nocturnal dungeon environments (neon purple, metal scaffolding, candlelight). This tonal contrast reflects the game's moral duality — the same world that contains your cozy shop also contains something much darker beneath it.</p>
+
+        <!-- 💡 FULL WIDTH: The warm shop exterior in daylight — the contrast with the dungeon shot above
+             makes both images hit harder. End on warmth.
+        <img src="images/weiss-exterior.png" alt="WEISS shop exterior in daylight" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
+        -->
+      </div>
+
+      <div class="case-block reveal">
+        <h3>What I Built</h3>
+        <p>WEISS has been in development for several years as a solo project built entirely in Unity. Current implemented systems include: the full shop economy with dynamic demand events, the town rebuilding framework, housing and NPC placement, the relationship and party formation system, the hybrid ATB deck-building combat, gathering and multi-discipline crafting, the procedural dungeon system, a full day/night cycle with time-based events, and the character equipment and stat system. Visual assets are licensed from the Unity Asset Store; all systems, architecture, design, and writing are original.</p>
+      </div>
+
+      <div class="case-block reveal">
+        <h3>What I'd Do Next</h3>
+        <p>The relationship system is the heart of WEISS but also its least polished element — the behavioral rules for NPC interaction need more granularity, and the visual feedback for relationship development (how do you show a monster and an adventurer becoming genuine friends?) deserves a dedicated design pass. Beyond that, the narrative layer needs more work: the game has strong systemic bones but the story of why you're there and what you're working toward needs to be woven more explicitly into the moment-to-moment play.</p>
+      </div>
+
     </div>
   </div>
 </section>
