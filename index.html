@@ -340,6 +340,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+    row-gap: 2rem;
   }
 
   .project-card {
@@ -393,6 +394,59 @@
   .thumb-vr { background: linear-gradient(135deg, #c8ddc6 0%, #8fad8c 40%, #3d5c3a 100%); }
   .thumb-weiss { background: linear-gradient(135deg, #2a1a0e 0%, #7a4f35 40%, #c97b5a 100%); }
   .thumb-nfc { background: linear-gradient(135deg, #e8e0d4 0%, #c5b8d4 60%, #8fad8c 100%); }
+  .thumb-primus { background: linear-gradient(135deg, #e8634a 0%, #c0396e 50%, #8b2fc9 100%); }
+
+  /* ── LAYER DIAGRAM ── */
+  .layer-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 1.5rem 0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px var(--shadow);
+  }
+
+  .layer-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: stretch;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .layer-item:last-child { border-bottom: none; }
+
+  .layer-name {
+    padding: 1rem 1.25rem;
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    align-items: center;
+  }
+
+  .layer-desc {
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.85);
+    background: rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+  }
+
+  .layer-flights .layer-name { background: #c0396e; }
+  .layer-halos .layer-name { background: #b03480; }
+  .layer-wings .layer-name { background: #9a3092; }
+  .layer-feathers .layer-name { background: #7e2da0; }
+  .layer-11 .layer-name { background: #612aad; }
+
+  .layer-flights .layer-desc { background: rgba(192,57,110,0.3); }
+  .layer-halos .layer-desc { background: rgba(176,52,128,0.3); }
+  .layer-wings .layer-desc { background: rgba(154,48,146,0.3); }
+  .layer-feathers .layer-desc { background: rgba(126,45,160,0.3); }
+  .layer-11 .layer-desc { background: rgba(97,42,173,0.3); }
 
   .thumb-label {
     position: absolute;
@@ -609,14 +663,14 @@
 
   /* ── SCROLL REVEAL ── */
   .reveal {
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 1;
+    transform: translateY(0);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
 
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+  .reveal.hidden {
+    opacity: 0;
+    transform: translateY(30px);
   }
 
   .reveal-delay-1 { transition-delay: 0.1s; }
@@ -718,6 +772,10 @@
     <!-- KOKORON — FEATURED -->
     <a href="#case-study" class="project-card featured reveal">
       <div class="project-thumb thumb-kokoron">
+        <!-- 💡 REPLACE: swap the div below for your best Kokoron screenshot
+             Recommended: the main screen (dragon + Feed with Feelings buttons)
+             <img src="images/kokoron-main.png" alt="Kokoron main screen" class="project-thumb-bg">
+        -->
         <div class="thumb-label">Kokoron</div>
       </div>
       <div class="project-info">
@@ -737,6 +795,9 @@
     <!-- VR WELLNESS -->
     <a href="#" class="project-card reveal reveal-delay-1">
       <div class="project-thumb thumb-vr">
+        <!-- 💡 REPLACE: a striking screenshot of the world transformation or the shadow wolf
+             <img src="images/vr-world.png" alt="VR wellness experience" class="project-thumb-bg">
+        -->
         <div class="thumb-label">The Ritual</div>
       </div>
       <div class="project-info">
@@ -754,6 +815,9 @@
     <!-- WEISS -->
     <a href="#" class="project-card reveal reveal-delay-2">
       <div class="project-thumb thumb-weiss">
+        <!-- 💡 REPLACE: the overworld or night dungeon shot work great here
+             <img src="images/weiss-overworld.png" alt="WEISS item shop game" class="project-thumb-bg">
+        -->
         <div class="thumb-label">WEISS</div>
       </div>
       <div class="project-info">
@@ -765,6 +829,27 @@
         <h3>WEISS — World's End Item Shop</h3>
         <p>An item shop simulator set in an RPG that stopped mid-story. The hero never came. Now you work both sides — monsters and humans — to restore an economy, rebuild a town, and cash in on a world that forgot to end.</p>
         <span class="project-link">View Project →</span>
+      </div>
+    </a>
+
+    <!-- PRIMUS VOLTUS -->
+    <a href="#case-study-primus" class="project-card featured reveal reveal-delay-1">
+      <div class="project-thumb thumb-primus">
+        <!-- 💡 REPLACE: the title slide or the structure pyramid from your PDF works well
+             <img src="images/primus-cover.png" alt="Primus Voltus program" class="project-thumb-bg">
+        -->
+        <div class="thumb-label">Primus Voltus</div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag purple">Service Design</span>
+          <span class="tag green">Systems Thinking</span>
+          <span class="tag sky">Education</span>
+        </div>
+        <h3>Primus Voltus: First Flight — College Counseling Redesign</h3>
+        <p>A toxic, disengaged 11th grade cohort. An understaffed counseling team. A class nobody valued. I redesigned the entire college preparation program from the ground up — replacing a single flat course with a five-layer system that addressed engagement, community, accountability, and individual support simultaneously.</p>
+        <p>The result was a tiered architecture of Flights, Halos, Wings, and Feathers — each layer progressively more intimate, each solving a different dimension of the same problem.</p>
+        <span class="project-link">Read Case Study →</span>
       </div>
     </a>
 
@@ -784,6 +869,15 @@
       <div class="case-block reveal">
         <h3>The Concept</h3>
         <p>Most wellness apps treat negative emotion as a problem to be eliminated. Kokoron asks a different question: what if your struggles could nourish something? The core mechanic reframes negative experience as food for a creature companion, and positive reflection as water. The pet survives, grows, and develops — because you did the work of showing up.</p>
+
+        <!-- 💡 SCREENSHOT ROW: Login, Main screen, Feed screen — your 3 strongest first impressions -->
+        <!-- Remove the comment tags below and fill in your filenames when ready:
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.5rem 0;">
+          <img src="images/kokoron-login.png" alt="Kokoron login screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/kokoron-main.png" alt="Kokoron main screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/kokoron-feed.png" alt="Kokoron feed screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+        </div>
+        -->
       </div>
 
       <div class="insight-box reveal reveal-delay-1">
@@ -795,6 +889,14 @@
         <p><strong>Trauma-informed log design.</strong> Negative entries in the reflection log are hidden by default, accessible only when the user actively chooses to unlock them — with a label that explicitly says it's not recommended. This single interaction acknowledges that revisiting dark moments should be a conscious, deliberate choice, not a default scroll. It also positions the app as a complement to professional support rather than a replacement.</p>
         <p><strong>Aspirational stat naming.</strong> The Kokoron develops stats like Resilience, Hope, and Inner Strength. These aren't arbitrary RPG numbers — they mirror the qualities users might want to cultivate in themselves. As the pet grows, it quietly models a kind of self the user might aspire toward.</p>
         <p><strong>Ethical monetization.</strong> All monetization is cosmetic (skins) or compassionate (Graces for missed streaks). No mechanics that penalize emotional states or gate core functionality behind payment. This was a deliberate stance, not an oversight.</p>
+
+        <!-- 💡 TWO-UP: Logbook screen + Rewards screen — shows the thoughtful details -->
+        <!-- Remove comment tags and fill filenames when ready:
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
+          <img src="images/kokoron-logbook.png" alt="Kokoron logbook with hidden negative entries" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/kokoron-rewards.png" alt="Kokoron rewards screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+        </div>
+        -->
       </div>
 
       <div class="case-block reveal">
@@ -807,6 +909,91 @@
         <h3>What I'd Do Next</h3>
         <p>Migrate to a proper backend (Supabase or Firebase) to enable genuine social features — shared gardens, friend Kokorons, community streaks. The social layer is designed but not yet wired to persistent cloud data. The competitive minigame system, where Kokoron stats earned through emotional work translate into friendly competition, is the long-term vision I'd develop next.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY: PRIMUS VOLTUS -->
+<section class="case-study" id="case-study-primus" style="background: var(--cream);">
+  <div class="case-study-inner">
+    <div class="case-header reveal">
+      <p class="section-label">Case Study</p>
+      <h2 class="section-title">Primus Voltus — Redesigning a Broken System</h2>
+    </div>
+
+    <div class="case-body">
+      <div class="case-block reveal">
+        <h3>The Problem</h3>
+        <p>The college counseling program existed, but it wasn't working. Students in 11th grade were drowning in AP exams and treated college applications — still nearly a year away — as an abstraction not worth their attention. Attendance was poor, engagement was lower, and the program had already been redesigned once without meaningful improvement.</p>
+        <p>The incoming cohort made things harder. They had a well-documented reputation for bullying and hyper-competitiveness — exactly the wrong environment for a college process that requires vulnerability, peer support, and honesty with counselors. At the same time, our team had lost two members, meaning we had less staff than before and needed to serve more students with less.</p>
+      </div>
+
+      <div class="insight-box reveal reveal-delay-1">
+        "The old program treated engagement as a given. I treated it as a design problem."
+      </div>
+
+      <div class="case-block reveal">
+        <h3>The Design Approach</h3>
+        <p>I identified four distinct failure modes in the existing program: students didn't value the time, they didn't trust each other, they felt the process was overwhelming and monolithic, and they had no accountability structure beyond grades. Each layer of the new system was designed to address one of these directly.</p>
+        <p>Critically, the entire program was designed around a constraint: we could not ask students to give up any of their own time. Every touchpoint was inserted into time they already had — homeroom periods, study halls, brief drop-ins. This wasn't just logistical; it was a trust decision. Demanding extra time from already-overloaded students would have poisoned the relationship before it started.</p>
+      </div>
+
+      <div class="case-block reveal">
+        <h3>The Architecture</h3>
+        <div class="layer-diagram">
+          <div class="layer-item layer-flights">
+            <div class="layer-name">Flights</div>
+            <div class="layer-desc">Whole-class weekly seminars held during homeroom. Shared information, guest speakers, alumni Q&As. No extra time required — inserted into mandatory dead time.</div>
+          </div>
+          <div class="layer-item layer-halos">
+            <div class="layer-name">Halos</div>
+            <div class="layer-desc">Monthly groups organized by intended major. Delivered field-specific opportunities, connected students with local professionals, and helped them build relevant portfolios.</div>
+          </div>
+          <div class="layer-item layer-wings">
+            <div class="layer-name">Wings</div>
+            <div class="layer-desc">Small groups of 5–6 students sharing an interest — not a major. Bi-weekly sessions over snacks and coffee. Built trust and addressed the cohort's relational toxicity through collaborative activities.</div>
+          </div>
+          <div class="layer-item layer-feathers">
+            <div class="layer-name">Feathers</div>
+            <div class="layer-desc">A buddy system. Paired students visited the CC office every two weeks with one small progress update — any progress. Wrote it on a sticky note and added it to the wall together. Peer accountability without competition.</div>
+          </div>
+          <div class="layer-item layer-11">
+            <div class="layer-name">One-on-One</div>
+            <div class="layer-desc">Individual counseling sessions for personal guidance, essay support, and college list building — now possible because trust had been established through the layers above.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-block reveal">
+        <h3>Key Design Decisions</h3>
+        <p><strong>The funnel of intimacy.</strong> Each layer is progressively smaller and more personal — from 100+ students in a Flight down to a single pair in Feathers. Information and accountability flow top-down; trust and vulnerability flow bottom-up. Students who were closed off in large groups opened up in Wings; students who wouldn't ask questions in Halos would ask them one-on-one.</p>
+        <p><strong>Cross-cutting interest groups.</strong> Wings were deliberately not organized by major or academic track — they were organized by personal interests drawn from a survey (art, food, gaming, etc.). This was a direct response to the cohort's competitiveness. Mixing students across academic hierarchies and forcing collaborative activities (including games like Keep Talking and Nobody Explodes, which require communication and trust to succeed) created relationships that cut across the usual social fault lines.</p>
+        <p><strong>The sticky note wall.</strong> The Feathers check-in was designed to make invisible progress visible — and public in a safe, celebratory way. The physical act of writing something down and adding it to a shared wall together was more psychologically meaningful than a logged database entry. It also modeled the real shape of the college process: not a single heroic effort, but hundreds of small steps accumulated over time.</p>
+      </div>
+
+      <div class="case-block reveal">
+        <h3>What I Made</h3>
+        <p>Beyond designing the system itself, I created all program documentation, the student-facing presentation (Primus Voltus: First Flight), the survey instruments, the Wing activity plans, and the visual identity of the program. The presentation was designed to be warm, clear, and student-appropriate — using flight and sky metaphors throughout to frame the college process as something to look forward to rather than dread.</p>
+
+        <!-- 💡 TWO-UP: Title slide + Structure pyramid from your PDF -->
+        <!-- Remove comment tags and fill filenames when ready:
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
+          <img src="images/primus-cover.png" alt="Primus Voltus title slide" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/primus-structure.png" alt="Primus Voltus structure pyramid" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+        </div>
+        -->
+
+        <!-- 💡 FULL WIDTH: Counselor intro slide (James Smith page) — shows your personal voice -->
+        <!-- Remove comment tags and fill filename when ready:
+        <img src="images/primus-counselor.png" alt="Counselor introduction slide" style="width:100%; border-radius:12px; margin-top:1rem; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+        -->
+      </div>
+
+      <div class="case-block reveal">
+        <h3>What I'd Do Next</h3>
+        <p>The program's weakest link was measurement. I had qualitative signals — attendance improved, the cohort's collaborative behavior changed noticeably by the second semester — but no formal tracking system for engagement quality over time. If I were building this again, I would design a lightweight longitudinal tracking tool into the Feathers system from the start, turning each sticky-note check-in into a data point that could inform counselor interventions earlier in the year.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -832,7 +1019,7 @@
     <h2 class="section-title">Let's work together.</h2>
     <p>I'm currently open to UXD roles, game design positions, wellness tech opportunities, and interesting contract work — especially anything that sits at the intersection of technology and human experience.</p>
     <div class="contact-links">
-      <a href="mailto:your@email.com" class="btn btn-primary">Send an Email</a>
+      <a href="/cdn-cgi/l/email-protection#ed9482989fad88808c8481c38e8280" class="btn btn-primary">Send an Email</a>
       <a href="https://linkedin.com/in/yourprofile" class="btn btn-ghost">LinkedIn</a>
       <a href="https://github.com/yourusername" class="btn btn-ghost">GitHub</a>
     </div>
@@ -844,16 +1031,24 @@
 </footer>
 
 <script>
-  // Scroll reveal
+  // Scroll reveal — elements visible by default, animation is enhancement only
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
+
+  // Only animate if IntersectionObserver is supported
+  if ('IntersectionObserver' in window) {
+    reveals.forEach(el => el.classList.add('hidden'));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('hidden');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    reveals.forEach(el => observer.observe(el));
+  }
 </script>
 
 </body>
