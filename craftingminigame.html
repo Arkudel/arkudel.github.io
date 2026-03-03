@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Alchemist's Table — WEISS Crafting Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--peach:#e8b89a;--terracotta:#c97b5a;--brown:#7a4f35;--ink:#1a0d06;--parch:#f0e6c8;--cc:#8aaa78;--cu:#4a9a6a;--cr:#4a80c8;--ce:#9a50c8;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:var(--ink);color:var(--parch);min-height:100vh;overflow-x:hidden;}
+.bg{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 70% 55% at 15% 25%,rgba(201,123,90,.10) 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,rgba(122,79,53,.13) 0%,transparent 60%),linear-gradient(160deg,#110703 0%,#240e05 45%,#110602 100%);}
+canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;}
+.wrap{position:relative;z-index:10;max-width:980px;margin:0 auto;padding:2rem 1.5rem 5rem;}
+a.back{display:inline-flex;align-items:center;gap:.4rem;margin-bottom:1.5rem;font-size:.78rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(232,184,154,.45);text-decoration:none;transition:color .2s;}
+a.back:hover{color:var(--peach);}
+header{text-align:center;padding:2.5rem 0 2rem;}
+header::after{content:'';display:block;width:180px;height:1px;background:linear-gradient(90deg,transparent,var(--terracotta),transparent);margin:1.5rem auto 0;}
+.title{font-family:'Cinzel',serif;font-size:clamp(1.7rem,4vw,2.9rem);color:var(--peach);letter-spacing:.07em;text-shadow:0 2px 24px rgba(201,123,90,.35);margin-bottom:.35rem;}
+.sub{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(232,184,154,.5);}
+.tracker{display:flex;align-items:center;gap:1rem;background:rgba(61,35,20,.7);border:1px solid rgba(201,123,90,.18);border-radius:12px;padding:.9rem 1.4rem;margin-bottom:1.4rem;backdrop-filter:blur(6px);}
+.tlab{font-family:'Cinzel',serif;font-size:.78rem;color:var(--peach);letter-spacing:.08em;white-space:nowrap;}
+.pbar{flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:10px;overflow:hidden;}
+.pfill{height:100%;background:linear-gradient(90deg,var(--terracotta),var(--peach));border-radius:10px;transition:width .6s ease;width:0%;}
+.tcount{font-family:'Cinzel',serif;font-size:.72rem;color:rgba(232,184,154,.5);white-space:nowrap;}
+.tcard{background:linear-gradient(148deg,#f2e8ca,#e8d9a5);border-radius:20px;padding:1.75rem 2rem;margin-bottom:1.4rem;position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(201,123,90,.25),0 10px 40px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.45);}
+.thint{font-family:'Cinzel',serif;font-size:.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brown);opacity:.65;margin-bottom:1.1rem;}
+.srow{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+.slot{width:118px;height:118px;border:2px dashed rgba(122,79,53,.38);border-radius:14px;background:rgba(255,255,255,.28);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;transition:border-color .2s,background .2s,transform .2s;flex-shrink:0;}
+.slot:hover{border-color:var(--terracotta);background:rgba(201,123,90,.09);transform:translateY(-2px);}
+.slot.filled{border-style:solid;border-color:var(--terracotta);}
+.slot.over{border-color:var(--brown);background:rgba(122,79,53,.14);transform:scale(1.04);}
+.sh{font-size:.72rem;color:rgba(122,79,53,.48);text-align:center;}
+.div{font-family:'Cinzel',serif;font-size:1.7rem;color:var(--brown);opacity:.38;flex-shrink:0;}
+.rarea{min-width:130px;height:118px;border:2px solid rgba(122,79,53,.18);border-radius:14px;background:rgba(255,255,255,.15);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:all .35s;flex-shrink:0;}
+.rarea.ok{border-color:var(--terracotta);background:rgba(201,123,90,.1);animation:pop .38s ease;}
+.rarea.no{border-color:rgba(180,60,60,.4);background:rgba(180,60,60,.04);}
+@keyframes pop{0%{transform:scale(.88);opacity:.4;}65%{transform:scale(1.06);}100%{transform:scale(1);opacity:1;}}
+.rl{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brown);opacity:.55;margin-bottom:.25rem;}
+.id{display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.4rem;}
+.id .ic{font-size:1.55rem;line-height:1;}
+.id .nm{font-size:.66rem;font-weight:700;text-align:center;line-height:1.25;max-width:88px;word-break:break-word;}
+.id .rt{font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;opacity:.65;}
+.brow{display:flex;gap:.7rem;margin-top:1.4rem;flex-wrap:wrap;}
+.btn{font-family:'Cinzel',serif;font-size:.78rem;font-weight:600;letter-spacing:.09em;padding:.6rem 1.45rem;border-radius:50px;border:none;cursor:pointer;transition:all .2s;}
+.bc{background:var(--terracotta);color:white;box-shadow:0 4px 18px rgba(201,123,90,.38);}
+.bc:hover:not(:disabled){background:var(--brown);transform:translateY(-2px);}
+.bc:disabled{background:rgba(122,79,53,.28);box-shadow:none;cursor:not-allowed;}
+.bx{background:transparent;color:var(--brown);border:1.5px solid rgba(122,79,53,.38);}
+.bx:hover{background:rgba(122,79,53,.1);transform:translateY(-2px);}
+.tip{font-size:.72rem;color:rgba(122,79,53,.5);margin-top:.8rem;}
+.inv{background:rgba(14,7,2,.72);border:1px solid rgba(201,123,90,.14);border-radius:16px;padding:1.4rem;backdrop-filter:blur(8px);}
+.itop{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
+.itit{font-family:'Cinzel',serif;font-size:.82rem;color:var(--peach);letter-spacing:.14em;text-transform:uppercase;}
+.imeta{font-size:.72rem;color:rgba(232,184,154,.4);}
+.sw{position:relative;margin-bottom:.9rem;}
+.si{width:100%;padding:.68rem 1rem .68rem 2.4rem;background:rgba(61,35,20,.75);border:1px solid rgba(201,123,90,.18);border-radius:9px;color:var(--peach);font-family:'Nunito',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s;}
+.si::placeholder{color:rgba(232,184,154,.3);}.si:focus{border-color:rgba(201,123,90,.45);}
+.sic{position:absolute;left:.72rem;top:50%;transform:translateY(-50%);font-size:.85rem;opacity:.38;pointer-events:none;}
+.filt{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:1.1rem;}
+.fb{font-size:.67rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .8rem;border-radius:50px;border:1.5px solid;cursor:pointer;background:transparent;font-family:'Nunito',sans-serif;transition:all .15s;}
+.fb[data-r=all]{border-color:rgba(232,184,154,.35);color:rgba(232,184,154,.6);}
+.fb[data-r=all].on{background:rgba(232,184,154,.14);color:var(--peach);}
+.fb[data-r=common]{border-color:var(--cc);color:var(--cc);}
+.fb[data-r=uncommon]{border-color:var(--cu);color:var(--cu);}
+.fb[data-r=rare]{border-color:var(--cr);color:var(--cr);}
+.fb[data-r=epic]{border-color:var(--ce);color:var(--ce);}
+.fb.on,.fb:hover{color:white;}
+.fb[data-r=common].on{background:var(--cc);}
+.fb[data-r=uncommon].on{background:var(--cu);}
+.fb[data-r=rare].on{background:var(--cr);}
+.fb[data-r=epic].on{background:var(--ce);}
+.igrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:.55rem;max-height:430px;overflow-y:auto;padding-right:.2rem;}
+.igrid::-webkit-scrollbar{width:3px;}.igrid::-webkit-scrollbar-track{background:rgba(255,255,255,.04);}.igrid::-webkit-scrollbar-thumb{background:rgba(201,123,90,.28);border-radius:2px;}
+.item{border-radius:10px;padding:.65rem .45rem .5rem;text-align:center;cursor:grab;user-select:none;transition:transform .14s,box-shadow .14s;border:1.5px solid transparent;}
+.item:active{cursor:grabbing;}.item:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 6px 18px rgba(0,0,0,.32);}
+.item.common{background:rgba(138,170,120,.12);border-color:rgba(138,170,120,.28);}
+.item.uncommon{background:rgba(74,154,106,.12);border-color:rgba(74,154,106,.32);}
+.item.rare{background:rgba(74,128,200,.12);border-color:rgba(74,128,200,.32);}
+.item.epic{background:rgba(154,80,200,.14);border-color:rgba(154,80,200,.38);}
+.item .ic{font-size:1.35rem;display:block;margin-bottom:.28rem;line-height:1;}
+.item .nm{font-size:.65rem;font-weight:700;line-height:1.25;word-break:break-word;}
+.item .rt{font-size:.55rem;letter-spacing:.09em;text-transform:uppercase;opacity:.55;margin-top:.18rem;}
+.item.common .nm{color:#b0c89a;}.item.uncommon .nm{color:#80c898;}.item.rare .nm{color:#80b0e8;}.item.epic .nm{color:#c880f0;}
+.item.common .rt{color:var(--cc);}.item.uncommon .rt{color:var(--cu);}.item.rare .rt{color:var(--cr);}.item.epic .rt{color:var(--ce);}
+.item.fresh{animation:fp 1.1s ease;}
+@keyframes fp{0%{transform:scale(1.16);box-shadow:0 0 0 0 rgba(201,123,90,.65);}55%{box-shadow:0 0 0 9px rgba(201,123,90,0);}100%{transform:scale(1);}}
+.empty{text-align:center;padding:2.2rem 1rem;color:rgba(232,184,154,.28);font-size:.82rem;}
+#toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(90px);background:linear-gradient(130deg,var(--terracotta),var(--brown));color:white;padding:.8rem 2rem;border-radius:50px;font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.06em;box-shadow:0 8px 30px rgba(0,0,0,.45);z-index:999;white-space:nowrap;transition:transform .42s cubic-bezier(.175,.885,.32,1.275);}
+#toast.show{transform:translateX(-50%) translateY(0);}
+@media(max-width:560px){.srow{justify-content:center;}.slot,.rarea{width:100px;height:100px;min-width:100px;}.igrid{grid-template-columns:repeat(auto-fill,minmax(80px,1fr));}}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<canvas id="C"></canvas>
+<div class="wrap">
+<a href="index.html" class="back">← Back to Portfolio</a>
+<header>
+<h1 class="title">The Alchemist's Table</h1>
+<p class="sub">WEISS · Interactive Crafting Demo</p>
+</header>
+<div class="tracker">
+<span class="tlab">Recipes Discovered</span>
+<div class="pbar"><div class="pfill" id="pF"></div></div>
+<span class="tcount" id="pC">0 / 0</span>
+</div>
+<div class="tcard">
+<p class="thint">Crafting Table — drag items from inventory, or click to assign</p>
+<div class="srow">
+<div class="slot" id="s0" data-i="0"><span class="sh">Slot One</span></div>
+<span class="div">+</span>
+<div class="slot" id="s1" data-i="1"><span class="sh">Slot Two</span></div>
+<span class="div" style="opacity:.55">→</span>
+<div class="rarea" id="rA"><span class="rl">Result</span><span style="font-size:.72rem;color:rgba(122,79,53,.4)">—</span></div>
+</div>
+<div class="brow">
+<button class="btn bc" id="cBtn" disabled>Combine</button>
+<button class="btn bx" id="xBtn">Clear</button>
+</div>
+<p class="tip">💡 Some recipes require crafted items — combine your discoveries to go deeper.</p>
+</div>
+<div class="inv">
+<div class="itop"><span class="itit">Inventory</span><span class="imeta" id="iMeta">0 items</span></div>
+<div class="sw"><span class="sic">🔍</span><input class="si" id="sIn" placeholder="Search items…" type="text"></div>
+<div class="filt">
+<button class="fb on" data-r="all">All</button>
+<button class="fb" data-r="common">Common</button>
+<button class="fb" data-r="uncommon">Uncommon</button>
+<button class="fb" data-r="rare">Rare</button>
+<button class="fb" data-r="epic">Epic</button>
+</div>
+<div class="igrid" id="iG"></div>
+</div>
+</div>
+<div id="toast"></div>
+<script>
+(function(){
+var c=document.getElementById('C'),ctx=c.getContext('2d');
+function r(){c.width=innerWidth;c.height=innerHeight;}r();window.addEventListener('resize',r);
+var CL=['rgba(201,123,90,','rgba(232,184,154,','rgba(184,212,232,','rgba(197,184,212,','rgba(143,173,140,'];
+function M(){this.reset(1);}
+M.prototype.reset=function(s){this.x=Math.random()*c.width;this.y=s?Math.random()*c.height:c.height+8;this.rv=1.2+Math.random()*3.2;this.vy=.28+Math.random()*.62;this.vx=(Math.random()-.5)*.3;this.a=0;this.am=.12+Math.random()*.3;this.up=true;this.cl=CL[Math.floor(Math.random()*CL.length)];this.w=Math.random()*Math.PI*2;this.ws=.012+Math.random()*.018;this.wa=.25+Math.random()*.75;};
+M.prototype.tick=function(){this.w+=this.ws;this.x+=this.vx+Math.sin(this.w)*this.wa*.08;this.y-=this.vy;if(this.up){this.a+=.007;if(this.a>=this.am)this.up=false;}else if(this.y<c.height*.28)this.a-=.004;if(this.y<-10||this.a<=0)this.reset();};
+M.prototype.draw=function(){ctx.beginPath();ctx.arc(this.x,this.y,this.rv,0,Math.PI*2);ctx.fillStyle=this.cl+this.a+')';ctx.fill();};
+var ms=[];for(var i=0;i<52;i++)ms.push(new M());
+(function loop(){ctx.clearRect(0,0,c.width,c.height);ms.forEach(function(m){m.tick();m.draw();});requestAnimationFrame(loop);})();
+})();
+
+var IC={wood:'🪵',stone:'🪨',fiber:'🌿',copper_ore:'🔶',coal:'⬛',mana_crystal:'💎',iron_ore:'⬜',gold_ore:'🟡',silver_ore:'🩶',leather:'🟤',cloth:'🩵',bone:'🦴',fang:'🦷',claw:'🦞',venom:'🧪',blood:'🩸',magic_dust:'✨',crystal_shard:'🔷',enchanted_leaf:'🍀',ember:'🔥',obsidian:'🖤',sapphire:'💙',ruby:'❤️',emerald:'💚',feather:'🪶',dust:'💨',dragon_scale:'🐉',phoenix_feather:'🌟',troll_fat:'🫧',goblin_ear:'👂'};
+function ico(id){return IC[id]||'⚗️';}
+
+var R={"fiber+bone":{id:"bone_whip",name:"Bone Whip",rarity:"uncommon"},"stone+obsidian":{id:"obsidian_blade",name:"Obsidian Blade",rarity:"rare"},"wood+leather":{id:"leather_shield",name:"Leather Shield",rarity:"common"},"sapphire+gold_ingot":{id:"sapphire_ring",name:"Sapphire Ring",rarity:"rare"},"emerald+silver_ingot":{id:"emerald_amulet",name:"Emerald Amulet",rarity:"rare"},"cloth+magic_dust":{id:"wizard_hat",name:"Wizard Hat",rarity:"uncommon"},"mana_crystal+crystal_shard":{id:"prismatic_core",name:"Prismatic Core",rarity:"rare"},"dust+ember":{id:"smokebomb",name:"Smokebomb",rarity:"common"},"stick+claw":{id:"claw_staff",name:"Claw Staff",rarity:"uncommon"},"venom+fang":{id:"poison_talisman",name:"Poison Talisman",rarity:"uncommon"},"cloth+feather":{id:"feather_cloak",name:"Feather Cloak",rarity:"common"},"dragon_scale+obsidian":{id:"scale_plate",name:"Scale Plate",rarity:"epic"},"copper_ingot+iron_ingot":{id:"bronze_bar",name:"Bronze Bar",rarity:"uncommon"},"bronze_bar+wood":{id:"bronze_spear",name:"Bronze Spear",rarity:"uncommon"},"gold_ingot+ruby":{id:"royal_ring",name:"Royal Ring",rarity:"epic"},"emerald+enchanted_leaf":{id:"druidic_talisman",name:"Druidic Talisman",rarity:"rare"},"fang+bone":{id:"jawblade",name:"Jawblade",rarity:"uncommon"},"mana_crystal+silver_ingot":{id:"blessed_ring",name:"Blessed Ring",rarity:"rare"},"phoenix_feather+cloth":{id:"phoenix_robe",name:"Phoenix Robe",rarity:"epic"},"goblin_ear+claw":{id:"goblin_dagger",name:"Goblin Dagger",rarity:"common"},"wood+stone":{id:"stone_axe",name:"Stone Axe",rarity:"common"},"wood+fiber":{id:"bow",name:"Basic Bow",rarity:"common"},"wood+wood":{id:"stick",name:"Wooden Stick",rarity:"common"},"stone+fiber":{id:"sling",name:"Sling",rarity:"common"},"stick+fiber":{id:"torch",name:"Torch",rarity:"common"},"copper_ore+coal":{id:"copper_ingot",name:"Copper Ingot",rarity:"common"},"wood+copper_ingot":{id:"copper_sword",name:"Copper Sword",rarity:"uncommon"},"iron_ore+coal":{id:"iron_ingot",name:"Iron Ingot",rarity:"uncommon"},"silver_ore+coal":{id:"silver_ingot",name:"Silver Ingot",rarity:"uncommon"},"gold_ore+coal":{id:"gold_ingot",name:"Gold Ingot",rarity:"rare"},"leather+cloth":{id:"light_armor",name:"Light Armor",rarity:"uncommon"},"bone+fang":{id:"bone_dagger",name:"Bone Dagger",rarity:"uncommon"},"blood+magic_dust":{id:"blood_charm",name:"Blood Charm",rarity:"rare"},"dragon_scale+mana_crystal":{id:"flame_amulet",name:"Flame Amulet",rarity:"epic"},"phoenix_feather+mana_crystal":{id:"revival_charm",name:"Revival Charm",rarity:"epic"},"goblin_ear+troll_fat":{id:"stench_bomb",name:"Stench Bomb",rarity:"common"},"stick+mana_crystal":{id:"wand",name:"Wand",rarity:"uncommon"},"wand+magic_dust":{id:"charged_wand",name:"Charged Wand",rarity:"rare"},"bow+mana_crystal":{id:"magic_bow",name:"Magic Bow",rarity:"rare"},"coal+obsidian":{id:"dark_brick",name:"Dark Brick",rarity:"uncommon"},"wood+feather":{id:"arrow_shaft",name:"Arrow Shaft",rarity:"common"},"arrow_shaft+stone":{id:"stone_arrow",name:"Stone Arrow",rarity:"common"},"stone_arrow+venom":{id:"poison_arrow",name:"Poison Arrow",rarity:"uncommon"},"stick+feather":{id:"fletched_stick",name:"Fletched Stick",rarity:"common"},"fletched_stick+iron_ingot":{id:"iron_arrow",name:"Iron Arrow",rarity:"uncommon"},"iron_arrow+magic_dust":{id:"magic_arrow",name:"Magic Arrow",rarity:"rare"},"sapphire+mana_crystal":{id:"ice_core",name:"Ice Core",rarity:"rare"},"ice_core+wand":{id:"ice_wand",name:"Ice Wand",rarity:"epic"},"ruby+mana_crystal":{id:"fire_core",name:"Fire Core",rarity:"rare"},"fire_core+wand":{id:"fire_wand",name:"Fire Wand",rarity:"epic"},"gold_ingot+bone":{id:"gilded_dagger",name:"Gilded Dagger",rarity:"rare"},"silver_ingot+mana_crystal":{id:"lunar_token",name:"Lunar Token",rarity:"rare"},"cloth+enchanted_leaf":{id:"nature_wrap",name:"Nature Wrap",rarity:"uncommon"},"obsidian+claw":{id:"obsidian_claw",name:"Obsidian Claw",rarity:"rare"},"jawblade+magic_dust":{id:"spectral_blade",name:"Spectral Blade",rarity:"epic"},"flame_amulet+blood":{id:"hellfire_stone",name:"Hellfire Stone",rarity:"epic"},"wand+crystal_shard":{id:"focus_staff",name:"Focus Staff",rarity:"rare"},"focus_staff+mana_crystal":{id:"arcane_staff",name:"Arcane Staff",rarity:"epic"},"phoenix_robe+mana_crystal":{id:"phoenix_soulcloak",name:"Phoenix Soulcloak",rarity:"epic"},"bronze_bar+silver_ingot":{id:"moonsteel",name:"Moonsteel",rarity:"rare"},"moonsteel+wand":{id:"moon_staff",name:"Moon Staff",rarity:"epic"},"leather+bone":{id:"bone_bracers",name:"Bone Bracers",rarity:"common"},"emerald+mana_crystal":{id:"life_stone",name:"Life Stone",rarity:"rare"},"life_stone+cloth":{id:"healer_robe",name:"Healer Robe",rarity:"rare"},"copper_ingot+silver_ingot":{id:"shimmer_alloy",name:"Shimmer Alloy",rarity:"rare"},"shimmer_alloy+bow":{id:"glimmer_bow",name:"Glimmer Bow",rarity:"epic"},"sling+iron_ingot":{id:"iron_sling",name:"Iron Sling",rarity:"uncommon"},"iron_sling+obsidian":{id:"obsidian_slinger",name:"Obsidian Slinger",rarity:"rare"},"stone+coal":{id:"ash_block",name:"Ash Block",rarity:"common"},"ash_block+ember":{id:"ember_brick",name:"Ember Brick",rarity:"uncommon"},"ember_brick+obsidian":{id:"lava_stone",name:"Lava Stone",rarity:"rare"},"lava_stone+mana_crystal":{id:"magma_core",name:"Magma Core",rarity:"epic"},"druidic_talisman+emerald":{id:"earth_totem",name:"Earth Totem",rarity:"epic"},"blood+bone":{id:"hex_blade",name:"Hex Blade",rarity:"rare"},"hex_blade+magic_dust":{id:"soul_blade",name:"Soul Blade",rarity:"epic"},"stone+iron_ingot":{id:"stone_maul",name:"Stone Maul",rarity:"uncommon"},"wood+gold_ingot":{id:"gilded_staff",name:"Gilded Staff",rarity:"rare"},"bone+mana_crystal":{id:"necrotic_wand",name:"Necrotic Wand",rarity:"rare"},"light_armor+dragon_scale":{id:"scaled_armor",name:"Scaled Armor",rarity:"epic"},"leather+obsidian":{id:"shadow_leather",name:"Shadow Leather",rarity:"uncommon"},"obsidian+mana_crystal":{id:"void_core",name:"Void Core",rarity:"epic"},"void_core+wand":{id:"void_staff",name:"Void Staff",rarity:"epic"},"ruby+gold_ingot":{id:"ruby_ring",name:"Ruby Ring",rarity:"rare"},"sapphire+silver_ingot":{id:"sapphire_amulet",name:"Sapphire Amulet",rarity:"rare"},"mana_crystal+blood":{id:"blood_mage_crystal",name:"Blood Mage Crystal",rarity:"epic"},"blood_mage_crystal+wand":{id:"blood_staff",name:"Blood Staff",rarity:"epic"},"gold_ingot+enchanted_leaf":{id:"sunleaf_token",name:"Sunleaf Token",rarity:"rare"},"sunleaf_token+cloth":{id:"suncloak",name:"Suncloak",rarity:"epic"},"copper_ingot+obsidian":{id:"volcanic_blade",name:"Volcanic Blade",rarity:"rare"},"goblin_ear+obsidian":{id:"dark_dagger",name:"Dark Dagger",rarity:"uncommon"},"dust+magic_dust":{id:"mystic_powder",name:"Mystic Powder",rarity:"uncommon"},"mystic_powder+cloth":{id:"enchanters_cloak",name:"Enchanter's Cloak",rarity:"rare"},"crystal_shard+mana_crystal":{id:"energy_core",name:"Energy Core",rarity:"rare"},"energy_core+bow":{id:"pulse_bow",name:"Pulse Bow",rarity:"epic"},"jawblade+venom":{id:"toxic_blade",name:"Toxic Blade",rarity:"rare"},"silver_ingot+feather":{id:"silver_plume",name:"Silver Plume",rarity:"rare"},"silver_plume+bow":{id:"wind_bow",name:"Wind Bow",rarity:"epic"},"bronze_spear+mana_crystal":{id:"storm_pike",name:"Storm Pike",rarity:"epic"},"magic_dust+obsidian":{id:"void_powder",name:"Void Powder",rarity:"rare"},"void_powder+crystal_shard":{id:"dark_crystal",name:"Dark Crystal",rarity:"epic"},"dark_crystal+wand":{id:"dark_staff",name:"Dark Staff",rarity:"epic"},"cloth+ash_block":{id:"ashen_robe",name:"Ashen Robe",rarity:"uncommon"},"ashen_robe+magic_dust":{id:"smoldering_robe",name:"Smoldering Robe",rarity:"rare"},"earth_totem+mana_crystal":{id:"gaia_core",name:"Gaia Core",rarity:"epic"},"feather+magic_dust":{id:"arcane_feather",name:"Arcane Feather",rarity:"uncommon"},"arcane_feather+bow":{id:"plume_bow",name:"Plume Bow",rarity:"rare"},"blood+venom":{id:"corrupted_essence",name:"Corrupted Essence",rarity:"rare"},"ruby+crystal_shard":{id:"flame_shard",name:"Flame Shard",rarity:"rare"},"flame_shard+wand":{id:"ember_wand",name:"Ember Wand",rarity:"epic"},"stone+emerald":{id:"nature_blade",name:"Nature Blade",rarity:"rare"},"goblin_dagger+venom":{id:"assassins_dagger",name:"Assassin's Dagger",rarity:"epic"},"feather+mana_crystal":{id:"wind_core",name:"Wind Core",rarity:"rare"},"wind_core+wand":{id:"wind_wand",name:"Wind Wand",rarity:"epic"},"flame_amulet+ice_core":{id:"steam_stone",name:"Steam Stone",rarity:"epic"},"steam_stone+wand":{id:"steam_wand",name:"Steam Wand",rarity:"epic"}};
+
+var BASE=["wood","stone","fiber","copper_ore","coal","mana_crystal","iron_ore","gold_ore","silver_ore","leather","cloth","bone","fang","claw","venom","blood","magic_dust","crystal_shard","enchanted_leaf","ember","obsidian","sapphire","ruby","emerald","feather","dust","dragon_scale","phoenix_feather","troll_fat","goblin_ear"];
+var NM={common:'#b0c89a',uncommon:'#80c898',rare:'#80b0e8',epic:'#c880f0'};
+var RC={common:'#8aaa78',uncommon:'#4a9a6a',rare:'#4a80c8',epic:'#9a50c8'};
+
+var inv=BASE.map(function(id){return{id:id,name:id.replace(/_/g,' ').replace(/\b\w/g,function(l){return l.toUpperCase();}),rarity:'common'};});
+var slots=[null,null],filt='all',qry='',fresh=null;
+var TOTAL=Object.keys(R).length;
+
+function toast(m){var el=document.getElementById('toast');el.textContent=m;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove('show');},2800);}
+
+function updateT(){var found=new Set(inv.map(function(i){return i.id;}));var n=Object.values(R).filter(function(r){return found.has(r.id);}).length;document.getElementById('pF').style.width=(n/TOTAL*100)+'%';document.getElementById('pC').textContent=n+' / '+TOTAL;}
+
+function iHTML(item){return '<div class="id"><span class="ic">'+ico(item.id)+'</span><span class="nm" style="color:'+NM[item.rarity]+'">'+item.name+'</span><span class="rt" style="color:'+RC[item.rarity]+'">'+item.rarity+'</span></div>';}
+
+function fillSlot(idx,item){slots[idx]=item;var el=document.getElementById('s'+idx);el.innerHTML=iHTML(item);el.classList.add('filled');syncBtn();}
+function clearSlot(idx){slots[idx]=null;var el=document.getElementById('s'+idx);el.innerHTML='<span class="sh">Slot '+(idx===0?'One':'Two')+'</span>';el.classList.remove('filled');resetR();syncBtn();}
+function syncBtn(){document.getElementById('cBtn').disabled=!(slots[0]&&slots[1]);}
+function resetR(){var ra=document.getElementById('rA');ra.className='rarea';ra.innerHTML='<span class="rl">Result</span><span style="font-size:.72rem;color:rgba(122,79,53,.4)">—</span>';}
+
+['s0','s1'].forEach(function(sid){
+  var el=document.getElementById(sid);
+  el.addEventListener('dragover',function(e){e.preventDefault();el.classList.add('over');});
+  el.addEventListener('dragleave',function(){el.classList.remove('over');});
+  el.addEventListener('drop',function(e){e.preventDefault();el.classList.remove('over');var id=e.dataTransfer.getData('text/plain');var item=inv.find(function(i){return i.id===id;});if(item)fillSlot(parseInt(el.dataset.i),item);});
+  el.addEventListener('click',function(){if(slots[parseInt(el.dataset.i)])clearSlot(parseInt(el.dataset.i));});
+});
+
+document.getElementById('cBtn').addEventListener('click',function(){
+  if(!slots[0]||!slots[1])return;
+  var k1=slots[0].id+'+'+slots[1].id,k2=slots[1].id+'+'+slots[0].id;
+  var result=R[k1]||R[k2];
+  var ra=document.getElementById('rA');
+  if(result){
+    var isNew=!inv.some(function(i){return i.id===result.id;});
+    inv.push(result);fresh=result.id;
+    ra.className='rarea ok';ra.innerHTML=iHTML(result);
+    if(isNew){var lb={common:'Common',uncommon:'Uncommon',rare:'✦ Rare',epic:'★ Epic'};toast((lb[result.rarity]||'')+' · '+result.name+' discovered!');}
+    renderInv();updateT();
+  }else{ra.className='rarea no';ra.innerHTML='<span class="rl">Result</span><span style="font-size:.72rem;color:rgba(200,80,80,.55)">No recipe found</span>';}
+});
+
+document.getElementById('xBtn').addEventListener('click',function(){slots=[null,null];clearSlot(0);clearSlot(1);});
+document.getElementById('sIn').addEventListener('input',function(e){qry=e.target.value;renderInv();});
+document.querySelectorAll('.fb').forEach(function(btn){btn.addEventListener('click',function(){document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');filt=btn.dataset.r;renderInv();});});
+
+function renderInv(){
+  var g=document.getElementById('iG');
+  var list=inv.filter(function(item){return(filt==='all'||item.rarity===filt)&&item.name.toLowerCase().indexOf(qry.toLowerCase())>=0;});
+  document.getElementById('iMeta').textContent=inv.length+' items';
+  if(!list.length){g.innerHTML='<div class="empty">No items match.</div>';return;}
+  g.innerHTML='';
+  list.forEach(function(item){
+    var d=document.createElement('div');
+    d.className='item '+item.rarity;
+    if(item.id===fresh)d.classList.add('fresh');
+    d.draggable=true;d.dataset.id=item.id;
+    d.innerHTML='<span class="ic">'+ico(item.id)+'</span><div class="nm" style="color:'+NM[item.rarity]+'">'+item.name+'</div><div class="rt">'+item.rarity+'</div>';
+    d.addEventListener('dragstart',function(e){e.dataTransfer.setData('text/plain',item.id);d.style.opacity='.45';});
+    d.addEventListener('dragend',function(){d.style.opacity='1';});
+    d.addEventListener('click',function(){var ei=slots.findIndex(function(s){return s===null;});fillSlot(ei>=0?ei:0,item);});
+    d.addEventListener('touchstart',function(){d.dataset.drag=item.id;},{passive:true});
+    d.addEventListener('touchend',function(e){var t=e.changedTouches[0];var el=document.elementFromPoint(t.clientX,t.clientY);var sl=el&&el.closest('.slot');if(sl)fillSlot(parseInt(sl.dataset.i),item);});
+    g.appendChild(d);
+  });
+  fresh=null;
+}
+
+renderInv();updateT();syncBtn();
+</script>
+</body>
+</html>
