@@ -3,10 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Alchemist's Table — WEISS Crafting Demo</title>
+<title>The Alchemist’s Table — WEISS Crafting Demo</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--peach:#e8b89a;--terracotta:#c97b5a;--brown:#7a4f35;--ink:#1a0d06;--parch:#f0e6c8;--cc:#8aaa78;--cu:#4a9a6a;--cr:#4a80c8;--ce:#9a50c8;}
+:root{
+  --peach:#e8b89a;--terracotta:#c97b5a;--brown:#7a4f35;--ink:#1a0d06;--parch:#f0e6c8;
+  --cc:#5a8c3a;--cu:#2a7a52;--cr:#2a5faa;--ce:#7228b0;
+}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Nunito',sans-serif;background:var(--ink);color:var(--parch);min-height:100vh;overflow-x:hidden;}
 .bg{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 70% 55% at 15% 25%,rgba(201,123,90,.10) 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,rgba(122,79,53,.13) 0%,transparent 60%),linear-gradient(160deg,#110703 0%,#240e05 45%,#110602 100%);}
@@ -26,12 +29,12 @@ header::after{content:'';display:block;width:180px;height:1px;background:linear-
 .tcard{background:linear-gradient(148deg,#f2e8ca,#e8d9a5);border-radius:20px;padding:1.75rem 2rem;margin-bottom:1.4rem;position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(201,123,90,.25),0 10px 40px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.45);}
 .thint{font-family:'Cinzel',serif;font-size:.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brown);opacity:.65;margin-bottom:1.1rem;}
 .srow{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
-.slot{width:118px;height:118px;border:2px dashed rgba(122,79,53,.38);border-radius:14px;background:rgba(255,255,255,.28);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;transition:border-color .2s,background .2s,transform .2s;flex-shrink:0;}
+.slot{width:118px;height:118px;border:2px dashed rgba(122,79,53,.38);border-radius:14px;background:rgba(255,255,255,.28);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,background .2s,transform .2s;flex-shrink:0;}
 .slot:hover{border-color:var(--terracotta);background:rgba(201,123,90,.09);transform:translateY(-2px);}
 .slot.filled{border-style:solid;border-color:var(--terracotta);}
 .slot.over{border-color:var(--brown);background:rgba(122,79,53,.14);transform:scale(1.04);}
 .sh{font-size:.72rem;color:rgba(122,79,53,.48);text-align:center;}
-.div{font-family:'Cinzel',serif;font-size:1.7rem;color:var(--brown);opacity:.38;flex-shrink:0;}
+.divider{font-family:'Cinzel',serif;font-size:1.7rem;color:var(--brown);opacity:.38;flex-shrink:0;}
 .rarea{min-width:130px;height:118px;border:2px solid rgba(122,79,53,.18);border-radius:14px;background:rgba(255,255,255,.15);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:all .35s;flex-shrink:0;}
 .rarea.ok{border-color:var(--terracotta);background:rgba(201,123,90,.1);animation:pop .38s ease;}
 .rarea.no{border-color:rgba(180,60,60,.4);background:rgba(180,60,60,.04);}
@@ -40,7 +43,7 @@ header::after{content:'';display:block;width:180px;height:1px;background:linear-
 .id{display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.4rem;}
 .id .ic{font-size:1.55rem;line-height:1;}
 .id .nm{font-size:.66rem;font-weight:700;text-align:center;line-height:1.25;max-width:88px;word-break:break-word;}
-.id .rt{font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;opacity:.65;}
+.id .rt{font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;opacity:.75;font-weight:700;}
 .brow{display:flex;gap:.7rem;margin-top:1.4rem;flex-wrap:wrap;}
 .btn{font-family:'Cinzel',serif;font-size:.78rem;font-weight:600;letter-spacing:.09em;padding:.6rem 1.45rem;border-radius:50px;border:none;cursor:pointer;transition:all .2s;}
 .bc{background:var(--terracotta);color:white;box-shadow:0 4px 18px rgba(201,123,90,.38);}
@@ -55,7 +58,8 @@ header::after{content:'';display:block;width:180px;height:1px;background:linear-
 .imeta{font-size:.72rem;color:rgba(232,184,154,.4);}
 .sw{position:relative;margin-bottom:.9rem;}
 .si{width:100%;padding:.68rem 1rem .68rem 2.4rem;background:rgba(61,35,20,.75);border:1px solid rgba(201,123,90,.18);border-radius:9px;color:var(--peach);font-family:'Nunito',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s;}
-.si::placeholder{color:rgba(232,184,154,.3);}.si:focus{border-color:rgba(201,123,90,.45);}
+.si::placeholder{color:rgba(232,184,154,.3);}
+.si:focus{border-color:rgba(201,123,90,.45);}
 .sic{position:absolute;left:.72rem;top:50%;transform:translateY(-50%);font-size:.85rem;opacity:.38;pointer-events:none;}
 .filt{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:1.1rem;}
 .fb{font-size:.67rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .8rem;border-radius:50px;border:1.5px solid;cursor:pointer;background:transparent;font-family:'Nunito',sans-serif;transition:all .15s;}
@@ -71,18 +75,27 @@ header::after{content:'';display:block;width:180px;height:1px;background:linear-
 .fb[data-r=rare].on{background:var(--cr);}
 .fb[data-r=epic].on{background:var(--ce);}
 .igrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:.55rem;max-height:430px;overflow-y:auto;padding-right:.2rem;}
-.igrid::-webkit-scrollbar{width:3px;}.igrid::-webkit-scrollbar-track{background:rgba(255,255,255,.04);}.igrid::-webkit-scrollbar-thumb{background:rgba(201,123,90,.28);border-radius:2px;}
+.igrid::-webkit-scrollbar{width:3px;}
+.igrid::-webkit-scrollbar-track{background:rgba(255,255,255,.04);}
+.igrid::-webkit-scrollbar-thumb{background:rgba(201,123,90,.28);border-radius:2px;}
 .item{border-radius:10px;padding:.65rem .45rem .5rem;text-align:center;cursor:grab;user-select:none;transition:transform .14s,box-shadow .14s;border:1.5px solid transparent;}
-.item:active{cursor:grabbing;}.item:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 6px 18px rgba(0,0,0,.32);}
-.item.common{background:rgba(138,170,120,.12);border-color:rgba(138,170,120,.28);}
-.item.uncommon{background:rgba(74,154,106,.12);border-color:rgba(74,154,106,.32);}
-.item.rare{background:rgba(74,128,200,.12);border-color:rgba(74,128,200,.32);}
-.item.epic{background:rgba(154,80,200,.14);border-color:rgba(154,80,200,.38);}
+.item:active{cursor:grabbing;}
+.item:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 6px 18px rgba(0,0,0,.32);}
+.item.common{background:rgba(90,140,58,.15);border-color:rgba(90,140,58,.32);}
+.item.uncommon{background:rgba(42,122,82,.15);border-color:rgba(42,122,82,.36);}
+.item.rare{background:rgba(42,95,170,.15);border-color:rgba(42,95,170,.36);}
+.item.epic{background:rgba(114,40,176,.16);border-color:rgba(114,40,176,.42);}
 .item .ic{font-size:1.35rem;display:block;margin-bottom:.28rem;line-height:1;}
 .item .nm{font-size:.65rem;font-weight:700;line-height:1.25;word-break:break-word;}
-.item .rt{font-size:.55rem;letter-spacing:.09em;text-transform:uppercase;opacity:.55;margin-top:.18rem;}
-.item.common .nm{color:#b0c89a;}.item.uncommon .nm{color:#80c898;}.item.rare .nm{color:#80b0e8;}.item.epic .nm{color:#c880f0;}
-.item.common .rt{color:var(--cc);}.item.uncommon .rt{color:var(--cu);}.item.rare .rt{color:var(--cr);}.item.epic .rt{color:var(--ce);}
+.item .rt{font-size:.55rem;letter-spacing:.09em;text-transform:uppercase;margin-top:.18rem;font-weight:700;}
+.item.common .nm{color:#96cc6e;}
+.item.uncommon .nm{color:#4ed080;}
+.item.rare .nm{color:#62aaee;}
+.item.epic .nm{color:#cc7afc;}
+.item.common .rt{color:var(--cc);}
+.item.uncommon .rt{color:var(--cu);}
+.item.rare .rt{color:var(--cr);}
+.item.epic .rt{color:var(--ce);}
 .item.fresh{animation:fp 1.1s ease;}
 @keyframes fp{0%{transform:scale(1.16);box-shadow:0 0 0 0 rgba(201,123,90,.65);}55%{box-shadow:0 0 0 9px rgba(201,123,90,0);}100%{transform:scale(1);}}
 .empty{text-align:center;padding:2.2rem 1rem;color:rgba(232,184,154,.28);font-size:.82rem;}
@@ -92,12 +105,13 @@ header::after{content:'';display:block;width:180px;height:1px;background:linear-
 </style>
 </head>
 <body>
+
 <div class="bg"></div>
 <canvas id="C"></canvas>
 <div class="wrap">
 <a href="index.html" class="back">← Back to Portfolio</a>
 <header>
-<h1 class="title">The Alchemist's Table</h1>
+<h1 class="title">The Alchemist’s Table</h1>
 <p class="sub">WEISS · Interactive Crafting Demo</p>
 </header>
 <div class="tracker">
@@ -109,16 +123,16 @@ header::after{content:'';display:block;width:180px;height:1px;background:linear-
 <p class="thint">Crafting Table — drag items from inventory, or click to assign</p>
 <div class="srow">
 <div class="slot" id="s0" data-i="0"><span class="sh">Slot One</span></div>
-<span class="div">+</span>
+<span class="divider">+</span>
 <div class="slot" id="s1" data-i="1"><span class="sh">Slot Two</span></div>
-<span class="div" style="opacity:.55">→</span>
+<span class="divider" style="opacity:.55">→</span>
 <div class="rarea" id="rA"><span class="rl">Result</span><span style="font-size:.72rem;color:rgba(122,79,53,.4)">—</span></div>
 </div>
 <div class="brow">
 <button class="btn bc" id="cBtn" disabled>Combine</button>
 <button class="btn bx" id="xBtn">Clear</button>
 </div>
-<p class="tip">💡 Some recipes require crafted items — combine your discoveries to go deeper.</p>
+<p class="tip">💡 Some chains run 4–5 steps deep. New base ingredients unlock whole new trees.</p>
 </div>
 <div class="inv">
 <div class="itop"><span class="itit">Inventory</span><span class="imeta" id="iMeta">0 items</span></div>
@@ -134,38 +148,353 @@ header::after{content:'';display:block;width:180px;height:1px;background:linear-
 </div>
 </div>
 <div id="toast"></div>
+
 <script>
+
 (function(){
 var c=document.getElementById('C'),ctx=c.getContext('2d');
-function r(){c.width=innerWidth;c.height=innerHeight;}r();window.addEventListener('resize',r);
+function resize(){c.width=innerWidth;c.height=innerHeight;}
+resize();window.addEventListener('resize',resize);
 var CL=['rgba(201,123,90,','rgba(232,184,154,','rgba(184,212,232,','rgba(197,184,212,','rgba(143,173,140,'];
-function M(){this.reset(1);}
-M.prototype.reset=function(s){this.x=Math.random()*c.width;this.y=s?Math.random()*c.height:c.height+8;this.rv=1.2+Math.random()*3.2;this.vy=.28+Math.random()*.62;this.vx=(Math.random()-.5)*.3;this.a=0;this.am=.12+Math.random()*.3;this.up=true;this.cl=CL[Math.floor(Math.random()*CL.length)];this.w=Math.random()*Math.PI*2;this.ws=.012+Math.random()*.018;this.wa=.25+Math.random()*.75;};
-M.prototype.tick=function(){this.w+=this.ws;this.x+=this.vx+Math.sin(this.w)*this.wa*.08;this.y-=this.vy;if(this.up){this.a+=.007;if(this.a>=this.am)this.up=false;}else if(this.y<c.height*.28)this.a-=.004;if(this.y<-10||this.a<=0)this.reset();};
-M.prototype.draw=function(){ctx.beginPath();ctx.arc(this.x,this.y,this.rv,0,Math.PI*2);ctx.fillStyle=this.cl+this.a+')';ctx.fill();};
+function M(){this.reset(true);}
+M.prototype.reset=function(s){
+  this.x=Math.random()*c.width;
+  this.y=s?Math.random()*c.height:c.height+8;
+  this.rv=1.2+Math.random()*3.2;
+  this.vy=.28+Math.random()*.62;
+  this.vx=(Math.random()-.5)*.3;
+  this.a=0;this.am=.12+Math.random()*.3;this.up=true;
+  this.cl=CL[Math.floor(Math.random()*CL.length)];
+  this.w=Math.random()*Math.PI*2;
+  this.ws=.012+Math.random()*.018;
+  this.wa=.25+Math.random()*.75;
+};
+M.prototype.tick=function(){
+  this.w+=this.ws;
+  this.x+=this.vx+Math.sin(this.w)*this.wa*.08;
+  this.y-=this.vy;
+  if(this.up){this.a+=.007;if(this.a>=this.am)this.up=false;}
+  else if(this.y<c.height*.28)this.a-=.004;
+  if(this.y<-10||this.a<=0)this.reset();
+};
+M.prototype.draw=function(){
+  ctx.beginPath();ctx.arc(this.x,this.y,this.rv,0,Math.PI*2);
+  ctx.fillStyle=this.cl+this.a+')';ctx.fill();
+};
 var ms=[];for(var i=0;i<52;i++)ms.push(new M());
 (function loop(){ctx.clearRect(0,0,c.width,c.height);ms.forEach(function(m){m.tick();m.draw();});requestAnimationFrame(loop);})();
 })();
 
-var IC={wood:'🪵',stone:'🪨',fiber:'🌿',copper_ore:'🔶',coal:'⬛',mana_crystal:'💎',iron_ore:'⬜',gold_ore:'🟡',silver_ore:'🩶',leather:'🟤',cloth:'🩵',bone:'🦴',fang:'🦷',claw:'🦞',venom:'🧪',blood:'🩸',magic_dust:'✨',crystal_shard:'🔷',enchanted_leaf:'🍀',ember:'🔥',obsidian:'🖤',sapphire:'💙',ruby:'❤️',emerald:'💚',feather:'🪶',dust:'💨',dragon_scale:'🐉',phoenix_feather:'🌟',troll_fat:'🫧',goblin_ear:'👂'};
+var IC={wood:'🪵',stone:'🪨',fiber:'🌿',copper_ore:'🔶',coal:'⬛',mana_crystal:'💎',iron_ore:'🔩',gold_ore:'🟡',silver_ore:'🩶',leather:'🟤',cloth:'🪵',bone:'🦴',fang:'🦷',claw:'🦞',venom:'🧪',blood:'🩸',magic_dust:'✨',crystal_shard:'🔷',enchanted_leaf:'🍀',ember:'🔥',obsidian:'🖤',sapphire:'💙',ruby:'❤️',emerald:'💚',feather:'🪶',dust:'💨',dragon_scale:'🐉',phoenix_feather:'🌟',troll_fat:'🪷',goblin_ear:'👂',salt:'🧂',sulfur:'🌋',quicksilver:'⚪',nightshade:'🌑',moonpetal:'🌸',sunroot:'🌻',frost_shard:'❄️',storm_shard:'⚡',earth_shard:'🪨',shadow_shard:'🌒',slime_core:'🟢',spider_silk:'🕸️',bat_wing:'🦇',wyvern_scale:'🐊',lich_dust:'💀',honey:'🍯',beeswax:'🕯️',oil:'🪴',dried_herb:'🌾'};
 function ico(id){return IC[id]||'⚗️';}
 
-var R={"fiber+bone":{id:"bone_whip",name:"Bone Whip",rarity:"uncommon"},"stone+obsidian":{id:"obsidian_blade",name:"Obsidian Blade",rarity:"rare"},"wood+leather":{id:"leather_shield",name:"Leather Shield",rarity:"common"},"sapphire+gold_ingot":{id:"sapphire_ring",name:"Sapphire Ring",rarity:"rare"},"emerald+silver_ingot":{id:"emerald_amulet",name:"Emerald Amulet",rarity:"rare"},"cloth+magic_dust":{id:"wizard_hat",name:"Wizard Hat",rarity:"uncommon"},"mana_crystal+crystal_shard":{id:"prismatic_core",name:"Prismatic Core",rarity:"rare"},"dust+ember":{id:"smokebomb",name:"Smokebomb",rarity:"common"},"stick+claw":{id:"claw_staff",name:"Claw Staff",rarity:"uncommon"},"venom+fang":{id:"poison_talisman",name:"Poison Talisman",rarity:"uncommon"},"cloth+feather":{id:"feather_cloak",name:"Feather Cloak",rarity:"common"},"dragon_scale+obsidian":{id:"scale_plate",name:"Scale Plate",rarity:"epic"},"copper_ingot+iron_ingot":{id:"bronze_bar",name:"Bronze Bar",rarity:"uncommon"},"bronze_bar+wood":{id:"bronze_spear",name:"Bronze Spear",rarity:"uncommon"},"gold_ingot+ruby":{id:"royal_ring",name:"Royal Ring",rarity:"epic"},"emerald+enchanted_leaf":{id:"druidic_talisman",name:"Druidic Talisman",rarity:"rare"},"fang+bone":{id:"jawblade",name:"Jawblade",rarity:"uncommon"},"mana_crystal+silver_ingot":{id:"blessed_ring",name:"Blessed Ring",rarity:"rare"},"phoenix_feather+cloth":{id:"phoenix_robe",name:"Phoenix Robe",rarity:"epic"},"goblin_ear+claw":{id:"goblin_dagger",name:"Goblin Dagger",rarity:"common"},"wood+stone":{id:"stone_axe",name:"Stone Axe",rarity:"common"},"wood+fiber":{id:"bow",name:"Basic Bow",rarity:"common"},"wood+wood":{id:"stick",name:"Wooden Stick",rarity:"common"},"stone+fiber":{id:"sling",name:"Sling",rarity:"common"},"stick+fiber":{id:"torch",name:"Torch",rarity:"common"},"copper_ore+coal":{id:"copper_ingot",name:"Copper Ingot",rarity:"common"},"wood+copper_ingot":{id:"copper_sword",name:"Copper Sword",rarity:"uncommon"},"iron_ore+coal":{id:"iron_ingot",name:"Iron Ingot",rarity:"uncommon"},"silver_ore+coal":{id:"silver_ingot",name:"Silver Ingot",rarity:"uncommon"},"gold_ore+coal":{id:"gold_ingot",name:"Gold Ingot",rarity:"rare"},"leather+cloth":{id:"light_armor",name:"Light Armor",rarity:"uncommon"},"bone+fang":{id:"bone_dagger",name:"Bone Dagger",rarity:"uncommon"},"blood+magic_dust":{id:"blood_charm",name:"Blood Charm",rarity:"rare"},"dragon_scale+mana_crystal":{id:"flame_amulet",name:"Flame Amulet",rarity:"epic"},"phoenix_feather+mana_crystal":{id:"revival_charm",name:"Revival Charm",rarity:"epic"},"goblin_ear+troll_fat":{id:"stench_bomb",name:"Stench Bomb",rarity:"common"},"stick+mana_crystal":{id:"wand",name:"Wand",rarity:"uncommon"},"wand+magic_dust":{id:"charged_wand",name:"Charged Wand",rarity:"rare"},"bow+mana_crystal":{id:"magic_bow",name:"Magic Bow",rarity:"rare"},"coal+obsidian":{id:"dark_brick",name:"Dark Brick",rarity:"uncommon"},"wood+feather":{id:"arrow_shaft",name:"Arrow Shaft",rarity:"common"},"arrow_shaft+stone":{id:"stone_arrow",name:"Stone Arrow",rarity:"common"},"stone_arrow+venom":{id:"poison_arrow",name:"Poison Arrow",rarity:"uncommon"},"stick+feather":{id:"fletched_stick",name:"Fletched Stick",rarity:"common"},"fletched_stick+iron_ingot":{id:"iron_arrow",name:"Iron Arrow",rarity:"uncommon"},"iron_arrow+magic_dust":{id:"magic_arrow",name:"Magic Arrow",rarity:"rare"},"sapphire+mana_crystal":{id:"ice_core",name:"Ice Core",rarity:"rare"},"ice_core+wand":{id:"ice_wand",name:"Ice Wand",rarity:"epic"},"ruby+mana_crystal":{id:"fire_core",name:"Fire Core",rarity:"rare"},"fire_core+wand":{id:"fire_wand",name:"Fire Wand",rarity:"epic"},"gold_ingot+bone":{id:"gilded_dagger",name:"Gilded Dagger",rarity:"rare"},"silver_ingot+mana_crystal":{id:"lunar_token",name:"Lunar Token",rarity:"rare"},"cloth+enchanted_leaf":{id:"nature_wrap",name:"Nature Wrap",rarity:"uncommon"},"obsidian+claw":{id:"obsidian_claw",name:"Obsidian Claw",rarity:"rare"},"jawblade+magic_dust":{id:"spectral_blade",name:"Spectral Blade",rarity:"epic"},"flame_amulet+blood":{id:"hellfire_stone",name:"Hellfire Stone",rarity:"epic"},"wand+crystal_shard":{id:"focus_staff",name:"Focus Staff",rarity:"rare"},"focus_staff+mana_crystal":{id:"arcane_staff",name:"Arcane Staff",rarity:"epic"},"phoenix_robe+mana_crystal":{id:"phoenix_soulcloak",name:"Phoenix Soulcloak",rarity:"epic"},"bronze_bar+silver_ingot":{id:"moonsteel",name:"Moonsteel",rarity:"rare"},"moonsteel+wand":{id:"moon_staff",name:"Moon Staff",rarity:"epic"},"leather+bone":{id:"bone_bracers",name:"Bone Bracers",rarity:"common"},"emerald+mana_crystal":{id:"life_stone",name:"Life Stone",rarity:"rare"},"life_stone+cloth":{id:"healer_robe",name:"Healer Robe",rarity:"rare"},"copper_ingot+silver_ingot":{id:"shimmer_alloy",name:"Shimmer Alloy",rarity:"rare"},"shimmer_alloy+bow":{id:"glimmer_bow",name:"Glimmer Bow",rarity:"epic"},"sling+iron_ingot":{id:"iron_sling",name:"Iron Sling",rarity:"uncommon"},"iron_sling+obsidian":{id:"obsidian_slinger",name:"Obsidian Slinger",rarity:"rare"},"stone+coal":{id:"ash_block",name:"Ash Block",rarity:"common"},"ash_block+ember":{id:"ember_brick",name:"Ember Brick",rarity:"uncommon"},"ember_brick+obsidian":{id:"lava_stone",name:"Lava Stone",rarity:"rare"},"lava_stone+mana_crystal":{id:"magma_core",name:"Magma Core",rarity:"epic"},"druidic_talisman+emerald":{id:"earth_totem",name:"Earth Totem",rarity:"epic"},"blood+bone":{id:"hex_blade",name:"Hex Blade",rarity:"rare"},"hex_blade+magic_dust":{id:"soul_blade",name:"Soul Blade",rarity:"epic"},"stone+iron_ingot":{id:"stone_maul",name:"Stone Maul",rarity:"uncommon"},"wood+gold_ingot":{id:"gilded_staff",name:"Gilded Staff",rarity:"rare"},"bone+mana_crystal":{id:"necrotic_wand",name:"Necrotic Wand",rarity:"rare"},"light_armor+dragon_scale":{id:"scaled_armor",name:"Scaled Armor",rarity:"epic"},"leather+obsidian":{id:"shadow_leather",name:"Shadow Leather",rarity:"uncommon"},"obsidian+mana_crystal":{id:"void_core",name:"Void Core",rarity:"epic"},"void_core+wand":{id:"void_staff",name:"Void Staff",rarity:"epic"},"ruby+gold_ingot":{id:"ruby_ring",name:"Ruby Ring",rarity:"rare"},"sapphire+silver_ingot":{id:"sapphire_amulet",name:"Sapphire Amulet",rarity:"rare"},"mana_crystal+blood":{id:"blood_mage_crystal",name:"Blood Mage Crystal",rarity:"epic"},"blood_mage_crystal+wand":{id:"blood_staff",name:"Blood Staff",rarity:"epic"},"gold_ingot+enchanted_leaf":{id:"sunleaf_token",name:"Sunleaf Token",rarity:"rare"},"sunleaf_token+cloth":{id:"suncloak",name:"Suncloak",rarity:"epic"},"copper_ingot+obsidian":{id:"volcanic_blade",name:"Volcanic Blade",rarity:"rare"},"goblin_ear+obsidian":{id:"dark_dagger",name:"Dark Dagger",rarity:"uncommon"},"dust+magic_dust":{id:"mystic_powder",name:"Mystic Powder",rarity:"uncommon"},"mystic_powder+cloth":{id:"enchanters_cloak",name:"Enchanter's Cloak",rarity:"rare"},"crystal_shard+mana_crystal":{id:"energy_core",name:"Energy Core",rarity:"rare"},"energy_core+bow":{id:"pulse_bow",name:"Pulse Bow",rarity:"epic"},"jawblade+venom":{id:"toxic_blade",name:"Toxic Blade",rarity:"rare"},"silver_ingot+feather":{id:"silver_plume",name:"Silver Plume",rarity:"rare"},"silver_plume+bow":{id:"wind_bow",name:"Wind Bow",rarity:"epic"},"bronze_spear+mana_crystal":{id:"storm_pike",name:"Storm Pike",rarity:"epic"},"magic_dust+obsidian":{id:"void_powder",name:"Void Powder",rarity:"rare"},"void_powder+crystal_shard":{id:"dark_crystal",name:"Dark Crystal",rarity:"epic"},"dark_crystal+wand":{id:"dark_staff",name:"Dark Staff",rarity:"epic"},"cloth+ash_block":{id:"ashen_robe",name:"Ashen Robe",rarity:"uncommon"},"ashen_robe+magic_dust":{id:"smoldering_robe",name:"Smoldering Robe",rarity:"rare"},"earth_totem+mana_crystal":{id:"gaia_core",name:"Gaia Core",rarity:"epic"},"feather+magic_dust":{id:"arcane_feather",name:"Arcane Feather",rarity:"uncommon"},"arcane_feather+bow":{id:"plume_bow",name:"Plume Bow",rarity:"rare"},"blood+venom":{id:"corrupted_essence",name:"Corrupted Essence",rarity:"rare"},"ruby+crystal_shard":{id:"flame_shard",name:"Flame Shard",rarity:"rare"},"flame_shard+wand":{id:"ember_wand",name:"Ember Wand",rarity:"epic"},"stone+emerald":{id:"nature_blade",name:"Nature Blade",rarity:"rare"},"goblin_dagger+venom":{id:"assassins_dagger",name:"Assassin's Dagger",rarity:"epic"},"feather+mana_crystal":{id:"wind_core",name:"Wind Core",rarity:"rare"},"wind_core+wand":{id:"wind_wand",name:"Wind Wand",rarity:"epic"},"flame_amulet+ice_core":{id:"steam_stone",name:"Steam Stone",rarity:"epic"},"steam_stone+wand":{id:"steam_wand",name:"Steam Wand",rarity:"epic"}};
+var R={
+"fiber+bone":{"id":"bone_whip","name":"Bone Whip","rarity":"uncommon"},
+"stone+obsidian":{"id":"obsidian_blade","name":"Obsidian Blade","rarity":"rare"},
+"wood+leather":{"id":"leather_shield","name":"Leather Shield","rarity":"common"},
+"sapphire+gold_ingot":{"id":"sapphire_ring","name":"Sapphire Ring","rarity":"rare"},
+"emerald+silver_ingot":{"id":"emerald_amulet","name":"Emerald Amulet","rarity":"rare"},
+"cloth+magic_dust":{"id":"wizard_hat","name":"Wizard Hat","rarity":"uncommon"},
+"mana_crystal+crystal_shard":{"id":"prismatic_core","name":"Prismatic Core","rarity":"rare"},
+"dust+ember":{"id":"smokebomb","name":"Smokebomb","rarity":"common"},
+"stick+claw":{"id":"claw_staff","name":"Claw Staff","rarity":"uncommon"},
+"venom+fang":{"id":"poison_talisman","name":"Poison Talisman","rarity":"uncommon"},
+"cloth+feather":{"id":"feather_cloak","name":"Feather Cloak","rarity":"common"},
+"dragon_scale+obsidian":{"id":"scale_plate","name":"Scale Plate","rarity":"epic"},
+"copper_ingot+iron_ingot":{"id":"bronze_bar","name":"Bronze Bar","rarity":"uncommon"},
+"bronze_bar+wood":{"id":"bronze_spear","name":"Bronze Spear","rarity":"uncommon"},
+"gold_ingot+ruby":{"id":"royal_ring","name":"Royal Ring","rarity":"epic"},
+"emerald+enchanted_leaf":{"id":"druidic_talisman","name":"Druidic Talisman","rarity":"rare"},
+"fang+bone":{"id":"jawblade","name":"Jawblade","rarity":"uncommon"},
+"mana_crystal+silver_ingot":{"id":"blessed_ring","name":"Blessed Ring","rarity":"rare"},
+"phoenix_feather+cloth":{"id":"phoenix_robe","name":"Phoenix Robe","rarity":"epic"},
+"goblin_ear+claw":{"id":"goblin_dagger","name":"Goblin Dagger","rarity":"common"},
+"wood+stone":{"id":"stone_axe","name":"Stone Axe","rarity":"common"},
+"wood+fiber":{"id":"bow","name":"Basic Bow","rarity":"common"},
+"wood+wood":{"id":"stick","name":"Wooden Stick","rarity":"common"},
+"stone+fiber":{"id":"sling","name":"Sling","rarity":"common"},
+"stick+fiber":{"id":"torch","name":"Torch","rarity":"common"},
+"copper_ore+coal":{"id":"copper_ingot","name":"Copper Ingot","rarity":"common"},
+"wood+copper_ingot":{"id":"copper_sword","name":"Copper Sword","rarity":"uncommon"},
+"iron_ore+coal":{"id":"iron_ingot","name":"Iron Ingot","rarity":"uncommon"},
+"silver_ore+coal":{"id":"silver_ingot","name":"Silver Ingot","rarity":"uncommon"},
+"gold_ore+coal":{"id":"gold_ingot","name":"Gold Ingot","rarity":"rare"},
+"leather+cloth":{"id":"light_armor","name":"Light Armor","rarity":"uncommon"},
+"bone+fang":{"id":"bone_dagger","name":"Bone Dagger","rarity":"uncommon"},
+"blood+magic_dust":{"id":"blood_charm","name":"Blood Charm","rarity":"rare"},
+"dragon_scale+mana_crystal":{"id":"flame_amulet","name":"Flame Amulet","rarity":"epic"},
+"phoenix_feather+mana_crystal":{"id":"revival_charm","name":"Revival Charm","rarity":"epic"},
+"goblin_ear+troll_fat":{"id":"stench_bomb","name":"Stench Bomb","rarity":"common"},
+"stick+mana_crystal":{"id":"wand","name":"Wand","rarity":"uncommon"},
+"wand+magic_dust":{"id":"charged_wand","name":"Charged Wand","rarity":"rare"},
+"bow+mana_crystal":{"id":"magic_bow","name":"Magic Bow","rarity":"rare"},
+"coal+obsidian":{"id":"dark_brick","name":"Dark Brick","rarity":"uncommon"},
+"wood+feather":{"id":"arrow_shaft","name":"Arrow Shaft","rarity":"common"},
+"arrow_shaft+stone":{"id":"stone_arrow","name":"Stone Arrow","rarity":"common"},
+"stone_arrow+venom":{"id":"poison_arrow","name":"Poison Arrow","rarity":"uncommon"},
+"stick+feather":{"id":"fletched_stick","name":"Fletched Stick","rarity":"common"},
+"fletched_stick+iron_ingot":{"id":"iron_arrow","name":"Iron Arrow","rarity":"uncommon"},
+"iron_arrow+magic_dust":{"id":"magic_arrow","name":"Magic Arrow","rarity":"rare"},
+"sapphire+mana_crystal":{"id":"ice_core","name":"Ice Core","rarity":"rare"},
+"ice_core+wand":{"id":"ice_wand","name":"Ice Wand","rarity":"epic"},
+"ruby+mana_crystal":{"id":"fire_core","name":"Fire Core","rarity":"rare"},
+"fire_core+wand":{"id":"fire_wand","name":"Fire Wand","rarity":"epic"},
+"gold_ingot+bone":{"id":"gilded_dagger","name":"Gilded Dagger","rarity":"rare"},
+"silver_ingot+mana_crystal":{"id":"lunar_token","name":"Lunar Token","rarity":"rare"},
+"cloth+enchanted_leaf":{"id":"nature_wrap","name":"Nature Wrap","rarity":"uncommon"},
+"obsidian+claw":{"id":"obsidian_claw","name":"Obsidian Claw","rarity":"rare"},
+"jawblade+magic_dust":{"id":"spectral_blade","name":"Spectral Blade","rarity":"epic"},
+"flame_amulet+blood":{"id":"hellfire_stone","name":"Hellfire Stone","rarity":"epic"},
+"wand+crystal_shard":{"id":"focus_staff","name":"Focus Staff","rarity":"rare"},
+"focus_staff+mana_crystal":{"id":"arcane_staff","name":"Arcane Staff","rarity":"epic"},
+"phoenix_robe+mana_crystal":{"id":"phoenix_soulcloak","name":"Phoenix Soulcloak","rarity":"epic"},
+"bronze_bar+silver_ingot":{"id":"moonsteel","name":"Moonsteel","rarity":"rare"},
+"moonsteel+wand":{"id":"moon_staff","name":"Moon Staff","rarity":"epic"},
+"leather+bone":{"id":"bone_bracers","name":"Bone Bracers","rarity":"common"},
+"emerald+mana_crystal":{"id":"life_stone","name":"Life Stone","rarity":"rare"},
+"life_stone+cloth":{"id":"healer_robe","name":"Healer Robe","rarity":"rare"},
+"copper_ingot+silver_ingot":{"id":"shimmer_alloy","name":"Shimmer Alloy","rarity":"rare"},
+"shimmer_alloy+bow":{"id":"glimmer_bow","name":"Glimmer Bow","rarity":"epic"},
+"sling+iron_ingot":{"id":"iron_sling","name":"Iron Sling","rarity":"uncommon"},
+"iron_sling+obsidian":{"id":"obsidian_slinger","name":"Obsidian Slinger","rarity":"rare"},
+"stone+coal":{"id":"ash_block","name":"Ash Block","rarity":"common"},
+"ash_block+ember":{"id":"ember_brick","name":"Ember Brick","rarity":"uncommon"},
+"ember_brick+obsidian":{"id":"lava_stone","name":"Lava Stone","rarity":"rare"},
+"lava_stone+mana_crystal":{"id":"magma_core","name":"Magma Core","rarity":"epic"},
+"druidic_talisman+emerald":{"id":"earth_totem","name":"Earth Totem","rarity":"epic"},
+"blood+bone":{"id":"hex_blade","name":"Hex Blade","rarity":"rare"},
+"hex_blade+magic_dust":{"id":"soul_blade","name":"Soul Blade","rarity":"epic"},
+"stone+iron_ingot":{"id":"stone_maul","name":"Stone Maul","rarity":"uncommon"},
+"wood+gold_ingot":{"id":"gilded_staff","name":"Gilded Staff","rarity":"rare"},
+"bone+mana_crystal":{"id":"necrotic_wand","name":"Necrotic Wand","rarity":"rare"},
+"light_armor+dragon_scale":{"id":"scaled_armor","name":"Scaled Armor","rarity":"epic"},
+"leather+obsidian":{"id":"shadow_leather","name":"Shadow Leather","rarity":"uncommon"},
+"obsidian+mana_crystal":{"id":"void_core","name":"Void Core","rarity":"epic"},
+"void_core+wand":{"id":"void_staff","name":"Void Staff","rarity":"epic"},
+"ruby+gold_ingot":{"id":"ruby_ring","name":"Ruby Ring","rarity":"rare"},
+"sapphire+silver_ingot":{"id":"sapphire_amulet","name":"Sapphire Amulet","rarity":"rare"},
+"mana_crystal+blood":{"id":"blood_mage_crystal","name":"Blood Mage Crystal","rarity":"epic"},
+"blood_mage_crystal+wand":{"id":"blood_staff","name":"Blood Staff","rarity":"epic"},
+"gold_ingot+enchanted_leaf":{"id":"sunleaf_token","name":"Sunleaf Token","rarity":"rare"},
+"sunleaf_token+cloth":{"id":"suncloak","name":"Suncloak","rarity":"epic"},
+"copper_ingot+obsidian":{"id":"volcanic_blade","name":"Volcanic Blade","rarity":"rare"},
+"goblin_ear+obsidian":{"id":"dark_dagger","name":"Dark Dagger","rarity":"uncommon"},
+"dust+magic_dust":{"id":"mystic_powder","name":"Mystic Powder","rarity":"uncommon"},
+"mystic_powder+cloth":{"id":"enchanters_cloak","name":"Enchanter's Cloak","rarity":"rare"},
+"crystal_shard+mana_crystal":{"id":"energy_core","name":"Energy Core","rarity":"rare"},
+"energy_core+bow":{"id":"pulse_bow","name":"Pulse Bow","rarity":"epic"},
+"jawblade+venom":{"id":"toxic_blade","name":"Toxic Blade","rarity":"rare"},
+"silver_ingot+feather":{"id":"silver_plume","name":"Silver Plume","rarity":"rare"},
+"silver_plume+bow":{"id":"wind_bow","name":"Wind Bow","rarity":"epic"},
+"bronze_spear+mana_crystal":{"id":"storm_pike","name":"Storm Pike","rarity":"epic"},
+"magic_dust+obsidian":{"id":"void_powder","name":"Void Powder","rarity":"rare"},
+"void_powder+crystal_shard":{"id":"dark_crystal","name":"Dark Crystal","rarity":"epic"},
+"dark_crystal+wand":{"id":"dark_staff","name":"Dark Staff","rarity":"epic"},
+"cloth+ash_block":{"id":"ashen_robe","name":"Ashen Robe","rarity":"uncommon"},
+"ashen_robe+magic_dust":{"id":"smoldering_robe","name":"Smoldering Robe","rarity":"rare"},
+"earth_totem+mana_crystal":{"id":"gaia_core","name":"Gaia Core","rarity":"epic"},
+"feather+magic_dust":{"id":"arcane_feather","name":"Arcane Feather","rarity":"uncommon"},
+"arcane_feather+bow":{"id":"plume_bow","name":"Plume Bow","rarity":"rare"},
+"blood+venom":{"id":"corrupted_essence","name":"Corrupted Essence","rarity":"rare"},
+"ruby+crystal_shard":{"id":"flame_shard","name":"Flame Shard","rarity":"rare"},
+"flame_shard+wand":{"id":"ember_wand","name":"Ember Wand","rarity":"epic"},
+"stone+emerald":{"id":"nature_blade","name":"Nature Blade","rarity":"rare"},
+"goblin_dagger+venom":{"id":"assassins_dagger","name":"Assassin's Dagger","rarity":"epic"},
+"feather+mana_crystal":{"id":"wind_core","name":"Wind Core","rarity":"rare"},
+"wind_core+wand":{"id":"wind_wand","name":"Wind Wand","rarity":"epic"},
+"flame_amulet+ice_core":{"id":"steam_stone","name":"Steam Stone","rarity":"epic"},
+"steam_stone+wand":{"id":"steam_wand","name":"Steam Wand","rarity":"epic"},
+"salt+sulfur":{"id":"brimstone","name":"Brimstone","rarity":"uncommon"},
+"salt+coal":{"id":"charcoal_dust","name":"Charcoal Dust","rarity":"common"},
+"quicksilver+salt":{"id":"flux","name":"Alchemical Flux","rarity":"uncommon"},
+"nightshade+venom":{"id":"paralytic_extract","name":"Paralytic Extract","rarity":"rare"},
+"nightshade+blood":{"id":"hemotoxin","name":"Hemotoxin","rarity":"rare"},
+"moonpetal+mana_crystal":{"id":"lunar_essence","name":"Lunar Essence","rarity":"rare"},
+"moonpetal+silver_ingot":{"id":"moonsilver","name":"Moonsilver","rarity":"rare"},
+"sunroot+ember":{"id":"solar_resin","name":"Solar Resin","rarity":"uncommon"},
+"sunroot+gold_ingot":{"id":"auric_sap","name":"Auric Sap","rarity":"rare"},
+"sulfur+ember":{"id":"flash_powder","name":"Flash Powder","rarity":"uncommon"},
+"flash_powder+venom":{"id":"poison_bomb","name":"Poison Bomb","rarity":"uncommon"},
+"flash_powder+blood":{"id":"crimson_flare","name":"Crimson Flare","rarity":"rare"},
+"brimstone+obsidian":{"id":"hellstone","name":"Hellstone","rarity":"rare"},
+"hellstone+mana_crystal":{"id":"infernal_core","name":"Infernal Core","rarity":"epic"},
+"flux+copper_ingot":{"id":"refined_copper","name":"Refined Copper","rarity":"uncommon"},
+"flux+iron_ingot":{"id":"refined_iron","name":"Refined Iron","rarity":"uncommon"},
+"flux+gold_ingot":{"id":"refined_gold","name":"Refined Gold","rarity":"rare"},
+"refined_iron+obsidian":{"id":"black_steel","name":"Black Steel","rarity":"rare"},
+"black_steel+wand":{"id":"black_staff","name":"Black Staff","rarity":"epic"},
+"refined_gold+ruby":{"id":"sunfire_ring","name":"Sunfire Ring","rarity":"epic"},
+"lunar_essence+moonsilver":{"id":"moonveil","name":"Moonveil","rarity":"epic"},
+"lunar_essence+wand":{"id":"oracle_wand","name":"Oracle Wand","rarity":"epic"},
+"solar_resin+ember":{"id":"sunfire_pitch","name":"Sunfire Pitch","rarity":"uncommon"},
+"sunfire_pitch+bow":{"id":"sun_bow","name":"Sun Bow","rarity":"rare"},
+"auric_sap+feather":{"id":"golden_quill","name":"Golden Quill","rarity":"rare"},
+"golden_quill+cloth":{"id":"scribes_robe","name":"Scribe's Robe","rarity":"rare"},
+"quicksilver+mana_crystal":{"id":"mercury_core","name":"Mercury Core","rarity":"rare"},
+"mercury_core+wand":{"id":"quicksilver_wand","name":"Quicksilver Wand","rarity":"epic"},
+"paralytic_extract+arrow_shaft":{"id":"sleep_arrow","name":"Sleep Arrow","rarity":"uncommon"},
+"hemotoxin+bone":{"id":"cursed_blade","name":"Cursed Blade","rarity":"rare"},
+"charcoal_dust+cloth":{"id":"smudge_wrap","name":"Smudge Wrap","rarity":"common"},
+"salt+bone":{"id":"preserved_bone","name":"Preserved Bone","rarity":"common"},
+"preserved_bone+leather":{"id":"hardened_bracers","name":"Hardened Bracers","rarity":"uncommon"},
+"frost_shard+mana_crystal":{"id":"cryo_core","name":"Cryo Core","rarity":"rare"},
+"frost_shard+iron_ingot":{"id":"frost_blade","name":"Frost Blade","rarity":"uncommon"},
+"frost_shard+wand":{"id":"frost_wand","name":"Frost Wand","rarity":"uncommon"},
+"frost_shard+obsidian":{"id":"glacial_shard","name":"Glacial Shard","rarity":"rare"},
+"cryo_core+wand":{"id":"blizzard_staff","name":"Blizzard Staff","rarity":"epic"},
+"cryo_core+bow":{"id":"ice_bow","name":"Ice Bow","rarity":"rare"},
+"cryo_core+leather":{"id":"frost_mantle","name":"Frost Mantle","rarity":"rare"},
+"storm_shard+mana_crystal":{"id":"tempest_core","name":"Tempest Core","rarity":"rare"},
+"storm_shard+iron_ingot":{"id":"thunder_blade","name":"Thunder Blade","rarity":"uncommon"},
+"storm_shard+feather":{"id":"storm_plume","name":"Storm Plume","rarity":"uncommon"},
+"storm_shard+copper_ingot":{"id":"lightning_rod","name":"Lightning Rod","rarity":"rare"},
+"tempest_core+wand":{"id":"storm_staff","name":"Storm Staff","rarity":"epic"},
+"tempest_core+bow":{"id":"thunder_bow","name":"Thunder Bow","rarity":"epic"},
+"earth_shard+mana_crystal":{"id":"geode_core","name":"Geode Core","rarity":"rare"},
+"earth_shard+stone":{"id":"living_stone","name":"Living Stone","rarity":"uncommon"},
+"earth_shard+iron_ingot":{"id":"earthen_blade","name":"Earthen Blade","rarity":"uncommon"},
+"earth_shard+leather":{"id":"stone_hide","name":"Stone Hide","rarity":"uncommon"},
+"geode_core+wand":{"id":"earth_staff","name":"Earth Staff","rarity":"epic"},
+"geode_core+bone":{"id":"fossil_club","name":"Fossil Club","rarity":"rare"},
+"shadow_shard+mana_crystal":{"id":"void_essence","name":"Void Essence","rarity":"rare"},
+"shadow_shard+obsidian":{"id":"null_stone","name":"Null Stone","rarity":"rare"},
+"shadow_shard+leather":{"id":"shadow_mantle","name":"Shadow Mantle","rarity":"uncommon"},
+"shadow_shard+claw":{"id":"shadow_claw","name":"Shadow Claw","rarity":"uncommon"},
+"void_essence+wand":{"id":"null_staff","name":"Null Staff","rarity":"epic"},
+"void_essence+obsidian":{"id":"abyss_core","name":"Abyss Core","rarity":"epic"},
+"frost_shard+fire_core":{"id":"steam_crystal","name":"Steam Crystal","rarity":"rare"},
+"storm_shard+earth_shard":{"id":"quake_charge","name":"Quake Charge","rarity":"rare"},
+"shadow_shard+frost_shard":{"id":"nullfrost","name":"Nullfrost","rarity":"rare"},
+"earth_shard+fire_core":{"id":"magma_shard","name":"Magma Shard","rarity":"rare"},
+"shadow_shard+blood":{"id":"wraith_essence","name":"Wraith Essence","rarity":"rare"},
+"wraith_essence+wand":{"id":"wraith_staff","name":"Wraith Staff","rarity":"epic"},
+"frost_shard+storm_shard":{"id":"blizzard_charge","name":"Blizzard Charge","rarity":"rare"},
+"slime_core+obsidian":{"id":"slime_bomb","name":"Slime Bomb","rarity":"common"},
+"slime_core+venom":{"id":"acid_flask","name":"Acid Flask","rarity":"uncommon"},
+"slime_core+mana_crystal":{"id":"ooze_core","name":"Ooze Core","rarity":"rare"},
+"ooze_core+wand":{"id":"ooze_staff","name":"Ooze Staff","rarity":"epic"},
+"slime_core+iron_ingot":{"id":"corrosive_blade","name":"Corrosive Blade","rarity":"uncommon"},
+"spider_silk+cloth":{"id":"web_cloak","name":"Web Cloak","rarity":"uncommon"},
+"spider_silk+bone":{"id":"silk_trap","name":"Silk Trap","rarity":"common"},
+"spider_silk+mana_crystal":{"id":"mystic_web","name":"Mystic Web","rarity":"rare"},
+"mystic_web+wand":{"id":"spinner_staff","name":"Spinner Staff","rarity":"epic"},
+"spider_silk+leather":{"id":"silk_armor","name":"Silk Armor","rarity":"uncommon"},
+"bat_wing+feather":{"id":"night_plume","name":"Night Plume","rarity":"uncommon"},
+"bat_wing+leather":{"id":"wing_mantle","name":"Wing Mantle","rarity":"uncommon"},
+"bat_wing+mana_crystal":{"id":"echostone","name":"Echostone","rarity":"rare"},
+"echostone+wand":{"id":"sonar_staff","name":"Sonar Staff","rarity":"epic"},
+"bat_wing+obsidian":{"id":"void_wing","name":"Void Wing","rarity":"rare"},
+"wyvern_scale+obsidian":{"id":"wyvern_plate","name":"Wyvern Plate","rarity":"epic"},
+"wyvern_scale+mana_crystal":{"id":"draconic_core","name":"Draconic Core","rarity":"epic"},
+"wyvern_scale+iron_ingot":{"id":"wyvern_blade","name":"Wyvern Blade","rarity":"rare"},
+"wyvern_scale+leather":{"id":"wyvern_mantle","name":"Wyvern Mantle","rarity":"rare"},
+"draconic_core+wand":{"id":"dragon_staff","name":"Dragon Staff","rarity":"epic"},
+"lich_dust+bone":{"id":"necrotic_powder","name":"Necrotic Powder","rarity":"uncommon"},
+"lich_dust+mana_crystal":{"id":"undying_core","name":"Undying Core","rarity":"epic"},
+"lich_dust+obsidian":{"id":"death_stone","name":"Death Stone","rarity":"rare"},
+"lich_dust+blood":{"id":"vampiric_essence","name":"Vampiric Essence","rarity":"rare"},
+"undying_core+wand":{"id":"lich_staff","name":"Lich Staff","rarity":"epic"},
+"vampiric_essence+fang":{"id":"blood_fang","name":"Blood Fang","rarity":"rare"},
+"blood_fang+wand":{"id":"vampire_wand","name":"Vampire Wand","rarity":"epic"},
+"necrotic_powder+cloth":{"id":"death_shroud","name":"Death Shroud","rarity":"rare"},
+"slime_core+spider_silk":{"id":"toxic_snare","name":"Toxic Snare","rarity":"uncommon"},
+"bat_wing+wyvern_scale":{"id":"chimera_wing","name":"Chimera Wing","rarity":"epic"},
+"honey+ember":{"id":"fire_mead","name":"Fire Mead","rarity":"uncommon"},
+"honey+mana_crystal":{"id":"mana_honey","name":"Mana Honey","rarity":"rare"},
+"honey+venom":{"id":"sweet_poison","name":"Sweet Poison","rarity":"uncommon"},
+"honey+silver_ingot":{"id":"gilded_honey","name":"Gilded Honey","rarity":"rare"},
+"beeswax+fiber":{"id":"waxed_cord","name":"Waxed Cord","rarity":"common"},
+"beeswax+cloth":{"id":"waxed_cloth","name":"Waxed Cloth","rarity":"common"},
+"waxed_cloth+leather":{"id":"oilskin_coat","name":"Oilskin Coat","rarity":"uncommon"},
+"beeswax+ember":{"id":"candle","name":"Candle","rarity":"common"},
+"candle+mana_crystal":{"id":"spirit_light","name":"Spirit Light","rarity":"uncommon"},
+"oil+fiber":{"id":"oil_lamp","name":"Oil Lamp","rarity":"common"},
+"oil+ember":{"id":"firebomb","name":"Firebomb","rarity":"uncommon"},
+"oil+leather":{"id":"treated_leather","name":"Treated Leather","rarity":"uncommon"},
+"treated_leather+iron_ingot":{"id":"iron_lamellar","name":"Iron Lamellar","rarity":"rare"},
+"oil+venom":{"id":"venom_oil","name":"Venom Oil","rarity":"uncommon"},
+"venom_oil+arrow_shaft":{"id":"venomed_arrow","name":"Venomed Arrow","rarity":"uncommon"},
+"dried_herb+cloth":{"id":"herb_pouch","name":"Herb Pouch","rarity":"common"},
+"dried_herb+venom":{"id":"antidote","name":"Antidote","rarity":"uncommon"},
+"dried_herb+mana_crystal":{"id":"herbal_core","name":"Herbal Core","rarity":"uncommon"},
+"herbal_core+wand":{"id":"nature_wand","name":"Nature Wand","rarity":"rare"},
+"dried_herb+honey":{"id":"healing_salve","name":"Healing Salve","rarity":"uncommon"},
+"healing_salve+cloth":{"id":"medic_wrap","name":"Medic Wrap","rarity":"uncommon"},
+"healing_salve+mana_crystal":{"id":"blessed_salve","name":"Blessed Salve","rarity":"rare"},
+"mana_honey+wand":{"id":"honeyed_wand","name":"Honeyed Wand","rarity":"rare"},
+"fire_mead+ember":{"id":"inferno_brew","name":"Inferno Brew","rarity":"rare"},
+"oil+magic_dust":{"id":"phantom_oil","name":"Phantom Oil","rarity":"rare"},
+"phantom_oil+leather":{"id":"ghost_mantle","name":"Ghost Mantle","rarity":"epic"},
+"frost_shard+slime_core":{"id":"frost_ooze","name":"Frost Ooze","rarity":"uncommon"},
+"storm_shard+bat_wing":{"id":"thunderwing","name":"Thunderwing","rarity":"rare"},
+"earth_shard+wyvern_scale":{"id":"stone_dragon","name":"Stone Dragon","rarity":"epic"},
+"shadow_shard+lich_dust":{"id":"void_death","name":"Void Death","rarity":"epic"},
+"lunar_essence+spider_silk":{"id":"moonweb","name":"Moonweb","rarity":"rare"},
+"solar_resin+wyvern_scale":{"id":"sunscale","name":"Sunscale","rarity":"epic"},
+"brimstone+slime_core":{"id":"acid_stone","name":"Acid Stone","rarity":"uncommon"},
+"flux+shadow_shard":{"id":"null_alloy","name":"Null Alloy","rarity":"rare"},
+"null_alloy+wand":{"id":"null_wand","name":"Null Wand","rarity":"epic"},
+"honey+frost_shard":{"id":"frostmead","name":"Frostmead","rarity":"rare"},
+"oil+storm_shard":{"id":"lightning_oil","name":"Lightning Oil","rarity":"rare"},
+"lightning_oil+arrow_shaft":{"id":"lightning_arrow","name":"Lightning Arrow","rarity":"rare"},
+"dried_herb+earth_shard":{"id":"stone_herb","name":"Stone Herb","rarity":"uncommon"},
+"stone_herb+mana_crystal":{"id":"petrified_core","name":"Petrified Core","rarity":"rare"},
+"beeswax+shadow_shard":{"id":"dark_wax","name":"Dark Wax","rarity":"uncommon"},
+"dark_wax+cloth":{"id":"shadow_robe","name":"Shadow Robe","rarity":"rare"},
+"moonsilver+frost_shard":{"id":"glacial_silver","name":"Glacial Silver","rarity":"rare"},
+"glacial_silver+wand":{"id":"winter_staff","name":"Winter Staff","rarity":"epic"},
+"auric_sap+storm_shard":{"id":"gilded_storm","name":"Gilded Storm","rarity":"epic"},
+"quicksilver+storm_shard":{"id":"volatile_flux","name":"Volatile Flux","rarity":"rare"},
+"volatile_flux+wand":{"id":"chaos_wand","name":"Chaos Wand","rarity":"epic"},
+"sunroot+earth_shard":{"id":"deeproot","name":"Deeproot","rarity":"uncommon"},
+"deeproot+mana_crystal":{"id":"worldheart","name":"Worldheart","rarity":"epic"},
+"nightshade+shadow_shard":{"id":"night_essence","name":"Night Essence","rarity":"rare"},
+"night_essence+wand":{"id":"night_wand","name":"Night Wand","rarity":"epic"},
+"spider_silk+frost_shard":{"id":"frozen_web","name":"Frozen Web","rarity":"uncommon"},
+"frozen_web+wand":{"id":"glacial_snare","name":"Glacial Snare","rarity":"rare"},
+"slime_core+storm_shard":{"id":"plasma_ooze","name":"Plasma Ooze","rarity":"rare"},
+"plasma_ooze+wand":{"id":"plasma_staff","name":"Plasma Staff","rarity":"epic"},
+"lich_dust+lunar_essence":{"id":"moonshade","name":"Moonshade","rarity":"epic"},
+"bat_wing+shadow_shard":{"id":"umbra_wing","name":"Umbra Wing","rarity":"rare"},
+"umbra_wing+wand":{"id":"umbra_staff","name":"Umbra Staff","rarity":"epic"},
+"wyvern_scale+storm_shard":{"id":"tempest_scale","name":"Tempest Scale","rarity":"epic"},
+"refined_iron+frost_shard":{"id":"cold_iron","name":"Cold Iron","rarity":"rare"},
+"cold_iron+wand":{"id":"cold_staff","name":"Cold Staff","rarity":"epic"},
+"black_steel+shadow_shard":{"id":"abyssal_steel","name":"Abyssal Steel","rarity":"epic"},
+"mana_honey+lunar_essence":{"id":"astral_honey","name":"Astral Honey","rarity":"epic"},
+"healing_salve+mana_honey":{"id":"elixir_of_life","name":"Elixir of Life","rarity":"epic"},
+"firebomb+slime_core":{"id":"napalm_bomb","name":"Napalm Bomb","rarity":"rare"},
+"oil+lich_dust":{"id":"corpse_oil","name":"Corpse Oil","rarity":"rare"},
+"corpse_oil+wand":{"id":"death_wand","name":"Death Wand","rarity":"epic"},
+"acid_flask+obsidian":{"id":"void_acid","name":"Void Acid","rarity":"rare"},
+"void_acid+wand":{"id":"acid_staff","name":"Acid Staff","rarity":"epic"},
+"sunfire_pitch+wyvern_scale":{"id":"dragonfire_scale","name":"Dragonfire Scale","rarity":"epic"},
+"sweet_poison+fang":{"id":"honey_fang","name":"Honey Fang","rarity":"rare"},
+"spirit_light+mana_crystal":{"id":"beacon_stone","name":"Beacon Stone","rarity":"rare"},
+"beacon_stone+wand":{"id":"beacon_staff","name":"Beacon Staff","rarity":"epic"},
+"herbal_core+earth_shard":{"id":"verdant_core","name":"Verdant Core","rarity":"epic"},
+"frost_ooze+wand":{"id":"gelid_wand","name":"Gelid Wand","rarity":"rare"},
+"moonweb+wand":{"id":"lunar_snare","name":"Lunar Snare","rarity":"epic"},
+"salt+frost_shard":{"id":"brine_ice","name":"Brine Ice","rarity":"uncommon"},
+"brine_ice+wand":{"id":"tide_wand","name":"Tide Wand","rarity":"rare"},
+"quicksilver+bat_wing":{"id":"quickwing","name":"Quickwing Talisman","rarity":"rare"},
+"sulfur+slime_core":{"id":"sulfuric_ooze","name":"Sulfuric Ooze","rarity":"uncommon"},
+"sulfuric_ooze+obsidian":{"id":"volcanic_ooze","name":"Volcanic Ooze","rarity":"rare"},
+"volcanic_ooze+wand":{"id":"magma_wand","name":"Magma Wand","rarity":"epic"}
+};
 
-var BASE=["wood","stone","fiber","copper_ore","coal","mana_crystal","iron_ore","gold_ore","silver_ore","leather","cloth","bone","fang","claw","venom","blood","magic_dust","crystal_shard","enchanted_leaf","ember","obsidian","sapphire","ruby","emerald","feather","dust","dragon_scale","phoenix_feather","troll_fat","goblin_ear"];
-var NM={common:'#b0c89a',uncommon:'#80c898',rare:'#80b0e8',epic:'#c880f0'};
-var RC={common:'#8aaa78',uncommon:'#4a9a6a',rare:'#4a80c8',epic:'#9a50c8'};
+var BASE=["wood", "stone", "fiber", "copper_ore", "coal", "mana_crystal", "iron_ore", "gold_ore", "silver_ore", "leather", "cloth", "bone", "fang", "claw", "venom", "blood", "magic_dust", "crystal_shard", "enchanted_leaf", "ember", "obsidian", "sapphire", "ruby", "emerald", "feather", "dust", "dragon_scale", "phoenix_feather", "troll_fat", "goblin_ear", "salt", "sulfur", "quicksilver", "nightshade", "moonpetal", "sunroot", "frost_shard", "storm_shard", "earth_shard", "shadow_shard", "slime_core", "spider_silk", "bat_wing", "wyvern_scale", "lich_dust", "honey", "beeswax", "oil", "dried_herb"];
 
+
+var NM={common:'#96cc6e',uncommon:'#4ed080',rare:'#62aaee',epic:'#cc7afc'};
+var RC={common:'#5a8c3a',uncommon:'#2a7a52',rare:'#2a5faa',epic:'#7228b0'};
 var inv=BASE.map(function(id){return{id:id,name:id.replace(/_/g,' ').replace(/\b\w/g,function(l){return l.toUpperCase();}),rarity:'common'};});
 var slots=[null,null],filt='all',qry='',fresh=null;
 var TOTAL=Object.keys(R).length;
 
 function toast(m){var el=document.getElementById('toast');el.textContent=m;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove('show');},2800);}
-
 function updateT(){var found=new Set(inv.map(function(i){return i.id;}));var n=Object.values(R).filter(function(r){return found.has(r.id);}).length;document.getElementById('pF').style.width=(n/TOTAL*100)+'%';document.getElementById('pC').textContent=n+' / '+TOTAL;}
-
 function iHTML(item){return '<div class="id"><span class="ic">'+ico(item.id)+'</span><span class="nm" style="color:'+NM[item.rarity]+'">'+item.name+'</span><span class="rt" style="color:'+RC[item.rarity]+'">'+item.rarity+'</span></div>';}
-
 function fillSlot(idx,item){slots[idx]=item;var el=document.getElementById('s'+idx);el.innerHTML=iHTML(item);el.classList.add('filled');syncBtn();}
 function clearSlot(idx){slots[idx]=null;var el=document.getElementById('s'+idx);el.innerHTML='<span class="sh">Slot '+(idx===0?'One':'Two')+'</span>';el.classList.remove('filled');resetR();syncBtn();}
 function syncBtn(){document.getElementById('cBtn').disabled=!(slots[0]&&slots[1]);}
@@ -188,7 +517,7 @@ document.getElementById('cBtn').addEventListener('click',function(){
     var isNew=!inv.some(function(i){return i.id===result.id;});
     inv.push(result);fresh=result.id;
     ra.className='rarea ok';ra.innerHTML=iHTML(result);
-    if(isNew){var lb={common:'Common',uncommon:'Uncommon',rare:'✦ Rare',epic:'★ Epic'};toast((lb[result.rarity]||'')+' · '+result.name+' discovered!');}
+    if(isNew){var lb={common:'Common',uncommon:'Uncommon',rare:'✶ Rare',epic:'★ Epic'};toast((lb[result.rarity]||'')+' · '+result.name+' discovered!');}
     renderInv();updateT();
   }else{ra.className='rarea no';ra.innerHTML='<span class="rl">Result</span><span style="font-size:.72rem;color:rgba(200,80,80,.55)">No recipe found</span>';}
 });
@@ -208,7 +537,7 @@ function renderInv(){
     d.className='item '+item.rarity;
     if(item.id===fresh)d.classList.add('fresh');
     d.draggable=true;d.dataset.id=item.id;
-    d.innerHTML='<span class="ic">'+ico(item.id)+'</span><div class="nm" style="color:'+NM[item.rarity]+'">'+item.name+'</div><div class="rt">'+item.rarity+'</div>';
+    d.innerHTML='<span class="ic">'+ico(item.id)+'</span><div class="nm" style="color:'+NM[item.rarity]+'">'+item.name+'</div><div class="rt" style="color:'+RC[item.rarity]+'">'+item.rarity+'</div>';
     d.addEventListener('dragstart',function(e){e.dataTransfer.setData('text/plain',item.id);d.style.opacity='.45';});
     d.addEventListener('dragend',function(){d.style.opacity='1';});
     d.addEventListener('click',function(){var ei=slots.findIndex(function(s){return s===null;});fillSlot(ei>=0?ei:0,item);});
@@ -220,6 +549,7 @@ function renderInv(){
 }
 
 renderInv();updateT();syncBtn();
+
 </script>
 </body>
 </html>
