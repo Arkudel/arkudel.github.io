@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio — Designer & Developer</title>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="images/favicon.png">
 <style>
   :root {
     --cream: #fdf6ec;
@@ -301,12 +300,27 @@
     border: 1px solid rgba(200, 150, 120, 0.2);
     border-radius: 12px;
     padding: 1rem 1.25rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    position: relative;
+    overflow: hidden;
   }
 
+  .skill-chip::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(201,123,90,0.12) 50%, transparent 60%);
+    transform: translateX(-120%);
+    transition: transform 0.5s ease;
+  }
+
+  .skill-chip:hover::after { transform: translateX(120%); }
+
   .skill-chip:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px var(--shadow);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(201,123,90,0.18);
+    border-color: rgba(201,123,90,0.35);
+    background: #f8e8d8;
   }
 
   .skill-chip h4 {
@@ -350,17 +364,63 @@
     overflow: hidden;
     border: 1px solid rgba(200, 150, 120, 0.15);
     box-shadow: 0 4px 24px var(--shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     cursor: pointer;
     text-decoration: none;
     color: inherit;
     display: block;
+    position: relative;
   }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 35%, rgba(201,123,90,0.07) 50%, transparent 65%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .project-card:hover::before { transform: translateX(100%); }
 
   .project-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 16px 48px rgba(122, 79, 53, 0.18);
+    box-shadow: 0 20px 56px rgba(122, 79, 53, 0.22);
+    border-color: rgba(201, 123, 90, 0.25);
   }
+
+  /* ── CUSTOM CURSOR ── */
+  .cursor-dot {
+    position: fixed;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s ease, opacity 0.3s ease, width 0.2s ease, height 0.2s ease;
+    mix-blend-mode: multiply;
+    opacity: 0.7;
+  }
+
+  .cursor-ring {
+    position: fixed;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(201, 123, 90, 0.4);
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: left 0.12s ease, top 0.12s ease, width 0.25s ease, height 0.25s ease, opacity 0.3s ease;
+    opacity: 0.6;
+  }
+
+  body:has(a:hover) .cursor-dot,
+  body:has(button:hover) .cursor-dot { width: 16px; height: 16px; background: var(--brown); }
+  body:has(a:hover) .cursor-ring,
+  body:has(button:hover) .cursor-ring { width: 44px; height: 44px; border-color: rgba(122, 79, 53, 0.5); }
 
   .project-card.featured {
     grid-column: span 2;
@@ -396,6 +456,17 @@
   .thumb-weiss { background: linear-gradient(135deg, #2a1a0e 0%, #7a4f35 40%, #c97b5a 100%); }
   .thumb-nfc { background: linear-gradient(135deg, #e8e0d4 0%, #c5b8d4 60%, #8fad8c 100%); }
   .thumb-primus { background: linear-gradient(135deg, #e8634a 0%, #c0396e 50%, #8b2fc9 100%); }
+  .thumb-crafting { background: linear-gradient(135deg, #1a0d06 0%, #3d2314 40%, #c97b5a 80%, #e8b89a 100%); }
+
+  /* ── PARTICLE CANVAS ── */
+  #heroCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
 
   /* ── LAYER DIAGRAM ── */
   .layer-diagram {
@@ -674,10 +745,22 @@
     transform: translateY(30px);
   }
 
+  .reveal-left.hidden  { transform: translateX(-28px); }
+  .reveal-right.hidden { transform: translateX(28px); }
+
   .reveal-delay-1 { transition-delay: 0.1s; }
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
   .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── INSIGHT BOX hover ── */
+  .insight-box {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .insight-box:hover {
+    transform: translateX(6px);
+    box-shadow: -4px 0 0 var(--terracotta), 0 8px 32px rgba(201,123,90,0.12);
+  }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
@@ -694,6 +777,8 @@
 </style>
 </head>
 <body>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
 <!-- NAV -->
 <nav>
@@ -701,16 +786,14 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Work</a></li>
-    <li><a href="#case-study">Kokoron</a></li>
-    <li><a href="#case-study-luminare">Luminare</a></li>
-    <li><a href="#case-study-weiss">WEISS</a></li>
-    <li><a href="#case-study-primus">Primus</a></li>
+    <li><a href="#case-study">Case Study</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
+  <canvas id="heroCanvas"></canvas>
   <div class="hero-bg"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">UX Designer · Unity Developer · Human-Centered Builder</p>
@@ -726,7 +809,7 @@
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-inner">
-    <div class="about-text reveal">
+    <div class="about-text reveal reveal-left">
       <p class="section-label">About</p>
       <h2 class="section-title">From the writing classroom to the virtual world.</h2>
       <p>"My only computer course in college was shipbuilding engineering. Everything else, I taught myself."</p>
@@ -734,7 +817,7 @@
       <p>That background shapes everything I make. I think in <strong>narrative, empathy, and consequence</strong> first — and build the technology to serve those things. The result is work that tends to feel different from what comes out of a traditional CS pipeline.</p>
       <p>I'm currently completing an MBS in UX Design at Rutgers while developing a portfolio of projects that span mobile wellness apps, immersive VR therapy tools, and an indie game with several years of depth behind it.</p>
     </div>
-    <div class="skills-grid reveal reveal-delay-2">
+    <div class="skills-grid reveal reveal-right reveal-delay-2">
       <div class="skill-chip">
         <h4>Unity & C#</h4>
         <p>3D/2D games, VR experiences, mobile apps — all self-taught from the ground up.</p>
@@ -794,11 +877,11 @@
     </a>
 
     <!-- VR WELLNESS -->
-    <a href="#case-study-luminare" class="project-card reveal reveal-delay-1">
+    <a href="#" class="project-card reveal reveal-delay-1">
       <div class="project-thumb thumb-vr">
-       
-             <img src="images/luminare-transform.png" alt="VR wellness experience" class="project-thumb-bg">
-        
+        <!-- 💡 REPLACE: a striking screenshot of the world transformation or the shadow wolf
+             <img src="images/vr-world.png" alt="VR wellness experience" class="project-thumb-bg">
+        -->
         <div class="thumb-label">Project Luminare</div>
       </div>
       <div class="project-info">
@@ -830,6 +913,23 @@
         <h3>WEISS — World's End Item Shop</h3>
         <p>An item shop simulator set in an RPG that stopped mid-story. The hero never came. Now you work both sides — monsters and humans — to restore an economy, rebuild a town, and cash in on a world that forgot to end.</p>
         <span class="project-link">View Project →</span>
+      </div>
+    </a>
+
+    <!-- CRAFTING MINIGAME -->
+    <a href="craftingminigame.html" class="project-card reveal reveal-delay-3" target="_blank">
+      <div class="project-thumb thumb-crafting">
+        <div class="thumb-label">The Alchemist's Table</div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag sky">Interactive</span>
+          <span class="tag green">Game Design</span>
+        </div>
+        <h3>The Alchemist's Table — Live Crafting Demo</h3>
+        <p>A fully playable browser-based crafting system — and promptly got a class of students addicted. Over 100 recipes, a discovery tracker, drag-and-drop inventory, and chain crafting where items unlock new items.</p>
+        <span class="project-link">▶ Play Now</span>
       </div>
     </a>
 
@@ -910,138 +1010,6 @@
         <h3>What I'd Do Next</h3>
         <p>Migrate to a proper backend (Supabase or Firebase) to enable genuine social features — shared gardens, friend Kokorons, community streaks. The social layer is designed but not yet wired to persistent cloud data. The competitive minigame system, where Kokoron stats earned through emotional work translate into friendly competition, is the long-term vision I'd develop next.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- CASE STUDY: PROJECT LUMINARE -->
-<section class="case-study" id="case-study-luminare">
-  <div class="case-study-inner">
-    <div class="case-header reveal">
-      <p class="section-label">Case Study</p>
-      <h2 class="section-title">Project Luminare — Therapy You Can Touch</h2>
-    </div>
-
-    <div class="case-body">
-
-      <div class="case-block reveal">
-        <h3>The Concept</h3>
-        <p>Most wellness apps ask you to think about your feelings. Luminare asks you to do something about them — physically, in space, with your hands. It's a daily VR ritual built around embodied action: pulling values close, speaking burdens aloud, grabbing darkness and throwing it away. The world you inhabit starts dead and broken. Over ten days of returning, it comes back to life.</p>
-        <p>The core insight behind the design is that VR's unique power isn't visual immersion — it's physical presence. The body remembers what it does in ways the mind alone doesn't. Luminare is built entirely around that idea.</p>
-
-        <img src="images/luminare-transform.png" alt="World transformation from grey to green" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
-      </div>
-
-      <div class="insight-box reveal reveal-delay-1">
-        "VR's real power isn't what you see. It's what your body believes it's doing. Every interaction in Luminare was designed to be felt, not just observed."
-      </div>
-
-      <div class="case-block reveal">
-        <h3>The Ritual — Step by Step</h3>
-        <p>The experience follows a deliberate sequence, each step building on the last. The user opens a book their character holds and summons a halo of value cards — Creativity, Family, Justice, Friendship, and others. They physically reach out, pull four cards to their chest, and release them. A collider registers the gesture; the values are logged.</p>
-        <p>Those four values are then woven into a personal mantra: <em>"My creativity gives me the strength to face every day. I do this for my family and for my sense of justice. It is my friendships that remind me who I am."</em> The user then speaks what's weighing on them to a virtual avatar — which nods and responds while audio input is active — processed locally by an LLM that generates a brief summary. Nothing is recorded or transmitted.</p>
-        <p>Then the central gesture: the user looks at their own heart, sees dark particles swirling there, reaches in, grabs them, and throws them to the ground. Where the darkness lands, a shadow creature appears — labeled with what the user just named. They recite their mantra three times. Each recitation damages the creature. On the third, it dissolves.</p>
-        <p>The dissolve shader expands outward from that point: grey grass becomes green, dead trees flower, animals appear, the sky lightens. Each day of returning extends the restoration further. After roughly ten sessions, the world is fully alive.</p>
-
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
-          <img src="images/luminare-cards.png" alt="Value card selection" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
-          <img src="images/luminare-creature.png" alt="Shadow creature encounter" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
-        </div>
-      </div>
-
-      <div class="case-block reveal">
-        <h3>Key Design Decisions</h3>
-        <p><strong>Physical gesture as commitment.</strong> Pulling a card to your heart isn't a UI metaphor — it's a somatic act. The body registers it differently than clicking a button. This was intentional: values chosen through physical action feel more claimed than values selected from a list. The gesture creates a moment of genuine choice.</p>
-        <p><strong>Privacy-first voice processing.</strong> The avatar listens and responds while you speak, but nothing is stored or sent to a server. A local LLM generates a brief summary purely for reflection — never for data collection. This was a core design constraint from the start, not an afterthought. Users needed to be able to speak freely.</p>
-        <p><strong>Externalization of the internal.</strong> The dark particles at the heart, the shadow creature carrying your named burden, the act of physically throwing darkness away — these are all externalizations of internal psychological processes. The design borrows from narrative exposure therapy and somatic approaches without being clinically prescriptive. It creates a safe theatrical frame for engaging with difficult feelings.</p>
-        <p><strong>World state as progress.</strong> Most habit apps show you a streak number. Luminare shows you a world healing. The emotional register of that feedback is completely different — it ties your daily practice to something larger than a metric, and makes absence feel like something worth returning from rather than a failure state.</p>
-        <p><strong>One session per day, hard limit.</strong> The ritual cannot be repeated more than once daily, and progress is saved between sessions. This was a deliberate pacing decision: the experience is meant to be a morning or evening ritual, not a binge. The limitation also makes each session feel meaningful — you can't grind your way to a healed world.</p>
-
-        <img src="images/luminare-healed.png" alt="Fully restored world state" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
-
-      </div>
-
-      <div class="case-block reveal">
-        <h3>What I Built</h3>
-        <p>The entire experience was designed and built in Unity with VR support. Systems include: gesture-based card interaction with physics colliders, an avatar with reactive animation tied to microphone input, local LLM integration for voice summarization, a dissolve shader system that progressively transforms the environment, a day-tracking save system, and the full world environment including the dead state and all restoration stages.</p>
-        <p>The project is nearly complete — the main level pack is fully functional through all ten days of restoration. Remaining work is polish, onboarding/tutorial design, and additional level packs (planned themes: abandoned city, woodland shrine, coastal ruins).</p>
-      </div>
-
-      <div class="case-block reveal">
-        <h3>What I'd Do Next</h3>
-        <p>The avatar currently uses a simple animation system to respond to voice input. The most impactful upgrade would be replacing it with a more expressive model — ideally one that reflects emotional tone from the LLM summary back to the user through facial expression and posture. The session could then feel genuinely responsive rather than just attentive. Beyond that, the additional level packs are the natural commercial expansion, each offering a new visual world and a slightly different ritual context.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- CASE STUDY: WEISS -->
-<section class="case-study" id="case-study-weiss" style="background: var(--warm-white);">
-  <div class="case-study-inner">
-    <div class="case-header reveal">
-      <p class="section-label">Case Study</p>
-      <h2 class="section-title">WEISS — Designing a World That Stopped</h2>
-    </div>
-
-    <div class="case-body">
-
-      <div class="case-block reveal">
-        <h3>The Concept</h3>
-        <p>WEISS begins with a premise that's both comedic and melancholy: you set up your item shop in front of the final dungeon, expecting to profit from the hero's legendary run. The hero never came. The demon lord waited. The world's economy, built around the eternal conflict between light and dark, simply... stalled.</p>
-        <p>Now you're the one who has to fix it — not by being a hero, but by being a merchant. You work both sides. You sell potions to adventurers and reagents to monsters. You broker a fragile peace through commerce. You rebuild a town that had given up on itself. The game is named WEISS — which sounds like Vice — because doing good in a broken world sometimes requires playing all the angles.</p>
-
-
-        <img src="images/weiss-overworld.png" alt="WEISS overworld" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
-        
-      </div>
-
-      <div class="insight-box reveal reveal-delay-1">
-        "Most RPGs ask you to save the world through strength. WEISS asks you to save it through trade — and leaves open the question of whether that's heroic or just pragmatic."
-      </div>
-
-      <div class="case-block reveal">
-        <h3>Core Systems</h3>
-        <p><strong>The shop and economy.</strong> Like its spiritual predecessor Recettear, WEISS centers on running an item shop — buying low, selling high, managing demand and supply. But the economy is dynamic: market demand shifts based on in-game events (a monster surge drives up potion sales; a peaceful week tanks weapon prices). Players can specialize in different crafting disciplines to control their own supply chains.</p>
-        <p><strong>Town rebuilding.</strong> The surrounding town is derelict when you arrive. As you generate income, you can invest in rebuilding structures — each one unlocking new characters, new inventory, or new systems. Crucially, you can invite both adventurers and monsters to take up permanent residence, housing them in buildings you restore.</p>
-        <p><strong>The relationship system.</strong> Residents develop relationships with each other dynamically over time. Adventurers and monsters placed in the same housing will interact, build trust or friction, and eventually form adventuring parties — with stats and abilities shaped by those relationships. Every playthrough generates different configurations, making the social simulation meaningfully replayable.</p>
-        <p><strong>Deck-building ATB combat.</strong> When your player character ventures out, combat uses a hybrid system: you build a deck before battle, but cards are played in real-time ATB style — enemies attack continuously while you manage a regenerating resource pool to play cards. This creates genuine tension that pure turn-based deck-builders don't have.</p>
-        <p><strong>Gathering and crafting.</strong> A deeper resource loop than most shop simulators: you explore the world to gather materials, which feed into crafting recipes, which produce items to sell or use. Specializing in alchemy, smithing, or cooking creates distinct playstyles and economic advantages.</p>
-        <p><strong>The Ancient Cave system.</strong> A procedurally generated dungeon with its own loot table and exploration logic — a direct nod to Lufia II's legendary Ancient Cave — provides an infinitely replayable late-game loop for players who want pure dungeon-crawling.</p>
-
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
-          <img src="images/weiss-shop.png" alt="WEISS shop interior" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
-          <img src="images/weiss-dungeon.png" alt="WEISS night dungeon" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
-          <img src="images/weiss-battle.png" alt="WEISS card battle" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
-          <img src="images/weiss-research.png" alt="WEISS card research" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
-        </div>
-        
-      </div>
-
-      <div class="case-block reveal">
-        <h3>Key Design Decisions</h3>
-        <p><strong>Moral ambiguity as the central mechanic.</strong> The player isn't the hero — they're the merchant who profits from the conflict between heroes and villains. This reframes the entire JRPG genre: instead of asking "who wins?", WEISS asks "who benefits?" That question turns out to be rich enough to drive a whole game.</p>
-        <p><strong>The dynamic relationship system.</strong> Organizing cohabitation between monsters and humans and watching emergent relationships develop was the most ambitious design decision in WEISS. It required building a reputation and relationship tracking system, behavioral rules for NPC interactions, and a party formation logic that reflects those relationships in combat stats. The payoff is a game that feels different every run because the social fabric of your town is never the same twice.</p>
-        <p><strong>Hybrid ATB deck combat.</strong> Pure deck-builders (Slay the Spire et al.) are satisfying but slow. Pure ATB games are fast but shallow. The combination — build a deck, play it in real time under pressure — was harder to tune than either system alone, but creates a combat experience that rewards both preparation and instinct.</p>
-        <p><strong>Visual tone mixing.</strong> WEISS deliberately mixes warm, cozy interior aesthetics (the shop at dawn, the crafting shed in afternoon light) with stark nocturnal dungeon environments (neon purple, metal scaffolding, candlelight). This tonal contrast reflects the game's moral duality — the same world that contains your cozy shop also contains something much darker beneath it.</p>
-
-        
-        <img src="images/weiss-exterior.png" alt="WEISS shop exterior in daylight" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
-        
-      </div>
-
-      <div class="case-block reveal">
-        <h3>What I Built</h3>
-        <p>WEISS has been in development for several years as a solo project built entirely in Unity. Current implemented systems include: the full shop economy with dynamic demand events, the town rebuilding framework, housing and NPC placement, the relationship and party formation system, the hybrid ATB deck-building combat, gathering and multi-discipline crafting, the procedural dungeon system, a full day/night cycle with time-based events, and the character equipment and stat system. Visual assets are licensed from the Unity Asset Store; all systems, architecture, design, and writing are original.</p>
-      </div>
-
-      <div class="case-block reveal">
-        <h3>What I'd Do Next</h3>
-        <p>The relationship system is the heart of WEISS but also its least polished element — the behavioral rules for NPC interaction need more granularity, and the visual feedback for relationship development (how do you show a monster and an adventurer becoming genuine friends?) deserves a dedicated design pass. Beyond that, the narrative layer needs more work: the game has strong systemic bones but the story of why you're there and what you're working toward needs to be woven more explicitly into the moment-to-moment play.</p>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1152,9 +1120,9 @@
     <h2 class="section-title">Let's work together.</h2>
     <p>I'm currently open to UXD roles, game design positions, wellness tech opportunities, and interesting contract work — especially anything that sits at the intersection of technology and human experience.</p>
     <div class="contact-links">
-      <a href="mailto:arkudel@gmail.com" class="btn btn-primary">Send an Email</a>
-      <a href="https://www.linkedin.com/in/james-smith-11bb76a1/" class="btn btn-ghost">LinkedIn</a>
-      <a href="https://github.com/arkudel" class="btn btn-ghost">GitHub</a>
+      <a href="/cdn-cgi/l/email-protection#ed9482989fad88808c8481c38e8280" class="btn btn-primary">Send an Email</a>
+      <a href="https://linkedin.com/in/yourprofile" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://github.com/yourusername" class="btn btn-ghost">GitHub</a>
     </div>
   </div>
 </section>
@@ -1164,10 +1132,151 @@
 </footer>
 
 <script>
+  // ── CUSTOM CURSOR ──
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mx = -100, my = -100;
+
+  // Hide on mobile (no mouse)
+  if (window.matchMedia('(pointer: coarse)').matches) {
+    dot.style.display = 'none';
+    ring.style.display = 'none';
+  }
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+    ring.style.left = mx + 'px';
+    ring.style.top  = my + 'px';
+  });
+
+  document.addEventListener('mouseleave', () => {
+    dot.style.opacity = '0'; ring.style.opacity = '0';
+  });
+  document.addEventListener('mouseenter', () => {
+    dot.style.opacity = '0.7'; ring.style.opacity = '0.6';
+  });
+
+  // ── HERO PARTICLE SYSTEM (mouse-responsive) ──
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = canvas.getContext('2d');
+  let mouseX = 0.5, mouseY = 0.5; // normalized 0-1
+
+  function resizeCanvas() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  // Track mouse over hero only
+  canvas.parentElement.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mouseX = (e.clientX - r.left) / r.width;
+    mouseY = (e.clientY - r.top)  / r.height;
+  });
+
+  const palette = [
+    'rgba(201,123,90,',   // terracotta
+    'rgba(232,184,154,',  // peach
+    'rgba(184,212,232,',  // sky
+    'rgba(197,184,212,',  // purple-soft
+    'rgba(143,173,140,',  // sage
+    'rgba(245,223,208,',  // blush
+  ];
+
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(initial = false) {
+      this.x = Math.random() * canvas.width;
+      this.y = initial ? Math.random() * canvas.height : canvas.height + 10;
+      this.size = 1.2 + Math.random() * 3.8;
+      this.baseSpeedY = 0.25 + Math.random() * 0.65;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.opacity = 0;
+      this.maxOpacity = 0.12 + Math.random() * 0.32;
+      this.fadeIn = true;
+      this.color = palette[Math.floor(Math.random() * palette.length)];
+      this.wobble = Math.random() * Math.PI * 2;
+      this.wobbleSpeed = 0.008 + Math.random() * 0.018;
+      this.wobbleAmp = 0.4 + Math.random() * 1.0;
+      // connection tracking
+      this.connOpacity = 0;
+    }
+    update() {
+      this.wobble += this.wobbleSpeed;
+
+      // gentle mouse attraction — particles drift slightly toward cursor
+      const targetX = mouseX * canvas.width;
+      const targetY = mouseY * canvas.height;
+      const dx = targetX - this.x;
+      const dy = targetY - this.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const attract = dist < 220 ? (220 - dist) / 220 * 0.018 : 0;
+
+      this.x += this.speedX + Math.sin(this.wobble) * this.wobbleAmp * 0.08 + dx * attract;
+      this.y -= this.baseSpeedY - dy * attract * 0.3;
+
+      if (this.fadeIn) {
+        this.opacity += 0.007;
+        if (this.opacity >= this.maxOpacity) this.fadeIn = false;
+      } else {
+        if (this.y < canvas.height * 0.28) this.opacity -= 0.004;
+      }
+      if (this.y < -10 || this.opacity <= 0) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color + this.opacity + ')';
+      ctx.fill();
+      // soft glow halo
+      const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
+      grad.addColorStop(0, this.color + (this.opacity * 0.35) + ')');
+      grad.addColorStop(1, this.color + '0)');
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+    }
+  }
+
+  const particles = Array.from({ length: 60 }, () => new Particle());
+
+  function drawConnections() {
+    const threshold = 100;
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const a = particles[i], b = particles[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < threshold) {
+          const alpha = (1 - dist / threshold) * 0.06 * Math.min(a.opacity, b.opacity) / 0.3;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(201,123,90,${alpha})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawConnections();
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
+
+<script>
   // Scroll reveal — elements visible by default, animation is enhancement only
   const reveals = document.querySelectorAll('.reveal');
 
-  // Only animate if IntersectionObserver is supported
   if ('IntersectionObserver' in window) {
     reveals.forEach(el => el.classList.add('hidden'));
 
