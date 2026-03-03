@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio — Designer & Developer</title>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="images/favicon.png">
 <style>
   :root {
     --cream: #fdf6ec;
@@ -25,7 +26,6 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -35,7 +35,6 @@
     overflow-x: hidden;
   }
 
-  /* ── NOISE TEXTURE OVERLAY ── */
   body::before {
     content: '';
     position: fixed;
@@ -68,11 +67,7 @@
     letter-spacing: 0.02em;
   }
 
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 
   .nav-links a {
     text-decoration: none;
@@ -83,7 +78,6 @@
     text-transform: uppercase;
     transition: color 0.2s;
   }
-
   .nav-links a:hover { color: var(--terracotta); }
 
   /* ── HERO ── */
@@ -106,7 +100,6 @@
       var(--warm-white);
   }
 
-  /* Decorative floating shapes */
   .hero-bg::before {
     content: '';
     position: absolute;
@@ -130,6 +123,16 @@
   @keyframes drift {
     0%, 100% { transform: translateY(0px) scale(1); }
     50% { transform: translateY(-20px) scale(1.05); }
+  }
+
+  /* ── PARTICLE CANVAS ── */
+  #heroCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
   }
 
   .hero-content {
@@ -159,10 +162,7 @@
     animation: fadeUp 0.8s ease forwards 0.4s;
   }
 
-  .hero h1 em {
-    font-style: italic;
-    color: var(--terracotta);
-  }
+  .hero h1 em { font-style: italic; color: var(--terracotta); }
 
   .hero-sub {
     font-size: 1.15rem;
@@ -198,7 +198,6 @@
     color: white;
     box-shadow: 0 4px 20px rgba(201, 123, 90, 0.35);
   }
-
   .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 28px rgba(201, 123, 90, 0.45);
@@ -209,7 +208,6 @@
     color: var(--brown);
     border: 2px solid var(--peach);
   }
-
   .btn-ghost:hover {
     background: var(--blush);
     transform: translateY(-2px);
@@ -221,9 +219,7 @@
   }
 
   /* ── SECTION COMMONS ── */
-  section {
-    padding: 6rem 3rem;
-  }
+  section { padding: 6rem 3rem; }
 
   .section-label {
     font-size: 0.75rem;
@@ -243,11 +239,7 @@
   }
 
   /* ── ABOUT ── */
-  .about {
-    background: var(--warm-white);
-    position: relative;
-    overflow: hidden;
-  }
+  .about { background: var(--warm-white); position: relative; overflow: hidden; }
 
   .about::before {
     content: '';
@@ -276,12 +268,7 @@
     color: var(--text-soft);
     margin-bottom: 1.25rem;
   }
-
-  .about-text p strong {
-    color: var(--brown);
-    font-weight: 700;
-  }
-
+  .about-text p strong { color: var(--brown); font-weight: 700; }
   .about-text p:first-of-type {
     font-size: 1.2rem;
     color: var(--text);
@@ -289,11 +276,7 @@
     font-style: italic;
   }
 
-  .skills-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
   .skill-chip {
     background: var(--blush);
@@ -313,9 +296,7 @@
     transform: translateX(-120%);
     transition: transform 0.5s ease;
   }
-
   .skill-chip:hover::after { transform: translateX(120%); }
-
   .skill-chip:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(201,123,90,0.18);
@@ -331,32 +312,12 @@
     color: var(--terracotta);
     margin-bottom: 0.3rem;
   }
-
-  .skill-chip p {
-    font-size: 0.85rem;
-    color: var(--text-soft);
-    line-height: 1.4;
-  }
+  .skill-chip p { font-size: 0.85rem; color: var(--text-soft); line-height: 1.4; }
 
   /* ── PROJECTS ── */
-  .projects {
-    background: var(--cream);
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 6rem 3rem;
-  }
-
-  .projects-header {
-    max-width: 600px;
-    margin-bottom: 3.5rem;
-  }
-
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    row-gap: 2rem;
-  }
+  .projects { background: var(--cream); max-width: 1200px; margin: 0 auto; padding: 6rem 3rem; }
+  .projects-header { max-width: 600px; margin-bottom: 3.5rem; }
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; row-gap: 2rem; }
 
   .project-card {
     background: var(--warm-white);
@@ -382,143 +343,27 @@
     z-index: 2;
     pointer-events: none;
   }
-
   .project-card:hover::before { transform: translateX(100%); }
-
   .project-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 20px 56px rgba(122, 79, 53, 0.22);
     border-color: rgba(201, 123, 90, 0.25);
   }
 
-  /* ── CUSTOM CURSOR ── */
-  .cursor-dot {
-    position: fixed;
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--terracotta);
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.08s ease, opacity 0.3s ease, width 0.2s ease, height 0.2s ease;
-    mix-blend-mode: multiply;
-    opacity: 0.7;
-  }
+  .project-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1.1fr 1fr; }
 
-  .cursor-ring {
-    position: fixed;
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(201, 123, 90, 0.4);
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: left 0.12s ease, top 0.12s ease, width 0.25s ease, height 0.25s ease, opacity 0.3s ease;
-    opacity: 0.6;
-  }
+  .project-thumb { height: 240px; overflow: hidden; position: relative; }
+  .project-card.featured .project-thumb { height: 100%; min-height: 280px; }
 
-  body:has(a:hover) .cursor-dot,
-  body:has(button:hover) .cursor-dot { width: 16px; height: 16px; background: var(--brown); }
-  body:has(a:hover) .cursor-ring,
-  body:has(button:hover) .cursor-ring { width: 44px; height: 44px; border-color: rgba(122, 79, 53, 0.5); }
+  .project-thumb-bg { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  .project-card:hover .project-thumb-bg { transform: scale(1.04); }
 
-  .project-card.featured {
-    grid-column: span 2;
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-  }
-
-  .project-thumb {
-    height: 240px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .project-card.featured .project-thumb {
-    height: 100%;
-    min-height: 280px;
-  }
-
-  .project-thumb-bg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-
-  .project-card:hover .project-thumb-bg {
-    transform: scale(1.04);
-  }
-
-  /* Color placeholder backgrounds for when no image */
-  .thumb-kokoron { background: linear-gradient(135deg, #b8d4e8 0%, #c5b8d4 50%, #f5dfd0 100%); }
-  .thumb-vr { background: linear-gradient(135deg, #c8ddc6 0%, #8fad8c 40%, #3d5c3a 100%); }
-  .thumb-weiss { background: linear-gradient(135deg, #2a1a0e 0%, #7a4f35 40%, #c97b5a 100%); }
-  .thumb-nfc { background: linear-gradient(135deg, #e8e0d4 0%, #c5b8d4 60%, #8fad8c 100%); }
-  .thumb-primus { background: linear-gradient(135deg, #e8634a 0%, #c0396e 50%, #8b2fc9 100%); }
+  .thumb-kokoron  { background: linear-gradient(135deg, #b8d4e8 0%, #c5b8d4 50%, #f5dfd0 100%); }
+  .thumb-vr       { background: linear-gradient(135deg, #c8ddc6 0%, #8fad8c 40%, #3d5c3a 100%); }
+  .thumb-weiss    { background: linear-gradient(135deg, #2a1a0e 0%, #7a4f35 40%, #c97b5a 100%); }
+  .thumb-nfc      { background: linear-gradient(135deg, #e8e0d4 0%, #c5b8d4 60%, #8fad8c 100%); }
+  .thumb-primus   { background: linear-gradient(135deg, #e8634a 0%, #c0396e 50%, #8b2fc9 100%); }
   .thumb-crafting { background: linear-gradient(135deg, #1a0d06 0%, #3d2314 40%, #c97b5a 80%, #e8b89a 100%); }
-
-  /* ── PARTICLE CANVAS ── */
-  #heroCanvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── LAYER DIAGRAM ── */
-  .layer-diagram {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin: 1.5rem 0;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 24px var(--shadow);
-  }
-
-  .layer-item {
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    align-items: stretch;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
-  }
-
-  .layer-item:last-child { border-bottom: none; }
-
-  .layer-name {
-    padding: 1rem 1.25rem;
-    font-family: 'Lora', serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: white;
-    display: flex;
-    align-items: center;
-  }
-
-  .layer-desc {
-    padding: 1rem 1.25rem;
-    font-size: 0.9rem;
-    line-height: 1.55;
-    color: rgba(255,255,255,0.85);
-    background: rgba(0,0,0,0.15);
-    display: flex;
-    align-items: center;
-  }
-
-  .layer-flights .layer-name { background: #c0396e; }
-  .layer-halos .layer-name { background: #b03480; }
-  .layer-wings .layer-name { background: #9a3092; }
-  .layer-feathers .layer-name { background: #7e2da0; }
-  .layer-11 .layer-name { background: #612aad; }
-
-  .layer-flights .layer-desc { background: rgba(192,57,110,0.3); }
-  .layer-halos .layer-desc { background: rgba(176,52,128,0.3); }
-  .layer-wings .layer-desc { background: rgba(154,48,146,0.3); }
-  .layer-feathers .layer-desc { background: rgba(126,45,160,0.3); }
-  .layer-11 .layer-desc { background: rgba(97,42,173,0.3); }
 
   .thumb-label {
     position: absolute;
@@ -534,16 +379,8 @@
     letter-spacing: 0.05em;
   }
 
-  .project-info {
-    padding: 1.75rem;
-  }
-
-  .project-tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.85rem;
-  }
+  .project-info { padding: 1.75rem; }
+  .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.85rem; }
 
   .tag {
     font-size: 0.7rem;
@@ -556,24 +393,12 @@
     color: var(--terracotta);
     border: 1px solid rgba(201, 123, 90, 0.2);
   }
-
-  .tag.green { background: var(--sage-light); color: #4a7a47; border-color: rgba(74, 122, 71, 0.2); }
+  .tag.green  { background: var(--sage-light); color: #4a7a47; border-color: rgba(74, 122, 71, 0.2); }
   .tag.purple { background: #e8e2f0; color: #6b5c8a; border-color: rgba(107, 92, 138, 0.2); }
-  .tag.sky { background: var(--sky-light); color: #3a6a8a; border-color: rgba(58, 106, 138, 0.2); }
+  .tag.sky    { background: var(--sky-light); color: #3a6a8a; border-color: rgba(58, 106, 138, 0.2); }
 
-  .project-info h3 {
-    font-family: 'Lora', serif;
-    font-size: 1.4rem;
-    color: var(--deep);
-    margin-bottom: 0.6rem;
-  }
-
-  .project-info p {
-    font-size: 0.95rem;
-    color: var(--text-soft);
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
-  }
+  .project-info h3 { font-family: 'Lora', serif; font-size: 1.4rem; color: var(--deep); margin-bottom: 0.6rem; }
+  .project-info p  { font-size: 0.95rem; color: var(--text-soft); line-height: 1.6; margin-bottom: 1.25rem; }
 
   .project-link {
     font-size: 0.85rem;
@@ -586,30 +411,13 @@
     gap: 0.4rem;
     transition: gap 0.2s;
   }
-
   .project-link:hover { gap: 0.75rem; }
 
-  /* ── CASE STUDY SECTION ── */
-  .case-study {
-    background: var(--warm-white);
-    padding: 6rem 3rem;
-  }
-
-  .case-study-inner {
-    max-width: 860px;
-    margin: 0 auto;
-  }
-
-  .case-header {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(200, 150, 120, 0.2);
-  }
-
-  .case-body {
-    display: grid;
-    gap: 3rem;
-  }
+  /* ── CASE STUDY ── */
+  .case-study { background: var(--warm-white); padding: 6rem 3rem; }
+  .case-study-inner { max-width: 860px; margin: 0 auto; }
+  .case-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(200, 150, 120, 0.2); }
+  .case-body { display: grid; gap: 3rem; }
 
   .case-block h3 {
     font-family: 'Lora', serif;
@@ -620,7 +428,6 @@
     align-items: center;
     gap: 0.6rem;
   }
-
   .case-block h3::before {
     content: '';
     display: inline-block;
@@ -629,13 +436,7 @@
     background: var(--terracotta);
     flex-shrink: 0;
   }
-
-  .case-block p {
-    font-size: 1rem;
-    line-height: 1.85;
-    color: var(--text-soft);
-  }
-
+  .case-block p { font-size: 1rem; line-height: 1.85; color: var(--text-soft); }
   .case-block p + p { margin-top: 1rem; }
 
   .insight-box {
@@ -648,17 +449,46 @@
     font-size: 1.05rem;
     color: var(--brown);
     line-height: 1.6;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
+  .insight-box:hover {
+    transform: translateX(6px);
+    box-shadow: -4px 0 0 var(--terracotta), 0 8px 32px rgba(201,123,90,0.12);
+  }
+
+  /* ── LAYER DIAGRAM ── */
+  .layer-diagram {
+    display: flex; flex-direction: column; gap: 0;
+    margin: 1.5rem 0; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 4px 24px var(--shadow);
+  }
+  .layer-item {
+    display: grid; grid-template-columns: 140px 1fr;
+    align-items: stretch; border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .layer-item:last-child { border-bottom: none; }
+  .layer-name {
+    padding: 1rem 1.25rem; font-family: 'Lora', serif;
+    font-size: 1rem; font-weight: 600; color: white;
+    display: flex; align-items: center;
+  }
+  .layer-desc {
+    padding: 1rem 1.25rem; font-size: 0.9rem; line-height: 1.55;
+    color: rgba(255,255,255,0.85); background: rgba(0,0,0,0.15); display: flex; align-items: center;
+  }
+  .layer-flights .layer-name  { background: #c0396e; }
+  .layer-halos .layer-name    { background: #b03480; }
+  .layer-wings .layer-name    { background: #9a3092; }
+  .layer-feathers .layer-name { background: #7e2da0; }
+  .layer-11 .layer-name       { background: #612aad; }
+  .layer-flights .layer-desc  { background: rgba(192,57,110,0.3); }
+  .layer-halos .layer-desc    { background: rgba(176,52,128,0.3); }
+  .layer-wings .layer-desc    { background: rgba(154,48,146,0.3); }
+  .layer-feathers .layer-desc { background: rgba(126,45,160,0.3); }
+  .layer-11 .layer-desc       { background: rgba(97,42,173,0.3); }
 
   /* ── PHILOSOPHY ── */
-  .philosophy {
-    background: var(--deep);
-    color: white;
-    padding: 6rem 3rem;
-    position: relative;
-    overflow: hidden;
-  }
-
+  .philosophy { background: var(--deep); color: white; padding: 6rem 3rem; position: relative; overflow: hidden; }
   .philosophy::before {
     content: '';
     position: absolute;
@@ -667,100 +497,59 @@
     background: radial-gradient(circle, rgba(201, 123, 90, 0.15), transparent 65%);
     top: -200px; right: -150px;
   }
-
-  .philosophy-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-
+  .philosophy-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
   .philosophy .section-label { color: var(--peach); }
   .philosophy .section-title { color: white; }
-
   .philosophy-quote {
     font-family: 'Lora', serif;
     font-size: clamp(1.4rem, 3vw, 2.2rem);
-    line-height: 1.5;
-    font-style: italic;
+    line-height: 1.5; font-style: italic;
     color: rgba(255,255,255,0.9);
-    margin: 2.5rem 0;
-    padding-left: 2rem;
+    margin: 2.5rem 0; padding-left: 2rem;
     border-left: 3px solid var(--terracotta);
   }
-
-  .philosophy p {
-    font-size: 1.05rem;
-    line-height: 1.85;
-    color: rgba(255,255,255,0.65);
-    max-width: 680px;
-    margin-bottom: 1.25rem;
-  }
+  .philosophy p { font-size: 1.05rem; line-height: 1.85; color: rgba(255,255,255,0.65); max-width: 680px; margin-bottom: 1.25rem; }
 
   /* ── CONTACT ── */
-  .contact {
-    background: var(--cream);
-    padding: 6rem 3rem;
-    text-align: center;
-  }
-
-  .contact-inner {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .contact p {
-    font-size: 1.1rem;
-    color: var(--text-soft);
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
-  }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.25rem;
-    flex-wrap: wrap;
-  }
+  .contact { background: var(--cream); padding: 6rem 3rem; text-align: center; }
+  .contact-inner { max-width: 600px; margin: 0 auto; }
+  .contact p { font-size: 1.1rem; color: var(--text-soft); line-height: 1.7; margin-bottom: 2.5rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
 
   /* ── FOOTER ── */
-  footer {
-    background: var(--deep);
-    color: rgba(255,255,255,0.4);
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.85rem;
-    letter-spacing: 0.04em;
+  footer { background: var(--deep); color: rgba(255,255,255,0.4); text-align: center; padding: 2rem; font-size: 0.85rem; letter-spacing: 0.04em; }
+
+  /* ── CUSTOM CURSOR ── */
+  .cursor-dot {
+    position: fixed; width: 10px; height: 10px;
+    border-radius: 50%; background: var(--terracotta);
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s ease, opacity 0.3s ease, width 0.2s ease, height 0.2s ease;
+    mix-blend-mode: multiply; opacity: 0.7;
   }
+  .cursor-ring {
+    position: fixed; width: 32px; height: 32px;
+    border-radius: 50%; border: 1.5px solid rgba(201, 123, 90, 0.4);
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: left 0.12s ease, top 0.12s ease, width 0.25s ease, height 0.25s ease, opacity 0.3s ease;
+    opacity: 0.6;
+  }
+  body:has(a:hover) .cursor-dot,
+  body:has(button:hover) .cursor-dot { width: 16px; height: 16px; background: var(--brown); }
+  body:has(a:hover) .cursor-ring,
+  body:has(button:hover) .cursor-ring { width: 44px; height: 44px; border-color: rgba(122, 79, 53, 0.5); }
 
   /* ── SCROLL REVEAL ── */
-  .reveal {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.hidden {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
+  .reveal { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.hidden { opacity: 0; transform: translateY(30px); }
   .reveal-left.hidden  { transform: translateX(-28px); }
   .reveal-right.hidden { transform: translateX(28px); }
-
   .reveal-delay-1 { transition-delay: 0.1s; }
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
   .reveal-delay-4 { transition-delay: 0.4s; }
-
-  /* ── INSIGHT BOX hover ── */
-  .insight-box {
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  .insight-box:hover {
-    transform: translateX(6px);
-    box-shadow: -4px 0 0 var(--terracotta), 0 8px 32px rgba(201,123,90,0.12);
-  }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
@@ -786,15 +575,18 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Work</a></li>
-    <li><a href="#case-study">Case Study</a></li>
+    <li><a href="#case-study">Kokoron</a></li>
+    <li><a href="#case-study-luminare">Luminare</a></li>
+    <li><a href="#case-study-weiss">WEISS</a></li>
+    <li><a href="#case-study-primus">Primus</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <canvas id="heroCanvas"></canvas>
   <div class="hero-bg"></div>
+  <canvas id="heroCanvas"></canvas>
   <div class="hero-content">
     <p class="hero-eyebrow">UX Designer · Unity Developer · Human-Centered Builder</p>
     <h1>I design experiences that take people's <em>inner lives</em> seriously.</h1>
@@ -818,30 +610,12 @@
       <p>I'm currently completing an MBS in UX Design at Rutgers while developing a portfolio of projects that span mobile wellness apps, immersive VR therapy tools, and an indie game with several years of depth behind it.</p>
     </div>
     <div class="skills-grid reveal reveal-right reveal-delay-2">
-      <div class="skill-chip">
-        <h4>Unity & C#</h4>
-        <p>3D/2D games, VR experiences, mobile apps — all self-taught from the ground up.</p>
-      </div>
-      <div class="skill-chip">
-        <h4>UX Design</h4>
-        <p>Full design thinking, systems design, UX writing, and interaction design.</p>
-      </div>
-      <div class="skill-chip">
-        <h4>Game Design</h4>
-        <p>Economy systems, deck-building, ATB combat, housing and relationship systems.</p>
-      </div>
-      <div class="skill-chip">
-        <h4>VR / XR</h4>
-        <p>Spatial UI, embodied interaction design, gesture-based therapeutic experiences.</p>
-      </div>
-      <div class="skill-chip">
-        <h4>Writing & Voice</h4>
-        <p>UX copy, academic writing, curriculum design — language as a design material.</p>
-      </div>
-      <div class="skill-chip">
-        <h4>LLM Integration</h4>
-        <p>Local model integration for privacy-preserving AI features in apps and experiences.</p>
-      </div>
+      <div class="skill-chip"><h4>Unity & C#</h4><p>3D/2D games, VR experiences, mobile apps — all self-taught from the ground up.</p></div>
+      <div class="skill-chip"><h4>UX Design</h4><p>Full design thinking, systems design, UX writing, and interaction design.</p></div>
+      <div class="skill-chip"><h4>Game Design</h4><p>Economy systems, deck-building, ATB combat, housing and relationship systems.</p></div>
+      <div class="skill-chip"><h4>VR / XR</h4><p>Spatial UI, embodied interaction design, gesture-based therapeutic experiences.</p></div>
+      <div class="skill-chip"><h4>Writing & Voice</h4><p>UX copy, academic writing, curriculum design — language as a design material.</p></div>
+      <div class="skill-chip"><h4>LLM Integration</h4><p>Local model integration for privacy-preserving AI features in apps and experiences.</p></div>
     </div>
   </div>
 </section>
@@ -853,7 +627,6 @@
     <p class="section-label">Selected Work</p>
     <h2 class="section-title">Projects built with intention.</h2>
   </div>
-
   <div class="projects-grid">
 
     <!-- KOKORON — FEATURED -->
@@ -864,10 +637,8 @@
       </div>
       <div class="project-info">
         <div class="project-tags">
-          <span class="tag">Unity</span>
-          <span class="tag sky">Mobile</span>
-          <span class="tag purple">Wellness</span>
-          <span class="tag">UXD</span>
+          <span class="tag">Unity</span><span class="tag sky">Mobile</span>
+          <span class="tag purple">Wellness</span><span class="tag">UXD</span>
         </div>
         <h3>Kokoron — Wellness Tamagotchi</h3>
         <p>A mobile companion app where your emotional experiences — the dark ones and the bright ones — become food and water for a creature that grows alongside you. Built solo for a team of four in a mobile app development course.</p>
@@ -877,18 +648,14 @@
     </a>
 
     <!-- VR WELLNESS -->
-    <a href="#" class="project-card reveal reveal-delay-1">
+    <a href="#case-study-luminare" class="project-card reveal reveal-delay-1">
       <div class="project-thumb thumb-vr">
-        <!-- 💡 REPLACE: a striking screenshot of the world transformation or the shadow wolf
-             <img src="images/vr-world.png" alt="VR wellness experience" class="project-thumb-bg">
-        -->
+        <img src="images/luminare-transform.png" alt="VR wellness experience" class="project-thumb-bg">
         <div class="thumb-label">Project Luminare</div>
       </div>
       <div class="project-info">
         <div class="project-tags">
-          <span class="tag green">VR / XR</span>
-          <span class="tag purple">Wellness</span>
-          <span class="tag">Unity</span>
+          <span class="tag green">VR / XR</span><span class="tag purple">Wellness</span><span class="tag">Unity</span>
         </div>
         <h3>Luminare: VR Wellness Experience</h3>
         <p>An immersive daily ritual where users physically pull value cards to their hearts, speak aloud what weighs on them, and then — literally — grab their darkness and throw it away. A dying world slowly comes back to life.</p>
@@ -899,16 +666,12 @@
     <!-- WEISS -->
     <a href="#case-study-weiss" class="project-card reveal reveal-delay-2">
       <div class="project-thumb thumb-weiss">
-       
-             <img src="images/weiss-battle.png" alt="WEISS item shop game battle" class="project-thumb-bg">
-        
+        <img src="images/weiss-battle.png" alt="WEISS item shop game battle" class="project-thumb-bg">
         <div class="thumb-label">WEISS</div>
       </div>
       <div class="project-info">
         <div class="project-tags">
-          <span class="tag">Unity</span>
-          <span class="tag">Game Design</span>
-          <span class="tag sky">RPG</span>
+          <span class="tag">Unity</span><span class="tag">Game Design</span><span class="tag sky">RPG</span>
         </div>
         <h3>WEISS — World's End Item Shop</h3>
         <p>An item shop simulator set in an RPG that stopped mid-story. The hero never came. Now you work both sides — monsters and humans — to restore an economy, rebuild a town, and cash in on a world that forgot to end.</p>
@@ -923,29 +686,23 @@
       </div>
       <div class="project-info">
         <div class="project-tags">
-          <span class="tag">JavaScript</span>
-          <span class="tag sky">Interactive</span>
-          <span class="tag green">Game Design</span>
+          <span class="tag">JavaScript</span><span class="tag purple">Interactive</span><span class="tag sky">Game Design</span>
         </div>
         <h3>The Alchemist's Table — Live Crafting Demo</h3>
-        <p>A fully playable browser-based crafting system — and promptly got a class of students addicted. Over 100 recipes, a discovery tracker, drag-and-drop inventory, and chain crafting where items unlock new items.</p>
-        <span class="project-link">▶ Play Now</span>
+        <p>A fully playable browser-based crafting system built as a companion piece to WEISS — and promptly got a class of students addicted. Over 290 recipes, a discovery tracker, drag-and-drop inventory, and chain crafting where items unlock new items.</p>
+        <span class="project-link">▶ Play Now →</span>
       </div>
     </a>
 
-    <!-- PRIMUS Volatus -->
+    <!-- PRIMUS Volatus — FEATURED -->
     <a href="#case-study-primus" class="project-card featured reveal reveal-delay-1">
       <div class="project-thumb thumb-primus">
-        
         <img src="images/primus-cover.png" alt="Primus Volatus program" class="project-thumb-bg">
-        
         <div class="thumb-label">Primus Volatus</div>
       </div>
       <div class="project-info">
         <div class="project-tags">
-          <span class="tag purple">Service Design</span>
-          <span class="tag green">Systems Thinking</span>
-          <span class="tag sky">Education</span>
+          <span class="tag purple">Service Design</span><span class="tag green">Systems Thinking</span><span class="tag sky">Education</span>
         </div>
         <h3>Primus Volatus: First Flight — College Counseling Redesign</h3>
         <p>A toxic, disengaged 11th grade cohort. An understaffed counseling team. A class nobody valued. I redesigned the entire college preparation program from the ground up — replacing a single flat course with a five-layer system that addressed engagement, community, accountability, and individual support simultaneously.</p>
@@ -965,50 +722,139 @@
       <p class="section-label">Case Study</p>
       <h2 class="section-title">Kokoron — Designing for Emotional Safety</h2>
     </div>
-
     <div class="case-body">
       <div class="case-block reveal">
         <h3>The Concept</h3>
         <p>Most wellness apps treat negative emotion as a problem to be eliminated. Kokoron asks a different question: what if your struggles could nourish something? The core mechanic reframes negative experience as food for a creature companion, and positive reflection as water. The pet survives, grows, and develops — because you did the work of showing up.</p>
-
-        <!-- 💡 SCREENSHOT ROW: Login, Main screen, Feed screen — your 3 strongest first impressions -->
-        
         <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.5rem 0;">
           <img src="images/kokoron-login.png" alt="Kokoron login screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
           <img src="images/kokoron-main.png" alt="Kokoron main screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
           <img src="images/kokoron-feed.png" alt="Kokoron feed screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
         </div>
-        
       </div>
-
       <div class="insight-box reveal reveal-delay-1">
         "The decision to never let the Kokoron die wasn't accidental. Wellness tools that punish absence create anxiety. We removed that failure state entirely while preserving meaningful engagement."
       </div>
-
       <div class="case-block reveal">
         <h3>Key Design Decisions</h3>
         <p><strong>Trauma-informed log design.</strong> Negative entries in the reflection log are hidden by default, accessible only when the user actively chooses to unlock them — with a label that explicitly says it's not recommended. This single interaction acknowledges that revisiting dark moments should be a conscious, deliberate choice, not a default scroll. It also positions the app as a complement to professional support rather than a replacement.</p>
         <p><strong>Aspirational stat naming.</strong> The Kokoron develops stats like Resilience, Hope, and Inner Strength. These aren't arbitrary RPG numbers — they mirror the qualities users might want to cultivate in themselves. As the pet grows, it quietly models a kind of self the user might aspire toward.</p>
         <p><strong>Ethical monetization.</strong> All monetization is cosmetic (skins) or compassionate (Graces for missed streaks). No mechanics that penalize emotional states or gate core functionality behind payment. This was a deliberate stance, not an oversight.</p>
-
-        <!-- 💡 TWO-UP: Logbook screen + Rewards screen — shows the thoughtful details -->
-        
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
           <img src="images/kokoron-logbook.png" alt="Kokoron logbook with hidden negative entries" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
           <img src="images/kokoron-rewards.png" alt="Kokoron rewards screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
         </div>
-      
       </div>
-
       <div class="case-block reveal">
         <h3>What I Built</h3>
         <p>The entire product — name, concept, architecture, UI design, codebase, monetization strategy, and UX writing — was designed and built by me in Unity for a mobile app development course. The team of four was, in practice, a team of one.</p>
         <p>The app was ported to HTML5 for web demonstration. Data persistence uses JSON-based local storage. The 3D Kokoron creature was licensed through the Unity Asset Store; all other design work is original.</p>
       </div>
-
       <div class="case-block reveal">
         <h3>What I'd Do Next</h3>
         <p>Migrate to a proper backend (Supabase or Firebase) to enable genuine social features — shared gardens, friend Kokorons, community streaks. The social layer is designed but not yet wired to persistent cloud data. The competitive minigame system, where Kokoron stats earned through emotional work translate into friendly competition, is the long-term vision I'd develop next.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY: PROJECT LUMINARE -->
+<section class="case-study" id="case-study-luminare">
+  <div class="case-study-inner">
+    <div class="case-header reveal">
+      <p class="section-label">Case Study</p>
+      <h2 class="section-title">Project Luminare — Therapy You Can Touch</h2>
+    </div>
+    <div class="case-body">
+      <div class="case-block reveal">
+        <h3>The Concept</h3>
+        <p>Most wellness apps ask you to think about your feelings. Luminare asks you to do something about them — physically, in space, with your hands. It's a daily VR ritual built around embodied action: pulling values close, speaking burdens aloud, grabbing darkness and throwing it away. The world you inhabit starts dead and broken. Over ten days of returning, it comes back to life.</p>
+        <p>The core insight behind the design is that VR's unique power isn't visual immersion — it's physical presence. The body remembers what it does in ways the mind alone doesn't. Luminare is built entirely around that idea.</p>
+        <img src="images/luminare-transform.png" alt="World transformation from grey to green" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
+      </div>
+      <div class="insight-box reveal reveal-delay-1">
+        "VR's real power isn't what you see. It's what your body believes it's doing. Every interaction in Luminare was designed to be felt, not just observed."
+      </div>
+      <div class="case-block reveal">
+        <h3>The Ritual — Step by Step</h3>
+        <p>The experience follows a deliberate sequence, each step building on the last. The user opens a book their character holds and summons a halo of value cards — Creativity, Family, Justice, Friendship, and others. They physically reach out, pull four cards to their chest, and release them. A collider registers the gesture; the values are logged.</p>
+        <p>Those four values are then woven into a personal mantra: <em>"My creativity gives me the strength to face every day. I do this for my family and for my sense of justice. It is my friendships that remind me who I am."</em> The user then speaks what's weighing on them to a virtual avatar — which nods and responds while audio input is active — processed locally by an LLM that generates a brief summary. Nothing is recorded or transmitted.</p>
+        <p>Then the central gesture: the user looks at their own heart, sees dark particles swirling there, reaches in, grabs them, and throws them to the ground. Where the darkness lands, a shadow creature appears — labeled with what the user just named. They recite their mantra three times. Each recitation damages the creature. On the third, it dissolves.</p>
+        <p>The dissolve shader expands outward from that point: grey grass becomes green, dead trees flower, animals appear, the sky lightens. Each day of returning extends the restoration further. After roughly ten sessions, the world is fully alive.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
+          <img src="images/luminare-cards.png" alt="Value card selection" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/luminare-creature.png" alt="Shadow creature encounter" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+        </div>
+      </div>
+      <div class="case-block reveal">
+        <h3>Key Design Decisions</h3>
+        <p><strong>Physical gesture as commitment.</strong> Pulling a card to your heart isn't a UI metaphor — it's a somatic act. The body registers it differently than clicking a button. This was intentional: values chosen through physical action feel more claimed than values selected from a list. The gesture creates a moment of genuine choice.</p>
+        <p><strong>Privacy-first voice processing.</strong> The avatar listens and responds while you speak, but nothing is stored or sent to a server. A local LLM generates a brief summary purely for reflection — never for data collection. This was a core design constraint from the start, not an afterthought. Users needed to be able to speak freely.</p>
+        <p><strong>Externalization of the internal.</strong> The dark particles at the heart, the shadow creature carrying your named burden, the act of physically throwing darkness away — these are all externalizations of internal psychological processes. The design borrows from narrative exposure therapy and somatic approaches without being clinically prescriptive. It creates a safe theatrical frame for engaging with difficult feelings.</p>
+        <p><strong>World state as progress.</strong> Most habit apps show you a streak number. Luminare shows you a world healing. The emotional register of that feedback is completely different — it ties your daily practice to something larger than a metric, and makes absence feel like something worth returning from rather than a failure state.</p>
+        <p><strong>One session per day, hard limit.</strong> The ritual cannot be repeated more than once daily, and progress is saved between sessions. This was a deliberate pacing decision: the experience is meant to be a morning or evening ritual, not a binge. The limitation also makes each session feel meaningful — you can't grind your way to a healed world.</p>
+        <img src="images/luminare-healed.png" alt="Fully restored world state" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
+      </div>
+      <div class="case-block reveal">
+        <h3>What I Built</h3>
+        <p>The entire experience was designed and built in Unity with VR support. Systems include: gesture-based card interaction with physics colliders, an avatar with reactive animation tied to microphone input, local LLM integration for voice summarization, a dissolve shader system that progressively transforms the environment, a day-tracking save system, and the full world environment including the dead state and all restoration stages.</p>
+        <p>The project is nearly complete — the main level pack is fully functional through all ten days of restoration. Remaining work is polish, onboarding/tutorial design, and additional level packs (planned themes: abandoned city, woodland shrine, coastal ruins).</p>
+      </div>
+      <div class="case-block reveal">
+        <h3>What I'd Do Next</h3>
+        <p>The avatar currently uses a simple animation system to respond to voice input. The most impactful upgrade would be replacing it with a more expressive model — ideally one that reflects emotional tone from the LLM summary back to the user through facial expression and posture. The session could then feel genuinely responsive rather than just attentive. Beyond that, the additional level packs are the natural commercial expansion, each offering a new visual world and a slightly different ritual context.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY: WEISS -->
+<section class="case-study" id="case-study-weiss" style="background: var(--warm-white);">
+  <div class="case-study-inner">
+    <div class="case-header reveal">
+      <p class="section-label">Case Study</p>
+      <h2 class="section-title">WEISS — Designing a World That Stopped</h2>
+    </div>
+    <div class="case-body">
+      <div class="case-block reveal">
+        <h3>The Concept</h3>
+        <p>WEISS begins with a premise that's both comedic and melancholy: you set up your item shop in front of the final dungeon, expecting to profit from the hero's legendary run. The hero never came. The demon lord waited. The world's economy, built around the eternal conflict between light and dark, simply... stalled.</p>
+        <p>Now you're the one who has to fix it — not by being a hero, but by being a merchant. You work both sides. You sell potions to adventurers and reagents to monsters. You broker a fragile peace through commerce. You rebuild a town that had given up on itself. The game is named WEISS — which sounds like Vice — because doing good in a broken world sometimes requires playing all the angles.</p>
+        <img src="images/weiss-overworld.png" alt="WEISS overworld" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
+      </div>
+      <div class="insight-box reveal reveal-delay-1">
+        "Most RPGs ask you to save the world through strength. WEISS asks you to save it through trade — and leaves open the question of whether that's heroic or just pragmatic."
+      </div>
+      <div class="case-block reveal">
+        <h3>Core Systems</h3>
+        <p><strong>The shop and economy.</strong> Like its spiritual predecessor Recettear, WEISS centers on running an item shop — buying low, selling high, managing demand and supply. But the economy is dynamic: market demand shifts based on in-game events (a monster surge drives up potion sales; a peaceful week tanks weapon prices). Players can specialize in different crafting disciplines to control their own supply chains.</p>
+        <p><strong>Town rebuilding.</strong> The surrounding town is derelict when you arrive. As you generate income, you can invest in rebuilding structures — each one unlocking new characters, new inventory, or new systems. Crucially, you can invite both adventurers and monsters to take up permanent residence, housing them in buildings you restore.</p>
+        <p><strong>The relationship system.</strong> Residents develop relationships with each other dynamically over time. Adventurers and monsters placed in the same housing will interact, build trust or friction, and eventually form adventuring parties — with stats and abilities shaped by those relationships. Every playthrough generates different configurations, making the social simulation meaningfully replayable.</p>
+        <p><strong>Deck-building ATB combat.</strong> When your player character ventures out, combat uses a hybrid system: you build a deck before battle, but cards are played in real-time ATB style — enemies attack continuously while you manage a regenerating resource pool to play cards. This creates genuine tension that pure turn-based deck-builders don't have.</p>
+        <p><strong>Gathering and crafting.</strong> A deeper resource loop than most shop simulators: you explore the world to gather materials, which feed into crafting recipes, which produce items to sell or use. Specializing in alchemy, smithing, or cooking creates distinct playstyles and economic advantages.</p>
+        <p><strong>The Ancient Cave system.</strong> A procedurally generated dungeon with its own loot table and exploration logic — a direct nod to Lufia II's legendary Ancient Cave — provides an infinitely replayable late-game loop for players who want pure dungeon-crawling.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
+          <img src="images/weiss-shop.png" alt="WEISS shop interior" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/weiss-dungeon.png" alt="WEISS night dungeon" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/weiss-battle.png" alt="WEISS card battle" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/weiss-research.png" alt="WEISS card research" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+        </div>
+      </div>
+      <div class="case-block reveal">
+        <h3>Key Design Decisions</h3>
+        <p><strong>Moral ambiguity as the central mechanic.</strong> The player isn't the hero — they're the merchant who profits from the conflict between heroes and villains. This reframes the entire JRPG genre: instead of asking "who wins?", WEISS asks "who benefits?" That question turns out to be rich enough to drive a whole game.</p>
+        <p><strong>The dynamic relationship system.</strong> Organizing cohabitation between monsters and humans and watching emergent relationships develop was the most ambitious design decision in WEISS. It required building a reputation and relationship tracking system, behavioral rules for NPC interactions, and a party formation logic that reflects those relationships in combat stats. The payoff is a game that feels different every run because the social fabric of your town is never the same twice.</p>
+        <p><strong>Hybrid ATB deck combat.</strong> Pure deck-builders (Slay the Spire et al.) are satisfying but slow. Pure ATB games are fast but shallow. The combination — build a deck, play it in real time under pressure — was harder to tune than either system alone, but creates a combat experience that rewards both preparation and instinct.</p>
+        <p><strong>Visual tone mixing.</strong> WEISS deliberately mixes warm, cozy interior aesthetics (the shop at dawn, the crafting shed in afternoon light) with stark nocturnal dungeon environments (neon purple, metal scaffolding, candlelight). This tonal contrast reflects the game's moral duality — the same world that contains your cozy shop also contains something much darker beneath it.</p>
+        <img src="images/weiss-exterior.png" alt="WEISS shop exterior in daylight" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
+      </div>
+      <div class="case-block reveal">
+        <h3>What I Built</h3>
+        <p>WEISS has been in development for several years as a solo project built entirely in Unity. Current implemented systems include: the full shop economy with dynamic demand events, the town rebuilding framework, housing and NPC placement, the relationship and party formation system, the hybrid ATB deck-building combat, gathering and multi-discipline crafting, the procedural dungeon system, a full day/night cycle with time-based events, and the character equipment and stat system. Visual assets are licensed from the Unity Asset Store; all systems, architecture, design, and writing are original.</p>
+      </div>
+      <div class="case-block reveal">
+        <h3>What I'd Do Next</h3>
+        <p>The relationship system is the heart of WEISS but also its least polished element — the behavioral rules for NPC interaction need more granularity, and the visual feedback for relationship development (how do you show a monster and an adventurer becoming genuine friends?) deserves a dedicated design pass. Beyond that, the narrative layer needs more work: the game has strong systemic bones but the story of why you're there and what you're working toward needs to be woven more explicitly into the moment-to-moment play.</p>
       </div>
     </div>
   </div>
@@ -1021,24 +867,20 @@
       <p class="section-label">Case Study</p>
       <h2 class="section-title">Primus Volatus — Redesigning a Broken System</h2>
     </div>
-
     <div class="case-body">
       <div class="case-block reveal">
         <h3>The Problem</h3>
         <p>The college counseling program existed, but it wasn't working. Students in 11th grade were drowning in AP exams and treated college applications — still nearly a year away — as an abstraction not worth their attention. Attendance was poor, engagement was lower, and the program had already been redesigned once without meaningful improvement.</p>
         <p>The incoming cohort made things harder. They had a well-documented reputation for bullying and hyper-competitiveness — exactly the wrong environment for a college process that requires vulnerability, peer support, and honesty with counselors. At the same time, our team had lost two members, meaning we had less staff than before and needed to serve more students with less.</p>
       </div>
-
       <div class="insight-box reveal reveal-delay-1">
         "The old program treated engagement as a given. I treated it as a design problem."
       </div>
-
       <div class="case-block reveal">
         <h3>The Design Approach</h3>
         <p>I identified four distinct failure modes in the existing program: students didn't value the time, they didn't trust each other, they felt the process was overwhelming and monolithic, and they had no accountability structure beyond grades. Each layer of the new system was designed to address one of these directly.</p>
         <p>Critically, the entire program was designed around a constraint: we could not ask students to give up any of their own time. Every touchpoint was inserted into time they already had — homeroom periods, study halls, brief drop-ins. This wasn't just logistical; it was a trust decision. Demanding extra time from already-overloaded students would have poisoned the relationship before it started.</p>
       </div>
-
       <div class="case-block reveal">
         <h3>The Architecture</h3>
         <div class="layer-diagram">
@@ -1064,37 +906,25 @@
           </div>
         </div>
       </div>
-
       <div class="case-block reveal">
         <h3>Key Design Decisions</h3>
         <p><strong>The funnel of intimacy.</strong> Each layer is progressively smaller and more personal — from 70+ students in a Flight down to a single pair in Feathers. Information and accountability flow top-down; trust and vulnerability flow bottom-up. Students who were closed off in large groups opened up in Wings; students who wouldn't ask questions in Halos would ask them one-on-one.</p>
         <p><strong>Cross-cutting interest groups.</strong> Wings were deliberately not organized by major or academic track — they were organized by personal interests drawn from a survey (art, food, gaming, etc.). This was a direct response to the cohort's competitiveness. Mixing students across academic hierarchies and forcing collaborative activities (including games like Keep Talking and Nobody Explodes, which require communication and trust to succeed) created relationships that cut across the usual social fault lines.</p>
         <p><strong>The sticky note wall.</strong> The Feathers check-in was designed to make invisible progress visible — and public in a safe, celebratory way. The physical act of writing something down and adding it to a shared wall together was more psychologically meaningful than a logged database entry. It also modeled the real shape of the college process: not a single heroic effort, but hundreds of small steps accumulated over time.</p>
       </div>
-
       <div class="case-block reveal">
         <h3>What I Made</h3>
         <p>Beyond designing the system itself, I created all program documentation, the student-facing presentation (Primus Volatus: First Flight), the survey instruments, the Wing activity plans, and the visual identity of the program. The presentation was designed to be warm, clear, and student-appropriate — using flight and sky metaphors throughout to frame the college process as something to look forward to rather than dread.</p>
-
-        <!-- 💡 TWO-UP: Title slide + Structure pyramid from your PDF -->
-        
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
           <img src="images/primus-cover.png" alt="Primus Volatus title slide" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
           <img src="images/primus-structure.png" alt="Primus Volatus structure pyramid" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
         </div>
-        
-
-        <!-- 💡 FULL WIDTH: Counselor intro slide (James Smith page) — shows your personal voice -->
-        
         <img src="images/primus-counselor.png" alt="Counselor introduction slide" style="width:100%; border-radius:12px; margin-top:1rem; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
-        
       </div>
-
       <div class="case-block reveal">
         <h3>What I'd Do Next</h3>
         <p>The program's weakest link was measurement. I had qualitative signals — attendance improved, the cohort's collaborative behavior changed noticeably by the second semester — but no formal tracking system for engagement quality over time. If I were building this again, I would design a lightweight longitudinal tracking tool into the Feathers system from the start, turning each sticky-note check-in into a data point that could inform counselor interventions earlier in the year.</p>
       </div>
-
     </div>
   </div>
 </section>
@@ -1120,57 +950,48 @@
     <h2 class="section-title">Let's work together.</h2>
     <p>I'm currently open to UXD roles, game design positions, wellness tech opportunities, and interesting contract work — especially anything that sits at the intersection of technology and human experience.</p>
     <div class="contact-links">
-      <a href="/cdn-cgi/l/email-protection#ed9482989fad88808c8481c38e8280" class="btn btn-primary">Send an Email</a>
-      <a href="https://linkedin.com/in/yourprofile" class="btn btn-ghost">LinkedIn</a>
-      <a href="https://github.com/yourusername" class="btn btn-ghost">GitHub</a>
+      <a href="mailto:arkudel@gmail.com" class="btn btn-primary">Send an Email</a>
+      <a href="https://www.linkedin.com/in/james-smith-11bb76a1/" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://github.com/arkudel" class="btn btn-ghost">GitHub</a>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>Designed & built by [James DR Smith] &nbsp;·&nbsp; 心 &nbsp;·&nbsp; 2026</p>
+  <p>Designed & built by James DR Smith &nbsp;·&nbsp; 心 &nbsp;·&nbsp; 2026</p>
 </footer>
 
 <script>
   // ── CUSTOM CURSOR ──
   const dot = document.getElementById('cursorDot');
   const ring = document.getElementById('cursorRing');
-  let mx = -100, my = -100;
 
-  // Hide on mobile (no mouse)
   if (window.matchMedia('(pointer: coarse)').matches) {
     dot.style.display = 'none';
     ring.style.display = 'none';
   }
 
   document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px';
-    dot.style.top  = my + 'px';
-    ring.style.left = mx + 'px';
-    ring.style.top  = my + 'px';
+    dot.style.left  = e.clientX + 'px';
+    dot.style.top   = e.clientY + 'px';
+    ring.style.left = e.clientX + 'px';
+    ring.style.top  = e.clientY + 'px';
   });
-
-  document.addEventListener('mouseleave', () => {
-    dot.style.opacity = '0'; ring.style.opacity = '0';
-  });
-  document.addEventListener('mouseenter', () => {
-    dot.style.opacity = '0.7'; ring.style.opacity = '0.6';
-  });
+  document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
+  document.addEventListener('mouseenter', () => { dot.style.opacity = '0.7'; ring.style.opacity = '0.6'; });
 
   // ── HERO PARTICLE SYSTEM (mouse-responsive) ──
   const canvas = document.getElementById('heroCanvas');
   const ctx = canvas.getContext('2d');
-  let mouseX = 0.5, mouseY = 0.5; // normalized 0-1
+  let mouseX = 0.5, mouseY = 0.5;
 
   function resizeCanvas() {
-    canvas.width = canvas.offsetWidth;
+    canvas.width  = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
   }
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
 
-  // Track mouse over hero only
   canvas.parentElement.addEventListener('mousemove', e => {
     const r = canvas.getBoundingClientRect();
     mouseX = (e.clientX - r.left) / r.width;
@@ -1178,12 +999,8 @@
   });
 
   const palette = [
-    'rgba(201,123,90,',   // terracotta
-    'rgba(232,184,154,',  // peach
-    'rgba(184,212,232,',  // sky
-    'rgba(197,184,212,',  // purple-soft
-    'rgba(143,173,140,',  // sage
-    'rgba(245,223,208,',  // blush
+    'rgba(201,123,90,', 'rgba(232,184,154,', 'rgba(184,212,232,',
+    'rgba(197,184,212,', 'rgba(143,173,140,', 'rgba(245,223,208,',
   ];
 
   class Particle {
@@ -1201,23 +1018,16 @@
       this.wobble = Math.random() * Math.PI * 2;
       this.wobbleSpeed = 0.008 + Math.random() * 0.018;
       this.wobbleAmp = 0.4 + Math.random() * 1.0;
-      // connection tracking
-      this.connOpacity = 0;
     }
     update() {
       this.wobble += this.wobbleSpeed;
-
-      // gentle mouse attraction — particles drift slightly toward cursor
-      const targetX = mouseX * canvas.width;
-      const targetY = mouseY * canvas.height;
-      const dx = targetX - this.x;
-      const dy = targetY - this.y;
+      const tx = mouseX * canvas.width;
+      const ty = mouseY * canvas.height;
+      const dx = tx - this.x, dy = ty - this.y;
       const dist = Math.sqrt(dx*dx + dy*dy);
       const attract = dist < 220 ? (220 - dist) / 220 * 0.018 : 0;
-
       this.x += this.speedX + Math.sin(this.wobble) * this.wobbleAmp * 0.08 + dx * attract;
       this.y -= this.baseSpeedY - dy * attract * 0.3;
-
       if (this.fadeIn) {
         this.opacity += 0.007;
         if (this.opacity >= this.maxOpacity) this.fadeIn = false;
@@ -1231,7 +1041,6 @@
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.fillStyle = this.color + this.opacity + ')';
       ctx.fill();
-      // soft glow halo
       const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
       grad.addColorStop(0, this.color + (this.opacity * 0.35) + ')');
       grad.addColorStop(1, this.color + '0)');
@@ -1271,15 +1080,11 @@
     requestAnimationFrame(animate);
   }
   animate();
-</script>
 
-<script>
-  // Scroll reveal — elements visible by default, animation is enhancement only
+  // ── SCROLL REVEAL ──
   const reveals = document.querySelectorAll('.reveal');
-
   if ('IntersectionObserver' in window) {
     reveals.forEach(el => el.classList.add('hidden'));
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1288,7 +1093,6 @@
         }
       });
     }, { threshold: 0.08 });
-
     reveals.forEach(el => observer.observe(el));
   }
 </script>
