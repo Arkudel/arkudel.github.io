@@ -52,6 +52,27 @@ header::after{content:'';display:block;width:180px;height:1px;background:linear-
 .bx{background:transparent;color:var(--brown);border:1.5px solid rgba(122,79,53,.38);}
 .bx:hover{background:rgba(122,79,53,.1);transform:translateY(-2px);}
 .tip{font-size:.72rem;color:rgba(122,79,53,.5);margin-top:.8rem;}
+/* HINT BUTTON */
+.bhint{background:transparent;color:rgba(122,79,53,.55);border:1.5px dashed rgba(122,79,53,.28);font-family:'Cinzel',serif;font-size:.72rem;font-weight:600;letter-spacing:.09em;padding:.5rem 1.2rem;border-radius:50px;cursor:pointer;transition:all .25s;display:none;align-items:center;gap:.4rem;}
+.bhint.visible{display:flex;}
+.bhint:hover{color:var(--brown);border-color:rgba(122,79,53,.55);background:rgba(122,79,53,.07);}
+.bhint .hint-count{font-family:'Nunito',sans-serif;font-size:.6rem;font-weight:700;background:rgba(122,79,53,.18);border-radius:50px;padding:.1rem .45rem;letter-spacing:.04em;}
+/* HINT MODAL */
+.hmodal-overlay{position:fixed;inset:0;z-index:500;background:rgba(10,4,1,.72);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .3s ease;}
+.hmodal-overlay.open{opacity:1;pointer-events:all;}
+.hmodal{background:linear-gradient(148deg,#f5edcf,#eddfa8);border-radius:24px;padding:2rem 2.25rem;max-width:420px;width:100%;box-shadow:0 0 0 1px rgba(201,123,90,.3),0 24px 60px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.5);transform:translateY(16px) scale(.96);transition:transform .35s cubic-bezier(.175,.885,.32,1.275);position:relative;}
+.hmodal-overlay.open .hmodal{transform:translateY(0) scale(1);}
+.hmodal-close{position:absolute;top:1rem;right:1.1rem;background:none;border:none;font-size:1.1rem;cursor:pointer;color:rgba(122,79,53,.4);transition:color .2s;line-height:1;padding:.2rem;}
+.hmodal-close:hover{color:var(--brown);}
+.hmodal-eyebrow{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terracotta);font-weight:700;margin-bottom:.55rem;}
+.hmodal-title{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--brown);margin-bottom:.35rem;line-height:1.3;}
+.hmodal-body{font-size:.88rem;color:rgba(122,79,53,.7);line-height:1.6;margin-bottom:1.4rem;}
+.hmodal-recipe{display:flex;align-items:center;justify-content:center;gap:.75rem;background:rgba(255,255,255,.38);border-radius:14px;padding:1rem 1.25rem;border:1px solid rgba(201,123,90,.2);margin-bottom:1.4rem;}
+.hmodal-ing{display:flex;flex-direction:column;align-items:center;gap:.25rem;min-width:72px;}
+.hmodal-ing .ic{font-size:1.6rem;line-height:1;}
+.hmodal-ing .nm{font-size:.65rem;font-weight:700;text-align:center;color:var(--brown);line-height:1.2;}
+.hmodal-plus{font-family:'Cinzel',serif;font-size:1.3rem;color:rgba(122,79,53,.35);}
+.hmodal-footer{font-size:.72rem;color:rgba(122,79,53,.5);text-align:center;font-style:italic;}
 .inv{background:rgba(14,7,2,.72);border:1px solid rgba(201,123,90,.14);border-radius:16px;padding:1.4rem;backdrop-filter:blur(8px);}
 .itop{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
 .itit{font-family:'Cinzel',serif;font-size:.82rem;color:var(--peach);letter-spacing:.14em;text-transform:uppercase;}
@@ -131,6 +152,7 @@ header::after{content:'';display:block;width:180px;height:1px;background:linear-
 <div class="brow">
 <button class="btn bc" id="cBtn" disabled>Combine</button>
 <button class="btn bx" id="xBtn">Clear</button>
+<button class="bhint" id="hBtn">🕯 Show a Hint <span class="hint-count" id="hFails">0/5</span></button>
 </div>
 <p class="tip">💡 Some chains run 4–5 steps deep. New base ingredients unlock whole new trees.</p>
 </div>
@@ -148,6 +170,16 @@ header::after{content:'';display:block;width:180px;height:1px;background:linear-
 </div>
 </div>
 <div id="toast"></div>
+<div class="hmodal-overlay" id="hOverlay">
+  <div class="hmodal" role="dialog" aria-modal="true">
+    <button class="hmodal-close" id="hClose" aria-label="Close">&#x2715;</button>
+    <p class="hmodal-eyebrow">&#x2756; Alchemist&#39;s Whisper</p>
+    <h2 class="hmodal-title" id="hTitle">Here&#39;s something worth trying&hellip;</h2>
+    <p class="hmodal-body" id="hBody"></p>
+    <div class="hmodal-recipe" id="hRecipe"></div>
+    <p class="hmodal-footer" id="hFooter"></p>
+  </div>
+</div>
 
 <script>
 
@@ -185,7 +217,114 @@ var ms=[];for(var i=0;i<52;i++)ms.push(new M());
 (function loop(){ctx.clearRect(0,0,c.width,c.height);ms.forEach(function(m){m.tick();m.draw();});requestAnimationFrame(loop);})();
 })();
 
-var IC={wood:'🪵',stone:'🪨',fiber:'🌿',copper_ore:'🔶',coal:'⬛',mana_crystal:'💎',iron_ore:'🔩',gold_ore:'🟡',silver_ore:'🩶',leather:'🟤',cloth:'🪵',bone:'🦴',fang:'🦷',claw:'🦞',venom:'🧪',blood:'🩸',magic_dust:'✨',crystal_shard:'🔷',enchanted_leaf:'🍀',ember:'🔥',obsidian:'🖤',sapphire:'💙',ruby:'❤️',emerald:'💚',feather:'🪶',dust:'💨',dragon_scale:'🐉',phoenix_feather:'🌟',troll_fat:'🪷',goblin_ear:'👂',salt:'🧂',sulfur:'🌋',quicksilver:'⚪',nightshade:'🌑',moonpetal:'🌸',sunroot:'🌻',frost_shard:'❄️',storm_shard:'⚡',earth_shard:'🪨',shadow_shard:'🌒',slime_core:'🟢',spider_silk:'🕸️',bat_wing:'🦇',wyvern_scale:'🐊',lich_dust:'💀',honey:'🍯',beeswax:'🕯️',oil:'🪴',dried_herb:'🌾'};
+var IC={
+  // ── BASE MATERIALS ──
+  wood:'🪵',stone:'🪨',fiber:'🌿',copper_ore:'🔶',coal:'⬛',mana_crystal:'💎',
+  iron_ore:'🔩',gold_ore:'🟡',silver_ore:'🩶',leather:'🟤',cloth:'🩵',bone:'🦴',
+  fang:'🦷',claw:'🦞',venom:'🧪',blood:'🩸',magic_dust:'✨',crystal_shard:'🔷',
+  enchanted_leaf:'🍀',ember:'🔥',obsidian:'🖤',sapphire:'💙',ruby:'❤️',emerald:'💚',
+  feather:'🪶',dust:'💨',dragon_scale:'🐉',phoenix_feather:'🌟',troll_fat:'🫧',goblin_ear:'👂',
+  salt:'🧂',sulfur:'🌋',quicksilver:'⚪',nightshade:'🌑',moonpetal:'🌸',sunroot:'🌻',
+  frost_shard:'❄️',storm_shard:'⚡',earth_shard:'🪨',shadow_shard:'🌒',
+  slime_core:'🟢',spider_silk:'🕸️',bat_wing:'🦇',wyvern_scale:'🐊',lich_dust:'💀',
+  honey:'🍯',beeswax:'🕯️',oil:'🫙',dried_herb:'🌾',
+  // ── BASIC CRAFTED ──
+  stick:'🪃',torch:'🔦',sling:'🪃',bow:'🏹',stone_axe:'🪓',arrow_shaft:'➡️',
+  stone_arrow:'🏹',fletched_stick:'🏹',wand:'🪄',
+  // ── INGOTS & ALLOYS ──
+  copper_ingot:'🟠',iron_ingot:'⬜',silver_ingot:'🔘',gold_ingot:'🌕',
+  bronze_bar:'🟫',shimmer_alloy:'🌫️',moonsteel:'🌙',refined_copper:'🪙',
+  refined_iron:'⚙️',refined_gold:'🏅',black_steel:'🖤',null_alloy:'🌀',
+  charcoal_dust:'🌫️',brimstone:'💛',flux:'⚗️',
+  // ── SWORDS & BLADES ──
+  bone_dagger:'🦴',bone_whip:'〰️',goblin_dagger:'🗡️',copper_sword:'🟠',
+  obsidian_blade:'🖤',dark_dagger:'🗡️',jawblade:'🦷',gilded_dagger:'✨',
+  stone_maul:'🪨',volcanic_blade:'🌋',frost_blade:'❄️',thunder_blade:'⚡',
+  earthen_blade:'🪨',corrosive_blade:'🟢',wyvern_blade:'🐊',cursed_blade:'💀',
+  hex_blade:'🔮',shadow_claw:'🌒',obsidian_claw:'🖤',bone_bracers:'🦴',
+  assassins_dagger:'🗡️',toxic_blade:'🧪',gilded_staff:'🏅',
+  spectral_blade:'👻',soul_blade:'💀',nature_blade:'💚',
+  blood_fang:'🩸',claw_staff:'🦞',fossil_club:'🪨',
+  // ── STAVES ──
+  focus_staff:'🔮',charged_wand:'⚡',arcane_staff:'🌟',moon_staff:'🌙',
+  ice_wand:'❄️',fire_wand:'🔥',void_staff:'🌀',blood_staff:'🩸',
+  dark_staff:'🖤',ember_wand:'🔥',wind_wand:'🌬️',steam_wand:'💨',
+  frost_wand:'❄️',blizzard_staff:'🌨️',storm_staff:'⛈️',earth_staff:'🌍',
+  null_staff:'🌀',wraith_staff:'👻',ooze_staff:'🟢',spinner_staff:'🕸️',
+  sonar_staff:'🦇',dragon_staff:'🐉',lich_staff:'💀',nature_wand:'🌿',
+  honeyed_wand:'🍯',oracle_wand:'🔮',quicksilver_wand:'⚪',black_staff:'🖤',
+  necrotic_wand:'💀',gelid_wand:'❄️',tide_wand:'🌊',winter_staff:'❄️',
+  chaos_wand:'🌀',night_wand:'🌑',glacial_snare:'❄️',plasma_staff:'⚡',
+  umbra_staff:'🌒',cold_staff:'❄️',death_wand:'💀',acid_staff:'🟢',
+  beacon_staff:'🕯️',vampire_wand:'🧛',magma_wand:'🌋',null_wand:'🌀',
+  // ── BOWS ──
+  magic_bow:'🏹',iron_arrow:'🏹',magic_arrow:'✨',poison_arrow:'🧪',
+  glimmer_bow:'✨',pulse_bow:'⚡',wind_bow:'🌬️',plume_bow:'🪶',
+  sun_bow:'☀️',ice_bow:'❄️',thunder_bow:'⚡',
+  // ── ARROWS ──
+  venomed_arrow:'🧪',sleep_arrow:'💤',lightning_arrow:'⚡',
+  // ── ARMOR & CLOTHING ──
+  leather_shield:'🛡️',light_armor:'🧥',feather_cloak:'🪶',
+  nature_wrap:'🍀',wizard_hat:'🎩',bone_bracers:'🦴',
+  web_cloak:'🕸️',silk_armor:'🕸️',wing_mantle:'🦇',shadow_mantle:'🌒',
+  frost_mantle:'❄️',shadow_leather:'🌒',stone_hide:'🪨',
+  scaled_armor:'🐉',phoenix_robe:'🌟',phoenix_soulcloak:'🌟',
+  healer_robe:'💚',ashen_robe:'🌫️',smoldering_robe:'🔥',
+  enchanters_cloak:'✨',suncloak:'☀️',oilskin_coat:'🫙',
+  waxed_cloth:'🩵',medic_wrap:'💚',wyvern_mantle:'🐊',
+  death_shroud:'💀',scribes_robe:'📜',ghost_mantle:'👻',
+  shadow_robe:'🌒',hardened_bracers:'🦴',iron_lamellar:'⚙️',
+  // ── JEWELRY & TALISMANS ──
+  sapphire_ring:'💙',emerald_amulet:'💚',blessed_ring:'💍',
+  royal_ring:'👑',sapphire_amulet:'💙',ruby_ring:'❤️',
+  blood_charm:'🩸',flame_amulet:'🔥',revival_charm:'🌟',
+  poison_talisman:'🧪',druidic_talisman:'🍀',lunar_token:'🌙',
+  sunleaf_token:'🌻',life_stone:'💚',moonsilver:'🌙',
+  quickwing:'🦇',gilded_honey:'🍯',sweet_poison:'🍯',
+  // ── CORES & ESSENCES ──
+  prismatic_core:'🔷',ice_core:'❄️',fire_core:'🔥',wind_core:'🌬️',
+  energy_core:'⚡',void_core:'🌀',blood_mage_crystal:'🩸',
+  cryo_core:'❄️',tempest_core:'⛈️',geode_core:'🪨',void_essence:'🌀',
+  lunar_essence:'🌙',mercury_core:'⚪',ooze_core:'🟢',mystic_web:'🕸️',
+  echostone:'🦇',draconic_core:'🐉',undying_core:'💀',vampiric_essence:'🧛',
+  wraith_essence:'👻',mana_honey:'🍯',herbal_core:'🌿',spirit_light:'🕯️',
+  beacon_stone:'🕯️',petrified_core:'🪨',worldheart:'🌍',verdant_core:'🌿',
+  // ── SPECIAL MATERIALS ──
+  steam_crystal:'💨',quake_charge:'🌍',nullfrost:'❄️',blizzard_charge:'🌨️',
+  magma_shard:'🌋',steam_stone:'💨',dark_brick:'🖤',ash_block:'🌫️',
+  ember_brick:'🔥',lava_stone:'🌋',hellstone:'🔥',infernal_core:'🔥',
+  null_stone:'🌀',abyss_core:'🌀',glacial_shard:'❄️',void_wing:'🦇',
+  chimera_wing:'🐉',thunderwing:'⚡',storm_plume:'⚡',night_plume:'🦇',
+  umbra_wing:'🌒',tempest_scale:'⚡',cold_iron:'❄️',abyssal_steel:'🖤',
+  void_death:'🌀',moonshade:'🌙',stone_dragon:'🪨',sunscale:'☀️',
+  moonveil:'🌙',auric_sap:'🌻',golden_quill:'✍️',solar_resin:'☀️',
+  sunfire_pitch:'☀️',dragonfire_scale:'🐉',
+  // ── POTIONS, BOMBS & CONSUMABLES ──
+  smokebomb:'💨',stench_bomb:'🫧',slime_bomb:'🟢',acid_flask:'🧪',
+  poison_bomb:'🧪',crimson_flare:'🔥',flash_powder:'💥',firebomb:'🔥',
+  napalm_bomb:'🔥',toxic_snare:'🕸️',silk_trap:'🕸️',
+  waxed_cord:'🪢',oil_lamp:'🪔',candle:'🕯️',
+  healing_salve:'💊',antidote:'💊',blessed_salve:'💊',
+  fire_mead:'🍺',inferno_brew:'🍺',frostmead:'🍺',
+  mana_honey:'🍯',astral_honey:'🍯',elixir_of_life:'✨',
+  // ── ALCHEMICAL & MISC ──
+  mystic_powder:'✨',void_powder:'🌀',dark_crystal:'🔮',
+  bone_whip:'〰️',bronze_spear:'🏹',iron_sling:'🪃',
+  obsidian_slinger:'🖤',storm_pike:'⚡',
+  paralytic_extract:'🧪',hemotoxin:'🧪',venom_oil:'🧪',
+  corpse_oil:'💀',phantom_oil:'👻',lightning_oil:'⚡',
+  herb_pouch:'🌿',smudge_wrap:'🌫️',preserved_bone:'🦴',
+  dark_wax:'🌒',brine_ice:'❄️',acid_stone:'🟢',sulfuric_ooze:'🌋',
+  volcanic_ooze:'🌋',frost_ooze:'❄️',frozen_web:'❄️',
+  moonweb:'🌙',lunar_snare:'🌙',plasma_ooze:'⚡',
+  night_essence:'🌑',void_acid:'🌀',
+  // ── SPECIFIC NAMED ITEMS ──
+  earth_totem:'🌍',gaia_core:'🌍',magma_core:'🌋',
+  sunfire_ring:'☀️',moonveil:'🌙',
+  lightning_rod:'⚡',wyvern_plate:'🐊',
+  corrupted_essence:'🩸',necrotic_powder:'💀',
+  silver_plume:'🪶',arcane_feather:'🪶',
+};
 function ico(id){return IC[id]||'⚗️';}
 
 var R={
@@ -489,7 +628,7 @@ var BASE=["wood", "stone", "fiber", "copper_ore", "coal", "mana_crystal", "iron_
 var NM={common:'#96cc6e',uncommon:'#4ed080',rare:'#62aaee',epic:'#cc7afc'};
 var RC={common:'#5a8c3a',uncommon:'#2a7a52',rare:'#2a5faa',epic:'#7228b0'};
 var inv=BASE.map(function(id){return{id:id,name:id.replace(/_/g,' ').replace(/\b\w/g,function(l){return l.toUpperCase();}),rarity:'common'};});
-var slots=[null,null],filt='all',qry='',fresh=null;
+var slots=[null,null],filt='all',qry='',fresh=null,failCount=0;
 var TOTAL=Object.keys(R).length;
 
 function toast(m){var el=document.getElementById('toast');el.textContent=m;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove('show');},2800);}
@@ -515,16 +654,117 @@ document.getElementById('cBtn').addEventListener('click',function(){
   var ra=document.getElementById('rA');
   if(result){
     var isNew=!inv.some(function(i){return i.id===result.id;});
-    inv.push(result);fresh=result.id;
+    if(isNew){inv.push(result);fresh=result.id;}
     ra.className='rarea ok';ra.innerHTML=iHTML(result);
-    if(isNew){var lb={common:'Common',uncommon:'Uncommon',rare:'✶ Rare',epic:'★ Epic'};toast((lb[result.rarity]||'')+' · '+result.name+' discovered!');}
-    renderInv();updateT();
-  }else{ra.className='rarea no';ra.innerHTML='<span class="rl">Result</span><span style="font-size:.72rem;color:rgba(200,80,80,.55)">No recipe found</span>';}
+    if(isNew){
+      var lb={common:'Common',uncommon:'Uncommon',rare:'✶ Rare',epic:'★ Epic'};
+      toast((lb[result.rarity]||'')+' · '+result.name+' discovered!');
+      renderInv();updateT();
+    } else {
+      toast('You\'ve already crafted that one! ✦');
+    }
+    failCount=0;updateHintBtn();
+  }else{ra.className='rarea no';ra.innerHTML='<span class="rl">Result</span><span style="font-size:.72rem;color:rgba(200,80,80,.55)">No recipe found</span>';failCount++;updateHintBtn();}
 });
 
 document.getElementById('xBtn').addEventListener('click',function(){slots=[null,null];clearSlot(0);clearSlot(1);});
 document.getElementById('sIn').addEventListener('input',function(e){qry=e.target.value;renderInv();});
 document.querySelectorAll('.fb').forEach(function(btn){btn.addEventListener('click',function(){document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');filt=btn.dataset.r;renderInv();});});
+
+/* ── HINT SYSTEM ── */
+function updateHintBtn(){
+  var btn=document.getElementById('hBtn');
+  var counter=document.getElementById('hFails');
+  if(failCount>=5){btn.classList.add('visible');counter.textContent='Ready!';}
+  else{btn.classList.remove('visible');counter.textContent=failCount+'/5';}
+}
+
+function ingName(id){return id.replace(/_/g,' ').replace(/\b\w/g,function(l){return l.toUpperCase();});}
+
+function getHint(){
+  var have=new Set(inv.map(function(i){return i.id;}));
+  var rarityOrder={common:0,uncommon:1,rare:2,epic:3};
+  // Determine anchor: prefer slot[0] if filled, then slot[1]
+  var anchor=slots[0]?slots[0].id:(slots[1]?slots[1].id:null);
+  var anchored=[],bothHave=[],oneHave=[];
+  Object.keys(R).forEach(function(combo){
+    var result=R[combo];
+    if(have.has(result.id)) return; // already discovered
+    var parts=combo.split('+');
+    var a=parts[0],b=parts[1];
+    var hasA=have.has(a),hasB=have.has(b);
+    if(!hasA&&!hasB) return; // can't make either
+    var entry={a:a,b:b,result:result,hasA:hasA,hasB:hasB};
+    // Anchored: one of the ingredients matches what's in the slot
+    if(anchor&&(a===anchor||b===anchor)){
+      if(hasA&&hasB) anchored.push(entry);
+      else oneHave.push(entry);
+    } else if(hasA&&hasB){
+      bothHave.push(entry);
+    } else {
+      oneHave.push(entry);
+    }
+  });
+  function sortByRarity(arr){
+    arr.sort(function(x,y){
+      var d=(rarityOrder[x.result.rarity]||0)-(rarityOrder[y.result.rarity]||0);
+      return d!==0?d:x.result.name.localeCompare(y.result.name);
+    });
+  }
+  sortByRarity(anchored); sortByRarity(bothHave); sortByRarity(oneHave);
+  // Priority: slot-anchored craftable > any craftable > partial
+  return anchored.length?anchored[0]:(bothHave.length?bothHave[0]:(oneHave.length?oneHave[0]:null));
+}
+
+function showHint(){
+  var hint=getHint();
+  var overlay=document.getElementById('hOverlay');
+  var hRecipe=document.getElementById('hRecipe');
+  var hBody=document.getElementById('hBody');
+  var hFooter=document.getElementById('hFooter');
+  if(!hint){
+    hBody.textContent="You've found everything currently craftable — remarkable work. Try combining your discovered items to unlock deeper recipes.";
+    hRecipe.innerHTML='<span style="font-size:2.2rem">&#10024;</span>';
+    hFooter.textContent='The table holds no more secrets at this level.';
+  } else {
+    var bodies={
+      common:"Sometimes the simplest combinations are the ones we overlook.",
+      uncommon:"This one takes a little intuition — but you have what you need.",
+      rare:"You're closer to something rare than you might think.",
+      epic:"A deep recipe awaits — but every journey starts with a single step."
+    };
+    // If anchored to a slot item, use a more targeted message
+    var anchor=slots[0]?slots[0].id:(slots[1]?slots[1].id:null);
+    var isAnchored=anchor&&(hint.a===anchor||hint.b===anchor);
+    if(isAnchored){
+      var slotItemName=ingName(anchor);
+      bodies.common="That "+slotItemName+" has more potential than it's shown yet.";
+      bodies.uncommon="Try pairing that "+slotItemName+" with something unexpected.";
+      bodies.rare="That "+slotItemName+" is the key to something special.";
+      bodies.epic="The "+slotItemName+" you're holding opens a deep path.";
+    }
+    hBody.textContent=bodies[hint.result.rarity]||bodies.common;
+    var aIco=hint.hasA?ico(hint.a):'&#10067;';
+    var bIco=hint.hasB?ico(hint.b):'&#10067;';
+    var aNm=hint.hasA?ingName(hint.a):'Not yet found';
+    var bNm=hint.hasB?ingName(hint.b):'Not yet found';
+    hRecipe.innerHTML=
+      '<div class="hmodal-ing"><span class="ic">'+aIco+'</span><span class="nm">'+aNm+'</span></div>'
+      +'<span class="hmodal-plus">+</span>'
+      +'<div class="hmodal-ing"><span class="ic">'+bIco+'</span><span class="nm">'+bNm+'</span></div>';
+    hFooter.textContent=(!hint.hasA||!hint.hasB)
+      ?'One ingredient is still waiting to be discovered.'
+      :'Both are in your inventory — drag them to the slots, or just click each one.';
+  }
+  overlay.classList.add('open');
+  failCount=0; updateHintBtn();
+}
+
+function closeHint(){document.getElementById('hOverlay').classList.remove('open');}
+document.getElementById('hBtn').addEventListener('click',showHint);
+document.getElementById('hClose').addEventListener('click',closeHint);
+document.getElementById('hOverlay').addEventListener('click',function(e){if(e.target===this)closeHint();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeHint();});
 
 function renderInv(){
   var g=document.getElementById('iG');
