@@ -141,6 +141,25 @@
     max-width: 700px;
   }
 
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1.4rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.35s;
+  }
+  .htag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.85rem;
+    border-radius: 50px;
+    background: rgba(201, 123, 90, 0.1);
+    color: var(--brown);
+    border: 1px solid rgba(201, 123, 90, 0.25);
+  }
   .hero-eyebrow {
     font-size: 0.8rem;
     font-weight: 700;
@@ -413,6 +432,35 @@
   }
   .project-link:hover { gap: 0.75rem; }
 
+  /* ── AT-A-GLANCE BLOCKS ── */
+  .glance-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(200, 150, 120, 0.18);
+  }
+  .glance-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .glance-label {
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+  }
+  .glance-value {
+    font-size: 0.88rem;
+    color: var(--text-soft);
+    line-height: 1.45;
+  }
+  @media (max-width: 600px) {
+    .glance-row { grid-template-columns: 1fr; }
+  }
   /* ── CASE STUDY ── */
   .case-study { background: var(--warm-white); padding: 6rem 3rem; }
   .case-study-inner { max-width: 860px; margin: 0 auto; }
@@ -575,10 +623,6 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Work</a></li>
-    <li><a href="#case-study">Kokoron</a></li>
-    <li><a href="#case-study-luminare">Luminare</a></li>
-    <li><a href="#case-study-weiss">WEISS</a></li>
-    <li><a href="#case-study-primus">Primus</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -589,6 +633,15 @@
   <canvas id="heroCanvas"></canvas>
   <div class="hero-content">
     <p class="hero-eyebrow">UX Designer · Unity Developer · Human-Centered Builder</p>
+    <div class="hero-tags">
+      <span class="htag">Unity · C#</span>
+      <span class="htag">UX Design</span>
+      <span class="htag">VR / XR</span>
+      <span class="htag">Mobile</span>
+      <span class="htag">Game Systems</span>
+      <span class="htag">LLM Integration</span>
+      <span class="htag">Service Design</span>
+    </div>
     <h1>I design experiences that take people's <em>inner lives</em> seriously.</h1>
     <p class="hero-sub">Writing teacher turned self-taught developer. 18 years building in Korea. Now crafting apps, VR experiences, and games that sit at the intersection of technology and the human heart.</p>
     <div class="hero-cta">
@@ -721,6 +774,11 @@
     <div class="case-header reveal">
       <p class="section-label">Case Study</p>
       <h2 class="section-title">Kokoron — Designing for Emotional Safety</h2>
+      <div class="glance-row">
+        <div class="glance-item"><span class="glance-label">Role</span><span class="glance-value">Solo designer &amp; developer (team of 4)</span></div>
+        <div class="glance-item"><span class="glance-label">Stack</span><span class="glance-value">Unity · C# · HTML5</span></div>
+        <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Full production app built solo in a course context; trauma-informed design praised by course instructors</span></div>
+      </div>
     </div>
     <div class="case-body">
       <div class="case-block reveal">
@@ -748,7 +806,7 @@
       <div class="case-block reveal">
         <h3>What I Built</h3>
         <p>The entire product — name, concept, architecture, UI design, codebase, monetization strategy, and UX writing — was designed and built by me in Unity for a mobile app development course. The team of four was, in practice, a team of one.</p>
-        <p>The app was ported to HTML5 for web demonstration. Data persistence uses JSON-based local storage. The 3D Kokoron creature was licensed through the Unity Asset Store; all other design work is original.</p>
+        <p>The app was ported to HTML5 for web demonstration. Data persistence uses JSON-based local storage. Visual assets licensed through the Unity Asset Store; all other design work is original.</p>
       </div>
       <div class="case-block reveal">
         <h3>What I'd Do Next</h3>
@@ -764,6 +822,11 @@
     <div class="case-header reveal">
       <p class="section-label">Case Study</p>
       <h2 class="section-title">Project Luminare — Therapy You Can Touch</h2>
+      <div class="glance-row">
+        <div class="glance-item"><span class="glance-label">Role</span><span class="glance-value">Solo designer &amp; developer</span></div>
+        <div class="glance-item"><span class="glance-label">Stack</span><span class="glance-value">Unity · VR (Meta Quest) · Local LLM · Dissolve Shaders</span></div>
+        <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Fully functional 10-session ritual experience; privacy-first voice processing via local LLM; personal project designed independently after leaving Fayston Prep</span></div>
+      </div>
     </div>
     <div class="case-body">
       <div class="case-block reveal">
@@ -814,6 +877,11 @@
     <div class="case-header reveal">
       <p class="section-label">Case Study</p>
       <h2 class="section-title">WEISS — Designing a World That Stopped</h2>
+      <div class="glance-row">
+        <div class="glance-item"><span class="glance-label">Role</span><span class="glance-value">Solo designer &amp; developer</span></div>
+        <div class="glance-item"><span class="glance-label">Stack</span><span class="glance-value">Unity · C# · Procedural Systems · Custom Economy Engine</span></div>
+        <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">6+ implemented game systems; years of active development; used as portfolio centerpiece for game design and systems thinking roles</span></div>
+      </div>
     </div>
     <div class="case-body">
       <div class="case-block reveal">
@@ -851,6 +919,7 @@
       <div class="case-block reveal">
         <h3>What I Built</h3>
         <p>WEISS has been in development for several years as a solo project built entirely in Unity. Current implemented systems include: the full shop economy with dynamic demand events, the town rebuilding framework, housing and NPC placement, the relationship and party formation system, the hybrid ATB deck-building combat, gathering and multi-discipline crafting, the procedural dungeon system, a full day/night cycle with time-based events, and the character equipment and stat system. Visual assets are licensed from the Unity Asset Store; all systems, architecture, design, and writing are original.</p>
+        <p><strong>Design process.</strong> WEISS is designed entirely within Unity itself — no wireframes, no external prototyping tools. Each system is built, played, and iterated on directly in the engine. This means the design record lives in the code and scene history rather than in spec documents, but it also means every mechanic has been genuinely playtested at every stage of development rather than theorized on paper.</p>
       </div>
       <div class="case-block reveal">
         <h3>What I'd Do Next</h3>
@@ -866,6 +935,11 @@
     <div class="case-header reveal">
       <p class="section-label">Case Study</p>
       <h2 class="section-title">Primus Volatus — Redesigning a Broken System</h2>
+      <div class="glance-row">
+        <div class="glance-item"><span class="glance-label">Role</span><span class="glance-value">Lead designer (reduced-staff constraint)</span></div>
+        <div class="glance-item"><span class="glance-label">Methods</span><span class="glance-value">Service Design · Systems Thinking · Survey Research · Behavioral Design</span></div>
+        <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Attendance improved; cohort's collaborative behavior measurably changed by semester two; zero additional student time required</span></div>
+      </div>
     </div>
     <div class="case-body">
       <div class="case-block reveal">
@@ -951,6 +1025,7 @@
     <p>I'm currently open to UXD roles, game design positions, wellness tech opportunities, and interesting contract work — especially anything that sits at the intersection of technology and human experience.</p>
     <div class="contact-links">
       <a href="mailto:arkudel@gmail.com" class="btn btn-primary">Send an Email</a>
+      <a href="James_Smith_Resume.docx" class="btn btn-ghost" download>Download CV</a>
       <a href="https://www.linkedin.com/in/james-smith-11bb76a1/" class="btn btn-ghost">LinkedIn</a>
       <a href="https://github.com/arkudel" class="btn btn-ghost">GitHub</a>
     </div>
