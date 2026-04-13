@@ -7,43 +7,13 @@
     "tier": "regular",
     "warmth": 8.5,
     "visitCount": 14,
-    "messageCount": 32,
+    "messageCount": 36,
     "firstSeen": 1776050357951,
-    "lastSeen": 1776076885847,
-    "mana": 56,
-    "lifetime": 146,
+    "lastSeen": 1776077020077,
+    "mana": 50,
+    "lifetime": 150,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776072127863
-      },
-      {
-        "type": "spend",
-        "amount": 10,
-        "reason": "sdvspell_ring_bell",
-        "ts": 1776072127866
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776072144023
-      },
-      {
-        "type": "spend",
-        "amount": 80,
-        "reason": "sdvspell_earthquake",
-        "ts": 1776072144025
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776072264861
-      },
       {
         "type": "earn",
         "amount": 10,
@@ -73,6 +43,36 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776076885848
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776076973063
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776076989724
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776077012519
+      },
+      {
+        "type": "spend",
+        "amount": 10,
+        "reason": "sdvspell_ring_bell",
+        "ts": 1776077012521
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776077020078
       }
     ],
     "topDrinks": [
@@ -166,31 +166,13 @@
     "tier": "stranger",
     "warmth": 0,
     "visitCount": 1,
-    "messageCount": 18,
+    "messageCount": 20,
     "firstSeen": 1776076393392,
-    "lastSeen": 1776076944161,
-    "mana": 413,
-    "lifetime": 423,
+    "lastSeen": 1776077013630,
+    "mana": 375,
+    "lifetime": 425,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776076759116
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776076808519
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776076844567
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -232,6 +214,24 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776076944162
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776076968828
+      },
+      {
+        "type": "spend",
+        "amount": 40,
+        "reason": "sdvspell_mail_coffee",
+        "ts": 1776076968830
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776077013632
       }
     ],
     "topDrinks": [],
