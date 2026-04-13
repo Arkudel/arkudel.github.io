@@ -7,31 +7,13 @@
     "tier": "regular",
     "warmth": 8.5,
     "visitCount": 14,
-    "messageCount": 36,
+    "messageCount": 39,
     "firstSeen": 1776050357951,
-    "lastSeen": 1776077020077,
-    "mana": 50,
-    "lifetime": 150,
+    "lastSeen": 1776077060729,
+    "mana": 53,
+    "lifetime": 153,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 10,
-        "reason": "quest_win_E",
-        "ts": 1776072769459
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776076474161
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776076564340
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -73,6 +55,24 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776077020078
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776077044120
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776077053014
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776077060730
       }
     ],
     "topDrinks": [
@@ -166,25 +166,13 @@
     "tier": "stranger",
     "warmth": 0,
     "visitCount": 1,
-    "messageCount": 20,
+    "messageCount": 22,
     "firstSeen": 1776076393392,
-    "lastSeen": 1776077013630,
-    "mana": 375,
-    "lifetime": 425,
+    "lastSeen": 1776077077245,
+    "mana": 377,
+    "lifetime": 427,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776076846774
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776076856041
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -232,6 +220,18 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776077013632
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776077021958
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776077077247
       }
     ],
     "topDrinks": [],
