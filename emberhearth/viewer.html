@@ -575,7 +575,10 @@ function render(data,rawName){
     body.innerHTML=`<div class="card-empty">No record found for <em>${rawName}</em>.<br><br>Chat during a stream first!<br>Records update every ~60s during a live stream.</div>`
     return
   }
-  const el=data.element?ELEMENTS[data.element]:null
+  const el  = data.element  ? ELEMENTS[data.element]  : null
+  const el2 = data.element2 ? ELEMENTS[data.element2] : null
+  const el3 = data.element3 ? ELEMENTS[data.element3] : null
+  const allEls = [data.element, data.element2, data.element3].filter(Boolean)
   const mana=data.mana??0
   const manaPct=Math.min(100,(mana/MANA_MAX)*100)
   const tier=TIER_LABELS[data.tier]??'Wanderer'
