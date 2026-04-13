@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emberhearth Adventurers Guild</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment:      #f5ead6;
+    --parchment-dark: #e8d4b0;
+    --parchment-deep: #d4bc8a;
+    --ink:            #2a1f0e;
+    --ink-faded:      #5c4a2a;
+    --ink-ghost:      #8a7050;
+    --seal-gold:      #c8962c;
+    --seal-gold-lt:   #e8c060;
+    --seal-gold-dim:  #8a6420;
+    --element-color:  #c8962c;
+    --element-glow:   #c8962c40;
+  }
+
+  html, body {
+    min-height: 100vh;
+    background: #1a1208;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: 'IM Fell English', Georgia, serif;
+    padding: 20px;
+  }
+
+  /* ── Search bar ─────────────────────────────────────────────────────────── */
+  .search-wrap {
+    width: 100%;
+    max-width: 460px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .search-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 13px;
+    color: #c8962c;
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+  }
+
+  .search-sub {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: #8a7050;
+    margin-bottom: 14px;
+  }
+
+  .search-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .search-input {
+    flex: 1;
+    background: #f5ead6;
+    border: 1px solid #8a6420;
+    border-radius: 2px;
+    padding: 8px 12px;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    color: #2a1f0e;
+    outline: none;
+  }
+
+  .search-input::placeholder { color: #8a7050; }
+  .search-input:focus { border-color: #c8962c; }
+
+  .search-btn {
+    background: #2a1f0e;
+    border: 1px solid #8a6420;
+    border-radius: 2px;
+    padding: 8px 16px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: #c8962c;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    transition: border-color 0.2s;
+  }
+
+  .search-btn:hover { border-color: #c8962c; }
+
+  .last-updated {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 10px;
+    color: #5c4a2a;
+    margin-top: 8px;
+  }
+
+  /* ── Card ───────────────────────────────────────────────────────────────── */
+  .card-wrap { perspective: 1200px; }
+
+  .card {
+    width: 420px;
+    min-height: 580px;
+    position: relative;
+    background: linear-gradient(165deg, #f8f0dc 0%, #f0e4c4 30%, #e8d4a8 60%, #f2e6c8 100%);
+    border-radius: 4px;
+    padding: 28px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    box-shadow:
+      0 0 0 1px #a08040,
+      0 0 0 3px #8a6820,
+      0 2px 40px #00000080,
+      inset 0 0 60px #b8903020,
+      0 0 30px var(--element-glow);
+    animation: cardReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes cardReveal {
+    from { opacity: 0; transform: translateY(16px) scale(0.97); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .card::before { content:''; position:absolute; top:10px; left:10px; width:48px; height:48px; border:2px solid #8a6420; border-width:2px 0 0 2px; opacity:.6; }
+  .card::after  { content:''; position:absolute; bottom:10px; right:10px; width:48px; height:48px; border:2px solid #8a6420; border-width:0 2px 2px 0; opacity:.6; }
+  .corner-tl { position:absolute; top:10px; right:10px; width:48px; height:48px; border:2px solid #8a6420; border-width:2px 2px 0 0; opacity:.6; }
+  .corner-br { position:absolute; bottom:10px; left:10px; width:48px; height:48px; border:2px solid #8a6420; border-width:0 0 2px 2px; opacity:.6; }
+
+  .guild-header { text-align:center; padding-bottom:12px; margin-bottom:14px; border-bottom:1px solid var(--seal-gold-dim); }
+  .guild-title  { font-family:'Cinzel Decorative',serif; font-size:9px; letter-spacing:.35em; text-transform:uppercase; color:var(--ink-faded); margin-bottom:3px; }
+  .guild-name   { font-family:'Cinzel Decorative',serif; font-size:18px; font-weight:700; color:var(--seal-gold-dim); letter-spacing:.08em; line-height:1; }
+  .guild-sub    { font-family:'IM Fell English SC',serif; font-size:8px; letter-spacing:.4em; color:var(--ink-ghost); margin-top:4px; text-transform:uppercase; }
+
+  .divider { display:flex; align-items:center; gap:8px; margin:10px 0; opacity:.5; }
+  .divider-line { flex:1; height:1px; background:var(--seal-gold-dim); }
+  .divider-gem  { font-size:8px; color:var(--seal-gold); }
+
+  .element-seal { display:flex; align-items:center; gap:16px; margin-bottom:14px; }
+
+  .seal-circle {
+    width:80px; height:80px; flex-shrink:0; border-radius:50%;
+    background:var(--parchment-dark); border:2px solid var(--seal-gold-dim);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    position:relative;
+    box-shadow: inset 0 2px 8px #00000018, 0 0 16px var(--element-glow), 0 0 0 1px var(--element-color);
+  }
+  .seal-circle::before {
+    content:''; position:absolute; inset:4px; border-radius:50%;
+    border:1px solid var(--element-color); opacity:.3;
+  }
+  .seal-emoji  { font-size:32px; line-height:1; }
+  .seal-rarity { font-family:'Cinzel',serif; font-size:7px; letter-spacing:.2em; text-transform:uppercase; color:var(--element-color); margin-top:2px; opacity:.8; }
+
+  .seal-info { flex:1; }
+  .viewer-name    { font-family:'Cinzel',serif; font-size:18px; font-weight:600; color:var(--ink); letter-spacing:.02em; line-height:1.1; word-break:break-word; }
+  .element-title  { font-family:'IM Fell English',serif; font-style:italic; font-size:13px; color:var(--element-color); margin-top:2px; }
+  .element-name   { font-family:'Cinzel',serif; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-ghost); margin-top:4px; }
+  .element-desc   { font-family:'IM Fell English',serif; font-style:italic; font-size:10.5px; color:var(--ink-faded); margin-top:6px; line-height:1.4; }
+  .tier-badge     { display:inline-flex; align-items:center; gap:4px; padding:2px 8px; border:1px solid var(--element-color); border-radius:1px; font-family:'Cinzel',serif; font-size:8px; letter-spacing:.25em; text-transform:uppercase; color:var(--element-color); background:var(--parchment-dark); margin-top:6px; }
+
+  .stats-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:12px; }
+  .stat-box { background:var(--parchment-dark); border:1px solid var(--parchment-deep); border-radius:2px; padding:8px 6px; text-align:center; position:relative; overflow:hidden; }
+  .stat-box::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--element-color); opacity:.5; }
+  .stat-label { font-family:'Cinzel',serif; font-size:7px; letter-spacing:.25em; text-transform:uppercase; color:var(--ink-ghost); display:block; margin-bottom:4px; }
+  .stat-value { font-family:'Cinzel',serif; font-size:18px; font-weight:600; color:var(--ink); display:block; line-height:1; }
+  .stat-unit  { font-family:'IM Fell English',serif; font-style:italic; font-size:9px; color:var(--ink-faded); }
+
+  .mana-section { margin-bottom:12px; }
+  .mana-label-row { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:5px; }
+  .mana-label { font-family:'Cinzel',serif; font-size:8px; letter-spacing:.3em; text-transform:uppercase; color:var(--ink-ghost); }
+  .mana-value { font-family:'Cinzel',serif; font-size:11px; font-weight:600; color:var(--element-color); }
+  .mana-track { height:8px; background:var(--parchment-dark); border:1px solid var(--parchment-deep); border-radius:1px; overflow:hidden; }
+  .mana-fill  { height:100%; background:linear-gradient(90deg, var(--element-color), var(--seal-gold-lt)); border-radius:1px; }
+
+  .section-head { font-family:'Cinzel',serif; font-size:8px; letter-spacing:.35em; text-transform:uppercase; color:var(--ink-ghost); margin-bottom:7px; display:flex; align-items:center; gap:8px; }
+  .section-head::after { content:''; flex:1; height:1px; background:var(--parchment-deep); }
+
+  .activity-list { display:flex; flex-direction:column; gap:3px; margin-bottom:12px; }
+  .activity-item { font-family:'IM Fell English',serif; font-style:italic; font-size:10px; color:var(--ink-faded); padding:2px 0; display:flex; gap:6px; }
+  .activity-time { font-family:'Cinzel',serif; font-size:8px; color:var(--ink-ghost); white-space:nowrap; flex-shrink:0; }
+
+  .card-footer { margin-top:auto; padding-top:12px; border-top:1px solid var(--parchment-deep); display:flex; justify-content:space-between; align-items:flex-end; }
+  .card-id   { font-family:'Cinzel',serif; font-size:7.5px; letter-spacing:.15em; color:var(--ink-ghost); }
+  .card-seal { font-family:'Cinzel Decorative',serif; font-size:8px; color:var(--seal-gold-dim); letter-spacing:.1em; text-align:right; }
+
+  .not-found {
+    text-align:center; padding:60px 20px;
+    color:var(--ink-ghost); font-style:italic; font-size:13px;
+  }
+
+  @media (max-width: 480px) {
+    .card { width: 100%; min-width: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="search-wrap">
+  <div class="search-title">⚒ Emberhearth Adventurers Guild</div>
+  <div class="search-sub">Enter your Twitch username to view your guild record</div>
+  <div class="search-row">
+    <input class="search-input" id="name-input" type="text" placeholder="Your Twitch username"
+      onkeydown="if(event.key==='Enter') lookupViewer()">
+    <button class="search-btn" onclick="lookupViewer()">Look up</button>
+  </div>
+  <div class="last-updated" id="last-updated"></div>
+</div>
+
+<div class="card-wrap" id="card-wrap" style="display:none">
+  <div class="card" id="card">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="guild-header">
+      <div class="guild-title">The Order of the Hearthstone</div>
+      <div class="guild-name">Emberhearth</div>
+      <div class="guild-sub">Adventurers Guild — Member Record</div>
+    </div>
+    <div id="card-body"><div class="not-found">Consulting the records...</div></div>
+  </div>
+</div>
+
+<script>
+// ── Config — update GITHUB_RAW_URL to your repo ──────────────────────────────
+// This is the raw URL of viewers.json in your GitHub repo.
+// Pattern: https://raw.githubusercontent.com/USERNAME/REPO/main/PATH/viewers.json
+const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/arkudel/arkudel.github.io/main/emberhearth/viewers.json'
+
+// ── Element metadata ──────────────────────────────────────────────────────────
+const ELEMENTS = {
+  fire:      { emoji:'🔥', title:'Ember-Touched',  color:'#E8593C', glow:'#E8593C40', rarity:'common',    desc:'Hot-headed and volatile. Alyrin respects the passion, not the chaos.' },
+  water:     { emoji:'💧', title:'Tide-Called',    color:'#3B8BD4', glow:'#3B8BD440', rarity:'common',    desc:'Patient and deep. Takes a while to boil, but devastating once it does.' },
+  earth:     { emoji:'⛰',  title:'Stone-Bound',    color:'#9A7C50', glow:'#9A7C5040', rarity:'common',    desc:'Solid. Reliable. Dwarvish, honestly. Alyrin approves.' },
+  wind:      { emoji:'🌬', title:'Gale-Marked',    color:'#7098A8', glow:'#7098A840', rarity:'common',    desc:'Never stays still. Restless folk, the lot of them.' },
+  lightning: { emoji:'⚡', title:'Storm-Sparked',  color:'#C8A030', glow:'#C8A03040', rarity:'common',    desc:'Fast. Dangerous. Burns out quick if not careful.' },
+  holy:      { emoji:'✨', title:'Light-Chosen',   color:'#D4B040', glow:'#D4B04050', rarity:'rare',      desc:'Rare thing, genuine goodness. Alyrin finds it suspicious.' },
+  darkness:  { emoji:'🌑', title:'Shadow-Touched', color:'#8060C0', glow:'#8060C040', rarity:'rare',      desc:'Not evil. Just... comfortable where others are not.' },
+  void:      { emoji:'🕳', title:'Void-Marked',    color:'#5070A0', glow:'#5070A040', rarity:'rare',      desc:'Something missing. Or something vast. Hard to say which.' },
+  storm:     { emoji:'🌩', title:'Tempest-Born',   color:'#7090A8', glow:'#7090A840', rarity:'rare',      desc:'Wind and lightning married badly. Spectacular and exhausting.' },
+}
+
+const TIER_LABELS = {
+  stranger:    'Wanderer',
+  regular:     'Regular',
+  friend:      'Friend of the Guild',
+  auld_friend: 'Auld Friend',
+}
+
+const MANA_MAX = 500
+
+// ── Utilities ─────────────────────────────────────────────────────────────────
+function timeAgo(ts) {
+  if (!ts) return 'unknown'
+  const s = Math.floor((Date.now() - ts) / 1000)
+  if (s < 60)    return 'just now'
+  if (s < 3600)  return `${Math.floor(s/60)}m ago`
+  if (s < 86400) return `${Math.floor(s/3600)}h ago`
+  return `${Math.floor(s/86400)}d ago`
+}
+
+function titleCase(s) {
+  return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''
+}
+
+function rank(visitCount, messageCount, warmth) {
+  const score = (visitCount * 3) + Math.floor(messageCount / 10) + warmth
+  if (score >= 100) return { label:'Grand Adventurer',    numeral:'IV' }
+  if (score >= 50)  return { label:'Seasoned Adventurer', numeral:'III' }
+  if (score >= 20)  return { label:'Journeyman',          numeral:'II' }
+  return                   { label:'Initiate',            numeral:'I' }
+}
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let allViewers = null
+let fetchedAt  = null
+
+// ── Fetch viewers.json from GitHub ────────────────────────────────────────────
+async function fetchViewers() {
+  try {
+    // Cache-bust so we always get the latest file
+    const res  = await fetch(GITHUB_RAW_URL + '?t=' + Date.now())
+    allViewers = await res.json()
+    fetchedAt  = Date.now()
+    document.getElementById('last-updated').textContent =
+      `Data last fetched: just now — updates every ~60 seconds during stream`
+  } catch (err) {
+    document.getElementById('last-updated').textContent =
+      `Could not reach guild records. Stream may be offline.`
+  }
+}
+
+// ── Look up and render ─────────────────────────────────────────────────────────
+async function lookupViewer() {
+  const name = document.getElementById('name-input').value.trim()
+  if (!name) return
+
+  // Update URL so the card is shareable / bookmarkable
+  history.replaceState(null, '', `?name=${encodeURIComponent(name)}`)
+  document.title = `${name} — Emberhearth Guild Card`
+
+  document.getElementById('card-wrap').style.display = 'block'
+  document.getElementById('card-body').innerHTML = '<div class="not-found">Consulting the records...</div>'
+
+  if (!allViewers) await fetchViewers()
+
+  const data = allViewers?.[name.toLowerCase()]
+  render(data, name)
+}
+
+// ── Render ────────────────────────────────────────────────────────────────────
+function render(data, rawName) {
+  const card = document.getElementById('card')
+  const body = document.getElementById('card-body')
+
+  if (!data) {
+    body.innerHTML = `<div class="not-found">
+      No record found for <em>${rawName}</em>.<br><br>
+      You need to have chatted during a stream first!<br>
+      If you have, the records update every ~60 seconds.
+    </div>`
+    return
+  }
+
+  const el   = data.element ? ELEMENTS[data.element] : null
+  const mana = data.mana ?? 0
+  const pct  = Math.min(100, (mana / MANA_MAX) * 100)
+  const r    = rank(data.visitCount ?? 0, data.messageCount ?? 0, data.warmth ?? 0)
+  const tier = TIER_LABELS[data.tier] ?? 'Wanderer'
+
+  // Apply element colour vars
+  card.style.setProperty('--element-color', el?.color ?? '#c8962c')
+  card.style.setProperty('--element-glow',  el?.glow  ?? '#c8962c40')
+
+  // Recent mana spends
+  const history = (data.history ?? []).filter(h => h.type === 'spend').slice(-3).reverse()
+  const activityHtml = history.length
+    ? history.map(h => `
+        <div class="activity-item">
+          <span class="activity-time">${timeAgo(h.ts)}</span>
+          <span>Cast <em>${(h.reason ?? '').replace(/^sdvspell_/,'').replace(/_/g,' ')}</em> (−${h.amount} mana)</span>
+        </div>`).join('')
+    : `<div class="activity-item" style="color:var(--ink-ghost)">No recent spell use.</div>`
+
+  body.innerHTML = `
+    <div class="element-seal">
+      <div class="seal-circle">
+        <span class="seal-emoji">${el?.emoji ?? '✦'}</span>
+        <span class="seal-rarity">${el ? titleCase(el.rarity) : '—'}</span>
+      </div>
+      <div class="seal-info">
+        <div class="viewer-name">${data.displayName ?? rawName}</div>
+        ${el ? `
+          <div class="element-title">${el.title}</div>
+          <div class="element-name">${titleCase(data.element)} Element</div>
+          <div class="element-desc">"${el.desc}"</div>
+        ` : `<div class="element-desc" style="margin-top:8px;font-style:italic">Element unassigned — type !element in chat.</div>`}
+        <div class="tier-badge">${tier}</div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <span class="stat-label">Rank</span>
+        <span class="stat-value">${r.numeral}</span>
+        <span class="stat-unit">${r.label}</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">Visits</span>
+        <span class="stat-value">${data.visitCount ?? 0}</span>
+        <span class="stat-unit">streams</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">Messages</span>
+        <span class="stat-value">${data.messageCount ?? 0}</span>
+        <span class="stat-unit">total</span>
+      </div>
+    </div>
+
+    <div class="mana-section">
+      <div class="mana-label-row">
+        <span class="mana-label">✦ Mana Reserve</span>
+        <span class="mana-value">${mana} / ${MANA_MAX}</span>
+      </div>
+      <div class="mana-track">
+        <div class="mana-fill" style="width:${pct}%"></div>
+      </div>
+    </div>
+
+    <div class="divider"><div class="divider-line"></div><div class="divider-gem">✦</div><div class="divider-line"></div></div>
+
+    <div class="section-head">Recent Deeds</div>
+    <div class="activity-list">${activityHtml}</div>
+
+    <div class="card-footer">
+      <div>
+        <div class="card-id">Member since ${data.firstSeen ? new Date(data.firstSeen).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : '—'}</div>
+        <div class="card-id" style="margin-top:2px">Last seen ${timeAgo(data.lastSeen)}</div>
+      </div>
+      <div class="card-seal">Emberhearth<br>Adventurers Guild<br><span style="font-size:6px;letter-spacing:.3em">EST. YEAR ONE</span></div>
+    </div>
+  `
+}
+
+// ── Boot — check for ?name= in URL ────────────────────────────────────────────
+fetchViewers()  // pre-fetch in background immediately
+
+const params = new URLSearchParams(location.search)
+const urlName = params.get('name') || params.get('viewer')
+if (urlName) {
+  document.getElementById('name-input').value = urlName
+  lookupViewer()
+}
+</script>
+</body>
+</html>
