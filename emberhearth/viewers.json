@@ -157,5 +157,34 @@
       "questsCompleted": 0,
       "wins": 0
     }
+  },
+  "easybusyneedle": {
+    "displayName": "easybusyneedle",
+    "element": null,
+    "element2": null,
+    "element3": null,
+    "tier": "stranger",
+    "warmth": 0,
+    "visitCount": 1,
+    "messageCount": 1,
+    "firstSeen": 1776076393392,
+    "lastSeen": 1776076393392,
+    "mana": 1,
+    "lifetime": 1,
+    "cooldowns": {},
+    "history": [
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776076393396
+      }
+    ],
+    "topDrinks": [],
+    "adventure": {
+      "xp": 0,
+      "questsCompleted": 0,
+      "wins": 0
+    }
   }
 }
