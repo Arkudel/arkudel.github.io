@@ -160,17 +160,17 @@
   },
   "easybusyneedle": {
     "displayName": "easybusyneedle",
-    "element": null,
+    "element": "fire",
     "element2": null,
     "element3": null,
     "tier": "stranger",
     "warmth": 0,
     "visitCount": 1,
-    "messageCount": 4,
+    "messageCount": 6,
     "firstSeen": 1776076393392,
-    "lastSeen": 1776076529259,
-    "mana": 404,
-    "lifetime": 404,
+    "lastSeen": 1776076596472,
+    "mana": 411,
+    "lifetime": 411,
     "cooldowns": {},
     "history": [
       {
@@ -202,6 +202,24 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776076529260
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776076578646
+      },
+      {
+        "type": "earn",
+        "amount": 5,
+        "reason": "element_assignment",
+        "ts": 1776076578650
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776076596475
       }
     ],
     "topDrinks": [],
