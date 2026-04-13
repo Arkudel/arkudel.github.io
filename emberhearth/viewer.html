@@ -145,6 +145,10 @@ html,body{min-height:100vh;background:var(--bg);font-family:'IM Fell English',Ge
   border:5px solid transparent;border-top-color:#5c3d1a;
 }
 .has-tip:hover .tip{display:block}
+.spell-cmd{cursor:pointer}
+.spell-cmd.copied{background:var(--element-color)!important;color:var(--parchment)!important;border-color:var(--element-color)!important}
+.menu-item-cmd{cursor:pointer}
+.menu-item-cmd.copied{background:rgba(200,150,44,.5)!important;color:#fff!important}
 /* keep tooltip visible even when it extends above the panel */
 .spell-grid,.spell-row,.game-panel-body{overflow:visible}
 .game-panel{overflow:visible}
@@ -181,28 +185,28 @@ html,body{min-height:100vh;background:var(--bg);font-family:'IM Fell English',Ge
     <div class="menu-sub">Order with !order [name] in chat</div>
     <div class="menu-divider"></div>
     <div class="menu-section-title">&#10022; Quietude</div>
-    <div class="menu-item"><div class="menu-item-name">Summer's Solemnity</div><div class="menu-item-desc">For the weight of choices made and roads not taken.</div><div class="menu-item-cmd">!order summers solemnity</div></div>
-    <div class="menu-item"><div class="menu-item-name">The Grey Wanderer</div><div class="menu-item-desc">When the road has been long and the boots are heavy.</div><div class="menu-item-cmd">!order grey wanderer</div></div>
-    <div class="menu-item"><div class="menu-item-name">Ember's Last Light</div><div class="menu-item-desc">Something ending. Something beginning. The space between.</div><div class="menu-item-cmd">!order embers last light</div></div>
+    <div class="menu-item"><div class="menu-item-name">Summer's Solemnity</div><div class="menu-item-desc">For the weight of choices made and roads not taken.</div><div class="menu-item-cmd" onclick="copyCmd(this,'!order summers solemnity')">!order summers solemnity</div></div>
+    <div class="menu-item"><div class="menu-item-name">The Grey Wanderer</div><div class="menu-item-desc">When the road has been long and the boots are heavy.</div><div class="menu-item-cmd" onclick="copyCmd(this,'!order grey wanderer')">!order grey wanderer</div></div>
+    <div class="menu-item"><div class="menu-item-name">Ember's Last Light</div><div class="menu-item-desc">Something ending. Something beginning. The space between.</div><div class="menu-item-cmd" onclick="copyCmd(this,'!order embers last light')">!order embers last light</div></div>
     <div class="menu-divider"></div>
     <div class="menu-section-title">&#10022; Warmth</div>
-    <div class="menu-item"><div class="menu-item-name">Hearthside Honey</div><div class="menu-item-desc">You want company tonight. Someone to sit with.</div><div class="menu-item-cmd">!order hearthside honey</div></div>
-    <div class="menu-item"><div class="menu-item-name">Auld Acquaintance</div><div class="menu-item-desc">For someone you know. Someone you've missed.</div><div class="menu-item-cmd">!order auld acquaintance</div></div>
-    <div class="menu-item"><div class="menu-item-name">The Welcome Mat</div><div class="menu-item-desc">First time here. Looking to belong somewhere.</div><div class="menu-item-cmd">!order welcome mat</div></div>
+    <div class="menu-item"><div class="menu-item-name">Hearthside Honey</div><div class="menu-item-desc">You want company tonight. Someone to sit with.</div><div class="menu-item-cmd" onclick="copyCmd(this,'!order hearthside honey')">!order hearthside honey</div></div>
+    <div class="menu-item"><div class="menu-item-name">Auld Acquaintance</div><div class="menu-item-desc">For someone you know. Someone you've missed.</div><div class="menu-item-cmd" onclick="copyCmd(this,'!order auld acquaintance')">!order auld acquaintance</div></div>
+    <div class="menu-item"><div class="menu-item-name">The Welcome Mat</div><div class="menu-item-desc">First time here. Looking to belong somewhere.</div><div class="menu-item-cmd" onclick="copyCmd(this,'!order welcome mat')">!order welcome mat</div></div>
     <div class="menu-divider"></div>
     <div class="menu-section-title">&#10022; Celebration</div>
-    <div class="menu-item"><div class="menu-item-name">Joyous Jubilee</div><div class="menu-item-desc">You have news. Good news. Say it out loud.</div><div class="menu-item-cmd">!order joyous jubilee</div></div>
-    <div class="menu-item"><div class="menu-item-name">The Golden Milestone</div><div class="menu-item-desc">Something real was achieved. Something earned.</div><div class="menu-item-cmd">!order golden milestone</div></div>
-    <div class="menu-item"><div class="menu-item-name">First Flame</div><div class="menu-item-desc">A beginning. First time doing something that matters.</div><div class="menu-item-cmd">!order first flame</div></div>
+    <div class="menu-item"><div class="menu-item-name">Joyous Jubilee</div><div class="menu-item-desc">You have news. Good news. Say it out loud.</div><div class="menu-item-cmd" onclick="copyCmd(this,'!order joyous jubilee')">!order joyous jubilee</div></div>
+    <div class="menu-item"><div class="menu-item-name">The Golden Milestone</div><div class="menu-item-desc">Something real was achieved. Something earned.</div><div class="menu-item-cmd" onclick="copyCmd(this,'!order golden milestone')">!order golden milestone</div></div>
+    <div class="menu-item"><div class="menu-item-name">First Flame</div><div class="menu-item-desc">A beginning. First time doing something that matters.</div><div class="menu-item-cmd" onclick="copyCmd(this,'!order first flame')">!order first flame</div></div>
     <div class="menu-divider"></div>
     <div class="menu-section-title">&#10022; Chaos</div>
-    <div class="menu-item"><div class="menu-item-name">The Rabblerouser</div><div class="menu-item-desc">You want to stir things up. Just enough to be interesting.</div><div class="menu-item-cmd">!order rabblerouser</div></div>
-    <div class="menu-item"><div class="menu-item-name">Fool's Fortune</div><div class="menu-item-desc">Feeling lucky. Whatever happens next, you wanted it.</div><div class="menu-item-cmd">!order fools fortune</div></div>
-    <div class="menu-item"><div class="menu-item-name">The Heckler's Draft</div><div class="menu-item-desc">You want to be given grief. Loudly. In front of everyone.</div><div class="menu-item-cmd">!order hecklers draft</div></div>
+    <div class="menu-item"><div class="menu-item-name">The Rabblerouser</div><div class="menu-item-desc">You want to stir things up. Just enough to be interesting.</div><div class="menu-item-cmd" onclick="copyCmd(this,'!order rabblerouser')">!order rabblerouser</div></div>
+    <div class="menu-item"><div class="menu-item-name">Fool's Fortune</div><div class="menu-item-desc">Feeling lucky. Whatever happens next, you wanted it.</div><div class="menu-item-cmd" onclick="copyCmd(this,'!order fools fortune')">!order fools fortune</div></div>
+    <div class="menu-item"><div class="menu-item-name">The Heckler's Draft</div><div class="menu-item-desc">You want to be given grief. Loudly. In front of everyone.</div><div class="menu-item-cmd" onclick="copyCmd(this,'!order hecklers draft')">!order hecklers draft</div></div>
     <div class="menu-divider"></div>
     <div class="menu-section-title">&#10022; Darkness</div>
-    <div class="menu-item"><div class="menu-item-name">Bitter Dark</div><div class="menu-item-desc">Something is hard right now. Don't pry. Just be present.</div><div class="menu-item-cmd">!order bitter dark</div></div>
-    <div class="menu-item"><div class="menu-item-name">The Unnamed Thing</div><div class="menu-item-desc">You can't say it yet. You needed somewhere to be.</div><div class="menu-item-cmd">!order unnamed thing</div></div>
+    <div class="menu-item"><div class="menu-item-name">Bitter Dark</div><div class="menu-item-desc">Something is hard right now. Don't pry. Just be present.</div><div class="menu-item-cmd" onclick="copyCmd(this,'!order bitter dark')">!order bitter dark</div></div>
+    <div class="menu-item"><div class="menu-item-name">The Unnamed Thing</div><div class="menu-item-desc">You can't say it yet. You needed somewhere to be.</div><div class="menu-item-cmd" onclick="copyCmd(this,'!order unnamed thing')">!order unnamed thing</div></div>
     <div class="menu-cmd-hint">All drinks are free. Alyrin judges your choices, not your coin.</div>
   </div>
 </div>
@@ -476,7 +480,7 @@ function cmdKey(n){return n.toLowerCase().replace(/[^a-z0-9]+/g,'_')}
 
 function spellRows(spells,cmd){
   if(!spells?.length)return'<div style="font-style:italic;font-size:10px;color:var(--ink-ghost);padding:2px 4px">No spells for this element.</div>'
-  return spells.map(([n,m,tip])=>`<div class="spell-row"><div class="spell-dot"></div><span class="spell-name">${n}</span><span class="spell-mana">${m} mana</span><span class="spell-cmd has-tip"><span class="tip">${tip||''}</span>!${cmd} ${cmdKey(n)}</span></div>`).join('')
+  return spells.map(([n,m,tip])=>{const c=`!${cmd} ${cmdKey(n)}`;return`<div class="spell-row"><div class="spell-dot"></div><span class="spell-name">${n}</span><span class="spell-mana">${m} mana</span><span class="spell-cmd has-tip" onclick="copyCmd(this,'${c.replace(/'/g,"\'")}')"><span class="tip">${tip||''}</span>${c}</span></div>`}).join('')
 }
 
 function panel(id,title,badge,body,dev=''){
@@ -486,6 +490,28 @@ function panel(id,title,badge,body,dev=''){
 }
 
 function tp(id){document.getElementById(id).classList.toggle('open')}
+
+function copyCmd(el,text){
+  navigator.clipboard.writeText(text).then(()=>{
+    el.classList.add('copied')
+    const tip=el.querySelector('.tip')
+    const orig=tip?tip.textContent:''
+    if(tip)tip.textContent='Copied!'
+    setTimeout(()=>{
+      el.classList.remove('copied')
+      if(tip)tip.textContent=orig
+    },1200)
+  }).catch(()=>{
+    // Fallback for browsers that block clipboard
+    const ta=document.createElement('textarea')
+    ta.value=text;ta.style.position='fixed';ta.style.opacity='0'
+    document.body.appendChild(ta);ta.select()
+    document.execCommand('copy')
+    document.body.removeChild(ta)
+    el.classList.add('copied')
+    setTimeout(()=>el.classList.remove('copied'),1200)
+  })
+}
 
 let allViewers=null
 
@@ -544,7 +570,7 @@ function render(data,rawName){
 
   const rwBody=`
     <div class="open-spells-note">Open to all elements:</div>
-    <div class="spell-grid">${RW_OPEN.map(([n,m,tip])=>`<div class="spell-row"><div class="spell-dot"></div><span class="spell-name">${n}</span><span class="spell-mana">${m} mana</span><span class="spell-cmd has-tip"><span class="tip">${tip||''}</span>!spell ${cmdKey(n)}</span></div>`).join('')}</div>
+    <div class="spell-grid">${RW_OPEN.map(([n,m,tip])=>{const c=`!spell ${cmdKey(n)}`;return`<div class="spell-row"><div class="spell-dot"></div><span class="spell-name">${n}</span><span class="spell-mana">${m} mana</span><span class="spell-cmd has-tip" onclick="copyCmd(this,'${c}')"><span class="tip">${tip||''}</span>${c}</span></div>`}).join('')}</div>
     ${elKey?`<div class="section-head" style="margin-top:10px">${tc(elKey)} element spells</div><div class="spell-grid">${spellRows(rwSpells,'spell')}</div>`:''}
   `
   const pkBody=elKey
@@ -557,7 +583,7 @@ function render(data,rawName){
 
   const spireBody=`
     <div class="open-spells-note">Open to all elements:</div>
-    <div class="spell-grid">${SPIRE_OPEN.map(([n,m,tip])=>`<div class="spell-row"><div class="spell-dot"></div><span class="spell-name">${n}</span><span class="spell-mana">${m} mana</span><span class="spell-cmd has-tip"><span class="tip">${tip||''}</span>!sspell ${cmdKey(n)}</span></div>`).join('')}</div>
+    <div class="spell-grid">${SPIRE_OPEN.map(([n,m,tip])=>{const c=`!sspell ${cmdKey(n)}`;return`<div class="spell-row"><div class="spell-dot"></div><span class="spell-name">${n}</span><span class="spell-mana">${m} mana</span><span class="spell-cmd has-tip" onclick="copyCmd(this,'${c}')"><span class="tip">${tip||''}</span>${c}</span></div>`}).join('')}</div>
     ${elKey?`<div class="section-head" style="margin-top:10px">${tc(elKey)} element spells</div><div class="spell-grid">${spellRows(spireSpells,'sspell')}</div>`:''}
   `
 
