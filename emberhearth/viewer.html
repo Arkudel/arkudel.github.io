@@ -22,14 +22,14 @@ html,body{min-height:100vh;background:var(--bg);font-family:'IM Fell English',Ge
 
 .header{grid-area:header;text-align:center}
 .site-title{font-family:'Cinzel Decorative',serif;font-size:clamp(14px,3vw,22px);color:var(--seal-gold);letter-spacing:.12em;margin-bottom:4px}
-.site-sub{font-family:'IM Fell English',serif;font-style:italic;font-size:12px;color:var(--ink-ghost);margin-bottom:16px}
+.site-sub{font-family:'IM Fell English',serif;font-style:italic;font-size:14px;color:var(--ink-ghost);margin-bottom:16px}
 .search-row{display:flex;gap:8px;max-width:440px;margin:0 auto 6px}
-.search-input{flex:1;background:var(--parchment);border:1px solid var(--seal-gold-dim);border-radius:2px;padding:8px 12px;font-family:'Cinzel',serif;font-size:13px;color:var(--ink);outline:none}
+.search-input{flex:1;background:var(--parchment);border:1px solid var(--seal-gold-dim);border-radius:2px;padding:8px 12px;font-family:'Cinzel',serif;font-size:15px;color:var(--ink);outline:none}
 .search-input::placeholder{color:var(--ink-ghost)}
 .search-input:focus{border-color:var(--seal-gold)}
-.search-btn{background:rgba(200,150,44,.15);border:1px solid var(--seal-gold-dim);border-radius:2px;padding:8px 18px;font-family:'Cinzel',serif;font-size:12px;color:var(--seal-gold);cursor:pointer;letter-spacing:.1em}
+.search-btn{background:rgba(200,150,44,.15);border:1px solid var(--seal-gold-dim);border-radius:2px;padding:8px 18px;font-family:'Cinzel',serif;font-size:14px;color:var(--seal-gold);cursor:pointer;letter-spacing:.1em}
 .search-btn:hover{background:rgba(200,150,44,.28);border-color:var(--seal-gold)}
-.last-updated{font-family:'IM Fell English',serif;font-style:italic;font-size:10px;color:#5c4a2a;margin-top:4px}
+.last-updated{font-family:'IM Fell English',serif;font-style:italic;font-size:12px;color:#5c4a2a;margin-top:4px}
 
 .card-col{grid-area:card}
 .card{background:linear-gradient(165deg,#f8f0dc 0%,#f0e4c4 30%,#e8d4a8 60%,#f2e6c8 100%);border-radius:4px;padding:26px 26px 22px;position:relative;box-shadow:0 0 0 1px #a08040,0 0 0 3px #8a6820,0 4px 40px #00000090,inset 0 0 60px #b8903020,0 0 30px var(--element-glow);animation:cardReveal .6s cubic-bezier(.16,1,.3,1) both}
@@ -40,23 +40,23 @@ html,body{min-height:100vh;background:var(--bg);font-family:'IM Fell English',Ge
 .corner-br{position:absolute;bottom:10px;left:10px;width:42px;height:42px;border:2px solid var(--seal-gold-dim);border-width:0 0 2px 2px;opacity:.55}
 
 .guild-header{text-align:center;padding-bottom:10px;margin-bottom:12px;border-bottom:1px solid var(--seal-gold-dim)}
-.guild-title{font-family:'Cinzel Decorative',serif;font-size:8px;letter-spacing:.35em;text-transform:uppercase;color:var(--ink-faded);margin-bottom:2px}
-.guild-name{font-family:'Cinzel Decorative',serif;font-size:17px;font-weight:700;color:var(--seal-gold-dim);letter-spacing:.08em}
-.guild-sub{font-family:'IM Fell English SC',serif;font-size:7px;letter-spacing:.4em;color:var(--ink-ghost);margin-top:3px;text-transform:uppercase}
+.guild-title{font-family:'Cinzel Decorative',serif;font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--ink-faded);margin-bottom:2px}
+.guild-name{font-family:'Cinzel Decorative',serif;font-size:20px;font-weight:700;color:var(--seal-gold-dim);letter-spacing:.08em}
+.guild-sub{font-family:'IM Fell English SC',serif;font-size:9px;letter-spacing:.4em;color:var(--ink-ghost);margin-top:3px;text-transform:uppercase}
 
 .element-seal{display:flex;align-items:center;gap:14px;margin-bottom:14px}
 .seal-circle{width:76px;height:76px;flex-shrink:0;border-radius:50%;background:var(--parchment-dark);border:2px solid var(--seal-gold-dim);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;box-shadow:inset 0 2px 8px #00000018,0 0 18px var(--element-glow)}
 .seal-circle::before{content:'';position:absolute;inset:4px;border-radius:50%;border:1px solid var(--element-color);opacity:.3}
-.seal-emoji{font-size:30px;line-height:1}
-.seal-rarity{font-family:'Cinzel',serif;font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:var(--element-color);margin-top:2px;opacity:.8}
+.seal-emoji{font-size:36px;line-height:1}
+.seal-rarity{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--element-color);margin-top:2px;opacity:.8}
 .seal-info{flex:1;min-width:0}
-.viewer-name{font-family:'Cinzel',serif;font-size:17px;font-weight:600;color:var(--ink);letter-spacing:.02em;line-height:1.1;word-break:break-word}
-.element-title{font-family:'IM Fell English',serif;font-style:italic;font-size:13px;color:var(--element-color);margin-top:2px}
-.element-name{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-ghost);margin-top:3px}
-.element-desc{font-family:'IM Fell English',serif;font-style:italic;font-size:10px;color:var(--ink-faded);margin-top:5px;line-height:1.4}
-.tier-badge{display:inline-flex;padding:2px 8px;border:1px solid var(--element-color);font-family:'Cinzel',serif;font-size:7.5px;letter-spacing:.25em;text-transform:uppercase;color:var(--element-color);background:var(--parchment-dark);margin-top:5px;border-radius:1px}
+.viewer-name{font-family:'Cinzel',serif;font-size:20px;font-weight:600;color:var(--ink);letter-spacing:.02em;line-height:1.1;word-break:break-word}
+.element-title{font-family:'IM Fell English',serif;font-style:italic;font-size:15px;color:var(--element-color);margin-top:2px}
+.element-name{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-ghost);margin-top:3px}
+.element-desc{font-family:'IM Fell English',serif;font-style:italic;font-size:12px;color:var(--ink-faded);margin-top:5px;line-height:1.4}
+.tier-badge{display:inline-flex;padding:3px 10px;border:1px solid var(--element-color);font-family:'Cinzel',serif;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--element-color);background:var(--parchment-dark);margin-top:5px;border-radius:1px}
 .seal-circle-sm{width:36px;height:36px;border-radius:50%;border:1.5px solid;display:flex;align-items:center;justify-content:center;transition:box-shadow .3s}
-.unlock-hint{font-family:'IM Fell English',serif;font-style:italic;font-size:9px;color:var(--ink-ghost);margin-top:4px;opacity:.7}
+.unlock-hint{font-family:'IM Fell English',serif;font-style:italic;font-size:11px;color:var(--ink-ghost);margin-top:4px;opacity:.7}
 
 .divider{display:flex;align-items:center;gap:8px;margin:10px 0;opacity:.45}
 .divider-line{flex:1;height:1px;background:var(--seal-gold-dim)}
@@ -65,42 +65,42 @@ html,body{min-height:100vh;background:var(--bg);font-family:'IM Fell English',Ge
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:12px}
 .stat-box{background:var(--parchment-dark);border:1px solid var(--parchment-deep);border-radius:2px;padding:7px 5px;text-align:center;position:relative;overflow:hidden}
 .stat-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--element-color);opacity:.45}
-.stat-label{font-family:'Cinzel',serif;font-size:6.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-ghost);display:block;margin-bottom:3px}
-.stat-value{font-family:'Cinzel',serif;font-size:16px;font-weight:600;color:var(--ink);display:block;line-height:1}
-.stat-unit{font-family:'IM Fell English',serif;font-style:italic;font-size:8.5px;color:var(--ink-faded)}
+.stat-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-ghost);display:block;margin-bottom:3px}
+.stat-value{font-family:'Cinzel',serif;font-size:20px;font-weight:600;color:var(--ink);display:block;line-height:1}
+.stat-unit{font-family:'IM Fell English',serif;font-style:italic;font-size:11px;color:var(--ink-faded)}
 
 .mana-section{margin-bottom:10px}
 .mana-label-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
-.mana-label{font-family:'Cinzel',serif;font-size:7.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-ghost)}
-.mana-value{font-family:'Cinzel',serif;font-size:10px;font-weight:600;color:var(--element-color)}
+.mana-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-ghost)}
+.mana-value{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--element-color)}
 .mana-track{height:7px;background:var(--parchment-dark);border:1px solid var(--parchment-deep);border-radius:1px;overflow:hidden}
 .mana-fill{height:100%;background:linear-gradient(90deg,var(--element-color),var(--seal-gold-lt));border-radius:1px}
 
 .xp-section{margin-bottom:12px}
 .xp-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
-.xp-rank{font-family:'Cinzel',serif;font-size:10px;font-weight:600;color:var(--ink)}
-.xp-next{font-family:'IM Fell English',serif;font-style:italic;font-size:9px;color:var(--ink-ghost)}
+.xp-rank{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--ink)}
+.xp-next{font-family:'IM Fell English',serif;font-style:italic;font-size:12px;color:var(--ink-ghost)}
 .xp-track{height:7px;background:var(--parchment-dark);border:1px solid var(--parchment-deep);border-radius:1px;overflow:hidden}
 .xp-fill{height:100%;background:linear-gradient(90deg,#6a8040,#a0c060);border-radius:1px}
 .xp-labels{display:flex;justify-content:space-between;margin-top:3px}
-.xp-label{font-family:'Cinzel',serif;font-size:6.5px;letter-spacing:.1em;color:var(--ink-ghost)}
+.xp-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.1em;color:var(--ink-ghost)}
 
-.section-head{font-family:'Cinzel',serif;font-size:7.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-ghost);margin-bottom:7px;display:flex;align-items:center;gap:8px}
+.section-head{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-ghost);margin-bottom:7px;display:flex;align-items:center;gap:8px}
 .section-head::after{content:'';flex:1;height:1px;background:var(--parchment-deep)}
 
 .drinks-ordered{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
 .drink-order-row{display:flex;align-items:center;gap:8px;padding:4px 8px;background:var(--parchment-dark);border:1px solid var(--parchment-deep);border-radius:2px}
-.drink-order-num{font-family:'Cinzel',serif;font-size:10px;font-weight:600;color:var(--element-color);width:16px;text-align:center;flex-shrink:0}
-.drink-order-name{font-family:'IM Fell English SC',serif;font-size:11px;color:var(--ink-faded);flex:1}
-.drink-order-count{font-family:'Cinzel',serif;font-size:9px;color:var(--ink-ghost);white-space:nowrap}
+.drink-order-num{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--element-color);width:16px;text-align:center;flex-shrink:0}
+.drink-order-name{font-family:'IM Fell English SC',serif;font-size:13px;color:var(--ink-faded);flex:1}
+.drink-order-count{font-family:'Cinzel',serif;font-size:11px;color:var(--ink-ghost);white-space:nowrap}
 
 .game-panel{margin-bottom:8px;border:1px solid var(--parchment-deep);border-radius:2px;overflow:hidden}
 .game-panel-header{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:var(--parchment-dark);cursor:pointer;user-select:none}
 .game-panel-header:hover{background:var(--parchment-deep)}
-.game-panel-title{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faded);display:flex;align-items:center;gap:6px}
-.game-badge{font-family:'Cinzel',serif;font-size:7px;letter-spacing:.12em;padding:1px 5px;border-radius:1px;background:var(--element-color);color:var(--parchment);opacity:.8}
-.dev-badge{font-family:'Cinzel',serif;font-size:7px;letter-spacing:.1em;padding:1px 5px;border-radius:1px;background:#604020;color:#e0c080}
-.panel-arrow{font-size:9px;color:var(--ink-ghost);transition:transform .2s}
+.game-panel-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faded);display:flex;align-items:center;gap:6px}
+.game-badge{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.12em;padding:1px 5px;border-radius:1px;background:var(--element-color);color:var(--parchment);opacity:.8}
+.dev-badge{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.1em;padding:1px 5px;border-radius:1px;background:#604020;color:#e0c080}
+.panel-arrow{font-size:11px;color:var(--ink-ghost);transition:transform .2s}
 .game-panel.open .panel-arrow{transform:rotate(180deg)}
 .game-panel-body{display:none;padding:8px;border-top:1px solid var(--parchment-deep)}
 .game-panel.open .game-panel-body{display:block}
@@ -108,37 +108,37 @@ html,body{min-height:100vh;background:var(--bg);font-family:'IM Fell English',Ge
 .spell-grid{display:flex;flex-direction:column;gap:3px}
 .spell-row{display:flex;align-items:center;gap:6px;padding:4px 8px;background:rgba(255,255,255,.25);border:1px solid var(--parchment-deep);border-radius:2px}
 .spell-dot{width:5px;height:5px;border-radius:50%;background:#6a8040;flex-shrink:0}
-.spell-name{font-family:'IM Fell English SC',serif;font-size:10.5px;color:var(--ink-faded);flex:1}
-.spell-mana{font-family:'Cinzel',serif;font-size:8px;color:var(--ink-ghost);white-space:nowrap}
-.spell-cmd{font-family:'Cinzel',serif;font-size:9px;color:#3a2a0a;white-space:nowrap;background:rgba(0,0,0,.08);padding:1px 5px;border-radius:2px;border:1px solid rgba(0,0,0,.12);cursor:default;transition:background .15s,color .15s}
+.spell-name{font-family:'IM Fell English SC',serif;font-size:13px;color:var(--ink-faded);flex:1}
+.spell-mana{font-family:'Cinzel',serif;font-size:11px;color:var(--ink-ghost);white-space:nowrap}
+.spell-cmd{font-family:'Cinzel',serif;font-size:11px;color:#3a2a0a;white-space:nowrap;background:rgba(0,0,0,.08);padding:1px 5px;border-radius:2px;border:1px solid rgba(0,0,0,.12);cursor:default;transition:background .15s,color .15s}
 .spell-cmd:hover{background:var(--element-color);color:var(--parchment)}
-.open-spells-note{font-family:'IM Fell English',serif;font-style:italic;font-size:10px;color:var(--ink-ghost);margin-bottom:6px;padding:0 2px}
-.dev-note{font-family:'IM Fell English',serif;font-style:italic;font-size:9.5px;color:#a07040;padding:4px 6px;background:rgba(100,60,20,.08);border-radius:2px;margin-bottom:6px}
-.card-empty{padding:50px 20px;text-align:center;font-style:italic;color:var(--ink-ghost);font-size:13px}
+.open-spells-note{font-family:'IM Fell English',serif;font-style:italic;font-size:12px;color:var(--ink-ghost);margin-bottom:6px;padding:0 2px}
+.dev-note{font-family:'IM Fell English',serif;font-style:italic;font-size:12px;color:#a07040;padding:4px 6px;background:rgba(100,60,20,.08);border-radius:2px;margin-bottom:6px}
+.card-empty{padding:50px 20px;text-align:center;font-style:italic;color:var(--ink-ghost);font-size:15px}
 
 .card-footer{margin-top:12px;padding-top:10px;border-top:1px solid var(--parchment-deep);display:flex;justify-content:space-between;align-items:flex-end}
-.card-id{font-family:'Cinzel',serif;font-size:7px;letter-spacing:.12em;color:var(--ink-ghost)}
-.card-seal{font-family:'Cinzel Decorative',serif;font-size:7.5px;color:var(--seal-gold-dim);letter-spacing:.1em;text-align:right}
+.card-id{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;color:var(--ink-ghost)}
+.card-seal{font-family:'Cinzel Decorative',serif;font-size:10px;color:var(--seal-gold-dim);letter-spacing:.1em;text-align:right}
 
 .menu-col{grid-area:menu}
 .menu-panel{background:linear-gradient(175deg,#2a1e0e,#1e1408);border:1px solid #5c3d1a;border-radius:4px;padding:18px;box-shadow:0 4px 30px #00000060;position:sticky;top:20px;max-height:calc(100vh - 40px);overflow-y:auto}
-.menu-title{font-family:'Cinzel Decorative',serif;font-size:11px;letter-spacing:.15em;color:var(--seal-gold);text-align:center;margin-bottom:4px}
-.menu-sub{font-family:'IM Fell English',serif;font-style:italic;font-size:10px;color:#8a7050;text-align:center;margin-bottom:14px}
+.menu-title{font-family:'Cinzel Decorative',serif;font-size:14px;letter-spacing:.15em;color:var(--seal-gold);text-align:center;margin-bottom:4px}
+.menu-sub{font-family:'IM Fell English',serif;font-style:italic;font-size:12px;color:#8a7050;text-align:center;margin-bottom:14px}
 .menu-divider{height:1px;background:linear-gradient(90deg,transparent,#5c3d1a,transparent);margin-bottom:12px}
-.menu-section-title{font-family:'Cinzel',serif;font-size:7.5px;letter-spacing:.3em;text-transform:uppercase;color:#6a5030;margin-bottom:8px}
+.menu-section-title{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#6a5030;margin-bottom:8px}
 .menu-item{margin-bottom:10px}
-.menu-item-name{font-family:'Cinzel',serif;font-size:11px;color:#c8962c;letter-spacing:.05em;margin-bottom:2px}
-.menu-item-desc{font-family:'IM Fell English',serif;font-style:italic;font-size:10px;color:#7a6040;line-height:1.4}
-.menu-item-cmd{font-family:'Cinzel',serif;font-size:9px;color:#c8962c;margin-top:3px;letter-spacing:.08em;background:rgba(200,150,44,.1);display:inline-block;padding:1px 6px;border-radius:2px;border:1px solid rgba(200,150,44,.25);cursor:default;transition:background .15s,color .15s}
+.menu-item-name{font-family:'Cinzel',serif;font-size:13px;color:#c8962c;letter-spacing:.05em;margin-bottom:2px}
+.menu-item-desc{font-family:'IM Fell English',serif;font-style:italic;font-size:12px;color:#7a6040;line-height:1.4}
+.menu-item-cmd{font-family:'Cinzel',serif;font-size:11px;color:#c8962c;margin-top:3px;letter-spacing:.08em;background:rgba(200,150,44,.1);display:inline-block;padding:1px 6px;border-radius:2px;border:1px solid rgba(200,150,44,.25);cursor:default;transition:background .15s,color .15s}
 .menu-item-cmd:hover{background:rgba(200,150,44,.35);color:#f0e0b0}
-.menu-cmd-hint{font-family:'IM Fell English',serif;font-style:italic;font-size:10px;color:#5a4020;text-align:center;margin-top:12px}
+.menu-cmd-hint{font-family:'IM Fell English',serif;font-style:italic;font-size:12px;color:#5a4020;text-align:center;margin-top:12px}
 
 /* ── Tooltips ──────────────────────────────────────────────────────────────── */
 .has-tip{position:relative}
 .tip{
   display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);
   background:#1e1408;border:1px solid #5c3d1a;color:#d4b87a;
-  font-family:'IM Fell English',serif;font-style:italic;font-size:10.5px;line-height:1.5;
+  font-family:'IM Fell English',serif;font-style:italic;font-size:13px;line-height:1.5;
   padding:6px 10px;border-radius:2px;white-space:normal;width:220px;text-align:center;
   box-shadow:0 4px 16px #00000080;z-index:100;pointer-events:none;
 }
