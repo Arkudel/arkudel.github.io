@@ -1,9 +1,9 @@
 {
   "arkudel": {
     "displayName": "Arkudel",
-    "element": "earth",
-    "element2": null,
-    "element3": null,
+    "element": "void",
+    "element2": "lightning",
+    "element3": "wind",
     "tier": "regular",
     "warmth": 9,
     "visitCount": 15,
