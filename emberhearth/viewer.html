@@ -108,7 +108,8 @@ html,body{min-height:100vh;background:var(--bg);font-family:'IM Fell English',Ge
 .spell-dot{width:5px;height:5px;border-radius:50%;background:#6a8040;flex-shrink:0}
 .spell-name{font-family:'IM Fell English SC',serif;font-size:10.5px;color:var(--ink-faded);flex:1}
 .spell-mana{font-family:'Cinzel',serif;font-size:8px;color:var(--ink-ghost);white-space:nowrap}
-.spell-cmd{font-family:'Cinzel',serif;font-size:7px;color:var(--element-color);white-space:nowrap;opacity:.7}
+.spell-cmd{font-family:'Cinzel',serif;font-size:9px;color:#3a2a0a;white-space:nowrap;background:rgba(0,0,0,.08);padding:1px 5px;border-radius:2px;border:1px solid rgba(0,0,0,.12);cursor:default;transition:background .15s,color .15s}
+.spell-cmd:hover{background:var(--element-color);color:var(--parchment)}
 .open-spells-note{font-family:'IM Fell English',serif;font-style:italic;font-size:10px;color:var(--ink-ghost);margin-bottom:6px;padding:0 2px}
 .dev-note{font-family:'IM Fell English',serif;font-style:italic;font-size:9.5px;color:#a07040;padding:4px 6px;background:rgba(100,60,20,.08);border-radius:2px;margin-bottom:6px}
 .card-empty{padding:50px 20px;text-align:center;font-style:italic;color:var(--ink-ghost);font-size:13px}
@@ -126,7 +127,8 @@ html,body{min-height:100vh;background:var(--bg);font-family:'IM Fell English',Ge
 .menu-item{margin-bottom:10px}
 .menu-item-name{font-family:'Cinzel',serif;font-size:11px;color:#c8962c;letter-spacing:.05em;margin-bottom:2px}
 .menu-item-desc{font-family:'IM Fell English',serif;font-style:italic;font-size:10px;color:#7a6040;line-height:1.4}
-.menu-item-cmd{font-family:'Cinzel',serif;font-size:8px;color:#5a4020;margin-top:2px;letter-spacing:.1em}
+.menu-item-cmd{font-family:'Cinzel',serif;font-size:9px;color:#c8962c;margin-top:3px;letter-spacing:.08em;background:rgba(200,150,44,.1);display:inline-block;padding:1px 6px;border-radius:2px;border:1px solid rgba(200,150,44,.25);cursor:default;transition:background .15s,color .15s}
+.menu-item-cmd:hover{background:rgba(200,150,44,.35);color:#f0e0b0}
 .menu-cmd-hint{font-family:'IM Fell English',serif;font-style:italic;font-size:10px;color:#5a4020;text-align:center;margin-top:12px}
 </style>
 </head>
@@ -228,8 +230,8 @@ const RW_OPEN=[['F-Rank Hunt',20],['D-Rank Hunt',40],['C-Rank Hunt',70],['B-Rank
 
 const SDV={
   water:[['Call Rain',40],['Snowstorm',60],['Forecast Rain',20],['Beach Warp',40],['Island Warp',100],['Bathhouse',30],['Frog Invasion',30]],
-  fire:[['Summer Mirage',150],['Desert Warp',80],['Volcano Warp',110],['Pepper Rex!',120],['Mail Coffee',40]],
-  earth:[['Green Rain',100],['Autumn Shift',120],['Mine Warp',50],['Secret Woods',50],['Mine Lvl 40',70],['Slime Invasion',50],['Squirrel Surge',30],['Rabbit Stampede',30],['Grow Blessing',70],['Giant Growth',100],['Random Planting',50],['Earthquake',80],['Surprise Gift',30],['Mail Geode',60]],
+  fire:[['Desert Warp',80],['Volcano Warp',110],['Pepper Rex!',120],['Mail Coffee',40]],
+  earth:[['Green Rain',100],['Mine Warp',50],['Secret Woods',50],['Mine Lvl 40',70],['Slime Invasion',50],['Squirrel Surge',30],['Rabbit Stampede',30],['Grow Blessing',70],['Giant Growth',100],['Random Planting',50],['Earthquake',80],['Surprise Gift',30],['Mail Geode',60]],
   wind:[['Ridgeside Warp',60],['Serpent Strike',90],['Owl Visitation',35]],
   lightning:[],
   holy:[['Clear Skies',30],['Rewind',80],['Butterfly Storm',25],['Firefly Night',40],['Fairy Visit',60],['Goodwill',40],['Mail Cookie',40],['Mail Diamond',150]],
