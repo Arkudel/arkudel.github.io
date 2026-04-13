@@ -3,21 +3,15 @@
     "displayName": "Arkudel",
     "element": "earth",
     "tier": "stranger",
-    "warmth": 3,
-    "visitCount": 7,
-    "messageCount": 18,
+    "warmth": 3.5,
+    "visitCount": 8,
+    "messageCount": 19,
     "firstSeen": 1776050357951,
-    "lastSeen": 1776057658057,
-    "mana": 23,
-    "lifetime": 23,
+    "lastSeen": 1776057717792,
+    "mana": 24,
+    "lifetime": 24,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776050519092
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -71,6 +65,12 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776057658060
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776057717794
       }
     ]
   },
