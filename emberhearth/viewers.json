@@ -7,19 +7,13 @@
     "tier": "regular",
     "warmth": 8.5,
     "visitCount": 14,
-    "messageCount": 30,
+    "messageCount": 31,
     "firstSeen": 1776050357951,
-    "lastSeen": 1776076564338,
-    "mana": 54,
-    "lifetime": 144,
+    "lastSeen": 1776076726013,
+    "mana": 55,
+    "lifetime": 145,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776071017544
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -73,6 +67,12 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776076564340
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776076726016
       }
     ],
     "topDrinks": [
@@ -166,19 +166,13 @@
     "tier": "stranger",
     "warmth": 0,
     "visitCount": 1,
-    "messageCount": 8,
+    "messageCount": 9,
     "firstSeen": 1776076393392,
-    "lastSeen": 1776076662135,
-    "mana": 413,
-    "lifetime": 413,
+    "lastSeen": 1776076721377,
+    "mana": 414,
+    "lifetime": 414,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776076393396
-      },
       {
         "type": "earn",
         "amount": 400,
@@ -232,6 +226,12 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776076662137
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776076721379
       }
     ],
     "topDrinks": [],
