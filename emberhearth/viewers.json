@@ -5,39 +5,15 @@
     "element2": null,
     "element3": null,
     "tier": "regular",
-    "warmth": 7.5,
-    "visitCount": 12,
-    "messageCount": 25,
+    "warmth": 8,
+    "visitCount": 13,
+    "messageCount": 27,
     "firstSeen": 1776050357951,
-    "lastSeen": 1776071231098,
-    "mana": 129,
-    "lifetime": 129,
+    "lastSeen": 1776072144017,
+    "mana": 41,
+    "lifetime": 131,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776057606436
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776057658060
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776057717794
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776059551175
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -73,6 +49,30 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776071231101
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776072127863
+      },
+      {
+        "type": "spend",
+        "amount": 10,
+        "reason": "sdvspell_ring_bell",
+        "ts": 1776072127866
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776072144023
+      },
+      {
+        "type": "spend",
+        "amount": 80,
+        "reason": "sdvspell_earthquake",
+        "ts": 1776072144025
       }
     ],
     "topDrinks": [
