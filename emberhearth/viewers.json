@@ -8,16 +8,10 @@
     "messageCount": 21,
     "firstSeen": 1776050357951,
     "lastSeen": 1776060277620,
-    "mana": 26,
-    "lifetime": 26,
+    "mana": 125,
+    "lifetime": 125,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776051066965
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -71,6 +65,12 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776060277622
+      },
+      {
+        "type": "earn",
+        "amount": 99,
+        "reason": "admin_grant",
+        "ts": 1776060380333
       }
     ],
     "topDrinks": [
