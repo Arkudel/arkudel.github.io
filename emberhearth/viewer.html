@@ -130,6 +130,24 @@ html,body{min-height:100vh;background:var(--bg);font-family:'IM Fell English',Ge
 .menu-item-cmd{font-family:'Cinzel',serif;font-size:9px;color:#c8962c;margin-top:3px;letter-spacing:.08em;background:rgba(200,150,44,.1);display:inline-block;padding:1px 6px;border-radius:2px;border:1px solid rgba(200,150,44,.25);cursor:default;transition:background .15s,color .15s}
 .menu-item-cmd:hover{background:rgba(200,150,44,.35);color:#f0e0b0}
 .menu-cmd-hint{font-family:'IM Fell English',serif;font-style:italic;font-size:10px;color:#5a4020;text-align:center;margin-top:12px}
+
+/* ── Tooltips ──────────────────────────────────────────────────────────────── */
+.has-tip{position:relative}
+.tip{
+  display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);
+  background:#1e1408;border:1px solid #5c3d1a;color:#d4b87a;
+  font-family:'IM Fell English',serif;font-style:italic;font-size:10.5px;line-height:1.5;
+  padding:6px 10px;border-radius:2px;white-space:normal;width:220px;text-align:center;
+  box-shadow:0 4px 16px #00000080;z-index:100;pointer-events:none;
+}
+.tip::after{
+  content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:#5c3d1a;
+}
+.has-tip:hover .tip{display:block}
+/* keep tooltip visible even when it extends above the panel */
+.spell-grid,.spell-row,.game-panel-body{overflow:visible}
+.game-panel{overflow:visible}
 </style>
 </head>
 <body>
@@ -216,42 +234,235 @@ function getAdventurerRank(xp){let c=ADVENTURER_RANKS[0];for(const r of ADVENTUR
 function getNextRank(xp){return ADVENTURER_RANKS.find(r=>xp<r.xpRequired)??null}
 
 const RW={
-  water:[['Deluge',40],['Flash Flood',80],['Shroud',30]],
-  fire:[['Heatwave',40],['Inferno',90],['Scorch',25]],
-  earth:[['Abundance',50],['Blight',60],['Tremor',70]],
-  wind:[['Gust',25],['Blizzard',60],['Wayward Merchant',70],['Arcane Scrolls',40]],
-  lightning:[['Bolt',30],['Storm Surge',80],['EMP Pulse',50],['Give Energy',30]],
-  holy:[['Blessing',60],['Sanctuary',80],['Radiance',100],['Aurora',25]],
-  darkness:[['Shadow',40],['Plague',70],['Creep Wanderer',80],['Shambler Swarm',60],['Sightstealer',90],['The Cube',100],['Twisted Obelisk',80]],
-  void:[['Unravel',60],['Annihilate',150],['Void Rift',120],['Metal Horror',140],['Corrupted Obelisk',120],['Warped Obelisk',100],['Summon Spirit',70]],
-  storm:[['Hailstorm',70],['Meteor Strike',120],['Maelstrom',120],['Ill Omen',50]],
+  water:[
+    ['Deluge',40,"Floods the colony. They'll manage. Probably."],
+    ['Flash Flood',80,"A proper deluge. Walls, crops, dignity — all at risk."],
+    ['Shroud',30,"Thick fog rolls in. Good for dramatic entrances, bad for mood."],
+  ],
+  fire:[
+    ['Heatwave',40,"Cranks the heat up. Colonists will complain. They always do."],
+    ['Inferno',90,"Sets things on fire. Specifically, their things."],
+    ['Scorch',25,"A wee taste of flame. Just enough to be annoying."],
+  ],
+  earth:[
+    ['Abundance',50,"Boosts crop growth. Even she admits this one is nice."],
+    ['Blight',60,"Rots the crops. Less nice. Very effective."],
+    ['Tremor',70,"Shakes the ground. Structures may disagree."],
+  ],
+  wind:[
+    ['Gust',25,"Blows things around. Lightweight stuff. Dignity included."],
+    ['Blizzard',60,"A full snowstorm. In whatever season they're in. Chaos."],
+    ['Wayward Merchant',70,"A trader appears from nowhere. Do not ask where they came from."],
+    ['Arcane Scrolls',40,"Drops a stack of research books. Colonists will probably ignore them."],
+  ],
+  lightning:[
+    ['Bolt',30,"A single lightning strike. Targeted. Personal. Rude."],
+    ['Storm Surge',80,"Multiple strikes. Very electrifying. Very bad."],
+    ['EMP Pulse',50,"Fries electronics. Turrets, power grids — all of it."],
+    ['Give Energy',30,"Grants a colonist a quick burst of energy. Fleeting, like joy."],
+  ],
+  holy:[
+    ['Blessing',60,"Improves colonist mood. She will not admit it was thoughtful."],
+    ['Sanctuary',80,"A period of no raids. A brief, suspicious peace."],
+    ['Radiance',100,"Heals all colonists. She does this grudgingly."],
+    ['Aurora',25,"A pretty light show. No real effect. It's pretty though."],
+  ],
+  darkness:[
+    ['Shadow',40,"Disrupts a colonist's sleep and mood. Subtle and mean."],
+    ['Plague',70,"Illness spreads through the colony. Not fatal. Just miserable."],
+    ['Creep Wanderer',80,"Sends a corrupted wanderer their way. Friendly-ish. Mostly."],
+    ['Shambler Swarm',60,"A clutch of shamblers. The slow kind. Still bad."],
+    ['Sightstealer',90,"A creature that hunts by noticing. Try not to look directly at it."],
+    ['The Cube',100,"A strange monolith appears. The colonists will be... changed."],
+    ['Twisted Obelisk',80,"An anomaly structure. Nobody knows what it does. That's the point."],
+  ],
+  void:[
+    ['Unravel',60,"Warps a colonist's mind briefly. Temporary. Probably."],
+    ['Annihilate',150,"Something very bad happens. This is not a drill."],
+    ['Void Rift',120,"A rift opens. Things come through. Nothing good lives in rifts."],
+    ['Metal Horror',140,"A mechanical horror infiltrates the colony. Hidden. Waiting."],
+    ['Corrupted Obelisk',120,"A corrupted monolith. Worse than the regular kind."],
+    ['Warped Obelisk',100,"Something that shouldn't exist. Yet here it is."],
+    ['Summon Spirit',70,"A void entity appears. It has opinions about the colonists."],
+  ],
+  storm:[
+    ['Hailstorm',70,"Ice falls from the sky. Dramatically and personally."],
+    ['Meteor Strike',120,"A meteor hits. Somewhere in the colony. Tae be decided by chaos."],
+    ['Maelstrom',120,"A violent storm that does everything at once. Very efficient destruction."],
+    ['Ill Omen',50,"Worsens the colony's luck for a spell. You'll know it when ye feel it."],
+  ],
 }
-const RW_OPEN=[['F-Rank Hunt',20],['D-Rank Hunt',40],['C-Rank Hunt',70],['B-Rank Hunt',100],['A-Rank Hunt',140],['S-Rank Hunt',190],['C-Rank Bounty',60],['S-Rank Bounty',160],['World Boss',250]]
+const RW_OPEN=[
+  ['F-Rank Hunt',20,"Sends something small and weak after the colonists. Good for warming up."],
+  ['D-Rank Hunt',40,"A modest threat. The colonists have faced worse. Probably."],
+  ['C-Rank Hunt',70,"A real raid. Not enormous, but they'll feel it."],
+  ['B-Rank Hunt',100,"Things are getting serious. This costs mana for a reason."],
+  ['A-Rank Hunt',140,"A significant assault. She'd tell ye tae be ready, but that's nae her problem."],
+  ['S-Rank Hunt',190,"The biggest organised raid she can call. Good luck."],
+  ['C-Rank Bounty',60,"A bounty target appears. Worth clearing out. Probably."],
+  ['S-Rank Bounty',160,"A very dangerous bounty. Worth a lot. If ye survive collecting it."],
+  ['World Boss',250,"Something enormous and terrible. The stuff of colony nightmares. Spend wisely."],
+]
 
 const SDV={
-  water:[['Call Rain',40],['Snowstorm',60],['Forecast Rain',20],['Beach Warp',40],['Island Warp',100],['Bathhouse',30],['Frog Invasion',30]],
-  fire:[['Desert Warp',80],['Volcano Warp',110],['Pepper Rex!',120],['Mail Coffee',40]],
-  earth:[['Green Rain',100],['Mine Warp',50],['Secret Woods',50],['Mine Lvl 40',70],['Slime Invasion',50],['Squirrel Surge',30],['Rabbit Stampede',30],['Grow Blessing',70],['Giant Growth',100],['Random Planting',50],['Earthquake',80],['Surprise Gift',30],['Mail Geode',60]],
-  wind:[['Ridgeside Warp',60],['Serpent Strike',90],['Owl Visitation',35]],
+  water:[
+    ['Call Rain',40,"Makes it rain today. The crops are pleased. Pierre is not."],
+    ['Snowstorm',60,"Snow. In whatever season we're in. Fashion is dead."],
+    ['Forecast Rain',20,"Sets tomorrow's forecast to rain. Plan accordingly."],
+    ['Beach Warp',40,"Warps the farmer tae the beach. Whether they wanted that or not."],
+    ['Island Warp',100,"Drops them on Ginger Island. Tropical. Expensive to get back from."],
+    ['Bathhouse',30,"A warp to the spa. She will not admit this is generous."],
+    ['Frog Invasion',30,"Frogs appear everywhere. They're harmless. Just everywhere."],
+  ],
+  fire:[
+    ['Desert Warp',80,"Off tae Calico Desert. Hot, sandy, and full of Skull Cavern temptation."],
+    ['Volcano Warp',110,"Straight tae the volcano. She hopes they brought something good to fight with."],
+    ['Pepper Rex!',120,"Summons a Pepper Rex. A dinosaur. A very angry one."],
+    ['Mail Coffee',40,"A coffee arrives in the mailbox. Because she's not completely heartless."],
+  ],
+  earth:[
+    ['Green Rain',100,"The mysterious green rain. Everything gets watered and a bit strange."],
+    ['Mine Warp',50,"Warps tae the mines entrance. Whether they were ready or not."],
+    ['Secret Woods',50,"Unlocks and warps tae the Secret Woods. The stumps await."],
+    ['Mine Lvl 40',70,"Drops them at floor 40. The copper era. Classic."],
+    ['Slime Invasion',50,"Slimes appear on the farm. Slimy. Numerous. Annoying."],
+    ['Squirrel Surge',30,"A swarm of squirrels descend. Chaotic. Adorable. Still chaos."],
+    ['Rabbit Stampede',30,"Rabbits everywhere. They mean well. They're still in the way."],
+    ['Grow Blessing',70,"Advances crops toward harvest. Quite generous, actually. Dinnae read intae it."],
+    ['Giant Growth',100,"Attempts tae grow giant crops overnight. No promises."],
+    ['Random Planting',50,"Plants random crops on empty tilled soil. She picks them herself. Poorly."],
+    ['Earthquake',80,"The ground shakes. Pierre will want tae check for damage."],
+    ['Surprise Gift',30,"A random gift appears in the mailbox. Quality varies. Wildly."],
+    ['Mail Geode',60,"A geode arrives. Could be treasure. Could be stone. Clint charges either way."],
+  ],
+  wind:[
+    ['Ridgeside Warp',60,"Warps tae Ridgeside Village. Good luck getting back down the cable car."],
+    ['Serpent Strike',90,"A serpent appears in the mines. Large. Unpleasant. Very serpentine."],
+    ['Owl Visitation',35,"A mysterious owl visits. It watches. It says nothing. It leaves."],
+  ],
   lightning:[],
-  holy:[['Clear Skies',30],['Rewind',80],['Butterfly Storm',25],['Firefly Night',40],['Fairy Visit',60],['Goodwill',40],['Mail Cookie',40],['Mail Diamond',150]],
-  darkness:[['Sewer Warp',60],["Witch's Swamp",90],['Bat Swarm',60],['Haunting',70],['Blight',80],['Murder of Crows',50],['Joja Invasion',40],['Trash Chest',50],['Scandal',60],['Mail Coal',20]],
-  void:[['Time Surge',60],['Time Skip',120],['Skull Cavern',120],['Mine Lvl 80',90],['Shadow Brutes',100],['Row Wipe',60],['Mail Trash',15]],
-  storm:[['Summon Storm',70],['Forecast Storm',30],['Meteor Shower',90]],
+  holy:[
+    ['Clear Skies',30,"Clears the weather tae sunshine. She did it for the crops, not for you."],
+    ['Rewind',80,"Reverses time slightly. Useful. She will only do it once."],
+    ['Butterfly Storm',25,"Butterflies. Everywhere. It's... actually quite nice. Dinnae tell anyone she said that."],
+    ['Firefly Night',40,"Fireflies fill the evening. Peaceful. She'll deny enjoying it."],
+    ['Fairy Visit',60,"A crop fairy blesses the farm overnight. Growth happens."],
+    ['Goodwill',40,"Adds friendship points with a random villager. She approves of social investment."],
+    ['Mail Cookie',40,"Cookies in the mailbox. Proper ones. She checked."],
+    ['Mail Diamond',150,"A diamond. An actual diamond. She dislikes how generous this makes her look."],
+  ],
+  darkness:[
+    ['Sewer Warp',60,"Down tae the sewers with ye. Krobus is there. He's fine. The smell is not."],
+    ["Witch's Swamp",90,"Off tae the witch's swamp. Haunted. Interesting implications for Pierre."],
+    ['Bat Swarm',60,"Bats emerge in the mines. The flappy kind. Quite a lot of them."],
+    ['Haunting',70,"Strange things begin tae happen on the farm. Atmospheric. Inconvenient."],
+    ['Blight',80,"Kills one crop. Just the one. Could be worse. Probably."],
+    ['Murder of Crows',50,"Crows descend. Ominous. Statistically fine. Still unsettling."],
+    ['Joja Invasion',40,"Joja representatives appear. She finds them distasteful."],
+    ['Trash Chest',50,"A trash chest arrives in the mailbox. She didn't choose the contents."],
+    ['Scandal',60,"A villager loses some goodwill with the farmer. Rumours, probably."],
+    ['Mail Coal',20,"Coal in the mailbox. She judged someone and this is the verdict."],
+  ],
+  void:[
+    ['Time Surge',60,"Advances the in-game clock. Time is precious. Spend it carelessly."],
+    ['Time Skip',120,"A larger leap forward in time. Significant. Irreversible."],
+    ['Skull Cavern',120,"Warps directly tae Skull Cavern. Bring bombs. Bring luck. Bring better choices."],
+    ['Mine Lvl 80',90,"Floor 80 of the mines. Gold territory. Bring a sword."],
+    ['Shadow Brutes',100,"Shadow Brutes appear in the mines. They hit very hard. She is unsympathetic."],
+    ['Row Wipe',60,"Kills one random crop. Not a row. Just the one. It's enough."],
+    ['Mail Trash',15,"Literal rubbish in the mailbox. She had her reasons."],
+  ],
+  storm:[
+    ['Summon Storm',70,"A full thunderstorm arrives. Lightning and all. Mind yer temper."],
+    ['Forecast Storm',30,"Sets tomorrow's weather tae storm. Plan accordingly. Or don't."],
+    ['Meteor Shower',90,"A meteor lands somewhere on the farm. Dramatic. Probably fine."],
+  ],
 }
 
 const SPIRE={
-  holy:[['Gift Card',40],['Mending',60]],
-  earth:[['Bounty',30]],
-  darkness:[['Taint',50],['Tithe',40]],
-  fire:[['Forge Strike',50],['Berserk',70]],
-  water:[['Iron Ward',50]],
-  lightning:[['Storm Card',50]],
-  void:[['Chaos Card',80],['Purge',100]],
-  storm:[['Whirlwind',70]],
+  holy:[
+    ['Gift Card',40,"Grants a bonus gold card for the current floor. She approves of generosity when it's not her coin."],
+    ['Mending',60,"Restores some HP. She'll deny this was her idea."],
+  ],
+  earth:[
+    ['Bounty',30,"Adds bonus gold to the run. Practical. She respects practical."],
+  ],
+  darkness:[
+    ['Taint',50,"Corrupts a card in the deck. Could be any card. Could be the important one."],
+    ['Tithe',40,"Takes some gold. The darkness always collects eventually."],
+  ],
+  fire:[
+    ['Forge Strike',50,"Upgrades a random card. Fire improves things by burning off the weak parts."],
+    ['Berserk',70,"Adds a berserk modifier for the next combat. Very dramatic."],
+  ],
+  water:[
+    ['Iron Ward',50,"Grants bonus block for the next combat. Steady. Reliable. Wet."],
+  ],
+  lightning:[
+    ['Storm Card',50,"Adds an electrified card tae the deck. Crackles with potential."],
+  ],
+  void:[
+    ['Chaos Card',80,"Adds a completely random card. Could be extraordinary. Could be garbage."],
+    ['Purge',100,"Removes a card from the deck permanently. Sometimes cutting is kindness."],
+  ],
+  storm:[
+    ['Whirlwind',70,"A powerful AoE card for the current floor. Everything gets hit. Everything."],
+  ],
 }
-const SPIRE_OPEN=[['Create Card',120]]
+const SPIRE_OPEN=[['Create Card',120,"Crafts a custom card for the run. The most expensive spell she offers. Worth it, theoretically."]]
 
+
+const PK={
+  holy:[
+    ['Full Restore',60,"Fully heals the entire party. She did this because you looked desperate."],
+    ['Ward',20,"Suppresses wild encounters for 3 minutes. A moment of peace. Dinnae waste it."],
+    ['Shimmering Path',150,"The next wild encounter will be shiny. Extremely rare. Spend wisely."],
+    ['Mystery Egg',80,"An egg appears in the party. Nobody, including her, knows what's inside."],
+    ['Surge',50,"Grants 5 levels tae a random party member. Who gets it is nae up tae ye."],
+    ['Summon Holy',50,"Forces a Fairy or Psychic-type encounter. Mystical. Slightly suspicious."],
+    ['Fuse (Holy)',70,"Fuses a party Pokemon with a Fairy/Psychic species. Usage: !pspell fuse_holy PokemonName"],
+  ],
+  earth:[
+    ['Bounty',30,"Adds a random useful item tae yer bag. She picked it herself. Probably fine."],
+    ['Name',20,"Gives a party member a nickname. Usage: !pspell name PokemonName NewName"],
+    ['Summon Earth',50,"Forces a Ground, Rock, or Steel-type encounter. Heavy things are coming."],
+    ['Fuse (Earth)',70,"Fuses a party Pokemon with a Ground/Rock/Steel species. Usage: !pspell fuse_earth PokemonName"],
+  ],
+  darkness:[
+    ['Tithe',40,"Takes half yer money. The darkness always collects. Always."],
+    ['Drain',60,"Drains 5 levels from a random party member. She chose randomly. Honest."],
+    ['Summon Darkness',60,"Forces a Dark, Ghost, or Poison-type encounter. Something unpleasant approaches."],
+    ['Fuse (Darkness)',70,"Fuses a party Pokemon with a Dark/Ghost/Poison species. Usage: !pspell fuse_darkness PokemonName"],
+  ],
+  wind:[
+    ['Lure',20,"Boosts encounter rate for 5 minutes. The grass will be very active."],
+    ['Summon Wind',40,"Forces a Flying or Normal-type encounter. Could be a Pidgey. Could be a Dragonite."],
+    ['Fuse (Wind)',70,"Fuses a party Pokemon with a Flying/Normal species. Usage: !pspell fuse_wind PokemonName"],
+  ],
+  fire:[
+    ['Summon Fire',50,"Forces a Fire-type encounter. Something combustible is on its way."],
+    ['Fuse (Fire)',70,"Fuses a party Pokemon with a Fire-type species. Usage: !pspell fuse_fire PokemonName"],
+  ],
+  water:[
+    ['Summon Water/Ice',50,"Forces a Water or Ice-type encounter. Wet or cold. She gives ye that much choice."],
+    ['Fuse (Water)',70,"Fuses a party Pokemon with a Water/Ice species. Usage: !pspell fuse_water PokemonName"],
+  ],
+  lightning:[
+    ['Summon Storm',60,"Forces an Electric or Dragon-type encounter. High voltage or high danger."],
+    ['Fuse (Lightning)',70,"Fuses a party Pokemon with an Electric/Dragon species. Usage: !pspell fuse_lightning PokemonName"],
+  ],
+  void:[
+    ['Scramble',60,"Fuses an unfused party Pokemon with something random. Safe-ish. Probably."],
+    ['Chaos Scramble',140,"Fuses ANY party Pokemon with something random. Ignores existing fusions entirely."],
+    ['Summon Void',70,"Forces a Psychic, Ghost, or Dragon encounter. Something incomprehensible stirs."],
+    ['Fuse (Void)',90,"Fuses a party Pokemon with a Psychic/Ghost/Dragon species. Usage: !pspell fuse_void PokemonName"],
+  ],
+  storm:[
+    ['Summon Storm',60,"Forces an Electric, Flying, or Ice-type encounter. Weather-aligned chaos."],
+    ['Legendary Call',200,"Forces a legendary encounter. Two hundred mana. She expects ye tae catch it."],
+    ['Fuse (Storm)',70,"Fuses a party Pokemon with an Electric/Flying/Ice species. Usage: !pspell fuse_storm PokemonName"],
+  ],
+}
 function timeAgo(ts){
   if(!ts)return'unknown'
   const s=Math.floor((Date.now()-ts)/1000)
@@ -265,7 +476,7 @@ function cmdKey(n){return n.toLowerCase().replace(/[^a-z0-9]+/g,'_')}
 
 function spellRows(spells,cmd){
   if(!spells?.length)return'<div style="font-style:italic;font-size:10px;color:var(--ink-ghost);padding:2px 4px">No spells for this element.</div>'
-  return spells.map(([n,m])=>`<div class="spell-row"><div class="spell-dot"></div><span class="spell-name">${n}</span><span class="spell-mana">${m} mana</span><span class="spell-cmd">!${cmd} ${cmdKey(n)}</span></div>`).join('')
+  return spells.map(([n,m,tip])=>`<div class="spell-row"><div class="spell-dot"></div><span class="spell-name">${n}</span><span class="spell-mana">${m} mana</span><span class="spell-cmd has-tip"><span class="tip">${tip||''}</span>!${cmd} ${cmdKey(n)}</span></div>`).join('')
 }
 
 function panel(id,title,badge,body,dev=''){
@@ -324,6 +535,7 @@ function render(data,rawName){
   const rwSpells=elKey?(RW[elKey]??[]):[]
   const sdvSpells=elKey?(SDV[elKey]??[]):[]
   const spireSpells=elKey?(SPIRE[elKey]??[]):[]
+  const pkSpells=elKey?(PK[elKey]??[]):[]
 
   const drinks=data.topDrinks??[]
   const drinksHtml=drinks.length
@@ -332,16 +544,20 @@ function render(data,rawName){
 
   const rwBody=`
     <div class="open-spells-note">Open to all elements:</div>
-    <div class="spell-grid">${RW_OPEN.map(([n,m])=>`<div class="spell-row"><div class="spell-dot"></div><span class="spell-name">${n}</span><span class="spell-mana">${m} mana</span><span class="spell-cmd">!spell ${cmdKey(n)}</span></div>`).join('')}</div>
+    <div class="spell-grid">${RW_OPEN.map(([n,m,tip])=>`<div class="spell-row"><div class="spell-dot"></div><span class="spell-name">${n}</span><span class="spell-mana">${m} mana</span><span class="spell-cmd has-tip"><span class="tip">${tip||''}</span>!spell ${cmdKey(n)}</span></div>`).join('')}</div>
     ${elKey?`<div class="section-head" style="margin-top:10px">${tc(elKey)} element spells</div><div class="spell-grid">${spellRows(rwSpells,'spell')}</div>`:''}
   `
+  const pkBody=elKey
+    ?`<div class="spell-grid">${spellRows(pkSpells,'pspell')}</div>`
+    :'<div style="font-style:italic;font-size:10px;color:var(--ink-ghost)">Type !element first to unlock your Pokemon spells.</div>'
+
   const sdvBody=elKey
     ?`<div class="spell-grid">${spellRows(sdvSpells,'sdvspell')}</div>`
     :'<div style="font-style:italic;font-size:10px;color:var(--ink-ghost)">Type !element first to unlock your Stardew spells.</div>'
 
   const spireBody=`
     <div class="open-spells-note">Open to all elements:</div>
-    <div class="spell-grid">${SPIRE_OPEN.map(([n,m])=>`<div class="spell-row"><div class="spell-dot"></div><span class="spell-name">${n}</span><span class="spell-mana">${m} mana</span><span class="spell-cmd">!sspell ${cmdKey(n)}</span></div>`).join('')}</div>
+    <div class="spell-grid">${SPIRE_OPEN.map(([n,m,tip])=>`<div class="spell-row"><div class="spell-dot"></div><span class="spell-name">${n}</span><span class="spell-mana">${m} mana</span><span class="spell-cmd has-tip"><span class="tip">${tip||''}</span>!sspell ${cmdKey(n)}</span></div>`).join('')}</div>
     ${elKey?`<div class="section-head" style="margin-top:10px">${tc(elKey)} element spells</div><div class="spell-grid">${spellRows(spireSpells,'sspell')}</div>`:''}
   `
 
@@ -383,6 +599,7 @@ function render(data,rawName){
     ${panel('rw','&#9876; RimWorld','Active',rwBody)}
     ${panel('sdv','&#127807; Stardew Valley','Active',sdvBody)}
     ${panel('spire','&#127183; Slay the Spire 2','🚧 In Development',spireBody,'Slay the Spire 2 integration is in active development. Spells may change.')}
+    ${panel('pk','&#127478; Pokemon Infinite Fusion','Active',pkBody)}
 
     <div class="card-footer">
       <div>
