@@ -2,6 +2,8 @@
   "arkudel": {
     "displayName": "Arkudel",
     "element": "earth",
+    "element2": null,
+    "element3": null,
     "tier": "regular",
     "warmth": 6,
     "visitCount": 9,
@@ -88,6 +90,8 @@
   "alyrindelling": {
     "displayName": "alyrindelling",
     "element": "fire",
+    "element2": null,
+    "element3": null,
     "tier": "stranger",
     "warmth": 1,
     "visitCount": 3,
