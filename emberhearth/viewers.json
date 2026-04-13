@@ -10,16 +10,10 @@
     "messageCount": 28,
     "firstSeen": 1776050357951,
     "lastSeen": 1776072264858,
-    "mana": 42,
-    "lifetime": 132,
+    "mana": 52,
+    "lifetime": 142,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 99,
-        "reason": "admin_grant",
-        "ts": 1776060380333
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -73,6 +67,12 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776072264861
+      },
+      {
+        "type": "earn",
+        "amount": 10,
+        "reason": "quest_win_E",
+        "ts": 1776072769459
       }
     ],
     "topDrinks": [
@@ -82,9 +82,9 @@
       }
     ],
     "adventure": {
-      "xp": 0,
-      "questsCompleted": 0,
-      "wins": 0
+      "xp": 5,
+      "questsCompleted": 1,
+      "wins": 1
     }
   },
   "alyrindelling": {
