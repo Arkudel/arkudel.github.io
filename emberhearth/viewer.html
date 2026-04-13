@@ -55,6 +55,8 @@ html,body{min-height:100vh;background:var(--bg);font-family:'IM Fell English',Ge
 .element-name{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-ghost);margin-top:3px}
 .element-desc{font-family:'IM Fell English',serif;font-style:italic;font-size:10px;color:var(--ink-faded);margin-top:5px;line-height:1.4}
 .tier-badge{display:inline-flex;padding:2px 8px;border:1px solid var(--element-color);font-family:'Cinzel',serif;font-size:7.5px;letter-spacing:.25em;text-transform:uppercase;color:var(--element-color);background:var(--parchment-dark);margin-top:5px;border-radius:1px}
+.seal-circle-sm{width:36px;height:36px;border-radius:50%;border:1.5px solid;display:flex;align-items:center;justify-content:center;transition:box-shadow .3s}
+.unlock-hint{font-family:'IM Fell English',serif;font-style:italic;font-size:9px;color:var(--ink-ghost);margin-top:4px;opacity:.7}
 
 .divider{display:flex;align-items:center;gap:8px;margin:10px 0;opacity:.45}
 .divider-line{flex:1;height:1px;background:var(--seal-gold-dim)}
@@ -315,12 +317,14 @@ const SDV={
     ['Forecast Rain',20,"Sets tomorrow's forecast to rain. Plan accordingly."],
     ['Beach Warp',40,"Warps the farmer tae the beach. Whether they wanted that or not."],
     ['Island Warp',100,"Drops them on Ginger Island. Tropical. Expensive to get back from."],
-    ['Bathhouse',30,"A warp to the spa. She will not admit this is generous."],
+    ['Bathhouse',30,"A warp tae the spa. She will not admit this is generous."],
     ['Frog Invasion',30,"Frogs appear everywhere. They're harmless. Just everywhere."],
+    ['Fish Bundle Chaos',150,"Reshuffles the fish tank bundle requirements. The Junimo are particular about fish."],
+    ['Fish Frenzy',80,"Fish prices surge for 7 days. Good time tae sell everything ye've got."],
   ],
   fire:[
     ['Desert Warp',80,"Off tae Calico Desert. Hot, sandy, and full of Skull Cavern temptation."],
-    ['Volcano Warp',110,"Straight tae the volcano. She hopes they brought something good to fight with."],
+    ['Volcano Warp',110,"Straight tae the volcano. She hopes they brought something good tae fight with."],
     ['Pepper Rex!',120,"Summons a Pepper Rex. A dinosaur. A very angry one."],
     ['Mail Coffee',40,"A coffee arrives in the mailbox. Because she's not completely heartless."],
   ],
@@ -332,49 +336,69 @@ const SDV={
     ['Slime Invasion',50,"Slimes appear on the farm. Slimy. Numerous. Annoying."],
     ['Squirrel Surge',30,"A swarm of squirrels descend. Chaotic. Adorable. Still chaos."],
     ['Rabbit Stampede',30,"Rabbits everywhere. They mean well. They're still in the way."],
-    ['Grow Blessing',70,"Advances crops toward harvest. Quite generous, actually. Dinnae read intae it."],
+    ['Grow Blessing',70,"Advances all crops by one day. Quite generous. Dinnae read intae it."],
     ['Giant Growth',100,"Attempts tae grow giant crops overnight. No promises."],
     ['Random Planting',50,"Plants random crops on empty tilled soil. She picks them herself. Poorly."],
     ['Earthquake',80,"The ground shakes. Pierre will want tae check for damage."],
     ['Surprise Gift',30,"A random gift appears in the mailbox. Quality varies. Wildly."],
     ['Mail Geode',60,"A geode arrives. Could be treasure. Could be stone. Clint charges either way."],
+    ["Pierre's Whim",50,"Pierre vanishes tae the Witch's Swamp. The shop is closed. Caroline looks relieved."],
+    ['Artisan Boom',80,"Artisan goods sell for 3x for 7 days. Alyrin approves of capitalism, briefly."],
+    ['Gem Rush',90,"Gems and minerals sell for 2.5x for 7 days. Get mining."],
+    ['Call Merchant',80,"The Travelling Merchant appears. Better go find her before she leaves."],
+    ['Farming Bundle Chaos',150,"Reshuffles the farming bundle. The Junimo redecorated. Good luck."],
+    ['Add Hearts',40,"Gains friendship with a random villager. The Junimo said nice things."],
   ],
   wind:[
     ['Ridgeside Warp',60,"Warps tae Ridgeside Village. Good luck getting back down the cable car."],
     ['Serpent Strike',90,"A serpent appears in the mines. Large. Unpleasant. Very serpentine."],
     ['Owl Visitation',35,"A mysterious owl visits. It watches. It says nothing. It leaves."],
+    ['Random Planting',50,"Plants random seasonal crops on all empty tilled soil."],
+    ['Random Hat',30,"A random hat lands on yer head. The old one goes in yer bag. Hopefully."],
+    ['Secret Note',40,"A secret note appears in yer inventory. Where did it come from? She's nae saying."],
+    ['Lost Today',40,"A random villager wanders off tae who-knows-where. Their schedule is ruined."],
   ],
-  lightning:[],
+  lightning:[
+    ['Floor Skip Down',60,"Skips 5 floors deeper in the mines. Fast way doon. Dangerous way doon."],
+    ['Floor Skip Up',60,"Skips 5 floors up in the mines. For when ye've had enough."],
+    ['Dangerous Mines',100,"Activates dangerous mine mode. Monsters are harder. She is unsympathetic."],
+  ],
   holy:[
     ['Clear Skies',30,"Clears the weather tae sunshine. She did it for the crops, not for you."],
-    ['Rewind',80,"Reverses time slightly. Useful. She will only do it once."],
+    ['Rewind',80,"Reverses time by 2 hours. Useful. She will only do it once."],
     ['Butterfly Storm',25,"Butterflies. Everywhere. It's... actually quite nice. Dinnae tell anyone she said that."],
     ['Firefly Night',40,"Fireflies fill the evening. Peaceful. She'll deny enjoying it."],
     ['Fairy Visit',60,"A crop fairy blesses the farm overnight. Growth happens."],
-    ['Goodwill',40,"Adds friendship points with a random villager. She approves of social investment."],
+    ['Add Hearts',40,"Gains friendship with a random villager. The Junimo spoke well of ye."],
     ['Mail Cookie',40,"Cookies in the mailbox. Proper ones. She checked."],
     ['Mail Diamond',150,"A diamond. An actual diamond. She dislikes how generous this makes her look."],
+    ['Safe Mines',50,"Deactivates dangerous mine mode. A mercy. Briefly."],
+    ['Floor Skip Up',60,"Skips 5 floors up in the mines. Retreat is sometimes wisdom."],
   ],
   darkness:[
     ['Sewer Warp',60,"Down tae the sewers with ye. Krobus is there. He's fine. The smell is not."],
     ["Witch's Swamp",90,"Off tae the witch's swamp. Haunted. Interesting implications for Pierre."],
     ['Bat Swarm',60,"Bats emerge in the mines. The flappy kind. Quite a lot of them."],
     ['Haunting',70,"Strange things begin tae happen on the farm. Atmospheric. Inconvenient."],
-    ['Blight',80,"Kills one crop. Just the one. Could be worse. Probably."],
+    ['Blight',80,"Kills one random crop. Just the one. It's enough."],
     ['Murder of Crows',50,"Crows descend. Ominous. Statistically fine. Still unsettling."],
     ['Joja Invasion',40,"Joja representatives appear. She finds them distasteful."],
     ['Trash Chest',50,"A trash chest arrives in the mailbox. She didn't choose the contents."],
-    ['Scandal',60,"A villager loses some goodwill with the farmer. Rumours, probably."],
+    ['Scandal',60,"Removes friendship with a random villager. The Junimo told them things."],
     ['Mail Coal',20,"Coal in the mailbox. She judged someone and this is the verdict."],
+    ['Crop Crash',70,"Crop prices crash tae 0.3x for 7 days. Dinnae ship anything."],
+    ['Dangerous Mines',100,"Activates dangerous mine mode. Good luck. She means that sarcastically."],
   ],
   void:[
-    ['Time Surge',60,"Advances the in-game clock. Time is precious. Spend it carelessly."],
-    ['Time Skip',120,"A larger leap forward in time. Significant. Irreversible."],
+    ['Time Surge',60,"Advances the in-game clock by 2 hours. Time is precious. Spend it carelessly."],
+    ['Time Skip',120,"Leaps 4 hours forward. Significant. Irreversible. Very void."],
     ['Skull Cavern',120,"Warps directly tae Skull Cavern. Bring bombs. Bring luck. Bring better choices."],
     ['Mine Lvl 80',90,"Floor 80 of the mines. Gold territory. Bring a sword."],
     ['Shadow Brutes',100,"Shadow Brutes appear in the mines. They hit very hard. She is unsympathetic."],
-    ['Row Wipe',60,"Kills one random crop. Not a row. Just the one. It's enough."],
+    ['Row Wipe',60,"Kills one random crop. Not a row anymore. Just the one. It's enough."],
     ['Mail Trash',15,"Literal rubbish in the mailbox. She had her reasons."],
+    ['Bundle Chaos',200,"Reshuffles a completely random bundle. The Junimo offer no explanation."],
+    ['Floor Skip Down',60,"Skips 5 floors deeper in the mines. Faster doon than ye expected."],
   ],
   storm:[
     ['Summon Storm',70,"A full thunderstorm arrives. Lightning and all. Mind yer temper."],
@@ -414,6 +438,14 @@ const SPIRE={
   ],
 }
 const SPIRE_OPEN=[['Create Card',120,"Crafts a custom card for the run. The most expensive spell she offers. Worth it, theoretically."]]
+
+// SDV open-to-all spells (element: null in stardew.js)
+const SDV_OPEN=[
+  ['Ring Bell',10,"Rings Pierre's doorbell. For absolutely no reason. DING DONG."],
+  ['Critter Burst',25,"A random critter explosion. Whatever lives here, it's coming out. All of it."],
+  ['Summon the Townsfolk',80,"Summons half the village tae chase the farmer. They will not stop."],
+  ['Sudden Marriage',300,"Three hundred mana. Someone moves in immediately. No courtship. No warning."],
+]
 
 
 const PK={
@@ -558,10 +590,20 @@ function render(data,rawName){
   card.style.setProperty('--element-glow',el?.glow??'#c8962c40')
 
   const elKey=data.element??null
-  const rwSpells=elKey?(RW[elKey]??[]):[]
-  const sdvSpells=elKey?(SDV[elKey]??[]):[]
-  const spireSpells=elKey?(SPIRE[elKey]??[]):[]
-  const pkSpells=elKey?(PK[elKey]??[]):[]
+  // Merge spells from all active elements, deduplicating by name
+  function mergeSpells(dict) {
+    const seen=new Set(); const out=[]
+    for(const el of allEls){
+      for(const s of (dict[el]??[])){
+        if(!seen.has(s[0])){seen.add(s[0]);out.push(s)}
+      }
+    }
+    return out
+  }
+  const rwSpells    = mergeSpells(RW)
+  const sdvSpells   = mergeSpells(SDV)
+  const spireSpells = mergeSpells(SPIRE)
+  const pkSpells    = mergeSpells(PK)
 
   const drinks=data.topDrinks??[]
   const drinksHtml=drinks.length
@@ -577,9 +619,10 @@ function render(data,rawName){
     ?`<div class="spell-grid">${spellRows(pkSpells,'pspell')}</div>`
     :'<div style="font-style:italic;font-size:10px;color:var(--ink-ghost)">Type !element first to unlock your Pokemon spells.</div>'
 
+  const sdvOpenHtml=`<div class="open-spells-note">Open to all elements:</div><div class="spell-grid">${SDV_OPEN.map(([n,m,tip])=>{const c=`!sdvspell ${cmdKey(n)}`;return`<div class="spell-row"><div class="spell-dot"></div><span class="spell-name">${n}</span><span class="spell-mana">${m} mana</span><span class="spell-cmd has-tip" onclick="copyCmd(this,'${c.replace(/'/g,"\'")}')"><span class="tip">${tip||''}</span>${c}</span></div>`}).join('')}</div>`
   const sdvBody=elKey
-    ?`<div class="spell-grid">${spellRows(sdvSpells,'sdvspell')}</div>`
-    :'<div style="font-style:italic;font-size:10px;color:var(--ink-ghost)">Type !element first to unlock your Stardew spells.</div>'
+    ?sdvOpenHtml+`<div class="section-head" style="margin-top:10px">${tc(elKey)} element spells</div><div class="spell-grid">${spellRows(sdvSpells,'sdvspell')}</div>`
+    :sdvOpenHtml+'<div style="font-style:italic;font-size:10px;color:var(--ink-ghost);margin-top:8px">Type !element first to unlock your element-specific Stardew spells.</div>'
 
   const spireBody=`
     <div class="open-spells-note">Open to all elements:</div>
@@ -589,12 +632,28 @@ function render(data,rawName){
 
   body.innerHTML=`
     <div class="element-seal">
-      <div class="seal-circle"><span class="seal-emoji">${el?.emoji??'&#10022;'}</span><span class="seal-rarity">${el?tc(el.rarity):'&mdash;'}</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px;flex-shrink:0">
+        <div class="seal-circle" style="${el?`--element-color:${el.color};--element-glow:${el.glow}`:''}">
+          <span class="seal-emoji">${el?.emoji??'&#10022;'}</span>
+          <span class="seal-rarity">${el?tc(el.rarity):'&mdash;'}</span>
+        </div>
+        ${el2?`<div class="seal-circle-sm" style="background:${el2.color}20;border-color:${el2.color};box-shadow:0 0 8px ${el2.glow}" title="${el2.title}">
+          <span style="font-size:16px">${el2.emoji}</span>
+        </div>`:''}
+        ${el3?`<div class="seal-circle-sm" style="background:${el3.color}20;border-color:${el3.color};box-shadow:0 0 8px ${el3.glow}" title="${el3.title}">
+          <span style="font-size:16px">${el3.emoji}</span>
+        </div>`:''}
+      </div>
       <div class="seal-info">
         <div class="viewer-name">${data.displayName??rawName}</div>
-        ${el?`<div class="element-title">${el.title}</div><div class="element-name">${tc(data.element)} Element</div><div class="element-desc">"${el.desc}"</div>`
-            :`<div class="element-desc" style="margin-top:8px;font-style:italic">No element assigned &mdash; type !element in chat.</div>`}
+        ${el?`
+          <div class="element-title">${el.title}${el2?` <span style="color:${el2.color};font-size:11px">/ ${el2.title}</span>`:''}${el3?` <span style="color:${el3.color};font-size:11px">/ ${el3.title}</span>`:''}</div>
+          <div class="element-name">${allEls.map(e=>tc(e)).join(' / ')} Element${allEls.length>1?'s':''}</div>
+          <div class="element-desc">"${el.desc}"</div>
+        `:` <div class="element-desc" style="margin-top:8px;font-style:italic">No element assigned &mdash; type !element in chat.</div>`}
         <div class="tier-badge">${tier}</div>
+        ${!el2&&el?`<div class="unlock-hint">&#128274; 2nd element unlocks at Scout rank &mdash; earn quest XP!</div>`:''}
+        ${el2&&!el3?`<div class="unlock-hint">&#128274; 3rd element unlocks at Veteran rank</div>`:''}
       </div>
     </div>
 
