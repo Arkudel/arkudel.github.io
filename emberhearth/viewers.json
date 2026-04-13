@@ -2,22 +2,16 @@
   "arkudel": {
     "displayName": "Arkudel",
     "element": "earth",
-    "tier": "stranger",
-    "warmth": 4,
+    "tier": "regular",
+    "warmth": 6,
     "visitCount": 9,
-    "messageCount": 20,
+    "messageCount": 21,
     "firstSeen": 1776050357951,
-    "lastSeen": 1776059551173,
-    "mana": 25,
-    "lifetime": 25,
+    "lastSeen": 1776060277620,
+    "mana": 26,
+    "lifetime": 26,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776050940571
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -71,9 +65,20 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776059551175
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776060277622
       }
     ],
-    "topDrinks": [],
+    "topDrinks": [
+      {
+        "name": "Ember's Last Light",
+        "count": 1
+      }
+    ],
     "adventure": {
       "xp": 0,
       "questsCompleted": 0,
