@@ -7,19 +7,13 @@
     "tier": "regular",
     "warmth": 8,
     "visitCount": 13,
-    "messageCount": 27,
+    "messageCount": 28,
     "firstSeen": 1776050357951,
-    "lastSeen": 1776072144017,
-    "mana": 41,
-    "lifetime": 131,
+    "lastSeen": 1776072264858,
+    "mana": 42,
+    "lifetime": 132,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776060277622
-      },
       {
         "type": "earn",
         "amount": 99,
@@ -73,6 +67,12 @@
         "amount": 80,
         "reason": "sdvspell_earthquake",
         "ts": 1776072144025
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776072264861
       }
     ],
     "topDrinks": [
