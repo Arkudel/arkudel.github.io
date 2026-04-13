@@ -3,21 +3,15 @@
     "displayName": "Arkudel",
     "element": "earth",
     "tier": "stranger",
-    "warmth": 3.5,
-    "visitCount": 8,
-    "messageCount": 19,
+    "warmth": 4,
+    "visitCount": 9,
+    "messageCount": 20,
     "firstSeen": 1776050357951,
-    "lastSeen": 1776057717792,
-    "mana": 24,
-    "lifetime": 24,
+    "lastSeen": 1776059551173,
+    "mana": 25,
+    "lifetime": 25,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776050593647
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -71,8 +65,20 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776057717794
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776059551175
       }
-    ]
+    ],
+    "topDrinks": [],
+    "adventure": {
+      "xp": 0,
+      "questsCompleted": 0,
+      "wins": 0
+    }
   },
   "alyrindelling": {
     "displayName": "alyrindelling",
@@ -129,6 +135,12 @@
         "reason": "message",
         "ts": 1776056377772
       }
-    ]
+    ],
+    "topDrinks": [],
+    "adventure": {
+      "xp": 0,
+      "questsCompleted": 0,
+      "wins": 0
+    }
   }
 }
