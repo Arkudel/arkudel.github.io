@@ -1,1 +1,134 @@
-{}
+{
+  "arkudel": {
+    "displayName": "Arkudel",
+    "element": "earth",
+    "tier": "stranger",
+    "warmth": 1.5,
+    "visitCount": 4,
+    "messageCount": 15,
+    "firstSeen": 1776050357951,
+    "lastSeen": 1776056811882,
+    "mana": 20,
+    "lifetime": 20,
+    "cooldowns": {},
+    "history": [
+      {
+        "type": "earn",
+        "amount": 5,
+        "reason": "element_assignment",
+        "ts": 1776050395244
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776050406952
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776050411676
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776050519092
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776050593647
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776050940571
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776051066965
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776056805580
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776056809867
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776056811885
+      }
+    ]
+  },
+  "alyrindelling": {
+    "displayName": "alyrindelling",
+    "element": "fire",
+    "tier": "stranger",
+    "warmth": 1,
+    "visitCount": 3,
+    "messageCount": 6,
+    "firstSeen": 1776050479358,
+    "lastSeen": 1776056377771,
+    "mana": 11,
+    "lifetime": 11,
+    "cooldowns": {},
+    "history": [
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776050479360
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776050485202
+      },
+      {
+        "type": "earn",
+        "amount": 5,
+        "reason": "element_assignment",
+        "ts": 1776050485206
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776050511266
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776056275941
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776056362277
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776056377772
+      }
+    ]
+  }
+}
