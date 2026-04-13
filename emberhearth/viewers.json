@@ -95,25 +95,13 @@
     "tier": "stranger",
     "warmth": 3.5,
     "visitCount": 8,
-    "messageCount": 16,
+    "messageCount": 17,
     "firstSeen": 1776050479358,
-    "lastSeen": 1776083588839,
-    "mana": 421,
-    "lifetime": 421,
+    "lastSeen": 1776083656977,
+    "mana": 222,
+    "lifetime": 422,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776083285454
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776083306194
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -161,6 +149,18 @@
         "amount": 200,
         "reason": "admin_grant",
         "ts": 1776083612685
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776083656979
+      },
+      {
+        "type": "spend",
+        "amount": 200,
+        "reason": "sdvspell_new_spouse",
+        "ts": 1776083656980
       }
     ],
     "topDrinks": [],
