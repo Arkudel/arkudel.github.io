@@ -176,21 +176,15 @@
     "element2": null,
     "element3": null,
     "tier": "stranger",
-    "warmth": 0.9999999999999999,
+    "warmth": 4,
     "visitCount": 2,
-    "messageCount": 86,
+    "messageCount": 87,
     "firstSeen": 1776076393392,
-    "lastSeen": 1776161160174,
-    "mana": 123,
-    "lifetime": 746,
+    "lastSeen": 1776161318496,
+    "mana": 124,
+    "lifetime": 747,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776160701219
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -244,9 +238,20 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776161160177
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776161318498
       }
     ],
-    "topDrinks": [],
+    "topDrinks": [
+      {
+        "name": "The Welcome Mat",
+        "count": 1
+      }
+    ],
     "adventure": {
       "xp": 39,
       "questsCompleted": 4,
