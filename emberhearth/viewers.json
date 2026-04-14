@@ -5,74 +5,74 @@
     "element2": null,
     "element3": null,
     "tier": "regular",
-    "warmth": 9,
-    "visitCount": 15,
-    "messageCount": 44,
+    "warmth": 10,
+    "visitCount": 17,
+    "messageCount": 53,
     "firstSeen": 1776050357951,
-    "lastSeen": 1776083052898,
-    "mana": 58,
-    "lifetime": 158,
+    "lastSeen": 1776159678435,
+    "mana": 271,
+    "lifetime": 967,
     "cooldowns": {},
     "history": [
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776129912348
+      },
+      {
+        "type": "spend",
+        "amount": 25,
+        "reason": "sdvspell_butterfly_storm",
+        "ts": 1776129912350
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776158782621
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776158875400
+      },
+      {
+        "type": "earn",
+        "amount": 200,
+        "reason": "admin_grant_all",
+        "ts": 1776158925535
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776159505297
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776159663119
+      },
       {
         "type": "spend",
         "amount": 10,
         "reason": "sdvspell_ring_bell",
-        "ts": 1776077012521
+        "ts": 1776159663122
       },
       {
         "type": "earn",
         "amount": 1,
         "reason": "message",
-        "ts": 1776077020078
+        "ts": 1776159678437
       },
       {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776077044120
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776077053014
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776077060730
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776082216177
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776082480057
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776082494620
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776083033542
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776083052902
+        "type": "spend",
+        "amount": 200,
+        "reason": "sdvspell_new_roomie",
+        "ts": 1776159678440
       }
     ],
     "topDrinks": [
@@ -176,80 +176,80 @@
     "element2": null,
     "element3": null,
     "tier": "stranger",
-    "warmth": 0,
-    "visitCount": 1,
-    "messageCount": 53,
+    "warmth": 0.7,
+    "visitCount": 2,
+    "messageCount": 64,
     "firstSeen": 1776076393392,
-    "lastSeen": 1776078699244,
-    "mana": 463,
-    "lifetime": 513,
+    "lastSeen": 1776159610884,
+    "mana": 500,
+    "lifetime": 724,
     "cooldowns": {},
     "history": [
       {
         "type": "earn",
         "amount": 1,
         "reason": "message",
-        "ts": 1776077945199
+        "ts": 1776158539141
       },
       {
         "type": "earn",
         "amount": 1,
         "reason": "message",
-        "ts": 1776078039813
+        "ts": 1776158597810
       },
       {
         "type": "earn",
         "amount": 1,
         "reason": "message",
-        "ts": 1776078212251
+        "ts": 1776158917250
+      },
+      {
+        "type": "earn",
+        "amount": 200,
+        "reason": "admin_grant_all",
+        "ts": 1776158925530
       },
       {
         "type": "earn",
         "amount": 1,
         "reason": "message",
-        "ts": 1776078223942
+        "ts": 1776159027631
       },
       {
         "type": "earn",
         "amount": 1,
         "reason": "message",
-        "ts": 1776078245439
+        "ts": 1776159114317
       },
       {
         "type": "earn",
         "amount": 1,
         "reason": "message",
-        "ts": 1776078302863
+        "ts": 1776159119620
       },
       {
         "type": "earn",
         "amount": 1,
         "reason": "message",
-        "ts": 1776078336536
+        "ts": 1776159176064
       },
       {
         "type": "earn",
         "amount": 1,
         "reason": "message",
-        "ts": 1776078362231
+        "ts": 1776159568741
       },
       {
         "type": "earn",
         "amount": 1,
         "reason": "message",
-        "ts": 1776078541711
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776078699246
+        "ts": 1776159610886
       }
     ],
     "topDrinks": [],
     "adventure": {
-      "xp": 35,
-      "questsCompleted": 1,
+      "xp": 38,
+      "questsCompleted": 3,
       "wins": 1
     }
   },
@@ -321,6 +321,172 @@
     "adventure": {
       "xp": 0,
       "questsCompleted": 0,
+      "wins": 0
+    }
+  },
+  "buzzedlightbeers": {
+    "displayName": "BuzzedLightBeers",
+    "element": "wind",
+    "element2": null,
+    "element3": null,
+    "tier": "stranger",
+    "warmth": 0.4,
+    "visitCount": 1,
+    "messageCount": 23,
+    "firstSeen": 1776158152410,
+    "lastSeen": 1776159314890,
+    "mana": 283,
+    "lifetime": 283,
+    "cooldowns": {},
+    "history": [
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776158810682
+      },
+      {
+        "type": "earn",
+        "amount": 5,
+        "reason": "element_assignment",
+        "ts": 1776158810685
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776158824844
+      },
+      {
+        "type": "earn",
+        "amount": 200,
+        "reason": "admin_grant_all",
+        "ts": 1776158925527
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776158953703
+      },
+      {
+        "type": "earn",
+        "amount": 35,
+        "reason": "quest_win_C",
+        "ts": 1776159110374
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776159195296
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776159242666
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776159252026
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776159314893
+      }
+    ],
+    "topDrinks": [],
+    "adventure": {
+      "xp": 30,
+      "questsCompleted": 2,
+      "wins": 2
+    }
+  },
+  "trekcrapps": {
+    "displayName": "trekcrapps",
+    "element": "holy",
+    "element2": null,
+    "element3": null,
+    "tier": "stranger",
+    "warmth": 0,
+    "visitCount": 1,
+    "messageCount": 10,
+    "firstSeen": 1776158583133,
+    "lastSeen": 1776159042896,
+    "mana": 215,
+    "lifetime": 215,
+    "cooldowns": {},
+    "history": [
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776158649036
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776158715211
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776158801602
+      },
+      {
+        "type": "earn",
+        "amount": 5,
+        "reason": "element_assignment",
+        "ts": 1776158801605
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776158827586
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776158837730
+      },
+      {
+        "type": "earn",
+        "amount": 200,
+        "reason": "admin_grant_all",
+        "ts": 1776158925533
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776158943239
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776159004435
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776159042899
+      }
+    ],
+    "topDrinks": [],
+    "adventure": {
+      "xp": 2,
+      "questsCompleted": 1,
       "wins": 0
     }
   }
