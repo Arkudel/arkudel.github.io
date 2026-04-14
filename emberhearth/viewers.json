@@ -253,8 +253,8 @@
       }
     ],
     "adventure": {
-      "xp": 39,
-      "questsCompleted": 4,
+      "xp": 40,
+      "questsCompleted": 5,
       "wins": 1
     }
   },
@@ -340,16 +340,10 @@
     "messageCount": 35,
     "firstSeen": 1776158152410,
     "lastSeen": 1776161509917,
-    "mana": 305,
-    "lifetime": 305,
+    "mana": 315,
+    "lifetime": 315,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776160078310
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -403,13 +397,19 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776161509920
+      },
+      {
+        "type": "earn",
+        "amount": 10,
+        "reason": "quest_win_E",
+        "ts": 1776161811416
       }
     ],
     "topDrinks": [],
     "adventure": {
-      "xp": 35,
-      "questsCompleted": 3,
-      "wins": 3
+      "xp": 40,
+      "questsCompleted": 4,
+      "wins": 4
     }
   },
   "trekcrapps": {
