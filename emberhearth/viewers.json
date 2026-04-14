@@ -178,19 +178,13 @@
     "tier": "stranger",
     "warmth": 0.7,
     "visitCount": 2,
-    "messageCount": 68,
+    "messageCount": 69,
     "firstSeen": 1776076393392,
-    "lastSeen": 1776159880851,
-    "mana": 485,
-    "lifetime": 728,
+    "lastSeen": 1776159927160,
+    "mana": 486,
+    "lifetime": 729,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776159114317
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -244,6 +238,12 @@
         "amount": 15,
         "reason": "sdvspell_mail_garbage",
         "ts": 1776159880856
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776159927163
       }
     ],
     "topDrinks": [],
