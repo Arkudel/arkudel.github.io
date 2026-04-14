@@ -178,49 +178,13 @@
     "tier": "stranger",
     "warmth": 0.7,
     "visitCount": 2,
-    "messageCount": 71,
+    "messageCount": 75,
     "firstSeen": 1776076393392,
-    "lastSeen": 1776159975540,
-    "mana": 458,
-    "lifetime": 731,
+    "lastSeen": 1776160064805,
+    "mana": 312,
+    "lifetime": 735,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776159610886
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776159798489
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776159823183
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776159838987
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776159880853
-      },
-      {
-        "type": "spend",
-        "amount": 15,
-        "reason": "sdvspell_mail_garbage",
-        "ts": 1776159880856
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -244,6 +208,42 @@
         "amount": 30,
         "reason": "sdvspell_squirrel_explosion",
         "ts": 1776159975546
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776160016565
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776160021280
+      },
+      {
+        "type": "spend",
+        "amount": 40,
+        "reason": "sdvspell_joja_invasion",
+        "ts": 1776160021283
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776160055736
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776160064807
+      },
+      {
+        "type": "spend",
+        "amount": 110,
+        "reason": "sdvspell_warp_volcano",
+        "ts": 1776160064812
       }
     ],
     "topDrinks": [],
@@ -332,25 +332,13 @@
     "tier": "stranger",
     "warmth": 0.4,
     "visitCount": 1,
-    "messageCount": 23,
+    "messageCount": 25,
     "firstSeen": 1776158152410,
-    "lastSeen": 1776159314890,
-    "mana": 283,
-    "lifetime": 283,
+    "lastSeen": 1776160047396,
+    "mana": 285,
+    "lifetime": 285,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776158810682
-      },
-      {
-        "type": "earn",
-        "amount": 5,
-        "reason": "element_assignment",
-        "ts": 1776158810685
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -398,6 +386,18 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776159314893
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776160032349
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776160047398
       }
     ],
     "topDrinks": [],
