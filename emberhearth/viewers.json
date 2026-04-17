@@ -5,51 +5,15 @@
     "element2": null,
     "element3": null,
     "tier": "regular",
-    "warmth": 10,
-    "visitCount": 17,
-    "messageCount": 53,
+    "warmth": 12.1,
+    "visitCount": 21,
+    "messageCount": 59,
     "firstSeen": 1776050357951,
-    "lastSeen": 1776159678435,
-    "mana": 271,
-    "lifetime": 967,
+    "lastSeen": 1776261226189,
+    "mana": 277,
+    "lifetime": 973,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776129912348
-      },
-      {
-        "type": "spend",
-        "amount": 25,
-        "reason": "sdvspell_butterfly_storm",
-        "ts": 1776129912350
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776158782621
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776158875400
-      },
-      {
-        "type": "earn",
-        "amount": 200,
-        "reason": "admin_grant_all",
-        "ts": 1776158925535
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776159505297
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -73,6 +37,42 @@
         "amount": 200,
         "reason": "sdvspell_new_roomie",
         "ts": 1776159678440
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776222668504
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776223019800
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776227782837
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776227837382
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776227846686
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776261226190
       }
     ],
     "topDrinks": [
