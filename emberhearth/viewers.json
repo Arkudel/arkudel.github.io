@@ -5,21 +5,15 @@
     "element2": null,
     "element3": null,
     "tier": "regular",
-    "warmth": 12.6,
-    "visitCount": 22,
-    "messageCount": 60,
+    "warmth": 13.1,
+    "visitCount": 23,
+    "messageCount": 61,
     "firstSeen": 1776050357951,
-    "lastSeen": 1776468374379,
-    "mana": 298,
-    "lifetime": 974,
+    "lastSeen": 1776498158813,
+    "mana": 299,
+    "lifetime": 975,
     "cooldowns": {},
     "history": [
-      {
-        "type": "spend",
-        "amount": 10,
-        "reason": "sdvspell_ring_bell",
-        "ts": 1776159663122
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -73,6 +67,12 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776468374381
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776498158815
       }
     ],
     "topDrinks": [
@@ -176,27 +176,15 @@
     "element2": null,
     "element3": null,
     "tier": "stranger",
-    "warmth": 4,
-    "visitCount": 2,
-    "messageCount": 88,
+    "warmth": 4.5,
+    "visitCount": 3,
+    "messageCount": 90,
     "firstSeen": 1776076393392,
-    "lastSeen": 1776161501374,
-    "mana": 125,
-    "lifetime": 748,
+    "lastSeen": 1776498178145,
+    "mana": 127,
+    "lifetime": 750,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776160972307
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776161025736
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -244,6 +232,18 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776161501377
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776498145187
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776498178148
       }
     ],
     "topDrinks": [
