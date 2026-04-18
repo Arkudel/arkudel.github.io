@@ -178,25 +178,13 @@
     "tier": "stranger",
     "warmth": 4.5,
     "visitCount": 3,
-    "messageCount": 90,
+    "messageCount": 92,
     "firstSeen": 1776076393392,
-    "lastSeen": 1776498178145,
-    "mana": 129,
-    "lifetime": 750,
+    "lastSeen": 1776498379512,
+    "mana": 131,
+    "lifetime": 752,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776161066754
-      },
-      {
-        "type": "spend",
-        "amount": 80,
-        "reason": "sdvspell_time_back",
-        "ts": 1776161066759
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -244,6 +232,18 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776498178148
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776498373710
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776498379515
       }
     ],
     "topDrinks": [
@@ -335,33 +335,15 @@
     "element2": null,
     "element3": null,
     "tier": "stranger",
-    "warmth": 1,
+    "warmth": 1.2,
     "visitCount": 2,
-    "messageCount": 36,
+    "messageCount": 39,
     "firstSeen": 1776158152410,
-    "lastSeen": 1776498355111,
-    "mana": 316,
-    "lifetime": 316,
+    "lastSeen": 1776498400461,
+    "mana": 319,
+    "lifetime": 319,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776160262223
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776160675501
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776160678214
-      },
       {
         "type": "earn",
         "amount": 10,
@@ -403,6 +385,24 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776498355112
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776498385483
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776498397513
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776498400463
       }
     ],
     "topDrinks": [],
