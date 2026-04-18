@@ -10,7 +10,7 @@
     "messageCount": 64,
     "firstSeen": 1776050357951,
     "lastSeen": 1776499461283,
-    "mana": 330,
+    "mana": 332,
     "lifetime": 978,
     "cooldowns": {},
     "history": [
@@ -181,7 +181,7 @@
     "messageCount": 103,
     "firstSeen": 1776076393392,
     "lastSeen": 1776500502105,
-    "mana": 128,
+    "mana": 130,
     "lifetime": 763,
     "cooldowns": {},
     "history": [
@@ -269,7 +269,7 @@
     "messageCount": 33,
     "firstSeen": 1776077897783,
     "lastSeen": 1776499624844,
-    "mana": 112,
+    "mana": 114,
     "lifetime": 88,
     "cooldowns": {},
     "history": [
@@ -518,7 +518,7 @@
     "messageCount": 1,
     "firstSeen": 1776499980109,
     "lastSeen": 1776499980111,
-    "mana": 9,
+    "mana": 11,
     "lifetime": 1,
     "cooldowns": {},
     "history": [
