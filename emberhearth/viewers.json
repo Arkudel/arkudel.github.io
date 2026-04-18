@@ -506,5 +506,34 @@
       "questsCompleted": 1,
       "wins": 0
     }
+  },
+  "bacterialhoopn1eiglzaykd": {
+    "displayName": "bacterialhoopn1eiglzaykd",
+    "element": null,
+    "element2": null,
+    "element3": null,
+    "tier": "stranger",
+    "warmth": 0.5,
+    "visitCount": 2,
+    "messageCount": 1,
+    "firstSeen": 1776499980109,
+    "lastSeen": 1776499980111,
+    "mana": 1,
+    "lifetime": 1,
+    "cooldowns": {},
+    "history": [
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776499980112
+      }
+    ],
+    "topDrinks": [],
+    "adventure": {
+      "xp": 0,
+      "questsCompleted": 0,
+      "wins": 0
+    }
   }
 }
