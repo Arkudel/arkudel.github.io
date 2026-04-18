@@ -178,19 +178,13 @@
     "tier": "regular",
     "warmth": 5,
     "visitCount": 3,
-    "messageCount": 109,
+    "messageCount": 110,
     "firstSeen": 1776076393392,
-    "lastSeen": 1776501839913,
-    "mana": 203,
-    "lifetime": 824,
+    "lastSeen": 1776502089697,
+    "mana": 206,
+    "lifetime": 825,
     "cooldowns": {},
     "history": [
-      {
-        "type": "spend",
-        "amount": 40,
-        "reason": "sdvspell_joja_invasion",
-        "ts": 1776500349819
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -244,6 +238,12 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776501839915
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776502089700
       }
     ],
     "topDrinks": [
@@ -349,19 +349,13 @@
     "tier": "stranger",
     "warmth": 1.2,
     "visitCount": 2,
-    "messageCount": 41,
+    "messageCount": 42,
     "firstSeen": 1776158152410,
-    "lastSeen": 1776498495730,
-    "mana": 343,
-    "lifetime": 321,
+    "lastSeen": 1776502116374,
+    "mana": 344,
+    "lifetime": 322,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776161435857
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -415,6 +409,12 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776498495731
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776502116376
       }
     ],
     "topDrinks": [],
