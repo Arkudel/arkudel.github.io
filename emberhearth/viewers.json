@@ -7,25 +7,13 @@
     "tier": "regular",
     "warmth": 13.6,
     "visitCount": 23,
-    "messageCount": 62,
+    "messageCount": 64,
     "firstSeen": 1776050357951,
-    "lastSeen": 1776498517811,
-    "mana": 314,
-    "lifetime": 976,
+    "lastSeen": 1776499461283,
+    "mana": 316,
+    "lifetime": 978,
     "cooldowns": {},
     "history": [
-      {
-        "type": "spend",
-        "amount": 200,
-        "reason": "sdvspell_new_roomie",
-        "ts": 1776159678440
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776222668504
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -73,6 +61,18 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776498517812
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776499458304
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776499461284
       }
     ],
     "topDrinks": [
@@ -260,37 +260,19 @@
   },
   "squidleyspooch": {
     "displayName": "SquidleySpooch",
-    "element": null,
+    "element": "darkness",
     "element2": null,
     "element3": null,
     "tier": "stranger",
     "warmth": 0.7999999999999999,
     "visitCount": 2,
-    "messageCount": 26,
+    "messageCount": 28,
     "firstSeen": 1776077897783,
-    "lastSeen": 1776499414779,
-    "mana": 86,
-    "lifetime": 76,
+    "lastSeen": 1776499480679,
+    "mana": 93,
+    "lifetime": 83,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776498799073
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776498854582
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776499086688
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -332,6 +314,24 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776499414781
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776499451957
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776499480682
+      },
+      {
+        "type": "earn",
+        "amount": 5,
+        "reason": "element_assignment",
+        "ts": 1776499480686
       }
     ],
     "topDrinks": [],
