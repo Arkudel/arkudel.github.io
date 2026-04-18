@@ -178,25 +178,13 @@
     "tier": "stranger",
     "warmth": 4.6,
     "visitCount": 3,
-    "messageCount": 101,
+    "messageCount": 103,
     "firstSeen": 1776076393392,
-    "lastSeen": 1776500349813,
-    "mana": 124,
-    "lifetime": 761,
+    "lastSeen": 1776500502105,
+    "mana": 126,
+    "lifetime": 763,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776498435888
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776498524196
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -244,6 +232,18 @@
         "amount": 40,
         "reason": "sdvspell_joja_invasion",
         "ts": 1776500349819
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776500488032
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776500502108
       }
     ],
     "topDrinks": [
