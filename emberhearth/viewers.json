@@ -178,25 +178,13 @@
     "tier": "stranger",
     "warmth": 4.6,
     "visitCount": 3,
-    "messageCount": 104,
+    "messageCount": 105,
     "firstSeen": 1776076393392,
-    "lastSeen": 1776501467246,
-    "mana": 137,
-    "lifetime": 764,
+    "lastSeen": 1776501579281,
+    "mana": 195,
+    "lifetime": 820,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776498603090
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776500074390
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -244,6 +232,18 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776501467249
+      },
+      {
+        "type": "earn",
+        "amount": 55,
+        "reason": "quest_win_B",
+        "ts": 1776501553614
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1776501579283
       }
     ],
     "topDrinks": [
@@ -253,9 +253,9 @@
       }
     ],
     "adventure": {
-      "xp": 40,
-      "questsCompleted": 5,
-      "wins": 1
+      "xp": 75,
+      "questsCompleted": 6,
+      "wins": 2
     }
   },
   "squidleyspooch": {
@@ -518,7 +518,7 @@
     "messageCount": 1,
     "firstSeen": 1776499980109,
     "lastSeen": 1776499980111,
-    "mana": 17,
+    "mana": 19,
     "lifetime": 1,
     "cooldowns": {},
     "history": [
