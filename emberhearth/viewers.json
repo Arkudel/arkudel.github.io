@@ -542,39 +542,15 @@
     "element2": null,
     "element3": null,
     "tier": "stranger",
-    "warmth": 1,
+    "warmth": 1.2,
     "visitCount": 2,
-    "messageCount": 20,
+    "messageCount": 24,
     "firstSeen": 1777361328693,
-    "lastSeen": 1777362941579,
-    "mana": 58,
-    "lifetime": 40,
+    "lastSeen": 1777363034108,
+    "mana": 62,
+    "lifetime": 44,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1777361943590
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1777362001465
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1777362266527
-      },
-      {
-        "type": "earn",
-        "amount": 20,
-        "reason": "quest_win_D",
-        "ts": 1777362291928
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -610,6 +586,30 @@
         "amount": 1,
         "reason": "message",
         "ts": 1777362941581
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777362960570
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777363001268
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777363021004
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777363034109
       }
     ],
     "topDrinks": [],
