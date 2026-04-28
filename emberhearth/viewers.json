@@ -542,27 +542,15 @@
     "element2": null,
     "element3": null,
     "tier": "stranger",
-    "warmth": 0.9,
+    "warmth": 1,
     "visitCount": 2,
-    "messageCount": 18,
+    "messageCount": 20,
     "firstSeen": 1777361328693,
-    "lastSeen": 1777362770512,
-    "mana": 56,
-    "lifetime": 38,
+    "lastSeen": 1777362941579,
+    "mana": 58,
+    "lifetime": 40,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1777361755070
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1777361858269
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -610,6 +598,18 @@
         "amount": 1,
         "reason": "message",
         "ts": 1777362770514
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777362912244
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777362941581
       }
     ],
     "topDrinks": [],
