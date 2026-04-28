@@ -544,11 +544,11 @@
     "tier": "stranger",
     "warmth": 0.6,
     "visitCount": 2,
-    "messageCount": 9,
+    "messageCount": 10,
     "firstSeen": 1777361328693,
-    "lastSeen": 1777361596989,
-    "mana": 13,
-    "lifetime": 9,
+    "lastSeen": 1777361755068,
+    "mana": 14,
+    "lifetime": 10,
     "cooldowns": {},
     "history": [
       {
@@ -604,6 +604,12 @@
         "amount": 1,
         "reason": "message",
         "ts": 1777361596991
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777361755070
       }
     ],
     "topDrinks": [],
