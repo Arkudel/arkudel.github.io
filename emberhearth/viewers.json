@@ -178,19 +178,13 @@
     "tier": "regular",
     "warmth": 7.499999999999999,
     "visitCount": 4,
-    "messageCount": 145,
+    "messageCount": 146,
     "firstSeen": 1776076393392,
-    "lastSeen": 1777363529326,
-    "mana": 257,
-    "lifetime": 880,
+    "lastSeen": 1777363721701,
+    "mana": 258,
+    "lifetime": 881,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1777361895830
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -244,6 +238,12 @@
         "amount": 1,
         "reason": "message",
         "ts": 1777363529329
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777363721703
       }
     ],
     "topDrinks": [
@@ -349,31 +349,13 @@
     "tier": "stranger",
     "warmth": 2.1,
     "visitCount": 3,
-    "messageCount": 60,
+    "messageCount": 63,
     "firstSeen": 1776158152410,
-    "lastSeen": 1777363688964,
-    "mana": 408,
-    "lifetime": 340,
+    "lastSeen": 1777363735178,
+    "mana": 411,
+    "lifetime": 343,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1777363455976
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1777363465565
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1777363497916
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -415,6 +397,24 @@
         "amount": 1,
         "reason": "message",
         "ts": 1777363688966
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777363713213
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777363731221
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777363735180
       }
     ],
     "topDrinks": [],
