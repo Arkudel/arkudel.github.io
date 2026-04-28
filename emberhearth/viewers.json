@@ -10,7 +10,7 @@
     "messageCount": 67,
     "firstSeen": 1776050357951,
     "lastSeen": 1777363102812,
-    "mana": 363,
+    "mana": 365,
     "lifetime": 981,
     "cooldowns": {},
     "history": [
@@ -181,7 +181,7 @@
     "messageCount": 145,
     "firstSeen": 1776076393392,
     "lastSeen": 1777363529326,
-    "mana": 255,
+    "mana": 257,
     "lifetime": 880,
     "cooldowns": {},
     "history": [
@@ -349,31 +349,13 @@
     "tier": "stranger",
     "warmth": 2,
     "visitCount": 3,
-    "messageCount": 56,
+    "messageCount": 59,
     "firstSeen": 1776158152410,
-    "lastSeen": 1777363553503,
-    "mana": 402,
-    "lifetime": 336,
+    "lastSeen": 1777363640626,
+    "mana": 407,
+    "lifetime": 339,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1777358955105
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1777363286192
-      },
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1777363288749
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -415,6 +397,24 @@
         "amount": 1,
         "reason": "message",
         "ts": 1777363553506
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777363616215
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777363633884
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777363640628
       }
     ],
     "topDrinks": [],
@@ -435,7 +435,7 @@
     "messageCount": 14,
     "firstSeen": 1776158583133,
     "lastSeen": 1777362412083,
-    "mana": 233,
+    "mana": 235,
     "lifetime": 219,
     "cooldowns": {},
     "history": [
@@ -547,7 +547,7 @@
     "messageCount": 43,
     "firstSeen": 1777361328693,
     "lastSeen": 1777363428286,
-    "mana": 87,
+    "mana": 89,
     "lifetime": 63,
     "cooldowns": {},
     "history": [
