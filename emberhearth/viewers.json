@@ -176,21 +176,15 @@
     "element2": null,
     "element3": null,
     "tier": "regular",
-    "warmth": 6.299999999999999,
+    "warmth": 6.799999999999999,
     "visitCount": 4,
-    "messageCount": 132,
+    "messageCount": 133,
     "firstSeen": 1776076393392,
-    "lastSeen": 1777361171937,
-    "mana": 218,
-    "lifetime": 867,
+    "lastSeen": 1777361345321,
+    "mana": 219,
+    "lifetime": 868,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1777359333257
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -244,6 +238,12 @@
         "amount": 1,
         "reason": "message",
         "ts": 1777361171938
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777361345323
       }
     ],
     "topDrinks": [
@@ -527,6 +527,41 @@
         "amount": 1,
         "reason": "message",
         "ts": 1776499980112
+      }
+    ],
+    "topDrinks": [],
+    "adventure": {
+      "xp": 0,
+      "questsCompleted": 0,
+      "wins": 0
+    }
+  },
+  "camillajoseph": {
+    "displayName": "camillajoseph",
+    "element": null,
+    "element2": null,
+    "element3": null,
+    "tier": "stranger",
+    "warmth": 0.6,
+    "visitCount": 2,
+    "messageCount": 2,
+    "firstSeen": 1777361328693,
+    "lastSeen": 1777361336001,
+    "mana": 2,
+    "lifetime": 2,
+    "cooldowns": {},
+    "history": [
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777361328696
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777361336003
       }
     ],
     "topDrinks": [],
