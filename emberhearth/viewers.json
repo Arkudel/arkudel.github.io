@@ -178,19 +178,13 @@
     "tier": "regular",
     "warmth": 6.999999999999999,
     "visitCount": 4,
-    "messageCount": 139,
+    "messageCount": 140,
     "firstSeen": 1776076393392,
-    "lastSeen": 1777362020357,
-    "mana": 233,
-    "lifetime": 874,
+    "lastSeen": 1777362100280,
+    "mana": 234,
+    "lifetime": 875,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1777361099323
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -244,6 +238,12 @@
         "amount": 1,
         "reason": "message",
         "ts": 1777362020359
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777362100282
       }
     ],
     "topDrinks": [
