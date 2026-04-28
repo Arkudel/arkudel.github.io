@@ -181,7 +181,7 @@
     "messageCount": 141,
     "firstSeen": 1776076393392,
     "lastSeen": 1777362206434,
-    "mana": 237,
+    "mana": 239,
     "lifetime": 876,
     "cooldowns": {},
     "history": [
@@ -253,8 +253,8 @@
       }
     ],
     "adventure": {
-      "xp": 85,
-      "questsCompleted": 7,
+      "xp": 86,
+      "questsCompleted": 8,
       "wins": 3
     }
   },
@@ -435,7 +435,7 @@
     "messageCount": 13,
     "firstSeen": 1776158583133,
     "lastSeen": 1777362252906,
-    "mana": 218,
+    "mana": 220,
     "lifetime": 218,
     "cooldowns": {},
     "history": [
@@ -502,8 +502,8 @@
     ],
     "topDrinks": [],
     "adventure": {
-      "xp": 2,
-      "questsCompleted": 1,
+      "xp": 3,
+      "questsCompleted": 2,
       "wins": 0
     }
   },
@@ -547,16 +547,10 @@
     "messageCount": 14,
     "firstSeen": 1777361328693,
     "lastSeen": 1777362266525,
-    "mana": 24,
-    "lifetime": 14,
+    "mana": 46,
+    "lifetime": 34,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1777361459253
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -610,13 +604,19 @@
         "amount": 1,
         "reason": "message",
         "ts": 1777362266527
+      },
+      {
+        "type": "earn",
+        "amount": 20,
+        "reason": "quest_win_D",
+        "ts": 1777362291928
       }
     ],
     "topDrinks": [],
     "adventure": {
-      "xp": 0,
-      "questsCompleted": 0,
-      "wins": 0
+      "xp": 10,
+      "questsCompleted": 1,
+      "wins": 1
     }
   }
 }
