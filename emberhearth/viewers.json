@@ -4,22 +4,16 @@
     "element": "earth",
     "element2": null,
     "element3": null,
-    "tier": "regular",
-    "warmth": 14.6,
+    "tier": "friend",
+    "warmth": 15.1,
     "visitCount": 24,
-    "messageCount": 65,
+    "messageCount": 66,
     "firstSeen": 1776050357951,
-    "lastSeen": 1777358663953,
-    "mana": 337,
-    "lifetime": 979,
+    "lastSeen": 1777358720266,
+    "mana": 340,
+    "lifetime": 980,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 1,
-        "reason": "message",
-        "ts": 1776227782837
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -73,6 +67,12 @@
         "amount": 1,
         "reason": "message",
         "ts": 1777358663956
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777358720267
       }
     ],
     "topDrinks": [
@@ -181,7 +181,7 @@
     "messageCount": 118,
     "firstSeen": 1776076393392,
     "lastSeen": 1777358549234,
-    "mana": 194,
+    "mana": 196,
     "lifetime": 833,
     "cooldowns": {},
     "history": [
@@ -349,19 +349,13 @@
     "tier": "stranger",
     "warmth": 1.7,
     "visitCount": 3,
-    "messageCount": 44,
+    "messageCount": 45,
     "firstSeen": 1776158152410,
-    "lastSeen": 1777358709756,
-    "mana": 364,
-    "lifetime": 324,
+    "lastSeen": 1777358725734,
+    "mana": 367,
+    "lifetime": 325,
     "cooldowns": {},
     "history": [
-      {
-        "type": "earn",
-        "amount": 10,
-        "reason": "quest_win_E",
-        "ts": 1776161811416
-      },
       {
         "type": "earn",
         "amount": 1,
@@ -415,6 +409,12 @@
         "amount": 1,
         "reason": "message",
         "ts": 1777358709757
+      },
+      {
+        "type": "earn",
+        "amount": 1,
+        "reason": "message",
+        "ts": 1777358725736
       }
     ],
     "topDrinks": [],
