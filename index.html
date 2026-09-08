@@ -390,6 +390,52 @@
   }
   .project-link:hover { gap: 0.75rem; }
 
+  /* ── VIDEO EMBED FIXES ── */
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background-color: #000;
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .project-card .project-thumb.video-container {
+    height: 240px;
+    padding-bottom: 0;
+    background: #000;
+  }
+
+  .video-container-case-study {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background-color: var(--void);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px var(--shadow);
+    margin: 1.5rem 0;
+  }
+
+  .video-container-case-study iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
   /* ── AT-A-GLANCE BLOCKS ── */
   .glance-row {
     display: grid;
@@ -717,10 +763,15 @@
     </a>
 
     <!-- KOKORON -->
-    <a href="#case-study" class="project-card reveal reveal-delay-1">
-      <div class="project-thumb thumb-kokoron">
-        <img src="images/kokoron-main.png" alt="Kokoron main screen" class="project-thumb-bg">
-        <div class="thumb-label">Kokoron</div>
+    <article class="project-card reveal reveal-delay-1">
+      <div class="project-thumb video-container">
+        <iframe 
+          src="https://www.youtube.com/embed/Rn-t3NSanHg?rel=0" 
+          title="Kokoron Overview" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
       </div>
       <div class="project-info">
         <div class="project-tags">
@@ -729,15 +780,20 @@
         </div>
         <h3>Kokoron — Wellness Tamagotchi</h3>
         <p>A mobile companion app where your emotional experiences — the dark ones and the bright ones — become food and water for a creature that grows alongside you. Trauma-informed reflection, streak-based engagement, and cosmetic monetization designed to never punish emotional states.</p>
-        <span class="project-link">Read Case Study</span>
+        <a href="#case-study" class="project-link">Read Case Study</a>
       </div>
-    </a>
+    </article>
 
-    <!-- VR WELLNESS -->
-    <a href="#case-study-luminare" class="project-card reveal reveal-delay-2">
-      <div class="project-thumb thumb-vr">
-        <img src="images/luminare-transform.png" alt="VR wellness experience" class="project-thumb-bg">
-        <div class="thumb-label">Project Luminare</div>
+    <!-- VR WELLNESS (Project Luminare) -->
+    <article class="project-card reveal reveal-delay-2">
+      <div class="project-thumb video-container">
+        <iframe 
+          src="https://www.youtube.com/embed/QYMgPeXav_A?rel=0" 
+          title="Project Luminare System Details" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
       </div>
       <div class="project-info">
         <div class="project-tags">
@@ -745,9 +801,9 @@
         </div>
         <h3>Luminare: VR Wellness Experience</h3>
         <p>An immersive daily ritual where users physically pull value cards to their hearts, speak aloud what weighs on them, and then — literally — grab their darkness and throw it away. A dying world slowly comes back to life.</p>
-        <span class="project-link">View Project</span>
+        <a href="#case-study-luminare" class="project-link">View Project</a>
       </div>
-    </a>
+    </article>
 
     <!-- WEISS -->
     <article class="project-card reveal reveal-delay-1">
@@ -825,6 +881,18 @@
       <div class="case-block reveal">
         <h3>The Concept</h3>
         <p>Most wellness apps treat negative emotion as a problem to be eliminated. Kokoron asks a different question: what if your struggles could nourish something? The core mechanic reframes negative experience as food for a creature companion, and positive reflection as water. The pet survives, grows, and develops — because you did the work of showing up.</p>
+        
+        <!-- High Level Overview Video -->
+        <div class="video-container-case-study">
+          <iframe 
+            src="https://www.youtube.com/embed/Rn-t3NSanHg?rel=0" 
+            title="Kokoron High Level Overview" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+
         <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.5rem 0;">
           <img src="images/kokoron-login.png" alt="Kokoron login screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
           <img src="images/kokoron-main.png" alt="Kokoron main screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
@@ -874,6 +942,18 @@
         <h3>The Concept</h3>
         <p>Most wellness apps ask you to think about your feelings. Luminare asks you to do something about them — physically, in space, with your hands. It's a daily VR ritual built around embodied action: pulling values close, speaking burdens aloud, grabbing darkness and throwing it away. The world you inhabit starts dead and broken. Over ten days of returning, it comes back to life.</p>
         <p>The core insight behind the design is that VR's unique power isn't visual immersion — it's physical presence. The body remembers what it does in ways the mind alone doesn't. Luminare is built entirely around that idea.</p>
+        
+        <!-- System Details Video -->
+        <div class="video-container-case-study">
+          <iframe 
+            src="https://www.youtube.com/embed/QYMgPeXav_A?rel=0" 
+            title="Project Luminare System Details" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+
         <img src="images/luminare-transform.png" alt="World transformation from grey to green" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(0,0,0,0.35);">
       </div>
       <div class="insight-box reveal reveal-delay-1">
