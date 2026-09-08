@@ -3,1230 +3,665 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>James DR Smith — Designer & Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="images/favicon.png">
+<title>InkBlade — Writing RPG Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --void: #0b1120;
-    --ink: #141e30;
-    --slate: #1e2d42;
-    --iron: #6b7d93;
-    --bone: #e8dfd0;
-    --ember: #d4854a;
-    --glow: #f0c456;
-    --shadow: rgba(0,0,0,0.35);
-  }
+:root {
+  --night: #0e1525;
+  --slate: #1c2640;
+  --iron: #64748b;
+  --amber: #e0a832;
+  --ember: #ef6a44;
+  --bone: #e8dfd4;
+  --sage: #4ade80;
+  --lilac: #a78bfa;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--night);
+  color: var(--bone);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+/* ── BG ── */
+.bg {
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 20% 30%, rgba(224,168,50,.04) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 55% at 80% 70%, rgba(167,139,250,.03) 0%, transparent 65%),
+    linear-gradient(170deg, #0a1020 0%, #0e1525 50%, #111a2e 100%);
+}
+canvas#bgCanvas {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 1;
+}
 
-  body {
-    font-family: 'Outfit', sans-serif;
-    background: var(--void);
-    color: var(--bone);
-    overflow-x: hidden;
-  }
+/* ── LAYOUT ── */
+.wrap { position: relative; z-index: 10; max-width: 1020px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 1000;
-    opacity: 0.25;
-  }
+a.back {
+  display: inline-flex; align-items: center; gap: .35rem;
+  font-size: .75rem; font-weight: 700; letter-spacing: .06em;
+  color: var(--iron); text-decoration: none; transition: color .2s;
+  margin-bottom: 1rem;
+}
+a.back:hover { color: var(--amber); }
 
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.2rem 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(11, 17, 32, 0.82);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(30, 45, 66, 0.5);
-  }
+header { text-align: center; padding: 1rem 0 1.5rem; }
+.title {
+  font-family: 'Crimson Pro', serif;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 600; color: var(--bone);
+  letter-spacing: .04em;
+}
+.title em { font-style: italic; color: var(--amber); }
+.sub {
+  font-size: .78rem; color: var(--iron);
+  margin-top: .3rem; letter-spacing: .02em;
+}
+header::after {
+  content: ''; display: block; width: 120px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  margin: 1.2rem auto 0; opacity: .4;
+}
 
-  .nav-logo {
-    font-family: 'Fraunces', serif;
-    font-size: 1.2rem;
-    color: var(--bone);
-    text-decoration: none;
-    letter-spacing: 0.02em;
-  }
+/* ── STATS BAR ── */
+.stats-bar {
+  display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;
+  background: rgba(28,38,64,.7); border: 1px solid rgba(100,116,139,.15);
+  border-radius: 10px; padding: .7rem 1.2rem; margin-bottom: 1.2rem;
+  backdrop-filter: blur(6px); font-size: .78rem;
+}
+.stat { display: flex; align-items: center; gap: .4rem; white-space: nowrap; }
+.stat-label { color: var(--iron); font-weight: 600; }
+.stat-val { color: var(--bone); font-weight: 700; }
+.stat-val.amber { color: var(--amber); }
+.stat-val.ember { color: var(--ember); }
+.stat-val.lilac { color: var(--lilac); }
+.xp-bar-wrap {
+  width: 80px; height: 5px; background: rgba(255,255,255,.07);
+  border-radius: 10px; overflow: hidden;
+}
+.xp-bar-fill {
+  height: 100%; width: 0%; border-radius: 10px;
+  background: linear-gradient(90deg, var(--lilac), #c4b5fd);
+  transition: width .4s ease;
+}
 
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+/* ── ARENA (editor + combat) ── */
+.arena { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.2rem; align-items: start; }
 
-  .nav-links a {
-    text-decoration: none;
-    color: var(--iron);
-    font-size: 0.88rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--ember); }
+/* ── EDITOR PANEL ── */
+.editor-panel {
+  background: rgba(28,38,64,.55); border: 1px solid rgba(100,116,139,.12);
+  border-radius: 14px; overflow: hidden; display: flex; flex-direction: column;
+}
+.goal-wrap {
+  padding: .75rem 1.2rem; display: flex; align-items: center; gap: .75rem;
+  border-bottom: 1px solid rgba(100,116,139,.1);
+}
+.goal-label { font-size: .72rem; font-weight: 700; color: var(--iron); white-space: nowrap; }
+.goal-bar {
+  flex: 1; height: 6px; background: rgba(255,255,255,.06);
+  border-radius: 10px; overflow: hidden;
+}
+.goal-fill {
+  height: 100%; width: 0%; border-radius: 10px;
+  background: linear-gradient(90deg, var(--sage), #86efac);
+  transition: width .5s ease;
+}
+.goal-count { font-size: .7rem; color: var(--iron); white-space: nowrap; font-weight: 600; }
+.goal-count.done { color: var(--sage); }
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 8rem 3rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
+#editor {
+  width: 100%; min-height: 320px; padding: 1.2rem 1.4rem;
+  background: transparent; border: none; outline: none; resize: none;
+  font-family: 'Crimson Pro', serif; font-size: 1.1rem; line-height: 1.85;
+  color: var(--bone); caret-color: var(--amber);
+}
+#editor::placeholder { color: rgba(100,116,139,.5); font-style: italic; }
 
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 65% 35%, rgba(212,133,74,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 25% 70%, rgba(30,45,66,0.4) 0%, transparent 55%),
-      var(--void);
-  }
+.editor-foot {
+  padding: .6rem 1.2rem; display: flex; justify-content: space-between;
+  border-top: 1px solid rgba(100,116,139,.1); font-size: .72rem; color: var(--iron);
+}
 
-  .hero-bg::before {
-    content: '';
-    position: absolute;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(212,133,74,0.06), transparent 70%);
-    top: -100px; right: 10%;
-    animation: drift 8s ease-in-out infinite;
-  }
+/* ── COMBAT PANEL ── */
+.combat-panel {
+  background: rgba(28,38,64,.55); border: 1px solid rgba(100,116,139,.12);
+  border-radius: 14px; padding: 1.2rem; display: flex; flex-direction: column; gap: 1rem;
+}
+.quest-tag {
+  font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+  color: var(--amber); opacity: .7;
+}
+.quest-name {
+  font-family: 'Crimson Pro', serif; font-size: 1.05rem;
+  font-weight: 600; color: var(--bone); margin-top: .15rem;
+}
 
-  @keyframes drift {
-    0%, 100% { transform: translateY(0px) scale(1); }
-    50% { transform: translateY(-20px) scale(1.05); }
-  }
+.monster-area {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 1rem 0; position: relative; min-height: 130px; justify-content: center;
+}
+.monster-sprite {
+  font-size: 3.5rem; line-height: 1;
+  animation: idle 3s ease-in-out infinite;
+  transition: transform .15s ease, filter .15s ease;
+}
+@keyframes idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.monster-sprite.hit {
+  animation: shake .25s ease;
+}
+.monster-sprite.crit {
+  animation: critShake .35s ease;
+  filter: drop-shadow(0 0 12px var(--ember));
+}
+.monster-sprite.dying {
+  animation: die .5s ease forwards;
+}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px) rotate(-4deg); }
+  50% { transform: translateX(6px) rotate(4deg); }
+  75% { transform: translateX(-4px) rotate(-2deg); }
+  100% { transform: translateX(0); }
+}
+@keyframes critShake {
+  0% { transform: scale(1); }
+  20% { transform: scale(1.2) rotate(-8deg); }
+  40% { transform: scale(.85) rotate(6deg); }
+  60% { transform: scale(1.1) rotate(-3deg); }
+  100% { transform: scale(1); }
+}
+@keyframes die {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15) rotate(10deg); opacity: .6; }
+  100% { transform: scale(.3) rotate(25deg); opacity: 0; }
+}
 
-  #heroCanvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-  }
+.damage-pop {
+  position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+  font-weight: 700; font-size: 1.1rem; opacity: 0; pointer-events: none;
+  color: var(--amber); text-shadow: 0 1px 6px rgba(224,168,50,.5);
+}
+.damage-pop.crit-pop {
+  font-size: 1.4rem; color: var(--ember);
+  text-shadow: 0 2px 10px rgba(239,106,68,.6);
+}
+.damage-pop.visible { animation: floatUp .9s ease-out forwards; }
+@keyframes floatUp {
+  0% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-28px) scale(1.15); }
+}
 
-  .parallax-scene {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-  }
-  .parallax-layer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    will-change: transform;
-  }
-  .parallax-layer svg {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
+.hp-bar-wrap {
+  width: 100%; height: 8px; background: rgba(255,255,255,.07);
+  border-radius: 10px; overflow: hidden; margin-top: .75rem;
+}
+.hp-fill {
+  height: 100%; width: 100%; border-radius: 10px;
+  background: var(--sage); transition: width .3s ease, background .3s ease;
+}
+.hp-fill.wounded { background: var(--amber); }
+.hp-fill.critical { background: var(--ember); }
 
-  .hero-content {
-    position: relative;
-    z-index: 3;
-    max-width: 700px;
-  }
+.monster-label {
+  display: flex; justify-content: space-between; align-items: baseline;
+  width: 100%; margin-top: .4rem; font-size: .75rem;
+}
+.monster-name { font-weight: 700; color: var(--bone); }
+.monster-hp { color: var(--iron); font-weight: 600; }
+.monster-tier {
+  font-size: .58rem; font-weight: 700; letter-spacing: .06em;
+  padding: .12rem .5rem; border-radius: 20px; margin-left: .4rem;
+}
+.tier-minion { background: rgba(74,222,128,.12); color: var(--sage); }
+.tier-mid { background: rgba(224,168,50,.12); color: var(--amber); }
+.tier-boss { background: rgba(239,106,68,.12); color: var(--ember); }
 
-  .hero-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-bottom: 1.4rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.35s;
-  }
-  .htag {
-    font-size: 0.72rem;
-    font-weight: 600;
-    padding: 0.28rem 0.85rem;
-    border-radius: 50px;
-    background: rgba(30, 45, 66, 0.5);
-    color: var(--iron);
-    border: 1px solid rgba(107, 125, 147, 0.2);
-  }
-  .hero h1 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2.8rem, 6vw, 4.6rem);
-    line-height: 1.18;
-    color: var(--bone);
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.4s;
-    font-weight: 600;
-  }
+.combat-log {
+  font-size: .78rem; color: var(--iron); text-align: center;
+  min-height: 1.4em; transition: color .2s;
+}
+.combat-log.active { color: var(--amber); }
+.combat-log.crit-msg { color: var(--ember); font-weight: 700; }
+.combat-log.kill-msg { color: var(--sage); font-weight: 700; }
 
-  .hero h1 em { font-style: italic; color: var(--ember); }
+.kill-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: .5rem;
+  padding-top: .5rem; border-top: 1px solid rgba(100,116,139,.1);
+}
+.ks { font-size: .72rem; }
+.ks-label { color: var(--iron); }
+.ks-val { font-weight: 700; }
 
-  .hero-sub {
-    font-size: 1.1rem;
-    line-height: 1.75;
-    color: var(--iron);
-    max-width: 520px;
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.6s;
-  }
+.mode-toggle {
+  display: flex; align-items: center; justify-content: center;
+  gap: .5rem; padding-top: .5rem;
+}
+.zen-btn {
+  font-family: 'Nunito', sans-serif; font-size: .72rem; font-weight: 700;
+  letter-spacing: .04em; padding: .45rem 1rem; border-radius: 8px;
+  border: 1px solid rgba(100,116,139,.2); background: transparent;
+  color: var(--iron); cursor: pointer; transition: all .2s;
+}
+.zen-btn:hover { border-color: var(--amber); color: var(--amber); }
+.zen-btn.active { border-color: var(--amber); color: var(--night); background: var(--amber); }
 
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.8s;
-  }
+/* ── REWARD TOAST ── */
+.reward-toast {
+  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  background: rgba(28,38,64,.92); border: 1px solid rgba(224,168,50,.25);
+  border-radius: 10px; padding: .7rem 1.4rem; font-size: .82rem;
+  font-weight: 700; color: var(--amber); backdrop-filter: blur(8px);
+  opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s;
+  z-index: 100; white-space: nowrap;
+  box-shadow: 0 8px 30px rgba(0,0,0,.4);
+}
+.reward-toast.visible {
+  opacity: 1; transform: translateX(-50%) translateY(-6px);
+}
+.reward-toast.goal-toast { border-color: rgba(74,222,128,.3); color: var(--sage); }
 
-  .btn {
-    display: inline-block;
-    padding: 0.85rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.88rem;
-    letter-spacing: 0.03em;
-    transition: all 0.25s ease;
-  }
+/* ── ZEN MODE ── */
+.arena.zen .combat-panel { display: none; }
+.arena.zen { grid-template-columns: 1fr; max-width: 680px; margin: 0 auto; }
 
-  .btn-primary {
-    background: var(--ember);
-    color: var(--void);
-    box-shadow: 0 4px 20px rgba(212, 133, 74, 0.3);
-  }
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(212, 133, 74, 0.4);
-  }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--bone);
-    border: 2px solid var(--slate);
-  }
-  .btn-ghost:hover {
-    border-color: var(--ember);
-    color: var(--ember);
-    transform: translateY(-2px);
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── SECTION COMMONS ── */
-  section { padding: 6rem 3rem; }
-
-  .section-label {
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--ember);
-    margin-bottom: 0.75rem;
-  }
-
-  .section-title {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    color: var(--bone);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-    font-weight: 600;
-  }
-
-  /* ── ABOUT ── */
-  .about { background: var(--ink); position: relative; overflow: hidden; }
-
-  .about::before {
-    content: '';
-    position: absolute;
-    width: 500px; height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(212,133,74,0.04), transparent 65%);
-    top: -150px; right: -100px;
-    pointer-events: none;
-  }
-
-  .about-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  .about-text p {
-    font-size: 1.02rem;
-    line-height: 1.85;
-    color: var(--iron);
-    margin-bottom: 1.25rem;
-  }
-  .about-text p strong { color: var(--bone); font-weight: 700; }
-  .about-text p:first-of-type {
-    font-size: 1.15rem;
-    color: var(--bone);
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    line-height: 1.7;
-  }
-
-  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-  .skill-chip {
-    background: rgba(30, 45, 66, 0.4);
-    border: 1px solid rgba(107, 125, 147, 0.15);
-    border-radius: 12px;
-    padding: 1rem 1.25rem;
-    transition: transform 0.25s ease, border-color 0.25s ease;
-  }
-  .skill-chip:hover {
-    transform: translateY(-3px);
-    border-color: rgba(212, 133, 74, 0.3);
-  }
-
-  .skill-chip h4 {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--ember);
-    margin-bottom: 0.3rem;
-  }
-  .skill-chip p { font-size: 0.85rem; color: var(--iron); line-height: 1.4; }
-
-  /* ── PROJECTS ── */
-  .projects { background: var(--void); max-width: 1200px; margin: 0 auto; padding: 6rem 3rem; }
-  .projects-header { max-width: 600px; margin-bottom: 3.5rem; }
-  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-
-  .project-card {
-    background: var(--ink);
-    border-radius: 20px;
-    overflow: hidden;
-    border: 1px solid rgba(30, 45, 66, 0.6);
-    box-shadow: 0 4px 24px var(--shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-  }
-
-  .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
-    border-color: rgba(212, 133, 74, 0.25);
-  }
-
-  .project-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1.1fr 1fr; }
-
-  .project-thumb { height: 240px; overflow: hidden; position: relative; }
-  .project-card.featured .project-thumb { height: 100%; min-height: 280px; }
-
-  .project-thumb-bg { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-  .project-card:hover .project-thumb-bg { transform: scale(1.04); }
-
-  .thumb-kokoron  { background: linear-gradient(135deg, #1a1535 0%, #3d2856 50%, #6b4a8a 100%); }
-  .thumb-vr       { background: linear-gradient(135deg, #0a1a0e 0%, #1a3d2a 40%, #3d7a4f 100%); }
-  .thumb-weiss    { background: linear-gradient(135deg, #1a0d06 0%, #3d2314 40%, #7a4f35 100%); }
-  .thumb-inkblade { background: linear-gradient(135deg, #0e1525 0%, #1c2640 35%, #2a3a6b 65%, #d4854a 100%); }
-  .thumb-crafting { background: linear-gradient(135deg, #1a0d06 0%, #2a1a0e 40%, #7a4f35 80%, #d4854a 100%); }
-  .thumb-primus   { background: linear-gradient(135deg, #2a0a1a 0%, #6b1a4a 50%, #a03080 100%); }
-
-  .thumb-label {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Fraunces', serif;
-    font-size: 1.4rem;
-    font-style: italic;
-    color: white;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
-    letter-spacing: 0.05em;
-  }
-
-  .project-info { padding: 1.75rem; }
-  .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.85rem; }
-
-  .tag {
-    font-size: 0.68rem;
-    font-weight: 700;
-    padding: 0.22rem 0.7rem;
-    border-radius: 50px;
-    background: rgba(30, 45, 66, 0.6);
-    color: var(--ember);
-    border: 1px solid rgba(212, 133, 74, 0.2);
-  }
-  .tag.green  { background: rgba(74, 222, 128, 0.08); color: #6ee7a0; border-color: rgba(74, 222, 128, 0.2); }
-  .tag.purple { background: rgba(167, 139, 250, 0.08); color: #b8a4f8; border-color: rgba(167, 139, 250, 0.2); }
-  .tag.sky    { background: rgba(96, 165, 250, 0.08); color: #7db8f8; border-color: rgba(96, 165, 250, 0.2); }
-
-  .project-info h3 { font-family: 'Fraunces', serif; font-size: 1.35rem; color: var(--bone); margin-bottom: 0.6rem; font-weight: 600; }
-  .project-info p  { font-size: 0.92rem; color: var(--iron); line-height: 1.65; margin-bottom: 1rem; }
-
-  .project-link {
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--ember);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    transition: gap 0.2s;
-  }
-  .project-link:hover { gap: 0.75rem; }
-
-  /* ── AT-A-GLANCE BLOCKS ── */
-  .glance-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(30, 45, 66, 0.5);
-  }
-  .glance-item { display: flex; flex-direction: column; gap: 0.3rem; }
-  .glance-label { font-size: 0.67rem; font-weight: 700; color: var(--ember); }
-  .glance-value { font-size: 0.88rem; color: var(--iron); line-height: 1.45; }
-
-  @media (max-width: 600px) {
-    .glance-row { grid-template-columns: 1fr; }
-  }
-
-  /* ── CASE STUDY ── */
-  .case-study { background: var(--ink); padding: 6rem 3rem; }
-  .case-study:nth-of-type(even) { background: var(--void); }
-  .case-study-inner { max-width: 860px; margin: 0 auto; }
-  .case-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(30, 45, 66, 0.5); }
-  .case-body { display: grid; gap: 3rem; }
-
-  .case-block h3 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.25rem;
-    color: var(--bone);
-    margin-bottom: 1rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .case-block h3::before {
-    content: '';
-    display: inline-block;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--ember);
-    flex-shrink: 0;
-  }
-  .case-block p { font-size: 0.98rem; line-height: 1.85; color: var(--iron); }
-  .case-block p + p { margin-top: 1rem; }
-  .case-block p strong { color: var(--bone); }
-  .case-block img {
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  }
-
-  .insight-box {
-    background: rgba(30, 45, 66, 0.5);
-    border-left: 4px solid var(--ember);
-    border-radius: 0 14px 14px 0;
-    padding: 1.5rem 1.75rem;
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 1.02rem;
-    color: var(--bone);
-    line-height: 1.6;
-    transition: transform 0.25s ease;
-  }
-  .insight-box:hover {
-    transform: translateX(6px);
-  }
-
-  /* ── LAYER DIAGRAM ── */
-  .layer-diagram {
-    display: flex; flex-direction: column; gap: 0;
-    margin: 1.5rem 0; border-radius: 14px; overflow: hidden;
-    box-shadow: 0 4px 24px var(--shadow);
-  }
-  .layer-item {
-    display: grid; grid-template-columns: 140px 1fr;
-    align-items: stretch; border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-  .layer-item:last-child { border-bottom: none; }
-  .layer-name {
-    padding: 1rem 1.25rem; font-family: 'Fraunces', serif;
-    font-size: 0.95rem; font-weight: 600; color: white;
-    display: flex; align-items: center;
-  }
-  .layer-desc {
-    padding: 1rem 1.25rem; font-size: 0.88rem; line-height: 1.55;
-    color: rgba(255,255,255,0.8); display: flex; align-items: center;
-  }
-  .layer-flights .layer-name  { background: #c0396e; }
-  .layer-halos .layer-name    { background: #b03480; }
-  .layer-wings .layer-name    { background: #9a3092; }
-  .layer-feathers .layer-name { background: #7e2da0; }
-  .layer-11 .layer-name       { background: #612aad; }
-  .layer-flights .layer-desc  { background: rgba(192,57,110,0.2); }
-  .layer-halos .layer-desc    { background: rgba(176,52,128,0.2); }
-  .layer-wings .layer-desc    { background: rgba(154,48,146,0.2); }
-  .layer-feathers .layer-desc { background: rgba(126,45,160,0.2); }
-  .layer-11 .layer-desc       { background: rgba(97,42,173,0.2); }
-
-  /* ── PHILOSOPHY ── */
-  .philosophy { background: var(--void); color: var(--bone); padding: 6rem 3rem; position: relative; overflow: hidden; }
-  .philosophy::before {
-    content: '';
-    position: absolute;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(212, 133, 74, 0.05), transparent 65%);
-    top: -200px; right: -150px;
-  }
-  .philosophy-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
-  .philosophy .section-label { color: var(--ember); }
-  .philosophy-quote {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    line-height: 1.5; font-style: italic;
-    color: var(--bone);
-    margin: 2.5rem 0; padding-left: 2rem;
-    border-left: 3px solid var(--ember);
-    opacity: 0.9;
-  }
-  .philosophy p { font-size: 1.02rem; line-height: 1.85; color: var(--iron); max-width: 680px; margin-bottom: 1.25rem; }
-
-  /* ── CONTACT ── */
-  .contact { background: var(--ink); padding: 6rem 3rem; text-align: center; }
-  .contact-inner { max-width: 600px; margin: 0 auto; }
-  .contact p { font-size: 1.05rem; color: var(--iron); line-height: 1.7; margin-bottom: 2.5rem; }
-  .contact-links { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
-
-  /* ── FOOTER ── */
-  footer { background: var(--void); color: rgba(107,125,147,0.5); text-align: center; padding: 2rem; font-size: 0.85rem; letter-spacing: 0.03em; border-top: 1px solid rgba(30,45,66,0.4); }
-
-  /* ── CUSTOM CURSOR ── */
-  .cursor-dot {
-    position: fixed; width: 10px; height: 10px;
-    border-radius: 50%; background: var(--ember);
-    pointer-events: none; z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.08s ease, opacity 0.3s ease, width 0.2s ease, height 0.2s ease;
-    mix-blend-mode: screen; opacity: 0.7;
-  }
-  .cursor-ring {
-    position: fixed; width: 32px; height: 32px;
-    border-radius: 50%; border: 1.5px solid rgba(212, 133, 74, 0.35);
-    pointer-events: none; z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: left 0.12s ease, top 0.12s ease, width 0.25s ease, height 0.25s ease, opacity 0.3s ease;
-    opacity: 0.6;
-  }
-  body:has(a:hover) .cursor-dot,
-  body:has(button:hover) .cursor-dot { width: 16px; height: 16px; }
-  body:has(a:hover) .cursor-ring,
-  body:has(button:hover) .cursor-ring { width: 44px; height: 44px; border-color: rgba(212, 133, 74, 0.5); }
-
-  /* ── SCROLL REVEAL ── */
-  .reveal { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.hidden { opacity: 0; transform: translateY(24px); }
-  .reveal-left.hidden  { transform: translateX(-24px); }
-  .reveal-right.hidden { transform: translateX(24px); }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.5rem; }
-    section, .projects { padding: 4rem 1.5rem; }
-    .hero { padding: 7rem 1.5rem 3rem; }
-    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
-    .project-card.featured .project-thumb { min-height: 220px; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .layer-item { grid-template-columns: 100px 1fr; }
-    .parallax-layer { will-change: auto; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .parallax-layer { will-change: auto; }
-    .reveal { transition: none; }
-    .hero h1, .hero-sub, .hero-cta, .hero-tags { animation: none; opacity: 1; }
-    @keyframes drift { 0%, 100% { transform: none; } }
-  }
+/* ── RESPONSIVE ── */
+@media (max-width: 720px) {
+  .arena { grid-template-columns: 1fr; }
+  .stats-bar { gap: .75rem; }
+  #editor { min-height: 220px; }
+}
 </style>
 </head>
 <body>
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<div class="bg"></div>
+<canvas id="bgCanvas"></canvas>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">心 &nbsp;James DR Smith</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Work</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+<div class="wrap">
+  <a href="index.html" class="back">&#8592; Portfolio</a>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
+  <header>
+    <div class="title">Ink<em>Blade</em></div>
+    <div class="sub">Write words. Slay monsters. Keep the streak alive.</div>
+  </header>
 
-  <!-- Parallax silhouette scene -->
-  <div class="parallax-scene">
-    <div class="parallax-layer" data-speed="0.06">
-      <svg class="scene-layer" viewBox="0 0 1440 420" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="hGlow" x1="0.5" y1="0" x2="0.5" y2="1">
-            <stop offset="0%" stop-color="transparent"/>
-            <stop offset="50%" stop-color="rgba(212,133,74,0.06)"/>
-            <stop offset="80%" stop-color="rgba(240,196,86,0.03)"/>
-            <stop offset="100%" stop-color="transparent"/>
-          </linearGradient>
-        </defs>
-        <rect fill="url(#hGlow)" width="1440" height="420"/>
-        <path d="M0,420 L0,310 Q90,285 170,295 Q290,250 400,272 Q510,220 640,255 Q730,218 830,238 Q940,190 1050,218 Q1150,195 1250,212 Q1350,235 1440,222 L1440,420Z" fill="#0d1528" opacity="0.9"/>
-      </svg>
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat-label">Lv.</span>
+      <span class="stat-val lilac" id="level">1</span>
+      <div class="xp-bar-wrap"><div class="xp-bar-fill" id="xpBar"></div></div>
     </div>
-    <div class="parallax-layer" data-speed="0.18">
-      <svg class="scene-layer" viewBox="0 0 1440 480" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-        <g fill="#101a2b">
-          <polygon points="110,480 135,370 160,480"/>
-          <polygon points="300,480 330,355 360,480"/>
-          <polygon points="350,480 330,375 310,480"/>
-          <polygon points="500,480 525,340 550,480"/>
-          <polygon points="510,480 525,360 540,480"/>
-          <rect x="770" y="270" width="26" height="210" rx="3"/>
-          <rect x="910" y="255" width="22" height="225" rx="3"/>
-          <path d="M770,270 Q800,195 845,182 Q890,195 910,255 L910,225 Q882,165 845,152 Q808,165 770,235Z"/>
-          <rect x="795" y="452" width="20" height="28" rx="4" transform="rotate(-15 805 466)"/>
-          <rect x="875" y="456" width="16" height="24" rx="3" transform="rotate(10 883 468)"/>
-          <circle cx="845" cy="470" r="7"/>
-          <polygon points="1060,480 1095,265 1130,480"/>
-          <polygon points="1075,480 1095,295 1115,480"/>
-          <circle cx="1240" cy="310" r="52"/>
-          <rect x="1233" y="350" width="14" height="130"/>
-          <polygon points="1340,480 1365,360 1390,480"/>
-          <polygon points="1350,480 1365,375 1380,480"/>
-        </g>
-        <circle cx="845" cy="460" r="3" fill="#d4854a" opacity="0.45"><animate attributeName="opacity" values="0.3;0.6;0.3" dur="3.2s" repeatCount="indefinite"/></circle>
-        <circle cx="820" cy="468" r="2" fill="#f0c456" opacity="0.35"><animate attributeName="opacity" values="0.2;0.5;0.2" dur="4.1s" repeatCount="indefinite"/></circle>
-        <circle cx="890" cy="462" r="2.5" fill="#d4854a" opacity="0.35"><animate attributeName="opacity" values="0.25;0.55;0.25" dur="3.6s" repeatCount="indefinite"/></circle>
-        <circle cx="860" cy="472" r="1.8" fill="#f0c456" opacity="0.3"><animate attributeName="opacity" values="0.15;0.45;0.15" dur="5s" repeatCount="indefinite"/></circle>
-        <ellipse cx="845" cy="320" rx="30" ry="50" fill="rgba(212,133,74,0.025)"/>
-      </svg>
+    <div class="stat">
+      <span class="stat-label">Runes</span>
+      <span class="stat-val amber" id="runes">0</span>
     </div>
-    <div class="parallax-layer" data-speed="0.32">
-      <svg class="scene-layer" viewBox="0 0 1440 500" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-        <g fill="#080d18">
-          <path d="M0,500 L0,230 Q8,220 16,230 Q28,260 32,310 Q36,370 34,500Z"/>
-          <ellipse cx="-20" cy="210" rx="58" ry="65"/>
-          <path d="M1440,500 L1440,270 Q1432,260 1424,272 Q1414,300 1410,350 Q1407,410 1410,500Z"/>
-          <ellipse cx="1458" cy="248" rx="52" ry="60"/>
-          <path d="M1220,500 Q1300,486 1370,482 Q1410,478 1440,484 L1440,500Z"/>
-        </g>
-      </svg>
+    <div class="stat">
+      <span class="stat-label">Streak</span>
+      <span class="stat-val ember" id="streak">0 days</span>
+    </div>
+    <div class="stat" style="margin-left:auto;">
+      <span class="stat-label">Session</span>
+      <span class="stat-val" id="totalWords">0 words</span>
     </div>
   </div>
 
-  <canvas id="heroCanvas"></canvas>
-  <div class="hero-content">
-    <div class="hero-tags">
-      <span class="htag">Unity · C#</span>
-      <span class="htag">UX Design</span>
-      <span class="htag">VR / XR</span>
-      <span class="htag">React · Supabase</span>
-      <span class="htag">Game Systems</span>
-      <span class="htag">Wellness Tech</span>
-      <span class="htag">Behavioral Design</span>
-    </div>
-    <h1>I design experiences that take people's <em>inner lives</em> seriously.</h1>
-    <p class="hero-sub">Self-taught designer and developer. 18 years building in Korea. Now crafting wellness tools, writing apps, and games at the intersection of healing, neurodiversity, and creative play.</p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">See My Work</a>
-      <a href="#about" class="btn btn-ghost">My Story</a>
-    </div>
-  </div>
-</section>
+  <!-- Arena -->
+  <div class="arena" id="arena">
 
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="about-inner">
-    <div class="about-text reveal reveal-left">
-      <p class="section-label">About</p>
-      <h2 class="section-title">Designing for the whole person.</h2>
-      <p>"I design for people whose inner lives don't fit neatly into categories — and who need the tools everyone else gets, built with more care."</p>
-      <p>For <strong>eighteen years in South Korea</strong>, I designed learning experiences, behavioral systems, and creative programs for diverse populations. That work taught me to think in systems, to build for emotional safety, and to treat every interaction as a design decision — long before I had the vocabulary to call it design.</p>
-      <p>Now I build software. Wellness apps that reframe struggle as growth. Writing tools that turn the blank page into an adventure. VR experiences that make the invisible visible. Everything I make sits at the intersection of <strong>healing, neurodiversity, and creativity</strong> — because those three things have always been the same conversation for me.</p>
-      <p>Currently pursuing an MS in Game Design at Lindenwood University. Self-taught in Unity, React, full-stack architecture, and interaction design. M.Ed from Plymouth State.</p>
-    </div>
-    <div class="skills-grid reveal reveal-right reveal-delay-2">
-      <div class="skill-chip"><h4>Systems Design</h4><p>Economy loops, progression curves, behavioral nudges, multi-layer service architectures.</p></div>
-      <div class="skill-chip"><h4>Full-Stack Dev</h4><p>React, Supabase, Unity/C#, offline-first architecture — designed and built solo.</p></div>
-      <div class="skill-chip"><h4>Trauma-Informed Design</h4><p>Wellness tools, reflection systems, and experiences that never punish vulnerability.</p></div>
-      <div class="skill-chip"><h4>Game & Interaction</h4><p>Deck-building, ATB combat, crafting loops, gamified engagement — play as a design material.</p></div>
-      <div class="skill-chip"><h4>VR / Spatial</h4><p>Embodied interaction, gesture-based therapeutic experiences, spatial UI for healing.</p></div>
-      <div class="skill-chip"><h4>Narrative & Voice</h4><p>UX writing, onboarding flows, world-building — language as interface.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<div id="projects">
-<div class="projects">
-  <div class="projects-header reveal">
-    <p class="section-label">Selected Work</p>
-    <h2 class="section-title">Projects built with intention.</h2>
-  </div>
-  <div class="projects-grid">
-
-    <!-- INKBLADE — FEATURED -->
-    <a href="inkblade.html" class="project-card featured reveal" target="_blank">
-      <div class="project-thumb thumb-inkblade">
-        <img src="images/inkblade-main.png" alt="InkBlade writing RPG interface" class="project-thumb-bg">
-        <div class="thumb-label">InkBlade</div>
+    <!-- Editor Panel -->
+    <div class="editor-panel">
+      <div class="goal-wrap">
+        <span class="goal-label">Daily Goal</span>
+        <div class="goal-bar"><div class="goal-fill" id="goalFill"></div></div>
+        <span class="goal-count" id="goalCount">0 / 300</span>
       </div>
-      <div class="project-info">
-        <div class="project-tags">
-          <span class="tag sky">React</span><span class="tag">Supabase</span>
-          <span class="tag purple">Gamification</span><span class="tag green">Full-Stack</span>
-        </div>
-        <h3>InkBlade — Writing RPG</h3>
-        <p>A full-stack writing application where every word deals damage, completed sentences land critical hits, and the act of writing drives a lightweight RPG. React 18 frontend, Supabase backend with RLS, offline-first architecture, and a complete social layer — raids, pacts, leaderboards — all built to make showing up tomorrow feel good.</p>
-        <p>22 UI components, 14 database migrations, 111 collectible relics, 42 achievements, and a paste-detection integrity system. Designed, architected, and built solo.</p>
-        <span class="project-link">&#9654; Try the Demo</span>
-      </div>
-    </a>
-
-    <!-- KOKORON -->
-    <a href="#case-study" class="project-card reveal reveal-delay-1">
-      <div class="project-thumb thumb-kokoron">
-        <img src="images/kokoron-main.png" alt="Kokoron main screen" class="project-thumb-bg">
-        <div class="thumb-label">Kokoron</div>
-      </div>
-      <div class="project-info">
-        <div class="project-tags">
-          <span class="tag">Unity</span><span class="tag sky">Mobile</span>
-          <span class="tag purple">Wellness</span><span class="tag">UXD</span>
-        </div>
-        <h3>Kokoron — Wellness Tamagotchi</h3>
-        <p>A mobile companion app where your emotional experiences — the dark ones and the bright ones — become food and water for a creature that grows alongside you. Trauma-informed reflection, streak-based engagement, and cosmetic monetization designed to never punish emotional states.</p>
-        <span class="project-link">Read Case Study</span>
-      </div>
-    </a>
-
-    <!-- VR WELLNESS -->
-    <a href="#case-study-luminare" class="project-card reveal reveal-delay-2">
-      <div class="project-thumb thumb-vr">
-        <img src="images/luminare-transform.png" alt="VR wellness experience" class="project-thumb-bg">
-        <div class="thumb-label">Project Luminare</div>
-      </div>
-      <div class="project-info">
-        <div class="project-tags">
-          <span class="tag green">VR / XR</span><span class="tag purple">Wellness</span><span class="tag">Unity</span>
-        </div>
-        <h3>Luminare: VR Wellness Experience</h3>
-        <p>An immersive daily ritual where users physically pull value cards to their hearts, speak aloud what weighs on them, and then — literally — grab their darkness and throw it away. A dying world slowly comes back to life.</p>
-        <span class="project-link">View Project</span>
-      </div>
-    </a>
-
-    <!-- WEISS -->
-    <a href="#case-study-weiss" class="project-card reveal reveal-delay-1">
-      <div class="project-thumb thumb-weiss">
-        <img src="images/weiss-battle.png" alt="WEISS item shop game battle" class="project-thumb-bg">
-        <div class="thumb-label">WEISS</div>
-      </div>
-      <div class="project-info">
-        <div class="project-tags">
-          <span class="tag">Unity</span><span class="tag">Game Design</span><span class="tag sky">RPG</span>
-        </div>
-        <h3>WEISS — World's End Item Shop</h3>
-        <p>An item shop simulator set in an RPG that stopped mid-story. The hero never came. Now you work both sides — monsters and humans — to restore an economy, rebuild a town, and cash in on a world that forgot to end.</p>
-        <span class="project-link">View Project</span>
-      </div>
-    </a>
-
-    <!-- CRAFTING MINIGAME -->
-    <a href="craftingminigame.html" class="project-card reveal reveal-delay-2" target="_blank">
-      <div class="project-thumb thumb-crafting">
-        <img src="images/crafting-main.png" alt="The Alchemist's Table crafting interface" class="project-thumb-bg">
-        <div class="thumb-label">The Alchemist's Table</div>
-      </div>
-      <div class="project-info">
-        <div class="project-tags">
-          <span class="tag">JavaScript</span><span class="tag purple">Interactive</span><span class="tag sky">Game Design</span>
-        </div>
-        <h3>The Alchemist's Table — Live Crafting Demo</h3>
-        <p>A fully playable browser-based crafting system built as a companion piece to WEISS. Over 290 recipes, a discovery tracker, drag-and-drop inventory, and chain crafting where items unlock new items.</p>
-        <span class="project-link">&#9654; Play Now</span>
-      </div>
-    </a>
-
-    <!-- PRIMUS Volatus — FEATURED -->
-    <a href="#case-study-primus" class="project-card featured reveal reveal-delay-1">
-      <div class="project-thumb thumb-primus">
-        <img src="images/primus-cover.png" alt="Primus Volatus program" class="project-thumb-bg">
-        <div class="thumb-label">Primus Volatus</div>
-      </div>
-      <div class="project-info">
-        <div class="project-tags">
-          <span class="tag purple">Service Design</span><span class="tag green">Systems Thinking</span><span class="tag sky">Behavioral Design</span>
-        </div>
-        <h3>Primus Volatus: First Flight — Service System Redesign</h3>
-        <p>A disengaged user base. An understaffed service team. A program nobody valued. I redesigned an entire multi-stakeholder engagement system from the ground up — replacing a flat, one-size-fits-all approach with a five-layer architecture that addressed motivation, trust, accountability, and individual support simultaneously.</p>
-        <p>The result was a tiered service framework — Flights, Halos, Wings, and Feathers — each layer progressively more intimate, each solving a different dimension of the same problem.</p>
-        <span class="project-link">Read Case Study</span>
-      </div>
-    </a>
-
-  </div>
-</div>
-</div>
-
-<!-- CASE STUDY: KOKORON -->
-<section class="case-study" id="case-study">
-  <div class="case-study-inner">
-    <div class="case-header reveal">
-      <p class="section-label">Case Study</p>
-      <h2 class="section-title">Kokoron — Designing for Emotional Safety</h2>
-      <div class="glance-row">
-        <div class="glance-item"><span class="glance-label">Role</span><span class="glance-value">Solo designer &amp; developer</span></div>
-        <div class="glance-item"><span class="glance-label">Stack</span><span class="glance-value">Unity · C# · HTML5</span></div>
-        <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Full production wellness app designed and built solo; trauma-informed interaction model</span></div>
+      <textarea id="editor" placeholder="Start writing here — every word is a weapon..."></textarea>
+      <div class="editor-foot">
+        <span id="saveStatus">Ready</span>
+        <span id="sessionTime"></span>
       </div>
     </div>
-    <div class="case-body">
-      <div class="case-block reveal">
-        <h3>The Concept</h3>
-        <p>Most wellness apps treat negative emotion as a problem to be eliminated. Kokoron asks a different question: what if your struggles could nourish something? The core mechanic reframes negative experience as food for a creature companion, and positive reflection as water. The pet survives, grows, and develops — because you did the work of showing up.</p>
-        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.5rem 0;">
-          <img src="images/kokoron-login.png" alt="Kokoron login screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-          <img src="images/kokoron-main.png" alt="Kokoron main screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-          <img src="images/kokoron-feed.png" alt="Kokoron feed screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+
+    <!-- Combat Panel -->
+    <div class="combat-panel" id="combatPanel">
+      <div>
+        <div class="quest-tag" id="questTag">QUEST 1 OF 5</div>
+        <div class="quest-name" id="questName">The Dusty Shelf</div>
+      </div>
+
+      <div class="monster-area">
+        <div class="monster-sprite" id="monsterSprite">🕷️</div>
+        <div class="damage-pop" id="damagePop"></div>
+        <div class="hp-bar-wrap"><div class="hp-fill" id="hpFill"></div></div>
+        <div class="monster-label">
+          <span>
+            <span class="monster-name" id="monsterName">Ink Spider</span>
+            <span class="monster-tier tier-minion" id="monsterTier">Minion</span>
+          </span>
+          <span class="monster-hp" id="monsterHp">40 / 40</span>
         </div>
       </div>
-      <div class="insight-box reveal reveal-delay-1">
-        "The decision to never let the Kokoron die wasn't accidental. Wellness tools that punish absence create anxiety. We removed that failure state entirely while preserving meaningful engagement."
+
+      <div class="combat-log" id="combatLog">Begin writing to attack...</div>
+
+      <div class="kill-stats">
+        <div class="ks"><span class="ks-label">Slain </span><span class="ks-val" id="slainCount">0</span></div>
+        <div class="ks"><span class="ks-label">Relics </span><span class="ks-val amber" id="relicCount">0</span></div>
+        <div class="ks"><span class="ks-label">Crits </span><span class="ks-val ember" id="critCount">0</span></div>
+        <div class="ks"><span class="ks-label">Quest </span><span class="ks-val" id="questProgress">0 / 3</span></div>
       </div>
-      <div class="case-block reveal">
-        <h3>Key Design Decisions</h3>
-        <p><strong>Trauma-informed log design.</strong> Negative entries in the reflection log are hidden by default, accessible only when the user actively chooses to unlock them — with a label that explicitly says it's not recommended. This single interaction acknowledges that revisiting dark moments should be a conscious, deliberate choice, not a default scroll. It also positions the app as a complement to professional support rather than a replacement.</p>
-        <p><strong>Aspirational stat naming.</strong> The Kokoron develops stats like Resilience, Hope, and Inner Strength. These aren't arbitrary RPG numbers — they mirror the qualities users might want to cultivate in themselves. As the pet grows, it quietly models a kind of self the user might aspire toward.</p>
-        <p><strong>Ethical monetization.</strong> All monetization is cosmetic (skins) or compassionate (Graces for missed streaks). No mechanics that penalize emotional states or gate core functionality behind payment. This was a deliberate stance, not an oversight.</p>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
-          <img src="images/kokoron-logbook.png" alt="Kokoron logbook with hidden negative entries" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-          <img src="images/kokoron-rewards.png" alt="Kokoron rewards screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-        </div>
-      </div>
-      <div class="case-block reveal">
-        <h3>What I Built</h3>
-        <p>The entire product — name, concept, architecture, UI design, codebase, monetization strategy, and UX writing — was designed and built solo in Unity. Every design decision, from the creature growth model to the hidden-by-default negative log, is original work.</p>
-        <p>The app was ported to HTML5 for web demonstration. Data persistence uses JSON-based local storage. Visual assets licensed through the Unity Asset Store; all other design work is original.</p>
-      </div>
-      <div class="case-block reveal">
-        <h3>What I'd Do Next</h3>
-        <p>Migrate to a proper backend (Supabase or Firebase) to enable genuine social features — shared gardens, friend Kokorons, community streaks. The social layer is designed but not yet wired to persistent cloud data. The competitive minigame system, where Kokoron stats earned through emotional work translate into friendly competition, is the long-term vision I'd develop next.</p>
+
+      <div class="mode-toggle">
+        <button class="zen-btn" id="zenBtn" title="Hide combat and write in peace">Zen Mode</button>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- CASE STUDY: PROJECT LUMINARE -->
-<section class="case-study" id="case-study-luminare">
-  <div class="case-study-inner">
-    <div class="case-header reveal">
-      <p class="section-label">Case Study</p>
-      <h2 class="section-title">Project Luminare — Therapy You Can Touch</h2>
-      <div class="glance-row">
-        <div class="glance-item"><span class="glance-label">Role</span><span class="glance-value">Solo designer &amp; developer</span></div>
-        <div class="glance-item"><span class="glance-label">Stack</span><span class="glance-value">Unity · VR (Meta Quest) · Local LLM · Dissolve Shaders</span></div>
-        <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Fully functional 10-session ritual experience; privacy-first voice processing via local LLM; personal project designed independently after leaving Fayston Prep</span></div>
-      </div>
-    </div>
-    <div class="case-body">
-      <div class="case-block reveal">
-        <h3>The Concept</h3>
-        <p>Most wellness apps ask you to think about your feelings. Luminare asks you to do something about them — physically, in space, with your hands. It's a daily VR ritual built around embodied action: pulling values close, speaking burdens aloud, grabbing darkness and throwing it away. The world you inhabit starts dead and broken. Over ten days of returning, it comes back to life.</p>
-        <p>The core insight behind the design is that VR's unique power isn't visual immersion — it's physical presence. The body remembers what it does in ways the mind alone doesn't. Luminare is built entirely around that idea.</p>
-        <img src="images/luminare-transform.png" alt="World transformation from grey to green" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(0,0,0,0.35);">
-      </div>
-      <div class="insight-box reveal reveal-delay-1">
-        "VR's real power isn't what you see. It's what your body believes it's doing. Every interaction in Luminare was designed to be felt, not just observed."
-      </div>
-      <div class="case-block reveal">
-        <h3>The Ritual — Step by Step</h3>
-        <p>The experience follows a deliberate sequence, each step building on the last. The user opens a book their character holds and summons a halo of value cards — Creativity, Family, Justice, Friendship, and others. They physically reach out, pull four cards to their chest, and release them. A collider registers the gesture; the values are logged.</p>
-        <p>Those four values are then woven into a personal mantra: <em>"My creativity gives me the strength to face every day. I do this for my family and for my sense of justice. It is my friendships that remind me who I am."</em> The user then speaks what's weighing on them to a virtual avatar — which nods and responds while audio input is active — processed locally by an LLM that generates a brief summary. Nothing is recorded or transmitted.</p>
-        <p>Then the central gesture: the user looks at their own heart, sees dark particles swirling there, reaches in, grabs them, and throws them to the ground. Where the darkness lands, a shadow creature appears — labeled with what the user just named. They recite their mantra three times. Each recitation damages the creature. On the third, it dissolves.</p>
-        <p>The dissolve shader expands outward from that point: grey grass becomes green, dead trees flower, animals appear, the sky lightens. Each day of returning extends the restoration further. After roughly ten sessions, the world is fully alive.</p>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
-          <img src="images/luminare-cards.png" alt="Value card selection" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-          <img src="images/luminare-creature.png" alt="Shadow creature encounter" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-        </div>
-      </div>
-      <div class="case-block reveal">
-        <h3>Key Design Decisions</h3>
-        <p><strong>Physical gesture as commitment.</strong> Pulling a card to your heart isn't a UI metaphor — it's a somatic act. The body registers it differently than clicking a button. This was intentional: values chosen through physical action feel more claimed than values selected from a list. The gesture creates a moment of genuine choice.</p>
-        <p><strong>Privacy-first voice processing.</strong> The avatar listens and responds while you speak, but nothing is stored or sent to a server. A local LLM generates a brief summary purely for reflection — never for data collection. This was a core design constraint from the start, not an afterthought. Users needed to be able to speak freely.</p>
-        <p><strong>Externalization of the internal.</strong> The dark particles at the heart, the shadow creature carrying your named burden, the act of physically throwing darkness away — these are all externalizations of internal psychological processes. The design borrows from narrative exposure therapy and somatic approaches without being clinically prescriptive. It creates a safe theatrical frame for engaging with difficult feelings.</p>
-        <p><strong>World state as progress.</strong> Most habit apps show you a streak number. Luminare shows you a world healing. The emotional register of that feedback is completely different — it ties your daily practice to something larger than a metric, and makes absence feel like something worth returning from rather than a failure state.</p>
-        <p><strong>One session per day, hard limit.</strong> The ritual cannot be repeated more than once daily, and progress is saved between sessions. This was a deliberate pacing decision: the experience is meant to be a morning or evening ritual, not a binge. The limitation also makes each session feel meaningful — you can't grind your way to a healed world.</p>
-        <img src="images/luminare-healed.png" alt="Fully restored world state" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(0,0,0,0.35);">
-      </div>
-      <div class="case-block reveal">
-        <h3>What I Built</h3>
-        <p>The entire experience was designed and built in Unity with VR support. Systems include: gesture-based card interaction with physics colliders, an avatar with reactive animation tied to microphone input, local LLM integration for voice summarization, a dissolve shader system that progressively transforms the environment, a day-tracking save system, and the full world environment including the dead state and all restoration stages.</p>
-        <p>The project is nearly complete — the main level pack is fully functional through all ten days of restoration. Remaining work is polish, onboarding/tutorial design, and additional level packs (planned themes: abandoned city, woodland shrine, coastal ruins).</p>
-      </div>
-      <div class="case-block reveal">
-        <h3>What I'd Do Next</h3>
-        <p>The avatar currently uses a simple animation system to respond to voice input. The most impactful upgrade would be replacing it with a more expressive model — ideally one that reflects emotional tone from the LLM summary back to the user through facial expression and posture. The session could then feel genuinely responsive rather than just attentive. Beyond that, the additional level packs are the natural commercial expansion, each offering a new visual world and a slightly different ritual context.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CASE STUDY: WEISS -->
-<section class="case-study" id="case-study-weiss" style="background: var(--void);">
-  <div class="case-study-inner">
-    <div class="case-header reveal">
-      <p class="section-label">Case Study</p>
-      <h2 class="section-title">WEISS — Designing a World That Stopped</h2>
-      <div class="glance-row">
-        <div class="glance-item"><span class="glance-label">Role</span><span class="glance-value">Solo designer &amp; developer</span></div>
-        <div class="glance-item"><span class="glance-label">Stack</span><span class="glance-value">Unity · C# · Procedural Systems · Custom Economy Engine</span></div>
-        <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">6+ implemented game systems; years of active development; used as portfolio centerpiece for game design and systems thinking roles</span></div>
-      </div>
-    </div>
-    <div class="case-body">
-      <div class="case-block reveal">
-        <h3>The Concept</h3>
-        <p>WEISS begins with a premise that's both comedic and melancholy: you set up your item shop in front of the final dungeon, expecting to profit from the hero's legendary run. The hero never came. The demon lord waited. The world's economy, built around the eternal conflict between light and dark, simply... stalled.</p>
-        <p>Now you're the one who has to fix it — not by being a hero, but by being a merchant. You work both sides. You sell potions to adventurers and reagents to monsters. You broker a fragile peace through commerce. You rebuild a town that had given up on itself. The game is named WEISS — which sounds like Vice — because doing good in a broken world sometimes requires playing all the angles.</p>
-        <img src="images/weiss-overworld.png" alt="WEISS overworld" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(0,0,0,0.35);">
-      </div>
-      <div class="insight-box reveal reveal-delay-1">
-        "Most RPGs ask you to save the world through strength. WEISS asks you to save it through trade — and leaves open the question of whether that's heroic or just pragmatic."
-      </div>
-      <div class="case-block reveal">
-        <h3>Core Systems</h3>
-        <p><strong>The shop and economy.</strong> Like its spiritual predecessor Recettear, WEISS centers on running an item shop — buying low, selling high, managing demand and supply. But the economy is dynamic: market demand shifts based on in-game events (a monster surge drives up potion sales; a peaceful week tanks weapon prices). Players can specialize in different crafting disciplines to control their own supply chains.</p>
-        <p><strong>Town rebuilding.</strong> The surrounding town is derelict when you arrive. As you generate income, you can invest in rebuilding structures — each one unlocking new characters, new inventory, or new systems. Crucially, you can invite both adventurers and monsters to take up permanent residence, housing them in buildings you restore.</p>
-        <p><strong>The relationship system.</strong> Residents develop relationships with each other dynamically over time. Adventurers and monsters placed in the same housing will interact, build trust or friction, and eventually form adventuring parties — with stats and abilities shaped by those relationships. Every playthrough generates different configurations, making the social simulation meaningfully replayable.</p>
-        <p><strong>Deck-building ATB combat.</strong> When your player character ventures out, combat uses a hybrid system: you build a deck before battle, but cards are played in real-time ATB style — enemies attack continuously while you manage a regenerating resource pool to play cards. This creates genuine tension that pure turn-based deck-builders don't have.</p>
-        <p><strong>Gathering and crafting.</strong> A deeper resource loop than most shop simulators: you explore the world to gather materials, which feed into crafting recipes, which produce items to sell or use. Specializing in alchemy, smithing, or cooking creates distinct playstyles and economic advantages.</p>
-        <p><strong>The Ancient Cave system.</strong> A procedurally generated dungeon with its own loot table and exploration logic — a direct nod to Lufia II's legendary Ancient Cave — provides an infinitely replayable late-game loop for players who want pure dungeon-crawling.</p>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
-          <img src="images/weiss-shop.png" alt="WEISS shop interior" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-          <img src="images/weiss-dungeon.png" alt="WEISS night dungeon" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-          <img src="images/weiss-battle.png" alt="WEISS card battle" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-          <img src="images/weiss-research.png" alt="WEISS card research" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-        </div>
-      </div>
-      <div class="case-block reveal">
-        <h3>Key Design Decisions</h3>
-        <p><strong>Moral ambiguity as the central mechanic.</strong> The player isn't the hero — they're the merchant who profits from the conflict between heroes and villains. This reframes the entire JRPG genre: instead of asking "who wins?", WEISS asks "who benefits?" That question turns out to be rich enough to drive a whole game.</p>
-        <p><strong>The dynamic relationship system.</strong> Organizing cohabitation between monsters and humans and watching emergent relationships develop was the most ambitious design decision in WEISS. It required building a reputation and relationship tracking system, behavioral rules for NPC interactions, and a party formation logic that reflects those relationships in combat stats. The payoff is a game that feels different every run because the social fabric of your town is never the same twice.</p>
-        <p><strong>Hybrid ATB deck combat.</strong> Pure deck-builders (Slay the Spire et al.) are satisfying but slow. Pure ATB games are fast but shallow. The combination — build a deck, play it in real time under pressure — was harder to tune than either system alone, but creates a combat experience that rewards both preparation and instinct.</p>
-        <p><strong>Visual tone mixing.</strong> WEISS deliberately mixes warm, cozy interior aesthetics (the shop at dawn, the crafting shed in afternoon light) with stark nocturnal dungeon environments (neon purple, metal scaffolding, candlelight). This tonal contrast reflects the game's moral duality — the same world that contains your cozy shop also contains something much darker beneath it.</p>
-        <img src="images/weiss-exterior.png" alt="WEISS shop exterior in daylight" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(0,0,0,0.35);">
-      </div>
-      <div class="case-block reveal">
-        <h3>What I Built</h3>
-        <p>WEISS has been in development for several years as a solo project built entirely in Unity. Current implemented systems include: the full shop economy with dynamic demand events, the town rebuilding framework, housing and NPC placement, the relationship and party formation system, the hybrid ATB deck-building combat, gathering and multi-discipline crafting, the procedural dungeon system, a full day/night cycle with time-based events, and the character equipment and stat system. Visual assets are licensed from the Unity Asset Store; all systems, architecture, design, and writing are original.</p>
-        <p><strong>Design process.</strong> WEISS is designed entirely within Unity itself — no wireframes, no external prototyping tools. Each system is built, played, and iterated on directly in the engine. This means the design record lives in the code and scene history rather than in spec documents, but it also means every mechanic has been genuinely playtested at every stage of development rather than theorized on paper.</p>
-      </div>
-      <div class="case-block reveal">
-        <h3>What I'd Do Next</h3>
-        <p>The relationship system is the heart of WEISS but also its least polished element — the behavioral rules for NPC interaction need more granularity, and the visual feedback for relationship development (how do you show a monster and an adventurer becoming genuine friends?) deserves a dedicated design pass. Beyond that, the narrative layer needs more work: the game has strong systemic bones but the story of why you're there and what you're working toward needs to be woven more explicitly into the moment-to-moment play.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CASE STUDY: PRIMUS Volatus -->
-<section class="case-study" id="case-study-primus" style="background: var(--ink);">
-  <div class="case-study-inner">
-    <div class="case-header reveal">
-      <p class="section-label">Case Study</p>
-      <h2 class="section-title">Primus Volatus — Redesigning a Broken System</h2>
-      <div class="glance-row">
-        <div class="glance-item"><span class="glance-label">Role</span><span class="glance-value">Lead designer (reduced-staff constraint)</span></div>
-        <div class="glance-item"><span class="glance-label">Methods</span><span class="glance-value">Service Design · Systems Thinking · Survey Research · Behavioral Design</span></div>
-        <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Engagement improved measurably; collaborative behavior shifted by second cycle; zero additional user time required</span></div>
-      </div>
-    </div>
-    <div class="case-body">
-      <div class="case-block reveal">
-        <h3>The Problem</h3>
-        <p>The existing engagement program existed, but it wasn't working. Users were overloaded, disengaged, and treated the service — still months from its critical window — as an abstraction not worth their attention. Participation was poor, trust was lower, and the system had already been redesigned once without meaningful improvement.</p>
-        <p>The incoming cohort made things harder. They had a well-documented pattern of competitive hostility — exactly the wrong dynamic for a process that requires vulnerability, peer support, and honest disclosure. At the same time, the team had lost two members, meaning less staff serving more users with less.</p>
-      </div>
-      <div class="insight-box reveal reveal-delay-1">
-        "The old program treated engagement as a given. I treated it as a design problem."
-      </div>
-      <div class="case-block reveal">
-        <h3>The Design Approach</h3>
-        <p>I identified four distinct failure modes: users didn't value the touchpoints, they didn't trust each other, they perceived the process as overwhelming and monolithic, and they had no accountability structure beyond compliance metrics. Each layer of the new system was designed to address one of these directly.</p>
-        <p>Critically, the entire system was designed around a constraint: zero additional time cost to the user. Every touchpoint was inserted into existing schedule gaps. This wasn't just logistical; it was a trust decision. Demanding extra time from already-overloaded users would have poisoned the relationship before it started.</p>
-      </div>
-      <div class="case-block reveal">
-        <h3>The Architecture</h3>
-        <div class="layer-diagram">
-          <div class="layer-item layer-flights">
-            <div class="layer-name">Flights</div>
-            <div class="layer-desc">Whole-class weekly seminars held during homeroom. Shared information, guest speakers, alumni Q&As. No extra time required — inserted into mandatory dead time.</div>
-          </div>
-          <div class="layer-item layer-halos">
-            <div class="layer-name">Halos</div>
-            <div class="layer-desc">Monthly groups organized by intended track. Delivered field-specific opportunities, connected participants with professionals, and helped them build relevant portfolios.</div>
-          </div>
-          <div class="layer-item layer-wings">
-            <div class="layer-name">Wings</div>
-            <div class="layer-desc">Small groups of 5–6 participants sharing an interest — not a track. Bi-weekly sessions over snacks and coffee. Built trust and addressed the cohort's relational toxicity through collaborative activities.</div>
-          </div>
-          <div class="layer-item layer-feathers">
-            <div class="layer-name">Feathers</div>
-            <div class="layer-desc">A buddy system. Paired participants checked in every two weeks with one small progress update — any progress. Wrote it on a sticky note and added it to the wall together. Peer accountability without competition.</div>
-          </div>
-          <div class="layer-item layer-11">
-            <div class="layer-name">One-on-One</div>
-            <div class="layer-desc">Individual counseling sessions for personal guidance, essay support, and college list building — now possible because trust had been established through the layers above.</div>
-          </div>
-        </div>
-      </div>
-      <div class="case-block reveal">
-        <h3>Key Design Decisions</h3>
-        <p><strong>The funnel of intimacy.</strong> Each layer is progressively smaller and more personal — from 70+ users in a Flight down to a single pair in Feathers. Information and accountability flow top-down; trust and vulnerability flow bottom-up. Users who were closed off in large groups opened up in Wings; users who wouldn't engage in Halos would do so one-on-one.</p>
-        <p><strong>Cross-cutting affinity groups.</strong> Wings were deliberately not organized by professional track — they were organized by personal interests drawn from a survey (art, food, gaming, etc.). This was a direct response to the cohort's competitiveness. Mixing users across hierarchies and using collaborative activities that require communication and trust created relationships that cut across the usual social fault lines.</p>
-        <p><strong>The sticky note wall.</strong> The Feathers check-in was designed to make invisible progress visible — and public in a safe, celebratory way. The physical act of writing something down and adding it to a shared wall was more psychologically meaningful than a logged database entry. It modeled the real shape of any complex process: not a single heroic effort, but hundreds of small steps accumulated over time.</p>
-      </div>
-      <div class="case-block reveal">
-        <h3>What I Made</h3>
-        <p>Beyond the system architecture, I created all program documentation, the user-facing presentation (Primus Volatus: First Flight), the survey instruments, the activity frameworks, and the visual identity. The presentation was designed to be warm and accessible — using flight and sky metaphors throughout to reframe an anxiety-inducing process as something to anticipate rather than dread.</p>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
-          <img src="images/primus-cover.png" alt="Primus Volatus title slide" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-          <img src="images/primus-structure.png" alt="Primus Volatus structure pyramid" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-        </div>
-        <img src="images/primus-counselor.png" alt="Counselor introduction slide" style="width:100%; border-radius:12px; margin-top:1rem; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-      </div>
-      <div class="case-block reveal">
-        <h3>What I'd Do Next</h3>
-        <p>The system's weakest link was measurement. I had qualitative signals — engagement improved, collaborative behavior shifted noticeably by the second cycle — but no formal tracking system for engagement quality over time. If I were building this again, I would design a lightweight longitudinal tracking tool into the Feathers layer from the start, turning each check-in into a data point that could inform earlier interventions.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PHILOSOPHY -->
-<section class="philosophy">
-  <div class="philosophy-inner">
-    <p class="section-label">Design Philosophy</p>
-    <h2 class="section-title">Why I build what I build.</h2>
-    <blockquote class="philosophy-quote">
-      "Every project I've made asks the same question: what does it feel like to be inside this experience — not just to use it, but to live with it?"
-    </blockquote>
-    <p>I came to design through language. I understood before I had the vocabulary for it that the gap between what something says and what it makes someone feel is where all the important work happens.</p>
-    <p>That instinct runs through everything I build — the way Kokoron never lets your creature die, the way the VR experience asks you to physically throw your darkness away, the way WEISS puts you in a morally ambiguous economy and asks what you're willing to do to keep the world running.</p>
-    <p>Good design doesn't solve problems. It creates spaces where people can be more fully themselves.</p>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="contact-inner reveal">
-    <p class="section-label">Contact</p>
-    <h2 class="section-title">Let's work together.</h2>
-    <p>I'm currently open to UXD roles, game design positions, wellness tech opportunities, and interesting contract work — especially anything that sits at the intersection of technology and human experience.</p>
-    <div class="contact-links">
-      <a href="mailto:arkudel@gmail.com" class="btn btn-primary">Send an Email</a>
-      <a href="James_Smith_Resume.docx" class="btn btn-ghost" download>Download CV</a>
-      <a href="https://www.linkedin.com/in/james-smith-11bb76a1/" class="btn btn-ghost">LinkedIn</a>
-      <a href="https://github.com/arkudel" class="btn btn-ghost">GitHub</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p>Designed & built by James DR Smith &nbsp;·&nbsp; 心 &nbsp;·&nbsp; 2026</p>
-</footer>
+<div class="reward-toast" id="rewardToast"></div>
 
 <script>
-  // ── CUSTOM CURSOR ──
-  const dot = document.getElementById('cursorDot');
-  const ring = document.getElementById('cursorRing');
-
-  if (window.matchMedia('(pointer: coarse)').matches) {
-    dot.style.display = 'none';
-    ring.style.display = 'none';
-  }
-
-  document.addEventListener('mousemove', e => {
-    dot.style.left  = e.clientX + 'px';
-    dot.style.top   = e.clientY + 'px';
-    ring.style.left = e.clientX + 'px';
-    ring.style.top  = e.clientY + 'px';
-  });
-  document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
-  document.addEventListener('mouseenter', () => { dot.style.opacity = '0.7'; ring.style.opacity = '0.6'; });
-
-  // ── PARALLAX SCROLL ──
-  const parallaxLayers = document.querySelectorAll('.parallax-layer');
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
-  let ticking = false;
-
-  if (!prefersReduced && !isMobile) {
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          parallaxLayers.forEach(layer => {
-            const speed = parseFloat(layer.dataset.speed);
-            layer.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
-          });
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-  }
-
-  // ── HERO PARTICLE SYSTEM (mouse-responsive) ──
-  const canvas = document.getElementById('heroCanvas');
-  const ctx = canvas.getContext('2d');
-  let mouseX = 0.5, mouseY = 0.5;
-
-  function resizeCanvas() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
+(() => {
+  // ── PARTICLE BACKGROUND ──
+  const cv = document.getElementById('bgCanvas');
+  const cx = cv.getContext('2d');
+  function resizeCanvas() { cv.width = cv.offsetWidth; cv.height = cv.offsetHeight; }
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
 
-  canvas.parentElement.addEventListener('mousemove', e => {
-    const r = canvas.getBoundingClientRect();
-    mouseX = (e.clientX - r.left) / r.width;
-    mouseY = (e.clientY - r.top)  / r.height;
-  });
+  const motes = Array.from({ length: 35 }, () => ({
+    x: Math.random() * cv.width,
+    y: Math.random() * cv.height,
+    s: .8 + Math.random() * 2,
+    vy: -(0.15 + Math.random() * .35),
+    vx: (Math.random() - .5) * .2,
+    o: 0,
+    mo: .06 + Math.random() * .14,
+    fi: true,
+    w: Math.random() * Math.PI * 2,
+    ws: .006 + Math.random() * .01,
+    c: ['rgba(224,168,50,','rgba(167,139,250,','rgba(232,223,212,'][Math.floor(Math.random()*3)]
+  }));
 
-  const palette = [
-    'rgba(212,133,74,', 'rgba(232,223,212,', 'rgba(167,139,250,',
-    'rgba(107,125,147,', 'rgba(240,196,86,', 'rgba(30,45,66,',
+  function drawBg() {
+    cx.clearRect(0, 0, cv.width, cv.height);
+    for (const m of motes) {
+      m.w += m.ws;
+      m.x += m.vx + Math.sin(m.w) * .3;
+      m.y += m.vy;
+      if (m.fi) { m.o += .003; if (m.o >= m.mo) m.fi = false; }
+      else if (m.y < cv.height * .25) m.o -= .002;
+      if (m.y < -10 || m.o <= 0) {
+        m.x = Math.random() * cv.width; m.y = cv.height + 10;
+        m.o = 0; m.fi = true;
+      }
+      cx.beginPath(); cx.arc(m.x, m.y, m.s, 0, Math.PI * 2);
+      cx.fillStyle = m.c + m.o + ')'; cx.fill();
+      const g = cx.createRadialGradient(m.x, m.y, 0, m.x, m.y, m.s * 3);
+      g.addColorStop(0, m.c + (m.o * .3) + ')');
+      g.addColorStop(1, m.c + '0)');
+      cx.beginPath(); cx.arc(m.x, m.y, m.s * 3, 0, Math.PI * 2);
+      cx.fillStyle = g; cx.fill();
+    }
+    requestAnimationFrame(drawBg);
+  }
+  drawBg();
+
+  // ── MONSTER DATA ──
+  const bestiary = {
+    minion: [
+      { name: 'Ink Spider',    emoji: '🕷️', hp: 40 },
+      { name: 'Page Moth',     emoji: '🦇', hp: 35 },
+      { name: 'Draft Ghost',   emoji: '👻', hp: 45 },
+      { name: 'Margin Rat',    emoji: '🐀', hp: 38 },
+      { name: 'Plot Worm',     emoji: '🪱', hp: 42 },
+    ],
+    mid: [
+      { name: 'Chapter Keeper', emoji: '🧛', hp: 90 },
+      { name: 'Syntax Wyrm',   emoji: '🐉', hp: 100 },
+      { name: 'Plot Hole',     emoji: '👾', hp: 85 },
+    ],
+    boss: [
+      { name: "Writer's Block", emoji: '💀', hp: 180 },
+      { name: 'The Blank Page', emoji: '📄', hp: 200 },
+      { name: 'The Critic',     emoji: '👑', hp: 220 },
+    ]
+  };
+
+  const quests = [
+    { name: 'The Dusty Shelf',   waves: ['minion','minion','minion'] },
+    { name: 'Ink-Stained Halls', waves: ['minion','minion','mid'] },
+    { name: 'The Dark Stacks',   waves: ['minion','mid','mid'] },
+    { name: 'Forgotten Chapter',   waves: ['mid','mid','boss'] },
+    { name: 'The Final Draft',   waves: ['mid','boss','boss'] },
   ];
 
-  class Particle {
-    constructor() { this.reset(true); }
-    reset(initial = false) {
-      this.x = Math.random() * canvas.width;
-      this.y = initial ? Math.random() * canvas.height : canvas.height + 10;
-      this.size = 1.2 + Math.random() * 3.8;
-      this.baseSpeedY = 0.25 + Math.random() * 0.65;
-      this.speedX = (Math.random() - 0.5) * 0.3;
-      this.opacity = 0;
-      this.maxOpacity = 0.12 + Math.random() * 0.32;
-      this.fadeIn = true;
-      this.color = palette[Math.floor(Math.random() * palette.length)];
-      this.wobble = Math.random() * Math.PI * 2;
-      this.wobbleSpeed = 0.008 + Math.random() * 0.018;
-      this.wobbleAmp = 0.4 + Math.random() * 1.0;
+  const runeReward = { minion: 8, mid: 18, boss: 60 };
+  const xpReward   = { minion: 15, mid: 35, boss: 80 };
+  const relicNames = [
+    'Quill of Echoes','Inkwell of Dusk','Tattered Bookmark','Gilded Ampersand',
+    'Broken Serif','Moth-Eaten Scroll','Crystal Semicolon','Ember Pen Nib',
+    'Rusted Clasp','Fossilized Eraser','Phantom Page','Moonlit Margin',
+  ];
+
+  // ── GAME STATE ──
+  const S = {
+    level: 1, xp: 0, xpToLevel: 100,
+    runes: 0, streak: 0, goalReached: false,
+    slain: 0, relics: 0, crits: 0,
+    questIdx: 0, waveIdx: 0,
+    monsterHp: 0, monsterMaxHp: 0,
+    prevWords: 0, totalWords: 0,
+    zen: false,
+  };
+
+  // ── DOM REFS ──
+  const el = (id) => document.getElementById(id);
+  const editor      = el('editor');
+  const goalFill    = el('goalFill');
+  const goalCount   = el('goalCount');
+  const monsterSprite = el('monsterSprite');
+  const damagePop   = el('damagePop');
+  const hpFill      = el('hpFill');
+  const combatLog   = el('combatLog');
+  const rewardToast = el('rewardToast');
+
+  // ── SPAWN ──
+  function pickMonster(tier) {
+    const pool = bestiary[tier];
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  function spawnNext() {
+    const quest = quests[S.questIdx];
+    if (S.waveIdx >= quest.waves.length) {
+      // Quest complete — advance
+      S.questIdx = (S.questIdx + 1) % quests.length;
+      S.waveIdx = 0;
+      showToast('Quest complete! Next: ' + quests[S.questIdx].name);
     }
-    update() {
-      this.wobble += this.wobbleSpeed;
-      const tx = mouseX * canvas.width;
-      const ty = mouseY * canvas.height;
-      const dx = tx - this.x, dy = ty - this.y;
-      const dist = Math.sqrt(dx*dx + dy*dy);
-      const attract = dist < 220 ? (220 - dist) / 220 * 0.018 : 0;
-      this.x += this.speedX + Math.sin(this.wobble) * this.wobbleAmp * 0.08 + dx * attract;
-      this.y -= this.baseSpeedY - dy * attract * 0.3;
-      if (this.fadeIn) {
-        this.opacity += 0.007;
-        if (this.opacity >= this.maxOpacity) this.fadeIn = false;
-      } else {
-        if (this.y < canvas.height * 0.28) this.opacity -= 0.004;
-      }
-      if (this.y < -10 || this.opacity <= 0) this.reset();
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = this.color + this.opacity + ')';
-      ctx.fill();
-      const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
-      grad.addColorStop(0, this.color + (this.opacity * 0.35) + ')');
-      grad.addColorStop(1, this.color + '0)');
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
-      ctx.fillStyle = grad;
-      ctx.fill();
+    const tier = quests[S.questIdx].waves[S.waveIdx];
+    const mon = pickMonster(tier);
+    S.monsterHp = mon.hp;
+    S.monsterMaxHp = mon.hp;
+    renderMonster(mon, tier);
+    renderQuest();
+  }
+
+  function renderMonster(mon, tier) {
+    monsterSprite.textContent = mon.emoji;
+    monsterSprite.className = 'monster-sprite';
+    el('monsterName').textContent = mon.name;
+    el('monsterHp').textContent = mon.hp + ' / ' + mon.hp;
+    const tierEl = el('monsterTier');
+    tierEl.textContent = tier.charAt(0).toUpperCase() + tier.slice(1);
+    tierEl.className = 'monster-tier tier-' + tier;
+    hpFill.style.width = '100%';
+    hpFill.className = 'hp-fill';
+    combatLog.textContent = 'A new foe appears...';
+    combatLog.className = 'combat-log';
+  }
+
+  function renderQuest() {
+    const quest = quests[S.questIdx];
+    el('questTag').textContent = 'QUEST ' + (S.questIdx + 1) + ' OF ' + quests.length;
+    el('questName').textContent = quest.name;
+    el('questProgress').textContent = S.waveIdx + ' / ' + quest.waves.length;
+  }
+
+  // ── COMBAT ──
+  function dealDamage(isCrit) {
+    if (S.monsterHp <= 0) return;
+    const dmg = isCrit ? 12 : 4;
+    S.monsterHp = Math.max(0, S.monsterHp - dmg);
+    if (isCrit) S.crits++;
+
+    // HP bar
+    const pct = (S.monsterHp / S.monsterMaxHp) * 100;
+    hpFill.style.width = pct + '%';
+    hpFill.className = 'hp-fill' + (pct < 25 ? ' critical' : pct < 55 ? ' wounded' : '');
+    el('monsterHp').textContent = S.monsterHp + ' / ' + S.monsterMaxHp;
+
+    // Damage popup
+    damagePop.textContent = '-' + dmg;
+    damagePop.className = 'damage-pop' + (isCrit ? ' crit-pop' : '');
+    void damagePop.offsetWidth;
+    damagePop.classList.add('visible');
+
+    // Monster anim
+    monsterSprite.classList.remove('hit', 'crit', 'idle');
+    void monsterSprite.offsetWidth;
+    monsterSprite.classList.add(isCrit ? 'crit' : 'hit');
+
+    // Log
+    combatLog.textContent = isCrit ? 'Critical hit! -' + dmg : 'Hit! -' + dmg;
+    combatLog.className = 'combat-log ' + (isCrit ? 'crit-msg' : 'active');
+
+    // Kill?
+    if (S.monsterHp <= 0) killMonster();
+
+    renderStats();
+  }
+
+  function killMonster() {
+    const tier = quests[S.questIdx].waves[S.waveIdx];
+    const runes = runeReward[tier];
+    const xp = xpReward[tier];
+    S.slain++;
+    S.runes += runes;
+    addXP(xp);
+    S.waveIdx++;
+
+    // Relic drop (15% chance)
+    const gotRelic = Math.random() < .15;
+    if (gotRelic) S.relics++;
+
+    monsterSprite.classList.remove('hit', 'crit');
+    monsterSprite.classList.add('dying');
+    combatLog.textContent = 'Defeated!';
+    combatLog.className = 'combat-log kill-msg';
+
+    let msg = '+' + runes + ' runes, +' + xp + ' XP';
+    if (gotRelic) msg += '  —  Relic: ' + relicNames[Math.floor(Math.random() * relicNames.length)];
+    showToast(msg);
+
+    setTimeout(spawnNext, 1400);
+  }
+
+  function addXP(amount) {
+    S.xp += amount;
+    while (S.xp >= S.xpToLevel) {
+      S.xp -= S.xpToLevel;
+      S.level++;
+      S.xpToLevel = Math.floor(S.xpToLevel * 1.3);
+      showToast('Level up! You are now level ' + S.level, true);
     }
   }
 
-  const particles = Array.from({ length: 60 }, () => new Particle());
+  // ── RENDER ──
+  function renderStats() {
+    el('level').textContent = S.level;
+    el('xpBar').style.width = (S.xp / S.xpToLevel * 100) + '%';
+    el('runes').textContent = S.runes;
+    el('streak').textContent = S.streak + (S.streak === 1 ? ' day' : ' days');
+    el('totalWords').textContent = S.totalWords.toLocaleString() + ' words';
+    el('slainCount').textContent = S.slain;
+    el('relicCount').textContent = S.relics;
+    el('critCount').textContent = S.crits;
+  }
 
-  function drawConnections() {
-    const threshold = 100;
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const a = particles[i], b = particles[j];
-        const dx = a.x - b.x, dy = a.y - b.y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < threshold) {
-          const alpha = (1 - dist / threshold) * 0.06 * Math.min(a.opacity, b.opacity) / 0.3;
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = `rgba(212,133,74,${alpha})`;
-          ctx.lineWidth = 0.6;
-          ctx.stroke();
-        }
-      }
+  function renderGoal() {
+    const w = Math.min(S.totalWords, 300);
+    goalFill.style.width = (w / 300 * 100) + '%';
+    const gc = el('goalCount');
+    gc.textContent = w + ' / 300';
+    gc.className = 'goal-count' + (S.goalReached ? ' done' : '');
+    if (S.totalWords >= 300 && !S.goalReached) {
+      S.goalReached = true;
+      S.streak = 1;
+      showToast('Daily goal reached! Streak: 1 day', true);
+      renderStats();
     }
   }
 
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawConnections();
-    particles.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(animate);
+  // ── TOAST ──
+  let toastTimer;
+  function showToast(msg, isGoal) {
+    rewardToast.textContent = msg;
+    rewardToast.className = 'reward-toast visible' + (isGoal ? ' goal-toast' : '');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { rewardToast.className = 'reward-toast'; }, 2800);
   }
-  animate();
 
-  // ── SCROLL REVEAL ──
-  const reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    reveals.forEach(el => el.classList.add('hidden'));
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.remove('hidden');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    reveals.forEach(el => observer.observe(el));
-  }
+  // ── EDITOR INPUT ──
+  editor.addEventListener('input', () => {
+    const text = editor.value;
+    const words = text.trim().split(/\s+/).filter(w => w.length > 0);
+    const wc = words.length;
+
+    if (wc > S.prevWords) {
+      S.totalWords += wc - S.prevWords;
+      // Sentence check
+      const tail = text.trimEnd().slice(-1);
+      const isCrit = ['.','!','?'].includes(tail);
+      if (!S.zen) dealDamage(isCrit);
+      renderGoal();
+      el('saveStatus').textContent = 'Saved';
+    }
+    S.prevWords = wc;
+    renderStats();
+  });
+
+  // ── ZEN MODE ──
+  el('zenBtn').addEventListener('click', () => {
+    S.zen = !S.zen;
+    el('arena').classList.toggle('zen', S.zen);
+    el('zenBtn').classList.toggle('active', S.zen);
+    el('zenBtn').textContent = S.zen ? 'Exit Zen' : 'Zen Mode';
+  });
+
+  // ── SESSION TIMER ──
+  const t0 = Date.now();
+  setInterval(() => {
+    const s = Math.floor((Date.now() - t0) / 1000);
+    const m = Math.floor(s / 60);
+    el('sessionTime').textContent = m + ':' + String(s % 60).padStart(2, '0');
+  }, 1000);
+
+  // ── INIT ──
+  spawnNext();
+  renderStats();
+  renderGoal();
+})();
 </script>
-
 </body>
 </html>
