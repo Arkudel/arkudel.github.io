@@ -3,35 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio — Designer & Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>James DR Smith — Designer & Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <style>
   :root {
-    --cream: #fdf6ec;
-    --warm-white: #fffaf4;
-    --blush: #f5dfd0;
-    --peach: #e8b89a;
-    --terracotta: #c97b5a;
-    --brown: #7a4f35;
-    --deep: #3d2314;
-    --sage: #8fad8c;
-    --sage-light: #c8ddc6;
-    --sky: #b8d4e8;
-    --sky-light: #ddeef7;
-    --purple-soft: #c5b8d4;
-    --text: #3d2314;
-    --text-soft: #7a6055;
-    --shadow: rgba(122, 79, 53, 0.12);
+    --void: #0b1120;
+    --ink: #141e30;
+    --slate: #1e2d42;
+    --iron: #6b7d93;
+    --bone: #e8dfd0;
+    --ember: #d4854a;
+    --glow: #f0c456;
+    --shadow: rgba(0,0,0,0.35);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Nunito', sans-serif;
-    background: var(--cream);
-    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    background: var(--void);
+    color: var(--bone);
     overflow-x: hidden;
   }
 
@@ -42,7 +35,7 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 1000;
-    opacity: 0.4;
+    opacity: 0.25;
   }
 
   /* ── NAV ── */
@@ -54,15 +47,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(253, 246, 236, 0.85);
+    background: rgba(11, 17, 32, 0.82);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(200, 150, 120, 0.15);
+    border-bottom: 1px solid rgba(30, 45, 66, 0.5);
   }
 
   .nav-logo {
-    font-family: 'Lora', serif;
+    font-family: 'Fraunces', serif;
     font-size: 1.2rem;
-    color: var(--brown);
+    color: var(--bone);
     text-decoration: none;
     letter-spacing: 0.02em;
   }
@@ -71,14 +64,13 @@
 
   .nav-links a {
     text-decoration: none;
-    color: var(--text-soft);
-    font-size: 0.9rem;
+    color: var(--iron);
+    font-size: 0.88rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    letter-spacing: 0.03em;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--terracotta); }
+  .nav-links a:hover { color: var(--ember); }
 
   /* ── HERO ── */
   .hero {
@@ -94,10 +86,9 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(184, 212, 232, 0.35) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 50% at 20% 70%, rgba(245, 223, 208, 0.5) 0%, transparent 55%),
-      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(197, 184, 212, 0.2) 0%, transparent 50%),
-      var(--warm-white);
+      radial-gradient(ellipse 60% 50% at 65% 35%, rgba(212,133,74,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 25% 70%, rgba(30,45,66,0.4) 0%, transparent 55%),
+      var(--void);
   }
 
   .hero-bg::before {
@@ -105,19 +96,9 @@
     position: absolute;
     width: 400px; height: 400px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(143, 173, 140, 0.15), transparent 70%);
+    background: radial-gradient(circle, rgba(212,133,74,0.06), transparent 70%);
     top: -100px; right: 10%;
     animation: drift 8s ease-in-out infinite;
-  }
-
-  .hero-bg::after {
-    content: '';
-    position: absolute;
-    width: 300px; height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(232, 184, 154, 0.2), transparent 70%);
-    bottom: 5%; left: 15%;
-    animation: drift 10s ease-in-out infinite reverse;
   }
 
   @keyframes drift {
@@ -125,19 +106,38 @@
     50% { transform: translateY(-20px) scale(1.05); }
   }
 
-  /* ── PARTICLE CANVAS ── */
   #heroCanvas {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
+    z-index: 1;
+  }
+
+  .parallax-scene {
+    position: absolute;
+    inset: 0;
     z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .parallax-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    will-change: transform;
+  }
+  .parallax-layer svg {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 3;
     max-width: 700px;
   }
 
@@ -151,42 +151,30 @@
   }
   .htag {
     font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-weight: 600;
     padding: 0.28rem 0.85rem;
     border-radius: 50px;
-    background: rgba(201, 123, 90, 0.1);
-    color: var(--brown);
-    border: 1px solid rgba(201, 123, 90, 0.25);
+    background: rgba(30, 45, 66, 0.5);
+    color: var(--iron);
+    border: 1px solid rgba(107, 125, 147, 0.2);
   }
-  .hero-eyebrow {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    margin-bottom: 1.2rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.2s;
-  }
-
   .hero h1 {
-    font-family: 'Lora', serif;
-    font-size: clamp(2.8rem, 6vw, 5rem);
-    line-height: 1.15;
-    color: var(--deep);
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.8rem, 6vw, 4.6rem);
+    line-height: 1.18;
+    color: var(--bone);
     margin-bottom: 1.5rem;
     opacity: 0;
     animation: fadeUp 0.8s ease forwards 0.4s;
+    font-weight: 600;
   }
 
-  .hero h1 em { font-style: italic; color: var(--terracotta); }
+  .hero h1 em { font-style: italic; color: var(--ember); }
 
   .hero-sub {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     line-height: 1.75;
-    color: var(--text-soft);
+    color: var(--iron);
     max-width: 520px;
     margin-bottom: 2.5rem;
     opacity: 0;
@@ -207,28 +195,29 @@
     border-radius: 50px;
     text-decoration: none;
     font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 0.04em;
+    font-size: 0.88rem;
+    letter-spacing: 0.03em;
     transition: all 0.25s ease;
   }
 
   .btn-primary {
-    background: var(--terracotta);
-    color: white;
-    box-shadow: 0 4px 20px rgba(201, 123, 90, 0.35);
+    background: var(--ember);
+    color: var(--void);
+    box-shadow: 0 4px 20px rgba(212, 133, 74, 0.3);
   }
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(201, 123, 90, 0.45);
+    box-shadow: 0 8px 28px rgba(212, 133, 74, 0.4);
   }
 
   .btn-ghost {
     background: transparent;
-    color: var(--brown);
-    border: 2px solid var(--peach);
+    color: var(--bone);
+    border: 2px solid var(--slate);
   }
   .btn-ghost:hover {
-    background: var(--blush);
+    border-color: var(--ember);
+    color: var(--ember);
     transform: translateY(-2px);
   }
 
@@ -241,31 +230,30 @@
   section { padding: 6rem 3rem; }
 
   .section-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--terracotta);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ember);
     margin-bottom: 0.75rem;
   }
 
   .section-title {
-    font-family: 'Lora', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    color: var(--deep);
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--bone);
     margin-bottom: 1.5rem;
     line-height: 1.2;
+    font-weight: 600;
   }
 
   /* ── ABOUT ── */
-  .about { background: var(--warm-white); position: relative; overflow: hidden; }
+  .about { background: var(--ink); position: relative; overflow: hidden; }
 
   .about::before {
     content: '';
     position: absolute;
     width: 500px; height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(200, 221, 198, 0.25), transparent 65%);
+    background: radial-gradient(circle, rgba(212,133,74,0.04), transparent 65%);
     top: -150px; right: -100px;
     pointer-events: none;
   }
@@ -282,91 +270,64 @@
   }
 
   .about-text p {
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     line-height: 1.85;
-    color: var(--text-soft);
+    color: var(--iron);
     margin-bottom: 1.25rem;
   }
-  .about-text p strong { color: var(--brown); font-weight: 700; }
+  .about-text p strong { color: var(--bone); font-weight: 700; }
   .about-text p:first-of-type {
-    font-size: 1.2rem;
-    color: var(--text);
-    font-family: 'Lora', serif;
+    font-size: 1.15rem;
+    color: var(--bone);
+    font-family: 'Fraunces', serif;
     font-style: italic;
+    line-height: 1.7;
   }
 
   .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
   .skill-chip {
-    background: var(--blush);
-    border: 1px solid rgba(200, 150, 120, 0.2);
+    background: rgba(30, 45, 66, 0.4);
+    border: 1px solid rgba(107, 125, 147, 0.15);
     border-radius: 12px;
     padding: 1rem 1.25rem;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-    position: relative;
-    overflow: hidden;
+    transition: transform 0.25s ease, border-color 0.25s ease;
   }
-
-  .skill-chip::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(105deg, transparent 40%, rgba(201,123,90,0.12) 50%, transparent 60%);
-    transform: translateX(-120%);
-    transition: transform 0.5s ease;
-  }
-  .skill-chip:hover::after { transform: translateX(120%); }
   .skill-chip:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(201,123,90,0.18);
-    border-color: rgba(201,123,90,0.35);
-    background: #f8e8d8;
+    transform: translateY(-3px);
+    border-color: rgba(212, 133, 74, 0.3);
   }
 
   .skill-chip h4 {
     font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--terracotta);
+    color: var(--ember);
     margin-bottom: 0.3rem;
   }
-  .skill-chip p { font-size: 0.85rem; color: var(--text-soft); line-height: 1.4; }
+  .skill-chip p { font-size: 0.85rem; color: var(--iron); line-height: 1.4; }
 
   /* ── PROJECTS ── */
-  .projects { background: var(--cream); max-width: 1200px; margin: 0 auto; padding: 6rem 3rem; }
+  .projects { background: var(--void); max-width: 1200px; margin: 0 auto; padding: 6rem 3rem; }
   .projects-header { max-width: 600px; margin-bottom: 3.5rem; }
-  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; row-gap: 2rem; }
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 
   .project-card {
-    background: var(--warm-white);
-    border-radius: 24px;
+    background: var(--ink);
+    border-radius: 20px;
     overflow: hidden;
-    border: 1px solid rgba(200, 150, 120, 0.15);
+    border: 1px solid rgba(30, 45, 66, 0.6);
     box-shadow: 0 4px 24px var(--shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     cursor: pointer;
     text-decoration: none;
     color: inherit;
     display: block;
-    position: relative;
   }
 
-  .project-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(110deg, transparent 35%, rgba(201,123,90,0.07) 50%, transparent 65%);
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .project-card:hover::before { transform: translateX(100%); }
   .project-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 56px rgba(122, 79, 53, 0.22);
-    border-color: rgba(201, 123, 90, 0.25);
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+    border-color: rgba(212, 133, 74, 0.25);
   }
 
   .project-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1.1fr 1fr; }
@@ -377,12 +338,12 @@
   .project-thumb-bg { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
   .project-card:hover .project-thumb-bg { transform: scale(1.04); }
 
-  .thumb-kokoron  { background: linear-gradient(135deg, #b8d4e8 0%, #c5b8d4 50%, #f5dfd0 100%); }
-  .thumb-vr       { background: linear-gradient(135deg, #c8ddc6 0%, #8fad8c 40%, #3d5c3a 100%); }
-  .thumb-weiss    { background: linear-gradient(135deg, #2a1a0e 0%, #7a4f35 40%, #c97b5a 100%); }
-  .thumb-nfc      { background: linear-gradient(135deg, #e8e0d4 0%, #c5b8d4 60%, #8fad8c 100%); }
-  .thumb-primus   { background: linear-gradient(135deg, #e8634a 0%, #c0396e 50%, #8b2fc9 100%); }
-  .thumb-crafting { background: linear-gradient(135deg, #1a0d06 0%, #3d2314 40%, #c97b5a 80%, #e8b89a 100%); }
+  .thumb-kokoron  { background: linear-gradient(135deg, #1a1535 0%, #3d2856 50%, #6b4a8a 100%); }
+  .thumb-vr       { background: linear-gradient(135deg, #0a1a0e 0%, #1a3d2a 40%, #3d7a4f 100%); }
+  .thumb-weiss    { background: linear-gradient(135deg, #1a0d06 0%, #3d2314 40%, #7a4f35 100%); }
+  .thumb-inkblade { background: linear-gradient(135deg, #0e1525 0%, #1c2640 35%, #2a3a6b 65%, #d4854a 100%); }
+  .thumb-crafting { background: linear-gradient(135deg, #1a0d06 0%, #2a1a0e 40%, #7a4f35 80%, #d4854a 100%); }
+  .thumb-primus   { background: linear-gradient(135deg, #2a0a1a 0%, #6b1a4a 50%, #a03080 100%); }
 
   .thumb-label {
     position: absolute;
@@ -390,11 +351,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Lora', serif;
+    font-family: 'Fraunces', serif;
     font-size: 1.4rem;
     font-style: italic;
     color: white;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
     letter-spacing: 0.05em;
   }
 
@@ -402,29 +363,26 @@
   .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.85rem; }
 
   .tag {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.25rem 0.75rem;
+    padding: 0.22rem 0.7rem;
     border-radius: 50px;
-    background: var(--blush);
-    color: var(--terracotta);
-    border: 1px solid rgba(201, 123, 90, 0.2);
+    background: rgba(30, 45, 66, 0.6);
+    color: var(--ember);
+    border: 1px solid rgba(212, 133, 74, 0.2);
   }
-  .tag.green  { background: var(--sage-light); color: #4a7a47; border-color: rgba(74, 122, 71, 0.2); }
-  .tag.purple { background: #e8e2f0; color: #6b5c8a; border-color: rgba(107, 92, 138, 0.2); }
-  .tag.sky    { background: var(--sky-light); color: #3a6a8a; border-color: rgba(58, 106, 138, 0.2); }
+  .tag.green  { background: rgba(74, 222, 128, 0.08); color: #6ee7a0; border-color: rgba(74, 222, 128, 0.2); }
+  .tag.purple { background: rgba(167, 139, 250, 0.08); color: #b8a4f8; border-color: rgba(167, 139, 250, 0.2); }
+  .tag.sky    { background: rgba(96, 165, 250, 0.08); color: #7db8f8; border-color: rgba(96, 165, 250, 0.2); }
 
-  .project-info h3 { font-family: 'Lora', serif; font-size: 1.4rem; color: var(--deep); margin-bottom: 0.6rem; }
-  .project-info p  { font-size: 0.95rem; color: var(--text-soft); line-height: 1.6; margin-bottom: 1.25rem; }
+  .project-info h3 { font-family: 'Fraunces', serif; font-size: 1.35rem; color: var(--bone); margin-bottom: 0.6rem; font-weight: 600; }
+  .project-info p  { font-size: 0.92rem; color: var(--iron); line-height: 1.65; margin-bottom: 1rem; }
 
   .project-link {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 700;
-    color: var(--terracotta);
+    color: var(--ember);
     text-decoration: none;
-    letter-spacing: 0.05em;
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
@@ -439,39 +397,29 @@
     gap: 1rem;
     margin-top: 1.5rem;
     padding-top: 1.5rem;
-    border-top: 1px solid rgba(200, 150, 120, 0.18);
+    border-top: 1px solid rgba(30, 45, 66, 0.5);
   }
-  .glance-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-  .glance-label {
-    font-size: 0.67rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-  }
-  .glance-value {
-    font-size: 0.88rem;
-    color: var(--text-soft);
-    line-height: 1.45;
-  }
+  .glance-item { display: flex; flex-direction: column; gap: 0.3rem; }
+  .glance-label { font-size: 0.67rem; font-weight: 700; color: var(--ember); }
+  .glance-value { font-size: 0.88rem; color: var(--iron); line-height: 1.45; }
+
   @media (max-width: 600px) {
     .glance-row { grid-template-columns: 1fr; }
   }
+
   /* ── CASE STUDY ── */
-  .case-study { background: var(--warm-white); padding: 6rem 3rem; }
+  .case-study { background: var(--ink); padding: 6rem 3rem; }
+  .case-study:nth-of-type(even) { background: var(--void); }
   .case-study-inner { max-width: 860px; margin: 0 auto; }
-  .case-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(200, 150, 120, 0.2); }
+  .case-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(30, 45, 66, 0.5); }
   .case-body { display: grid; gap: 3rem; }
 
   .case-block h3 {
-    font-family: 'Lora', serif;
-    font-size: 1.3rem;
-    color: var(--brown);
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    color: var(--bone);
     margin-bottom: 1rem;
+    font-weight: 600;
     display: flex;
     align-items: center;
     gap: 0.6rem;
@@ -481,123 +429,125 @@
     display: inline-block;
     width: 6px; height: 6px;
     border-radius: 50%;
-    background: var(--terracotta);
+    background: var(--ember);
     flex-shrink: 0;
   }
-  .case-block p { font-size: 1rem; line-height: 1.85; color: var(--text-soft); }
+  .case-block p { font-size: 0.98rem; line-height: 1.85; color: var(--iron); }
   .case-block p + p { margin-top: 1rem; }
+  .case-block p strong { color: var(--bone); }
+  .case-block img {
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
 
   .insight-box {
-    background: linear-gradient(135deg, var(--blush), var(--sky-light));
-    border-left: 4px solid var(--terracotta);
-    border-radius: 0 16px 16px 0;
+    background: rgba(30, 45, 66, 0.5);
+    border-left: 4px solid var(--ember);
+    border-radius: 0 14px 14px 0;
     padding: 1.5rem 1.75rem;
-    font-family: 'Lora', serif;
+    font-family: 'Fraunces', serif;
     font-style: italic;
-    font-size: 1.05rem;
-    color: var(--brown);
+    font-size: 1.02rem;
+    color: var(--bone);
     line-height: 1.6;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.25s ease;
   }
   .insight-box:hover {
     transform: translateX(6px);
-    box-shadow: -4px 0 0 var(--terracotta), 0 8px 32px rgba(201,123,90,0.12);
   }
 
   /* ── LAYER DIAGRAM ── */
   .layer-diagram {
     display: flex; flex-direction: column; gap: 0;
-    margin: 1.5rem 0; border-radius: 16px; overflow: hidden;
+    margin: 1.5rem 0; border-radius: 14px; overflow: hidden;
     box-shadow: 0 4px 24px var(--shadow);
   }
   .layer-item {
     display: grid; grid-template-columns: 140px 1fr;
-    align-items: stretch; border-bottom: 1px solid rgba(255,255,255,0.15);
+    align-items: stretch; border-bottom: 1px solid rgba(255,255,255,0.1);
   }
   .layer-item:last-child { border-bottom: none; }
   .layer-name {
-    padding: 1rem 1.25rem; font-family: 'Lora', serif;
-    font-size: 1rem; font-weight: 600; color: white;
+    padding: 1rem 1.25rem; font-family: 'Fraunces', serif;
+    font-size: 0.95rem; font-weight: 600; color: white;
     display: flex; align-items: center;
   }
   .layer-desc {
-    padding: 1rem 1.25rem; font-size: 0.9rem; line-height: 1.55;
-    color: rgba(255,255,255,0.85); background: rgba(0,0,0,0.15); display: flex; align-items: center;
+    padding: 1rem 1.25rem; font-size: 0.88rem; line-height: 1.55;
+    color: rgba(255,255,255,0.8); display: flex; align-items: center;
   }
   .layer-flights .layer-name  { background: #c0396e; }
   .layer-halos .layer-name    { background: #b03480; }
   .layer-wings .layer-name    { background: #9a3092; }
   .layer-feathers .layer-name { background: #7e2da0; }
   .layer-11 .layer-name       { background: #612aad; }
-  .layer-flights .layer-desc  { background: rgba(192,57,110,0.3); }
-  .layer-halos .layer-desc    { background: rgba(176,52,128,0.3); }
-  .layer-wings .layer-desc    { background: rgba(154,48,146,0.3); }
-  .layer-feathers .layer-desc { background: rgba(126,45,160,0.3); }
-  .layer-11 .layer-desc       { background: rgba(97,42,173,0.3); }
+  .layer-flights .layer-desc  { background: rgba(192,57,110,0.2); }
+  .layer-halos .layer-desc    { background: rgba(176,52,128,0.2); }
+  .layer-wings .layer-desc    { background: rgba(154,48,146,0.2); }
+  .layer-feathers .layer-desc { background: rgba(126,45,160,0.2); }
+  .layer-11 .layer-desc       { background: rgba(97,42,173,0.2); }
 
   /* ── PHILOSOPHY ── */
-  .philosophy { background: var(--deep); color: white; padding: 6rem 3rem; position: relative; overflow: hidden; }
+  .philosophy { background: var(--void); color: var(--bone); padding: 6rem 3rem; position: relative; overflow: hidden; }
   .philosophy::before {
     content: '';
     position: absolute;
     width: 600px; height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(201, 123, 90, 0.15), transparent 65%);
+    background: radial-gradient(circle, rgba(212, 133, 74, 0.05), transparent 65%);
     top: -200px; right: -150px;
   }
   .philosophy-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
-  .philosophy .section-label { color: var(--peach); }
-  .philosophy .section-title { color: white; }
+  .philosophy .section-label { color: var(--ember); }
   .philosophy-quote {
-    font-family: 'Lora', serif;
-    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
     line-height: 1.5; font-style: italic;
-    color: rgba(255,255,255,0.9);
+    color: var(--bone);
     margin: 2.5rem 0; padding-left: 2rem;
-    border-left: 3px solid var(--terracotta);
+    border-left: 3px solid var(--ember);
+    opacity: 0.9;
   }
-  .philosophy p { font-size: 1.05rem; line-height: 1.85; color: rgba(255,255,255,0.65); max-width: 680px; margin-bottom: 1.25rem; }
+  .philosophy p { font-size: 1.02rem; line-height: 1.85; color: var(--iron); max-width: 680px; margin-bottom: 1.25rem; }
 
   /* ── CONTACT ── */
-  .contact { background: var(--cream); padding: 6rem 3rem; text-align: center; }
+  .contact { background: var(--ink); padding: 6rem 3rem; text-align: center; }
   .contact-inner { max-width: 600px; margin: 0 auto; }
-  .contact p { font-size: 1.1rem; color: var(--text-soft); line-height: 1.7; margin-bottom: 2.5rem; }
+  .contact p { font-size: 1.05rem; color: var(--iron); line-height: 1.7; margin-bottom: 2.5rem; }
   .contact-links { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
 
   /* ── FOOTER ── */
-  footer { background: var(--deep); color: rgba(255,255,255,0.4); text-align: center; padding: 2rem; font-size: 0.85rem; letter-spacing: 0.04em; }
+  footer { background: var(--void); color: rgba(107,125,147,0.5); text-align: center; padding: 2rem; font-size: 0.85rem; letter-spacing: 0.03em; border-top: 1px solid rgba(30,45,66,0.4); }
 
   /* ── CUSTOM CURSOR ── */
   .cursor-dot {
     position: fixed; width: 10px; height: 10px;
-    border-radius: 50%; background: var(--terracotta);
+    border-radius: 50%; background: var(--ember);
     pointer-events: none; z-index: 9999;
     transform: translate(-50%, -50%);
     transition: transform 0.08s ease, opacity 0.3s ease, width 0.2s ease, height 0.2s ease;
-    mix-blend-mode: multiply; opacity: 0.7;
+    mix-blend-mode: screen; opacity: 0.7;
   }
   .cursor-ring {
     position: fixed; width: 32px; height: 32px;
-    border-radius: 50%; border: 1.5px solid rgba(201, 123, 90, 0.4);
+    border-radius: 50%; border: 1.5px solid rgba(212, 133, 74, 0.35);
     pointer-events: none; z-index: 9998;
     transform: translate(-50%, -50%);
     transition: left 0.12s ease, top 0.12s ease, width 0.25s ease, height 0.25s ease, opacity 0.3s ease;
     opacity: 0.6;
   }
   body:has(a:hover) .cursor-dot,
-  body:has(button:hover) .cursor-dot { width: 16px; height: 16px; background: var(--brown); }
+  body:has(button:hover) .cursor-dot { width: 16px; height: 16px; }
   body:has(a:hover) .cursor-ring,
-  body:has(button:hover) .cursor-ring { width: 44px; height: 44px; border-color: rgba(122, 79, 53, 0.5); }
+  body:has(button:hover) .cursor-ring { width: 44px; height: 44px; border-color: rgba(212, 133, 74, 0.5); }
 
   /* ── SCROLL REVEAL ── */
   .reveal { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.hidden { opacity: 0; transform: translateY(30px); }
-  .reveal-left.hidden  { transform: translateX(-28px); }
-  .reveal-right.hidden { transform: translateX(28px); }
+  .reveal.hidden { opacity: 0; transform: translateY(24px); }
+  .reveal-left.hidden  { transform: translateX(-24px); }
+  .reveal-right.hidden { transform: translateX(24px); }
   .reveal-delay-1 { transition-delay: 0.1s; }
   .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-  .reveal-delay-4 { transition-delay: 0.4s; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
@@ -610,6 +560,15 @@
     .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
     .project-card.featured .project-thumb { min-height: 220px; }
     .skills-grid { grid-template-columns: 1fr; }
+    .layer-item { grid-template-columns: 100px 1fr; }
+    .parallax-layer { will-change: auto; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .parallax-layer { will-change: auto; }
+    .reveal { transition: none; }
+    .hero h1, .hero-sub, .hero-cta, .hero-tags { animation: none; opacity: 1; }
+    @keyframes drift { 0%, 100% { transform: none; } }
   }
 </style>
 </head>
@@ -630,20 +589,77 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
+
+  <!-- Parallax silhouette scene -->
+  <div class="parallax-scene">
+    <div class="parallax-layer" data-speed="0.06">
+      <svg class="scene-layer" viewBox="0 0 1440 420" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="hGlow" x1="0.5" y1="0" x2="0.5" y2="1">
+            <stop offset="0%" stop-color="transparent"/>
+            <stop offset="50%" stop-color="rgba(212,133,74,0.06)"/>
+            <stop offset="80%" stop-color="rgba(240,196,86,0.03)"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </linearGradient>
+        </defs>
+        <rect fill="url(#hGlow)" width="1440" height="420"/>
+        <path d="M0,420 L0,310 Q90,285 170,295 Q290,250 400,272 Q510,220 640,255 Q730,218 830,238 Q940,190 1050,218 Q1150,195 1250,212 Q1350,235 1440,222 L1440,420Z" fill="#0d1528" opacity="0.9"/>
+      </svg>
+    </div>
+    <div class="parallax-layer" data-speed="0.18">
+      <svg class="scene-layer" viewBox="0 0 1440 480" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#101a2b">
+          <polygon points="110,480 135,370 160,480"/>
+          <polygon points="300,480 330,355 360,480"/>
+          <polygon points="350,480 330,375 310,480"/>
+          <polygon points="500,480 525,340 550,480"/>
+          <polygon points="510,480 525,360 540,480"/>
+          <rect x="770" y="270" width="26" height="210" rx="3"/>
+          <rect x="910" y="255" width="22" height="225" rx="3"/>
+          <path d="M770,270 Q800,195 845,182 Q890,195 910,255 L910,225 Q882,165 845,152 Q808,165 770,235Z"/>
+          <rect x="795" y="452" width="20" height="28" rx="4" transform="rotate(-15 805 466)"/>
+          <rect x="875" y="456" width="16" height="24" rx="3" transform="rotate(10 883 468)"/>
+          <circle cx="845" cy="470" r="7"/>
+          <polygon points="1060,480 1095,265 1130,480"/>
+          <polygon points="1075,480 1095,295 1115,480"/>
+          <circle cx="1240" cy="310" r="52"/>
+          <rect x="1233" y="350" width="14" height="130"/>
+          <polygon points="1340,480 1365,360 1390,480"/>
+          <polygon points="1350,480 1365,375 1380,480"/>
+        </g>
+        <circle cx="845" cy="460" r="3" fill="#d4854a" opacity="0.45"><animate attributeName="opacity" values="0.3;0.6;0.3" dur="3.2s" repeatCount="indefinite"/></circle>
+        <circle cx="820" cy="468" r="2" fill="#f0c456" opacity="0.35"><animate attributeName="opacity" values="0.2;0.5;0.2" dur="4.1s" repeatCount="indefinite"/></circle>
+        <circle cx="890" cy="462" r="2.5" fill="#d4854a" opacity="0.35"><animate attributeName="opacity" values="0.25;0.55;0.25" dur="3.6s" repeatCount="indefinite"/></circle>
+        <circle cx="860" cy="472" r="1.8" fill="#f0c456" opacity="0.3"><animate attributeName="opacity" values="0.15;0.45;0.15" dur="5s" repeatCount="indefinite"/></circle>
+        <ellipse cx="845" cy="320" rx="30" ry="50" fill="rgba(212,133,74,0.025)"/>
+      </svg>
+    </div>
+    <div class="parallax-layer" data-speed="0.32">
+      <svg class="scene-layer" viewBox="0 0 1440 500" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#080d18">
+          <path d="M0,500 L0,230 Q8,220 16,230 Q28,260 32,310 Q36,370 34,500Z"/>
+          <ellipse cx="-20" cy="210" rx="58" ry="65"/>
+          <path d="M1440,500 L1440,270 Q1432,260 1424,272 Q1414,300 1410,350 Q1407,410 1410,500Z"/>
+          <ellipse cx="1458" cy="248" rx="52" ry="60"/>
+          <path d="M1220,500 Q1300,486 1370,482 Q1410,478 1440,484 L1440,500Z"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
   <canvas id="heroCanvas"></canvas>
   <div class="hero-content">
-    <p class="hero-eyebrow">UX Designer · Unity Developer · Human-Centered Builder</p>
     <div class="hero-tags">
       <span class="htag">Unity · C#</span>
       <span class="htag">UX Design</span>
       <span class="htag">VR / XR</span>
-      <span class="htag">Mobile</span>
+      <span class="htag">React · Supabase</span>
       <span class="htag">Game Systems</span>
-      <span class="htag">LLM Integration</span>
-      <span class="htag">Service Design</span>
+      <span class="htag">Wellness Tech</span>
+      <span class="htag">Behavioral Design</span>
     </div>
     <h1>I design experiences that take people's <em>inner lives</em> seriously.</h1>
-    <p class="hero-sub">Writing teacher turned self-taught developer. 18 years building in Korea. Now crafting apps, VR experiences, and games that sit at the intersection of technology and the human heart.</p>
+    <p class="hero-sub">Self-taught designer and developer. 18 years building in Korea. Now crafting wellness tools, writing apps, and games at the intersection of healing, neurodiversity, and creative play.</p>
     <div class="hero-cta">
       <a href="#projects" class="btn btn-primary">See My Work</a>
       <a href="#about" class="btn btn-ghost">My Story</a>
@@ -656,19 +672,19 @@
   <div class="about-inner">
     <div class="about-text reveal reveal-left">
       <p class="section-label">About</p>
-      <h2 class="section-title">From the writing classroom to the virtual world.</h2>
-      <p>"My only computer course in college was shipbuilding engineering. Everything else, I taught myself."</p>
-      <p>I spent <strong>18 years in Korea</strong> as a writing teacher, consultant, and academic. During that time I quietly taught myself Unity, C#, app architecture, UX design, and systems thinking — not from courses, but from curiosity and stubbornness.</p>
-      <p>That background shapes everything I make. I think in <strong>narrative, empathy, and consequence</strong> first — and build the technology to serve those things. The result is work that tends to feel different from what comes out of a traditional CS pipeline.</p>
-      <p>I'm currently completing an MBS in UX Design at Rutgers while developing a portfolio of projects that span mobile wellness apps, immersive VR therapy tools, and an indie game with several years of depth behind it.</p>
+      <h2 class="section-title">Designing for the whole person.</h2>
+      <p>"I design for people whose inner lives don't fit neatly into categories — and who need the tools everyone else gets, built with more care."</p>
+      <p>For <strong>eighteen years in South Korea</strong>, I designed learning experiences, behavioral systems, and creative programs for diverse populations. That work taught me to think in systems, to build for emotional safety, and to treat every interaction as a design decision — long before I had the vocabulary to call it design.</p>
+      <p>Now I build software. Wellness apps that reframe struggle as growth. Writing tools that turn the blank page into an adventure. VR experiences that make the invisible visible. Everything I make sits at the intersection of <strong>healing, neurodiversity, and creativity</strong> — because those three things have always been the same conversation for me.</p>
+      <p>Currently pursuing an MS in Game Design at Lindenwood University. Self-taught in Unity, React, full-stack architecture, and interaction design. M.Ed from Plymouth State.</p>
     </div>
     <div class="skills-grid reveal reveal-right reveal-delay-2">
-      <div class="skill-chip"><h4>Unity & C#</h4><p>3D/2D games, VR experiences, mobile apps — all self-taught from the ground up.</p></div>
-      <div class="skill-chip"><h4>UX Design</h4><p>Full design thinking, systems design, UX writing, and interaction design.</p></div>
-      <div class="skill-chip"><h4>Game Design</h4><p>Economy systems, deck-building, ATB combat, housing and relationship systems.</p></div>
-      <div class="skill-chip"><h4>VR / XR</h4><p>Spatial UI, embodied interaction design, gesture-based therapeutic experiences.</p></div>
-      <div class="skill-chip"><h4>Writing & Voice</h4><p>UX copy, academic writing, curriculum design — language as a design material.</p></div>
-      <div class="skill-chip"><h4>LLM Integration</h4><p>Local model integration for privacy-preserving AI features in apps and experiences.</p></div>
+      <div class="skill-chip"><h4>Systems Design</h4><p>Economy loops, progression curves, behavioral nudges, multi-layer service architectures.</p></div>
+      <div class="skill-chip"><h4>Full-Stack Dev</h4><p>React, Supabase, Unity/C#, offline-first architecture — designed and built solo.</p></div>
+      <div class="skill-chip"><h4>Trauma-Informed Design</h4><p>Wellness tools, reflection systems, and experiences that never punish vulnerability.</p></div>
+      <div class="skill-chip"><h4>Game & Interaction</h4><p>Deck-building, ATB combat, crafting loops, gamified engagement — play as a design material.</p></div>
+      <div class="skill-chip"><h4>VR / Spatial</h4><p>Embodied interaction, gesture-based therapeutic experiences, spatial UI for healing.</p></div>
+      <div class="skill-chip"><h4>Narrative & Voice</h4><p>UX writing, onboarding flows, world-building — language as interface.</p></div>
     </div>
   </div>
 </section>
@@ -682,8 +698,25 @@
   </div>
   <div class="projects-grid">
 
-    <!-- KOKORON — FEATURED -->
-    <a href="#case-study" class="project-card featured reveal">
+    <!-- INKBLADE — FEATURED -->
+    <a href="inkblade.html" class="project-card featured reveal" target="_blank">
+      <div class="project-thumb thumb-inkblade">
+        <div class="thumb-label">InkBlade</div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag sky">React</span><span class="tag">Supabase</span>
+          <span class="tag purple">Gamification</span><span class="tag green">Full-Stack</span>
+        </div>
+        <h3>InkBlade — Writing RPG</h3>
+        <p>A full-stack writing application where every word deals damage, completed sentences land critical hits, and the act of writing drives a lightweight RPG. React 18 frontend, Supabase backend with RLS, offline-first architecture, and a complete social layer — raids, pacts, leaderboards — all built to make showing up tomorrow feel good.</p>
+        <p>22 UI components, 14 database migrations, 111 collectible relics, 42 achievements, and a paste-detection integrity system. Designed, architected, and built solo.</p>
+        <span class="project-link">&#9654; Try the Demo</span>
+      </div>
+    </a>
+
+    <!-- KOKORON -->
+    <a href="#case-study" class="project-card reveal reveal-delay-1">
       <div class="project-thumb thumb-kokoron">
         <img src="images/kokoron-main.png" alt="Kokoron main screen" class="project-thumb-bg">
         <div class="thumb-label">Kokoron</div>
@@ -694,14 +727,13 @@
           <span class="tag purple">Wellness</span><span class="tag">UXD</span>
         </div>
         <h3>Kokoron — Wellness Tamagotchi</h3>
-        <p>A mobile companion app where your emotional experiences — the dark ones and the bright ones — become food and water for a creature that grows alongside you. Built solo for a team of four in a mobile app development course.</p>
-        <p>Reframes negative experience as nourishment rather than failure. Features a trauma-informed reflection log, streak-based engagement, social features, and cosmetic monetization — all designed to avoid punishing emotional states.</p>
-        <span class="project-link">Read Case Study →</span>
+        <p>A mobile companion app where your emotional experiences — the dark ones and the bright ones — become food and water for a creature that grows alongside you. Trauma-informed reflection, streak-based engagement, and cosmetic monetization designed to never punish emotional states.</p>
+        <span class="project-link">Read Case Study</span>
       </div>
     </a>
 
     <!-- VR WELLNESS -->
-    <a href="#case-study-luminare" class="project-card reveal reveal-delay-1">
+    <a href="#case-study-luminare" class="project-card reveal reveal-delay-2">
       <div class="project-thumb thumb-vr">
         <img src="images/luminare-transform.png" alt="VR wellness experience" class="project-thumb-bg">
         <div class="thumb-label">Project Luminare</div>
@@ -712,12 +744,12 @@
         </div>
         <h3>Luminare: VR Wellness Experience</h3>
         <p>An immersive daily ritual where users physically pull value cards to their hearts, speak aloud what weighs on them, and then — literally — grab their darkness and throw it away. A dying world slowly comes back to life.</p>
-        <span class="project-link">View Project →</span>
+        <span class="project-link">View Project</span>
       </div>
     </a>
 
     <!-- WEISS -->
-    <a href="#case-study-weiss" class="project-card reveal reveal-delay-2">
+    <a href="#case-study-weiss" class="project-card reveal reveal-delay-1">
       <div class="project-thumb thumb-weiss">
         <img src="images/weiss-battle.png" alt="WEISS item shop game battle" class="project-thumb-bg">
         <div class="thumb-label">WEISS</div>
@@ -728,12 +760,12 @@
         </div>
         <h3>WEISS — World's End Item Shop</h3>
         <p>An item shop simulator set in an RPG that stopped mid-story. The hero never came. Now you work both sides — monsters and humans — to restore an economy, rebuild a town, and cash in on a world that forgot to end.</p>
-        <span class="project-link">View Project →</span>
+        <span class="project-link">View Project</span>
       </div>
     </a>
 
     <!-- CRAFTING MINIGAME -->
-    <a href="craftingminigame.html" class="project-card reveal reveal-delay-3" target="_blank">
+    <a href="craftingminigame.html" class="project-card reveal reveal-delay-2" target="_blank">
       <div class="project-thumb thumb-crafting">
         <div class="thumb-label">The Alchemist's Table</div>
       </div>
@@ -742,8 +774,8 @@
           <span class="tag">JavaScript</span><span class="tag purple">Interactive</span><span class="tag sky">Game Design</span>
         </div>
         <h3>The Alchemist's Table — Live Crafting Demo</h3>
-        <p>A fully playable browser-based crafting system built as a companion piece to WEISS — and promptly got a class of students addicted. Over 290 recipes, a discovery tracker, drag-and-drop inventory, and chain crafting where items unlock new items.</p>
-        <span class="project-link">▶ Play Now →</span>
+        <p>A fully playable browser-based crafting system built as a companion piece to WEISS. Over 290 recipes, a discovery tracker, drag-and-drop inventory, and chain crafting where items unlock new items.</p>
+        <span class="project-link">&#9654; Play Now</span>
       </div>
     </a>
 
@@ -755,12 +787,12 @@
       </div>
       <div class="project-info">
         <div class="project-tags">
-          <span class="tag purple">Service Design</span><span class="tag green">Systems Thinking</span><span class="tag sky">Education</span>
+          <span class="tag purple">Service Design</span><span class="tag green">Systems Thinking</span><span class="tag sky">Behavioral Design</span>
         </div>
-        <h3>Primus Volatus: First Flight — College Counseling Redesign</h3>
-        <p>A toxic, disengaged 11th grade cohort. An understaffed counseling team. A class nobody valued. I redesigned the entire college preparation program from the ground up — replacing a single flat course with a five-layer system that addressed engagement, community, accountability, and individual support simultaneously.</p>
-        <p>The result was a tiered architecture of Flights, Halos, Wings, and Feathers — each layer progressively more intimate, each solving a different dimension of the same problem.</p>
-        <span class="project-link">Read Case Study →</span>
+        <h3>Primus Volatus: First Flight — Service System Redesign</h3>
+        <p>A disengaged user base. An understaffed service team. A program nobody valued. I redesigned an entire multi-stakeholder engagement system from the ground up — replacing a flat, one-size-fits-all approach with a five-layer architecture that addressed motivation, trust, accountability, and individual support simultaneously.</p>
+        <p>The result was a tiered service framework — Flights, Halos, Wings, and Feathers — each layer progressively more intimate, each solving a different dimension of the same problem.</p>
+        <span class="project-link">Read Case Study</span>
       </div>
     </a>
 
@@ -775,9 +807,9 @@
       <p class="section-label">Case Study</p>
       <h2 class="section-title">Kokoron — Designing for Emotional Safety</h2>
       <div class="glance-row">
-        <div class="glance-item"><span class="glance-label">Role</span><span class="glance-value">Solo designer &amp; developer (team of 4)</span></div>
+        <div class="glance-item"><span class="glance-label">Role</span><span class="glance-value">Solo designer &amp; developer</span></div>
         <div class="glance-item"><span class="glance-label">Stack</span><span class="glance-value">Unity · C# · HTML5</span></div>
-        <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Full production app built solo in a course context; trauma-informed design praised by course instructors</span></div>
+        <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Full production wellness app designed and built solo; trauma-informed interaction model</span></div>
       </div>
     </div>
     <div class="case-body">
@@ -785,9 +817,9 @@
         <h3>The Concept</h3>
         <p>Most wellness apps treat negative emotion as a problem to be eliminated. Kokoron asks a different question: what if your struggles could nourish something? The core mechanic reframes negative experience as food for a creature companion, and positive reflection as water. The pet survives, grows, and develops — because you did the work of showing up.</p>
         <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.5rem 0;">
-          <img src="images/kokoron-login.png" alt="Kokoron login screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
-          <img src="images/kokoron-main.png" alt="Kokoron main screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
-          <img src="images/kokoron-feed.png" alt="Kokoron feed screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/kokoron-login.png" alt="Kokoron login screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+          <img src="images/kokoron-main.png" alt="Kokoron main screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+          <img src="images/kokoron-feed.png" alt="Kokoron feed screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
         </div>
       </div>
       <div class="insight-box reveal reveal-delay-1">
@@ -799,13 +831,13 @@
         <p><strong>Aspirational stat naming.</strong> The Kokoron develops stats like Resilience, Hope, and Inner Strength. These aren't arbitrary RPG numbers — they mirror the qualities users might want to cultivate in themselves. As the pet grows, it quietly models a kind of self the user might aspire toward.</p>
         <p><strong>Ethical monetization.</strong> All monetization is cosmetic (skins) or compassionate (Graces for missed streaks). No mechanics that penalize emotional states or gate core functionality behind payment. This was a deliberate stance, not an oversight.</p>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
-          <img src="images/kokoron-logbook.png" alt="Kokoron logbook with hidden negative entries" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
-          <img src="images/kokoron-rewards.png" alt="Kokoron rewards screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/kokoron-logbook.png" alt="Kokoron logbook with hidden negative entries" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+          <img src="images/kokoron-rewards.png" alt="Kokoron rewards screen" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
         </div>
       </div>
       <div class="case-block reveal">
         <h3>What I Built</h3>
-        <p>The entire product — name, concept, architecture, UI design, codebase, monetization strategy, and UX writing — was designed and built by me in Unity for a mobile app development course. The team of four was, in practice, a team of one.</p>
+        <p>The entire product — name, concept, architecture, UI design, codebase, monetization strategy, and UX writing — was designed and built solo in Unity. Every design decision, from the creature growth model to the hidden-by-default negative log, is original work.</p>
         <p>The app was ported to HTML5 for web demonstration. Data persistence uses JSON-based local storage. Visual assets licensed through the Unity Asset Store; all other design work is original.</p>
       </div>
       <div class="case-block reveal">
@@ -833,7 +865,7 @@
         <h3>The Concept</h3>
         <p>Most wellness apps ask you to think about your feelings. Luminare asks you to do something about them — physically, in space, with your hands. It's a daily VR ritual built around embodied action: pulling values close, speaking burdens aloud, grabbing darkness and throwing it away. The world you inhabit starts dead and broken. Over ten days of returning, it comes back to life.</p>
         <p>The core insight behind the design is that VR's unique power isn't visual immersion — it's physical presence. The body remembers what it does in ways the mind alone doesn't. Luminare is built entirely around that idea.</p>
-        <img src="images/luminare-transform.png" alt="World transformation from grey to green" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
+        <img src="images/luminare-transform.png" alt="World transformation from grey to green" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(0,0,0,0.35);">
       </div>
       <div class="insight-box reveal reveal-delay-1">
         "VR's real power isn't what you see. It's what your body believes it's doing. Every interaction in Luminare was designed to be felt, not just observed."
@@ -845,8 +877,8 @@
         <p>Then the central gesture: the user looks at their own heart, sees dark particles swirling there, reaches in, grabs them, and throws them to the ground. Where the darkness lands, a shadow creature appears — labeled with what the user just named. They recite their mantra three times. Each recitation damages the creature. On the third, it dissolves.</p>
         <p>The dissolve shader expands outward from that point: grey grass becomes green, dead trees flower, animals appear, the sky lightens. Each day of returning extends the restoration further. After roughly ten sessions, the world is fully alive.</p>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
-          <img src="images/luminare-cards.png" alt="Value card selection" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
-          <img src="images/luminare-creature.png" alt="Shadow creature encounter" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/luminare-cards.png" alt="Value card selection" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+          <img src="images/luminare-creature.png" alt="Shadow creature encounter" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
         </div>
       </div>
       <div class="case-block reveal">
@@ -856,7 +888,7 @@
         <p><strong>Externalization of the internal.</strong> The dark particles at the heart, the shadow creature carrying your named burden, the act of physically throwing darkness away — these are all externalizations of internal psychological processes. The design borrows from narrative exposure therapy and somatic approaches without being clinically prescriptive. It creates a safe theatrical frame for engaging with difficult feelings.</p>
         <p><strong>World state as progress.</strong> Most habit apps show you a streak number. Luminare shows you a world healing. The emotional register of that feedback is completely different — it ties your daily practice to something larger than a metric, and makes absence feel like something worth returning from rather than a failure state.</p>
         <p><strong>One session per day, hard limit.</strong> The ritual cannot be repeated more than once daily, and progress is saved between sessions. This was a deliberate pacing decision: the experience is meant to be a morning or evening ritual, not a binge. The limitation also makes each session feel meaningful — you can't grind your way to a healed world.</p>
-        <img src="images/luminare-healed.png" alt="Fully restored world state" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
+        <img src="images/luminare-healed.png" alt="Fully restored world state" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(0,0,0,0.35);">
       </div>
       <div class="case-block reveal">
         <h3>What I Built</h3>
@@ -872,7 +904,7 @@
 </section>
 
 <!-- CASE STUDY: WEISS -->
-<section class="case-study" id="case-study-weiss" style="background: var(--warm-white);">
+<section class="case-study" id="case-study-weiss" style="background: var(--void);">
   <div class="case-study-inner">
     <div class="case-header reveal">
       <p class="section-label">Case Study</p>
@@ -888,7 +920,7 @@
         <h3>The Concept</h3>
         <p>WEISS begins with a premise that's both comedic and melancholy: you set up your item shop in front of the final dungeon, expecting to profit from the hero's legendary run. The hero never came. The demon lord waited. The world's economy, built around the eternal conflict between light and dark, simply... stalled.</p>
         <p>Now you're the one who has to fix it — not by being a hero, but by being a merchant. You work both sides. You sell potions to adventurers and reagents to monsters. You broker a fragile peace through commerce. You rebuild a town that had given up on itself. The game is named WEISS — which sounds like Vice — because doing good in a broken world sometimes requires playing all the angles.</p>
-        <img src="images/weiss-overworld.png" alt="WEISS overworld" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
+        <img src="images/weiss-overworld.png" alt="WEISS overworld" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(0,0,0,0.35);">
       </div>
       <div class="insight-box reveal reveal-delay-1">
         "Most RPGs ask you to save the world through strength. WEISS asks you to save it through trade — and leaves open the question of whether that's heroic or just pragmatic."
@@ -902,10 +934,10 @@
         <p><strong>Gathering and crafting.</strong> A deeper resource loop than most shop simulators: you explore the world to gather materials, which feed into crafting recipes, which produce items to sell or use. Specializing in alchemy, smithing, or cooking creates distinct playstyles and economic advantages.</p>
         <p><strong>The Ancient Cave system.</strong> A procedurally generated dungeon with its own loot table and exploration logic — a direct nod to Lufia II's legendary Ancient Cave — provides an infinitely replayable late-game loop for players who want pure dungeon-crawling.</p>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
-          <img src="images/weiss-shop.png" alt="WEISS shop interior" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
-          <img src="images/weiss-dungeon.png" alt="WEISS night dungeon" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
-          <img src="images/weiss-battle.png" alt="WEISS card battle" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
-          <img src="images/weiss-research.png" alt="WEISS card research" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/weiss-shop.png" alt="WEISS shop interior" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+          <img src="images/weiss-dungeon.png" alt="WEISS night dungeon" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+          <img src="images/weiss-battle.png" alt="WEISS card battle" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+          <img src="images/weiss-research.png" alt="WEISS card research" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
         </div>
       </div>
       <div class="case-block reveal">
@@ -914,7 +946,7 @@
         <p><strong>The dynamic relationship system.</strong> Organizing cohabitation between monsters and humans and watching emergent relationships develop was the most ambitious design decision in WEISS. It required building a reputation and relationship tracking system, behavioral rules for NPC interactions, and a party formation logic that reflects those relationships in combat stats. The payoff is a game that feels different every run because the social fabric of your town is never the same twice.</p>
         <p><strong>Hybrid ATB deck combat.</strong> Pure deck-builders (Slay the Spire et al.) are satisfying but slow. Pure ATB games are fast but shallow. The combination — build a deck, play it in real time under pressure — was harder to tune than either system alone, but creates a combat experience that rewards both preparation and instinct.</p>
         <p><strong>Visual tone mixing.</strong> WEISS deliberately mixes warm, cozy interior aesthetics (the shop at dawn, the crafting shed in afternoon light) with stark nocturnal dungeon environments (neon purple, metal scaffolding, candlelight). This tonal contrast reflects the game's moral duality — the same world that contains your cozy shop also contains something much darker beneath it.</p>
-        <img src="images/weiss-exterior.png" alt="WEISS shop exterior in daylight" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(61,35,20,0.18);">
+        <img src="images/weiss-exterior.png" alt="WEISS shop exterior in daylight" style="width:100%; border-radius:16px; margin:1.5rem 0; box-shadow:0 4px 24px rgba(0,0,0,0.35);">
       </div>
       <div class="case-block reveal">
         <h3>What I Built</h3>
@@ -930,7 +962,7 @@
 </section>
 
 <!-- CASE STUDY: PRIMUS Volatus -->
-<section class="case-study" id="case-study-primus" style="background: var(--cream);">
+<section class="case-study" id="case-study-primus" style="background: var(--ink);">
   <div class="case-study-inner">
     <div class="case-header reveal">
       <p class="section-label">Case Study</p>
@@ -938,22 +970,22 @@
       <div class="glance-row">
         <div class="glance-item"><span class="glance-label">Role</span><span class="glance-value">Lead designer (reduced-staff constraint)</span></div>
         <div class="glance-item"><span class="glance-label">Methods</span><span class="glance-value">Service Design · Systems Thinking · Survey Research · Behavioral Design</span></div>
-        <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Attendance improved; cohort's collaborative behavior measurably changed by semester two; zero additional student time required</span></div>
+        <div class="glance-item"><span class="glance-label">Outcome</span><span class="glance-value">Engagement improved measurably; collaborative behavior shifted by second cycle; zero additional user time required</span></div>
       </div>
     </div>
     <div class="case-body">
       <div class="case-block reveal">
         <h3>The Problem</h3>
-        <p>The college counseling program existed, but it wasn't working. Students in 11th grade were drowning in AP exams and treated college applications — still nearly a year away — as an abstraction not worth their attention. Attendance was poor, engagement was lower, and the program had already been redesigned once without meaningful improvement.</p>
-        <p>The incoming cohort made things harder. They had a well-documented reputation for bullying and hyper-competitiveness — exactly the wrong environment for a college process that requires vulnerability, peer support, and honesty with counselors. At the same time, our team had lost two members, meaning we had less staff than before and needed to serve more students with less.</p>
+        <p>The existing engagement program existed, but it wasn't working. Users were overloaded, disengaged, and treated the service — still months from its critical window — as an abstraction not worth their attention. Participation was poor, trust was lower, and the system had already been redesigned once without meaningful improvement.</p>
+        <p>The incoming cohort made things harder. They had a well-documented pattern of competitive hostility — exactly the wrong dynamic for a process that requires vulnerability, peer support, and honest disclosure. At the same time, the team had lost two members, meaning less staff serving more users with less.</p>
       </div>
       <div class="insight-box reveal reveal-delay-1">
         "The old program treated engagement as a given. I treated it as a design problem."
       </div>
       <div class="case-block reveal">
         <h3>The Design Approach</h3>
-        <p>I identified four distinct failure modes in the existing program: students didn't value the time, they didn't trust each other, they felt the process was overwhelming and monolithic, and they had no accountability structure beyond grades. Each layer of the new system was designed to address one of these directly.</p>
-        <p>Critically, the entire program was designed around a constraint: we could not ask students to give up any of their own time. Every touchpoint was inserted into time they already had — homeroom periods, study halls, brief drop-ins. This wasn't just logistical; it was a trust decision. Demanding extra time from already-overloaded students would have poisoned the relationship before it started.</p>
+        <p>I identified four distinct failure modes: users didn't value the touchpoints, they didn't trust each other, they perceived the process as overwhelming and monolithic, and they had no accountability structure beyond compliance metrics. Each layer of the new system was designed to address one of these directly.</p>
+        <p>Critically, the entire system was designed around a constraint: zero additional time cost to the user. Every touchpoint was inserted into existing schedule gaps. This wasn't just logistical; it was a trust decision. Demanding extra time from already-overloaded users would have poisoned the relationship before it started.</p>
       </div>
       <div class="case-block reveal">
         <h3>The Architecture</h3>
@@ -964,15 +996,15 @@
           </div>
           <div class="layer-item layer-halos">
             <div class="layer-name">Halos</div>
-            <div class="layer-desc">Monthly groups organized by intended major. Delivered field-specific opportunities, connected students with local professionals, and helped them build relevant portfolios.</div>
+            <div class="layer-desc">Monthly groups organized by intended track. Delivered field-specific opportunities, connected participants with professionals, and helped them build relevant portfolios.</div>
           </div>
           <div class="layer-item layer-wings">
             <div class="layer-name">Wings</div>
-            <div class="layer-desc">Small groups of 5–6 students sharing an interest — not a major. Bi-weekly sessions over snacks and coffee. Built trust and addressed the cohort's relational toxicity through collaborative activities.</div>
+            <div class="layer-desc">Small groups of 5–6 participants sharing an interest — not a track. Bi-weekly sessions over snacks and coffee. Built trust and addressed the cohort's relational toxicity through collaborative activities.</div>
           </div>
           <div class="layer-item layer-feathers">
             <div class="layer-name">Feathers</div>
-            <div class="layer-desc">A buddy system. Paired students visited the CC office every two weeks with one small progress update — any progress. Wrote it on a sticky note and added it to the wall together. Peer accountability without competition.</div>
+            <div class="layer-desc">A buddy system. Paired participants checked in every two weeks with one small progress update — any progress. Wrote it on a sticky note and added it to the wall together. Peer accountability without competition.</div>
           </div>
           <div class="layer-item layer-11">
             <div class="layer-name">One-on-One</div>
@@ -982,22 +1014,22 @@
       </div>
       <div class="case-block reveal">
         <h3>Key Design Decisions</h3>
-        <p><strong>The funnel of intimacy.</strong> Each layer is progressively smaller and more personal — from 70+ students in a Flight down to a single pair in Feathers. Information and accountability flow top-down; trust and vulnerability flow bottom-up. Students who were closed off in large groups opened up in Wings; students who wouldn't ask questions in Halos would ask them one-on-one.</p>
-        <p><strong>Cross-cutting interest groups.</strong> Wings were deliberately not organized by major or academic track — they were organized by personal interests drawn from a survey (art, food, gaming, etc.). This was a direct response to the cohort's competitiveness. Mixing students across academic hierarchies and forcing collaborative activities (including games like Keep Talking and Nobody Explodes, which require communication and trust to succeed) created relationships that cut across the usual social fault lines.</p>
-        <p><strong>The sticky note wall.</strong> The Feathers check-in was designed to make invisible progress visible — and public in a safe, celebratory way. The physical act of writing something down and adding it to a shared wall together was more psychologically meaningful than a logged database entry. It also modeled the real shape of the college process: not a single heroic effort, but hundreds of small steps accumulated over time.</p>
+        <p><strong>The funnel of intimacy.</strong> Each layer is progressively smaller and more personal — from 70+ users in a Flight down to a single pair in Feathers. Information and accountability flow top-down; trust and vulnerability flow bottom-up. Users who were closed off in large groups opened up in Wings; users who wouldn't engage in Halos would do so one-on-one.</p>
+        <p><strong>Cross-cutting affinity groups.</strong> Wings were deliberately not organized by professional track — they were organized by personal interests drawn from a survey (art, food, gaming, etc.). This was a direct response to the cohort's competitiveness. Mixing users across hierarchies and using collaborative activities that require communication and trust created relationships that cut across the usual social fault lines.</p>
+        <p><strong>The sticky note wall.</strong> The Feathers check-in was designed to make invisible progress visible — and public in a safe, celebratory way. The physical act of writing something down and adding it to a shared wall was more psychologically meaningful than a logged database entry. It modeled the real shape of any complex process: not a single heroic effort, but hundreds of small steps accumulated over time.</p>
       </div>
       <div class="case-block reveal">
         <h3>What I Made</h3>
-        <p>Beyond designing the system itself, I created all program documentation, the student-facing presentation (Primus Volatus: First Flight), the survey instruments, the Wing activity plans, and the visual identity of the program. The presentation was designed to be warm, clear, and student-appropriate — using flight and sky metaphors throughout to frame the college process as something to look forward to rather than dread.</p>
+        <p>Beyond the system architecture, I created all program documentation, the user-facing presentation (Primus Volatus: First Flight), the survey instruments, the activity frameworks, and the visual identity. The presentation was designed to be warm and accessible — using flight and sky metaphors throughout to reframe an anxiety-inducing process as something to anticipate rather than dread.</p>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.5rem 0;">
-          <img src="images/primus-cover.png" alt="Primus Volatus title slide" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
-          <img src="images/primus-structure.png" alt="Primus Volatus structure pyramid" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+          <img src="images/primus-cover.png" alt="Primus Volatus title slide" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+          <img src="images/primus-structure.png" alt="Primus Volatus structure pyramid" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
         </div>
-        <img src="images/primus-counselor.png" alt="Counselor introduction slide" style="width:100%; border-radius:12px; margin-top:1rem; box-shadow:0 4px 16px rgba(122,79,53,0.15);">
+        <img src="images/primus-counselor.png" alt="Counselor introduction slide" style="width:100%; border-radius:12px; margin-top:1rem; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
       </div>
       <div class="case-block reveal">
         <h3>What I'd Do Next</h3>
-        <p>The program's weakest link was measurement. I had qualitative signals — attendance improved, the cohort's collaborative behavior changed noticeably by the second semester — but no formal tracking system for engagement quality over time. If I were building this again, I would design a lightweight longitudinal tracking tool into the Feathers system from the start, turning each sticky-note check-in into a data point that could inform counselor interventions earlier in the year.</p>
+        <p>The system's weakest link was measurement. I had qualitative signals — engagement improved, collaborative behavior shifted noticeably by the second cycle — but no formal tracking system for engagement quality over time. If I were building this again, I would design a lightweight longitudinal tracking tool into the Feathers layer from the start, turning each check-in into a data point that could inform earlier interventions.</p>
       </div>
     </div>
   </div>
@@ -1011,7 +1043,7 @@
     <blockquote class="philosophy-quote">
       "Every project I've made asks the same question: what does it feel like to be inside this experience — not just to use it, but to live with it?"
     </blockquote>
-    <p>I came to design through language. As a writing teacher, I understood before I had the vocabulary for it that the gap between what something says and what it makes someone feel is where all the important work happens.</p>
+    <p>I came to design through language. I understood before I had the vocabulary for it that the gap between what something says and what it makes someone feel is where all the important work happens.</p>
     <p>That instinct runs through everything I build — the way Kokoron never lets your creature die, the way the VR experience asks you to physically throw your darkness away, the way WEISS puts you in a morally ambiguous economy and asks what you're willing to do to keep the world running.</p>
     <p>Good design doesn't solve problems. It creates spaces where people can be more fully themselves.</p>
   </div>
@@ -1055,6 +1087,28 @@
   document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
   document.addEventListener('mouseenter', () => { dot.style.opacity = '0.7'; ring.style.opacity = '0.6'; });
 
+  // ── PARALLAX SCROLL ──
+  const parallaxLayers = document.querySelectorAll('.parallax-layer');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  let ticking = false;
+
+  if (!prefersReduced && !isMobile) {
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          parallaxLayers.forEach(layer => {
+            const speed = parseFloat(layer.dataset.speed);
+            layer.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+
   // ── HERO PARTICLE SYSTEM (mouse-responsive) ──
   const canvas = document.getElementById('heroCanvas');
   const ctx = canvas.getContext('2d');
@@ -1074,8 +1128,8 @@
   });
 
   const palette = [
-    'rgba(201,123,90,', 'rgba(232,184,154,', 'rgba(184,212,232,',
-    'rgba(197,184,212,', 'rgba(143,173,140,', 'rgba(245,223,208,',
+    'rgba(212,133,74,', 'rgba(232,223,212,', 'rgba(167,139,250,',
+    'rgba(107,125,147,', 'rgba(240,196,86,', 'rgba(30,45,66,',
   ];
 
   class Particle {
@@ -1140,7 +1194,7 @@
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = `rgba(201,123,90,${alpha})`;
+          ctx.strokeStyle = `rgba(212,133,74,${alpha})`;
           ctx.lineWidth = 0.6;
           ctx.stroke();
         }
